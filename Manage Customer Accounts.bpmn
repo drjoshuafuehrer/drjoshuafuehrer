@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<semantic:definitions xmlns:semantic="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:color="http://www.omg.org/spec/BPMN/non-normative/color/1.0" xmlns:trisobpmn="http://www.trisotech.com/2014/triso/bpmn" xmlns:triso="http://www.trisotech.com/2015/triso/modeling" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:openapi="https://openapis.org/omg/extension/1.0" xmlns:boxedext="https://www.trisotech.com/spec/DMN/20191111/EXT/" xmlns:tc="http://www.omg.org/spec/DMN/20160719/testcase" xmlns:rss="http://purl.org/rss/2.0/" xmlns:trisofeed="http://trisotech.com/feed" xmlns:bpsim="http://www.bpsim.org/schemas/1.0" xmlns:drools="http://www.jboss.org/drools" xmlns:i18n="http://www.omg.org/spec/BPMN/non-normative/extensions/i18n/1.0"                  xmlns:dmn="https://www.omg.org/spec/DMN/20240513/MODEL/"  xmlns:feel="https://www.omg.org/spec/DMN/20240513/FEEL/"  xmlns="http://www.trisotech.com/definitions/_5edb5b70-2306-41f9-81c7-d4b7724b0678" id="_5edb5b70-2306-41f9-81c7-d4b7724b0678" targetNamespace="http://www.trisotech.com/definitions/_5edb5b70-2306-41f9-81c7-d4b7724b0678" expressionLanguage="https://www.omg.org/spec/DMN/20240513/FEEL/" typeLanguage="http://www.trisotech.com/2015/triso/modeling/ItemDefinitionType" exporter="Workflow Modeler" exporterVersion="9.3.2" name="Manage Customer Accounts" xml:lang="en" triso:translationLanguages="" trisobpmn:logoChoice="Default">
+    <semantic:itemDefinition triso:readOnly="false" isCollection="false" triso:basicType="true" structureRef="feel:string" triso:definitionType="http://www.trisotech.com/2015/triso/modeling/ItemDefinitionType" triso:allowProvidedAuth="false" triso:allowUrlOverride="false" triso:name="triso_string" id="_triso-default-bpmnItemDefinition-string_id"/>
+    <semantic:itemDefinition triso:readOnly="false" isCollection="false" triso:basicType="true" structureRef="feel:Any" triso:definitionType="http://www.trisotech.com/2015/triso/modeling/ItemDefinitionType" triso:allowProvidedAuth="false" triso:allowUrlOverride="false" triso:name="triso_Any" id="_triso-default-bpmnItemDefinition-Any_id"/>
+    <semantic:resource name="CS Mgr" triso:readOnly="false" triso:allowProvidedAuth="false" triso:allowUrlOverride="false" id="_298759d8-a08e-4b95-a6e4-bd5325bbf832"/>
+    <semantic:process id="_932790f1-448c-42fa-8a01-d8882af87344" name="Page 1" triso:readOnly="false" triso:collectEnds="true" isClosed="false">
+        <semantic:startEvent id="_41cf90f5-c6e5-4d73-8a8b-c5435d3435fe" name="Completed&#10;delivery" triso:readOnly="false">
+            <semantic:outgoing>_28e37c78-4a23-4ebe-adf5-5014678cea05</semantic:outgoing>
+        </semantic:startEvent>
+        <semantic:task id="_2a8a3f12-48c1-4f6f-a5a5-2f30b0e14734" name="Assess Customer Satisfaction" triso:readOnly="false">
+            <semantic:documentation>&lt;p&gt;Evaluate customer satisfaction to the degree to which &lt;a href="https://corporatefinanceinstitute.com/resources/knowledge/accounting/product-costs/"&gt;products&lt;/a&gt; or services provided by companies to a customer&amp;rsquo;s expectations,&lt;/p&gt;</semantic:documentation>
+            <semantic:extensionElements>
+                <triso:graphRelations>
+                    <triso:systemRef id="_38536114-61e0-4fee-a6ab-6d997432958c" predicate="where">_0b0caf36-fe9b-4d19-a7bc-502662fc1980</triso:systemRef>
+                    <triso:goalRef id="_1e3550e4-4e99-4e43-aa7a-43a272aca603" predicate="achieve">_203f5b02-241e-4dce-961e-7e11fb5fffbc</triso:goalRef>
+                </triso:graphRelations>
+            </semantic:extensionElements>
+            <semantic:incoming>_28e37c78-4a23-4ebe-adf5-5014678cea05</semantic:incoming>
+            <semantic:outgoing>_a70871e1-b1f2-4105-be06-46c4f091bc5e</semantic:outgoing>
+            <semantic:ioSpecification>
+                <semantic:dataInput name="Customer Survey" triso:readOnly="false" itemSubjectRef="_triso-default-bpmnItemDefinition-string_id" isCollection="false" id="_a81af35d-6178-4110-846b-b1a3d095a4f1"/>
+                <semantic:dataOutput name="Dissatisfied customer" triso:readOnly="false" itemSubjectRef="_triso-default-bpmnItemDefinition-string_id" isCollection="false" triso:hidden="false" id="_8ccf02f3-c1cc-4fc8-ba95-d725fa4e3c18"/>
+                <semantic:dataOutput name="Satisfied customer" triso:readOnly="false" itemSubjectRef="_triso-default-bpmnItemDefinition-string_id" isCollection="false" triso:hidden="false" id="_3a237c19-6824-467b-ac7f-791c9685b5c5"/>
+                <semantic:inputSet id="_36558a69-e5a9-47c1-98c3-667f878f3311">
+                    <semantic:dataInputRefs>_a81af35d-6178-4110-846b-b1a3d095a4f1</semantic:dataInputRefs>
+                </semantic:inputSet>
+                <semantic:outputSet id="_3aa03d7f-ca67-4fdd-a752-d6985de89713">
+                    <semantic:dataOutputRefs>_8ccf02f3-c1cc-4fc8-ba95-d725fa4e3c18</semantic:dataOutputRefs>
+                    <semantic:dataOutputRefs>_3a237c19-6824-467b-ac7f-791c9685b5c5</semantic:dataOutputRefs>
+                </semantic:outputSet>
+            </semantic:ioSpecification>
+            <semantic:dataInputAssociation id="_7f6c9540-5bd6-4f57-b73d-82a3fce9fb36">
+                <semantic:sourceRef>_dea571f4-fb2d-42e2-ae49-5e3e6dfdaf3f</semantic:sourceRef>
+                <semantic:targetRef>_a81af35d-6178-4110-846b-b1a3d095a4f1</semantic:targetRef>
+            </semantic:dataInputAssociation>
+            <semantic:dataOutputAssociation id="_1efc3139-395f-48c6-a2bc-c49c11dcfeb9">
+                <semantic:sourceRef>_8ccf02f3-c1cc-4fc8-ba95-d725fa4e3c18</semantic:sourceRef>
+                <semantic:targetRef>_8743ab3b-c2aa-4f0e-9b52-2e8d6cc53ed1</semantic:targetRef>
+            </semantic:dataOutputAssociation>
+            <semantic:dataOutputAssociation id="_ba949d86-17d8-4a98-9408-f28c052b2bb6">
+                <semantic:sourceRef>_3a237c19-6824-467b-ac7f-791c9685b5c5</semantic:sourceRef>
+                <semantic:targetRef>_c4ba76dd-6fd8-44e9-a0d8-f2e018a4b79e</semantic:targetRef>
+            </semantic:dataOutputAssociation>
+            <semantic:performer id="_0e0fda5f-315b-42da-abb2-576b27803bcd">
+                <semantic:resourceRef>_298759d8-a08e-4b95-a6e4-bd5325bbf832</semantic:resourceRef>
+            </semantic:performer>
+        </semantic:task>
+        <semantic:exclusiveGateway id="_6f6c55a7-4681-4844-aa05-1cf74e33d1e1" name="Results?" triso:readOnly="false" gatewayDirection="Diverging">
+            <semantic:incoming>_a70871e1-b1f2-4105-be06-46c4f091bc5e</semantic:incoming>
+            <semantic:outgoing>_22f4b6ec-f257-4b4e-bb55-19ffdb0a04ca</semantic:outgoing>
+            <semantic:outgoing>_308e535d-c2f2-4a0f-8b27-f9186fbcb826</semantic:outgoing>
+        </semantic:exclusiveGateway>
+        <semantic:task id="_e19a70e6-c733-40f6-90f2-b81803b3c1c3" name="Update Customer History" triso:readOnly="false">
+            <semantic:incoming>_22f4b6ec-f257-4b4e-bb55-19ffdb0a04ca</semantic:incoming>
+            <semantic:incoming>_e832d32b-427f-4286-bb66-e8339c784e62</semantic:incoming>
+            <semantic:outgoing>_35aa2960-d81b-43bc-9f25-19104be73c9f</semantic:outgoing>
+        </semantic:task>
+        <semantic:task id="_97294d3c-0194-4f53-92bf-380b87f35627" name="Review Against Performance Standards" triso:readOnly="false">
+            <semantic:incoming>_308e535d-c2f2-4a0f-8b27-f9186fbcb826</semantic:incoming>
+            <semantic:outgoing>_aef12f98-2015-4df9-b9aa-31b06ec72566</semantic:outgoing>
+        </semantic:task>
+        <semantic:endEvent id="_9e895020-64ad-4eba-83f1-b12372143432" name="History updated" triso:readOnly="false">
+            <semantic:incoming>_35aa2960-d81b-43bc-9f25-19104be73c9f</semantic:incoming>
+        </semantic:endEvent>
+        <semantic:task id="_c3161999-7f57-4682-8df9-8fdee8415505" name="Communicate with Customer" triso:readOnly="false">
+            <semantic:incoming>_aef12f98-2015-4df9-b9aa-31b06ec72566</semantic:incoming>
+            <semantic:outgoing>_e832d32b-427f-4286-bb66-e8339c784e62</semantic:outgoing>
+        </semantic:task>
+        <semantic:dataObject id="_dea571f4-fb2d-42e2-ae49-5e3e6dfdaf3f" name="Customer Survey" triso:readOnly="false" itemSubjectRef="_triso-default-bpmnItemDefinition-string_id" isCollection="false"/>
+        <semantic:dataObject id="_8743ab3b-c2aa-4f0e-9b52-2e8d6cc53ed1" name="Dissatisfied customer" triso:readOnly="false" itemSubjectRef="_triso-default-bpmnItemDefinition-string_id" isCollection="false"/>
+        <semantic:dataObject id="_c4ba76dd-6fd8-44e9-a0d8-f2e018a4b79e" name="Satisfied customer" triso:readOnly="false" itemSubjectRef="_triso-default-bpmnItemDefinition-string_id" isCollection="false"/>
+        <semantic:sequenceFlow id="_28e37c78-4a23-4ebe-adf5-5014678cea05" triso:readOnly="false" sourceRef="_41cf90f5-c6e5-4d73-8a8b-c5435d3435fe" targetRef="_2a8a3f12-48c1-4f6f-a5a5-2f30b0e14734"/>
+        <semantic:sequenceFlow id="_a70871e1-b1f2-4105-be06-46c4f091bc5e" triso:readOnly="false" sourceRef="_2a8a3f12-48c1-4f6f-a5a5-2f30b0e14734" targetRef="_6f6c55a7-4681-4844-aa05-1cf74e33d1e1"/>
+        <semantic:sequenceFlow id="_22f4b6ec-f257-4b4e-bb55-19ffdb0a04ca" name="Satisfied" triso:readOnly="false" sourceRef="_6f6c55a7-4681-4844-aa05-1cf74e33d1e1" targetRef="_e19a70e6-c733-40f6-90f2-b81803b3c1c3"/>
+        <semantic:sequenceFlow id="_308e535d-c2f2-4a0f-8b27-f9186fbcb826" name="Dissatisfied" triso:readOnly="false" sourceRef="_6f6c55a7-4681-4844-aa05-1cf74e33d1e1" targetRef="_97294d3c-0194-4f53-92bf-380b87f35627"/>
+        <semantic:sequenceFlow id="_35aa2960-d81b-43bc-9f25-19104be73c9f" triso:readOnly="false" sourceRef="_e19a70e6-c733-40f6-90f2-b81803b3c1c3" targetRef="_9e895020-64ad-4eba-83f1-b12372143432"/>
+        <semantic:sequenceFlow id="_aef12f98-2015-4df9-b9aa-31b06ec72566" triso:readOnly="false" sourceRef="_97294d3c-0194-4f53-92bf-380b87f35627" targetRef="_c3161999-7f57-4682-8df9-8fdee8415505"/>
+        <semantic:sequenceFlow id="_e832d32b-427f-4286-bb66-e8339c784e62" triso:readOnly="false" sourceRef="_c3161999-7f57-4682-8df9-8fdee8415505" targetRef="_e19a70e6-c733-40f6-90f2-b81803b3c1c3"/>
+        <semantic:textAnnotation id="_f46ef1f1-3b6f-41ee-b66a-ff75e8f571e7">
+            <semantic:text>Reliability is one (of many) of the key performance standards between a business and a customer. If Amazon promises two day shipping, but it takes a week, this would lead to customers viewing them as unreliable</semantic:text>
+        </semantic:textAnnotation>
+        <semantic:association id="_ba4183d5-0287-4fa3-81e0-06bfe676f3f3" triso:readOnly="false" sourceRef="_97294d3c-0194-4f53-92bf-380b87f35627" targetRef="_f46ef1f1-3b6f-41ee-b66a-ff75e8f571e7" associationDirection="None"/>
+    </semantic:process>
+    <bpmndi:BPMNDiagram id="_3041177f-1b7c-428b-ac0a-55a66318f9af" name="Page 1">
+        <bpmndi:BPMNPlane bpmnElement="_932790f1-448c-42fa-8a01-d8882af87344" id="_3041177f-1b7c-428b-ac0a-55a66318f9af_plane" trisobpmn:diagramWidth="1485" trisobpmn:diagramHeight="1050">
+            <bpmndi:BPMNShape id="_1f1d0c2f-d408-47bf-9117-2d85bd7e1766" bpmnElement="_41cf90f5-c6e5-4d73-8a8b-c5435d3435fe" color:background-color="#ffffff" color:border-color="#000000">
+                <dc:Bounds x="138" y="193.99999850988402" width="32" height="32"/>
+                <bpmndi:BPMNLabel color:color="#000000" triso:defaultBounds="true" labelStyle="LS_3041177f-1b7c-428b-ac0a-55a66318f9af_0">
+                    <dc:Bounds height="31" width="110" x="99" y="234.99999850988402"/>
+                </bpmndi:BPMNLabel>
+            </bpmndi:BPMNShape>
+            <bpmndi:BPMNShape id="_972847cc-812b-46ce-8096-f1c69ebbd21c" bpmnElement="_2a8a3f12-48c1-4f6f-a5a5-2f30b0e14734" color:background-color="#ffffff" color:border-color="#000000">
+                <dc:Bounds x="223.99999999999997" y="172.00000384449967" width="96.00000000000003" height="76"/>
+                <bpmndi:BPMNLabel color:color="#000000" triso:defaultBounds="true" labelStyle="LS_3041177f-1b7c-428b-ac0a-55a66318f9af_0">
+                    <dc:Bounds height="31" width="90" x="227" y="194.50000384449967"/>
+                </bpmndi:BPMNLabel>
+            </bpmndi:BPMNShape>
+            <bpmndi:BPMNShape id="_72f4ca44-7d8d-47e3-b0be-49577c1b0bde" bpmnElement="_6f6c55a7-4681-4844-aa05-1cf74e33d1e1" isMarkerVisible="true" color:background-color="#ffffff" color:border-color="#000000">
+                <dc:Bounds x="349.2132034301758" y="189.98781351717898" width="41.57359313964844" height="40.024389147758484"/>
+                <bpmndi:BPMNLabel color:color="#000000" labelStyle="LS_3041177f-1b7c-428b-ac0a-55a66318f9af_0">
+                    <dc:Bounds height="16" width="110" x="303.99999975413084" y="165.01220110031548"/>
+                </bpmndi:BPMNLabel>
+            </bpmndi:BPMNShape>
+            <bpmndi:BPMNShape id="_52155e0c-af82-4dda-973c-eccbc4dddc34" bpmnElement="_e19a70e6-c733-40f6-90f2-b81803b3c1c3" color:background-color="#ffffff" color:border-color="#000000">
+                <dc:Bounds x="652" y="172" width="96" height="76"/>
+                <bpmndi:BPMNLabel color:color="#000000" triso:defaultBounds="true" labelStyle="LS_3041177f-1b7c-428b-ac0a-55a66318f9af_0">
+                    <dc:Bounds height="31" width="90" x="655" y="194.5"/>
+                </bpmndi:BPMNLabel>
+            </bpmndi:BPMNShape>
+            <bpmndi:BPMNShape id="_e0fd7313-6b76-4e93-b54a-a5e9d2f4b2b3" bpmnElement="_97294d3c-0194-4f53-92bf-380b87f35627" color:background-color="#ffffff" color:border-color="#000000">
+                <dc:Bounds x="392" y="256" width="96" height="76"/>
+                <bpmndi:BPMNLabel color:color="#000000" triso:defaultBounds="true" labelStyle="LS_3041177f-1b7c-428b-ac0a-55a66318f9af_0">
+                    <dc:Bounds height="47" width="90" x="395" y="270.5"/>
+                </bpmndi:BPMNLabel>
+            </bpmndi:BPMNShape>
+            <bpmndi:BPMNShape id="_34d4861f-4c4b-4144-9fde-521e554c3377" bpmnElement="_f46ef1f1-3b6f-41ee-b66a-ff75e8f571e7" color:background-color="#ffffff" color:border-color="#000000">
+                <dc:Bounds x="412.999998537265" y="350.5" width="238.00000292547008" height="82.953125"/>
+                <bpmndi:BPMNLabel color:color="#000000" triso:defaultBounds="true" labelStyle="LS_3041177f-1b7c-428b-ac0a-55a66318f9af_0">
+                    <dc:Bounds height="77" width="233" x="417.999998537265" y="353.4765625"/>
+                </bpmndi:BPMNLabel>
+            </bpmndi:BPMNShape>
+            <bpmndi:BPMNShape id="_b8a380d2-b8db-427c-924a-72eeac59a6d4" bpmnElement="_9e895020-64ad-4eba-83f1-b12372143432" color:background-color="#ffffff" color:border-color="#000000">
+                <dc:Bounds x="780" y="192.0000042915345" width="36" height="36"/>
+                <bpmndi:BPMNLabel color:color="#000000" triso:defaultBounds="true" labelStyle="LS_3041177f-1b7c-428b-ac0a-55a66318f9af_0">
+                    <dc:Bounds height="16" width="110" x="743" y="235.0000042915345"/>
+                </bpmndi:BPMNLabel>
+            </bpmndi:BPMNShape>
+            <bpmndi:BPMNShape id="_74a4a1a3-5980-4e80-b42d-0bf215465b20" bpmnElement="_c3161999-7f57-4682-8df9-8fdee8415505" color:background-color="#ffffff" color:border-color="#000000">
+                <dc:Bounds x="512" y="256.000005722046" width="96" height="76"/>
+                <bpmndi:BPMNLabel color:color="#000000" triso:defaultBounds="true" labelStyle="LS_3041177f-1b7c-428b-ac0a-55a66318f9af_0">
+                    <dc:Bounds height="31" width="90" x="515" y="278.500005722046"/>
+                </bpmndi:BPMNLabel>
+            </bpmndi:BPMNShape>
+            <bpmndi:BPMNEdge id="_7ab48944-c586-4106-ad50-7304399b2173" color:border-color="#000000" bpmnElement="_28e37c78-4a23-4ebe-adf5-5014678cea05">
+                <di:waypoint x="169" y="209.99999850988402"/>
+                <di:waypoint x="223.99999999999997" y="210.00000384449967"/>
+                <bpmndi:BPMNLabel color:color="#000000" triso:defaultBounds="true" triso:labelPosition="midbottom" labelStyle="LS_3041177f-1b7c-428b-ac0a-55a66318f9af_0"/>
+            </bpmndi:BPMNEdge>
+            <bpmndi:BPMNEdge id="_6bd4ca41-b03e-40b6-b41e-6f0b96ff51fe" color:border-color="#000000" bpmnElement="_a70871e1-b1f2-4105-be06-46c4f091bc5e">
+                <di:waypoint x="319" y="210.00000384449967"/>
+                <di:waypoint x="349.2132034301758" y="210.00000809105822"/>
+                <bpmndi:BPMNLabel color:color="#000000" triso:defaultBounds="true" triso:labelPosition="midbottom" labelStyle="LS_3041177f-1b7c-428b-ac0a-55a66318f9af_0"/>
+            </bpmndi:BPMNEdge>
+            <bpmndi:BPMNEdge id="_c9f6fc29-c538-4501-addb-94dd3793c087" color:border-color="#000000" bpmnElement="_22f4b6ec-f257-4b4e-bb55-19ffdb0a04ca">
+                <di:waypoint x="391.2132034301758" y="209.78680364760348"/>
+                <di:waypoint x="652" y="209.99920084510907"/>
+                <bpmndi:BPMNLabel color:color="#000000" triso:defaultBounds="true" triso:labelPosition="midbottom" labelStyle="LS_3041177f-1b7c-428b-ac0a-55a66318f9af_0">
+                    <dc:Bounds height="16" width="110" x="466.106601880919" y="214.8925950226589"/>
+                </bpmndi:BPMNLabel>
+            </bpmndi:BPMNEdge>
+            <bpmndi:BPMNEdge id="_a27582e7-9424-48a6-aa25-9b270fd48dab" color:border-color="#000000" bpmnElement="_308e535d-c2f2-4a0f-8b27-f9186fbcb826">
+                <di:waypoint x="370.2132034301758" y="230.78680364760348"/>
+                <di:waypoint x="370.2132034301758" y="294"/>
+                <di:waypoint x="392" y="294"/>
+                <bpmndi:BPMNLabel color:color="#000000" triso:labelPosition="custom" labelStyle="LS_3041177f-1b7c-428b-ac0a-55a66318f9af_0">
+                    <dc:Bounds height="16" width="110" x="313.2132034897804" y="241.00000172853464"/>
+                </bpmndi:BPMNLabel>
+            </bpmndi:BPMNEdge>
+            <bpmndi:BPMNEdge id="_fc4e5ddc-a422-4574-be13-923a0de7b4d3" color:border-color="#000000" bpmnElement="_ba4183d5-0287-4fa3-81e0-06bfe676f3f3">
+                <di:waypoint x="411.2" y="332"/>
+                <di:waypoint x="411.2" y="338"/>
+                <di:waypoint x="405.2" y="338"/>
+                <di:waypoint x="405.2" y="395.3138655090332"/>
+                <di:waypoint x="417.6666652041962" y="395.3138655090332"/>
+                <bpmndi:BPMNLabel color:color="#000000" triso:defaultBounds="true" triso:labelPosition="midbottom" labelStyle="LS_3041177f-1b7c-428b-ac0a-55a66318f9af_0"/>
+            </bpmndi:BPMNEdge>
+            <bpmndi:BPMNEdge id="_f440dab3-3128-4925-a2bd-174dee50cb86" color:border-color="#000000" bpmnElement="_35aa2960-d81b-43bc-9f25-19104be73c9f">
+                <di:waypoint x="747" y="210"/>
+                <di:waypoint x="780" y="210.0000042915345"/>
+                <bpmndi:BPMNLabel color:color="#000000" triso:defaultBounds="true" triso:labelPosition="midbottom" labelStyle="LS_3041177f-1b7c-428b-ac0a-55a66318f9af_0"/>
+            </bpmndi:BPMNEdge>
+            <bpmndi:BPMNEdge id="_cd95a1a2-5072-4189-a568-7c4bd58683c9" color:border-color="#000000" bpmnElement="_aef12f98-2015-4df9-b9aa-31b06ec72566">
+                <di:waypoint x="487" y="294"/>
+                <di:waypoint x="512" y="294.000005722046"/>
+                <bpmndi:BPMNLabel color:color="#000000" triso:defaultBounds="true" triso:labelPosition="midbottom" labelStyle="LS_3041177f-1b7c-428b-ac0a-55a66318f9af_0"/>
+            </bpmndi:BPMNEdge>
+            <bpmndi:BPMNEdge id="_ca0f4a1c-42ea-4753-9844-463a74fd616a" color:border-color="#000000" bpmnElement="_e832d32b-427f-4286-bb66-e8339c784e62">
+                <di:waypoint x="607" y="294.000005722046"/>
+                <di:waypoint x="627" y="294.000005722046"/>
+                <di:waypoint x="627" y="232.79999999999998"/>
+                <di:waypoint x="652" y="232.79999999999998"/>
+                <bpmndi:BPMNLabel color:color="#000000" triso:defaultBounds="true" triso:labelPosition="midbottom" labelStyle="LS_3041177f-1b7c-428b-ac0a-55a66318f9af_0"/>
+            </bpmndi:BPMNEdge>
+        </bpmndi:BPMNPlane>
+        <bpmndi:BPMNLabelStyle id="LS_3041177f-1b7c-428b-ac0a-55a66318f9af_0">
+            <dc:Font name="arial,helvetica,sans-serif" size="11" isBold="false" isItalic="false" isStrikeThrough="false" isUnderline="false"/>
+        </bpmndi:BPMNLabelStyle>
+    </bpmndi:BPMNDiagram>
+    <semantic:relationship type="trisoExtension">
+        <semantic:extensionElements>
+            <triso:graphObjects>
+                <triso:system name="CRM" triso:readOnly="false" id="_0b0caf36-fe9b-4d19-a7bc-502662fc1980"/>
+                <triso:goal name="Ensure performand standards are met/exceeded to ensure comparative advantage" triso:readOnly="false" id="_203f5b02-241e-4dce-961e-7e11fb5fffbc"/>
+            </triso:graphObjects>
+        </semantic:extensionElements>
+        <semantic:source>_5edb5b70-2306-41f9-81c7-d4b7724b0678</semantic:source>
+        <semantic:target>_5edb5b70-2306-41f9-81c7-d4b7724b0678</semantic:target>
+    </semantic:relationship>
+</semantic:definitions>
