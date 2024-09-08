@@ -1,0 +1,375 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<semantic:definitions xmlns:semantic="https://www.omg.org/spec/DMN/20240513/MODEL/" xmlns:dmn11="http://www.omg.org/spec/DMN/20151101/dmn.xsd" xmlns:rss="http://purl.org/rss/2.0/" xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" xmlns:trisofeed="http://trisotech.com/feed" xmlns:trisodmn="http://www.trisotech.com/2016/triso/dmn" xmlns:dmndi="http://www.omg.org/spec/DMN/20180521/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:triso="http://www.trisotech.com/2015/triso/modeling" xmlns:tc="http://www.omg.org/spec/DMN/20160719/testcase" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:feel="https://www.omg.org/spec/DMN/20240513/FEEL/"             xmlns:ns1="https://www.omg.org/spec/DMN/20230324/DMNDI/"  xmlns:drools="http://www.drools.org/kie/dmn/1.1"  xmlns:openapi="https://openapis.org/omg/extension/1.0"  xmlns:xsd="http://www.w3.org/2001/XMLSchema"   xmlns:i18n="http://www.omg.org/spec/BPMN/non-normative/extensions/i18n/1.0"  xmlns="http://www.trisotech.com/definitions/_ceaf902e-c7fe-4c1f-9740-f5f10f278086" id="_ceaf902e-c7fe-4c1f-9740-f5f10f278086" name="Transportation Pricing" namespace="http://www.trisotech.com/definitions/_ceaf902e-c7fe-4c1f-9740-f5f10f278086" exporter="Decision Modeler" exporterVersion="9.3.2" xml:lang="en" triso:logoChoice="Default">
+    <semantic:description>&lt;p&gt;This decision model calculate the&amp;nbsp;rental price of a vehicle based on&amp;nbsp;a&amp;nbsp;&lt;em&gt;Rental Request&lt;/em&gt; and the &lt;em&gt;Customer&lt;/em&gt; history.&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;The final price is obtained by calculating the rental price using different methods and then sorting them by price.&lt;/p&gt;
+&lt;p&gt;This method is quite flexible because&amp;nbsp;alternative way of calculating the price (promotions, new business models) can be easily integrated.&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;</semantic:description>
+    <semantic:extensionElements>
+        <triso:graphRelations/>
+    </semantic:extensionElements>
+    <semantic:itemDefinition name="tTransportationRequest" label="tTransportationRequest" isCollection="false">
+        <semantic:itemComponent id="_2fefa1c8-5413-4a4b-a5bc-8b919581d42a" name="ShipmentVolume">
+            <semantic:typeRef>Any</semantic:typeRef>
+        </semantic:itemComponent>
+        <semantic:itemComponent id="_8497bea6-5d99-4fb7-8630-fdf014ac0b4f" name="ShipmentWeight">
+            <semantic:typeRef>Any</semantic:typeRef>
+        </semantic:itemComponent>
+        <semantic:itemComponent id="_fe41945d-35cf-4bb3-98f5-bee2ddbf42a2" name="GoodType">
+            <semantic:typeRef>Any</semantic:typeRef>
+        </semantic:itemComponent>
+    </semantic:itemDefinition>
+    <semantic:itemDefinition name="tTransportationType" label="tTransportationType" isCollection="false">
+        <semantic:typeRef>string</semantic:typeRef>
+        <semantic:allowedValues>
+            <semantic:extensionElements>
+                <triso:constraintDetails id="_0aa24f2a-a720-447f-94eb-a603d667f84b" constraintsType="enumeration">
+                    <triso:value>"Truck","Rail","Vessel"</triso:value>
+                    <triso:display>"Truck", "Rail", "Vessel"</triso:display>
+                    <triso:choices>
+                        <triso:value>"Truck"</triso:value>
+                        <triso:display>"Truck"</triso:display>
+                    </triso:choices>
+                    <triso:choices>
+                        <triso:value>"Rail"</triso:value>
+                        <triso:display>"Rail"</triso:display>
+                    </triso:choices>
+                    <triso:choices>
+                        <triso:value>"Vessel"</triso:value>
+                        <triso:display>"Vessel"</triso:display>
+                    </triso:choices>
+                </triso:constraintDetails>
+            </semantic:extensionElements>
+            <semantic:text>"Truck","Rail","Vessel"</semantic:text>
+        </semantic:allowedValues>
+    </semantic:itemDefinition>
+    <semantic:itemDefinition name="tPromotion" label="tPromotion" isCollection="false">
+        <semantic:itemComponent id="_76b0ec3d-7d31-4018-90de-c73374a620c1" name="Description" isCollection="false">
+            <semantic:typeRef>string</semantic:typeRef>
+        </semantic:itemComponent>
+        <semantic:itemComponent id="_3de5d202-3492-4962-9215-a63d489174af" name="Price" isCollection="false">
+            <semantic:typeRef>number</semantic:typeRef>
+        </semantic:itemComponent>
+    </semantic:itemDefinition>
+    <semantic:itemDefinition name="tPromotiions" label="tPromotiions" isCollection="true">
+        <semantic:typeRef>tPromotion</semantic:typeRef>
+    </semantic:itemDefinition>
+    <semantic:itemDefinition name="tCustomer" label="tCustomer" isCollection="false">
+        <semantic:itemComponent id="_32c5df59-01f8-45fe-a41f-32bc683fc3b1" name="CustomerID" isCollection="false">
+            <semantic:typeRef>string</semantic:typeRef>
+        </semantic:itemComponent>
+        <semantic:itemComponent id="_099fbf40-f075-47d5-8b7f-6b5811a7ecd1" name="ContactName" isCollection="false">
+            <semantic:typeRef>string</semantic:typeRef>
+        </semantic:itemComponent>
+        <semantic:itemComponent id="_1e308f5e-afdc-4233-bd9b-61c09d8d6fe9" name="CompanyName" isCollection="false">
+            <semantic:typeRef>string</semantic:typeRef>
+        </semantic:itemComponent>
+        <semantic:itemComponent id="_ebcdbc4b-3ed1-4f59-8c20-a3dc55cb5cc2" name="Phone" isCollection="false">
+            <semantic:typeRef>string</semantic:typeRef>
+        </semantic:itemComponent>
+        <semantic:itemComponent id="_a81c9cfe-f10d-40b5-8398-ecbc859341e6" name="Email" isCollection="false">
+            <semantic:typeRef>string</semantic:typeRef>
+        </semantic:itemComponent>
+        <semantic:itemComponent id="_f290e11f-693f-4f00-b962-eb418fad5a3d" name="PastRentals" isCollection="false">
+            <semantic:typeRef>tRentals</semantic:typeRef>
+        </semantic:itemComponent>
+    </semantic:itemDefinition>
+    <semantic:itemDefinition name="tPercent" label="tPercent" isCollection="false">
+        <semantic:typeRef>number</semantic:typeRef>
+    </semantic:itemDefinition>
+    <semantic:itemDefinition name="tRentals" label="tRentals" isCollection="true">
+        <semantic:typeRef>tTransportationRequest</semantic:typeRef>
+    </semantic:itemDefinition>
+    <semantic:decisionService id="_ceaf902e-c7fe-4c1f-9740-f5f10f278086_DS" name="Whole Model Decision Service" triso:dynamicDecisionService="true" triso:wholeModelService="true">
+        <semantic:variable name="Whole Model Decision Service" id="_ceaf902e-c7fe-4c1f-9740-f5f10f278086_DS_VAR" typeRef="Any"/>
+        <semantic:outputDecision href="#_ad164346-ae3f-4b90-b9bb-3064c2dc8dc4"/>
+        <semantic:encapsulatedDecision href="#_c51faaac-3b03-4574-9116-49d2d36b2c5f"/>
+        <semantic:encapsulatedDecision href="#_00370b71-a52a-42a5-857e-0ac184b0e121"/>
+        <semantic:encapsulatedDecision href="#_61aacf50-734e-4ce8-bbd0-0ccb11afed63"/>
+        <semantic:inputData href="#_f69b97ef-53cb-4581-865e-01dfaba37c5b"/>
+        <semantic:inputData href="#_5efd67ec-b456-4823-8c47-78b070fe4d5a"/>
+    </semantic:decisionService>
+    <semantic:decisionService id="_4606d007-0d5a-4ac8-9efd-fb082bfe90a7_DS" name="Diagram Selecting Transportation Mode" triso:dynamicDecisionService="true">
+        <semantic:variable name="Diagram Selecting Transportation Mode" id="_4606d007-0d5a-4ac8-9efd-fb082bfe90a7_DS_VAR" typeRef="Any"/>
+        <semantic:outputDecision href="#_ad164346-ae3f-4b90-b9bb-3064c2dc8dc4"/>
+        <semantic:encapsulatedDecision href="#_c51faaac-3b03-4574-9116-49d2d36b2c5f"/>
+        <semantic:encapsulatedDecision href="#_00370b71-a52a-42a5-857e-0ac184b0e121"/>
+        <semantic:encapsulatedDecision href="#_61aacf50-734e-4ce8-bbd0-0ccb11afed63"/>
+        <semantic:inputData href="#_f69b97ef-53cb-4581-865e-01dfaba37c5b"/>
+        <semantic:inputData href="#_5efd67ec-b456-4823-8c47-78b070fe4d5a"/>
+    </semantic:decisionService>
+    <semantic:inputData id="_f69b97ef-53cb-4581-865e-01dfaba37c5b" name="Transportation Request">
+        <semantic:variable name="Transportation Request" id="_46175625-cfd6-4b71-b921-01cf465fb50a" typeRef="tTransportationRequest"/>
+    </semantic:inputData>
+    <semantic:decision id="_c51faaac-3b03-4574-9116-49d2d36b2c5f" name="Transportation Mode Decision" triso:useOutputTypeAsAnswer="false">
+        <semantic:description>&lt;p&gt;Calculate the rental price based on the weekly price for the category. Short rentals will yield high prices while long rental will yield lower price than calculating it using the daily price.&lt;/p&gt;</semantic:description>
+        <semantic:variable name="Transportation Mode Decision" id="_ed8bec8e-ebd1-4fa8-9876-b7a440851c69" typeRef="number"/>
+        <semantic:informationRequirement id="_34ebf7bd-402e-4eee-9889-94be8a582a60" triso:readOnly="false">
+            <semantic:requiredInput href="#_f69b97ef-53cb-4581-865e-01dfaba37c5b"/>
+        </semantic:informationRequirement>
+        <semantic:knowledgeRequirement id="_5ed20414-40d8-42a7-876e-152e0e544ff8" triso:readOnly="false">
+            <semantic:requiredKnowledge href="#_459d4f1f-87f2-4293-8995-a6461ad044f1"/>
+        </semantic:knowledgeRequirement>
+        <semantic:decisionTable triso:descriptionVisible="false" id="_6cb7ccaf-7cfb-4fde-980f-1beaae7d3855" hitPolicy="UNIQUE" outputLabel="Transportation Mode Decision" typeRef="number" triso:expressionId="_3e975f6a-465e-40ac-875f-11aa4639a4fc">
+            <semantic:input id="_98bad6bd-61d1-4ce6-ba48-52b3eabc6c51" label="Transportation Request.Start">
+                <semantic:inputExpression typeRef="dateTime">
+                    <semantic:text>Transportation Request.Start</semantic:text>
+                </semantic:inputExpression>
+            </semantic:input>
+            <semantic:input id="_650a77a5-2cf6-486a-b5e0-25a4e144ddb5" label="Transportation Request.End">
+                <semantic:inputExpression typeRef="dateTime">
+                    <semantic:text>Transportation Request.End</semantic:text>
+                </semantic:inputExpression>
+            </semantic:input>
+            <semantic:input id="_f58444d1-cc51-457c-a637-ed08d92e7a07" label="Transportation Request.CarType">
+                <semantic:inputExpression typeRef="tTransportationType">
+                    <semantic:text>Transportation Request.CarType</semantic:text>
+                </semantic:inputExpression>
+                <semantic:inputValues triso:constraintsType="enumeration">
+                    <semantic:text>"Truck","Rail","Vessel"</semantic:text>
+                </semantic:inputValues>
+            </semantic:input>
+            <semantic:output id="_85ecbe10-651e-4ca9-a57d-607f9fb33e6d" triso:allowNull="true"/>
+            <semantic:annotation name="Description"/>
+            <semantic:rule id="_a2f9e4ae-5436-4941-88bc-f11fa6890b1a">
+                <semantic:inputEntry id="_00721cc8-f89b-45fa-8da0-e4b0fc7374be">
+                    <semantic:text/>
+                </semantic:inputEntry>
+                <semantic:inputEntry id="_220012e3-6648-441a-972e-48f2d2eb6ee2">
+                    <semantic:text/>
+                </semantic:inputEntry>
+                <semantic:inputEntry id="_ff853726-d4f6-4d06-8d49-68d24cca2702">
+                    <semantic:text/>
+                </semantic:inputEntry>
+                <semantic:outputEntry id="_11bf10f2-4f0e-48cd-a166-98832b922f79">
+                    <semantic:text/>
+                </semantic:outputEntry>
+                <semantic:annotationEntry>
+                    <semantic:text/>
+                </semantic:annotationEntry>
+            </semantic:rule>
+        </semantic:decisionTable>
+    </semantic:decision>
+    <semantic:decision id="_00370b71-a52a-42a5-857e-0ac184b0e121" name="Transportation Cost Decision" triso:readOnly="false">
+        <semantic:variable name="Transportation Cost Decision" id="_b281994d-0fe3-4e03-b7d7-88b980b26735" typeRef="Any"/>
+        <semantic:informationRequirement id="_45d7c79c-bf7f-48bc-b594-dea7bed83c9c" triso:readOnly="false">
+            <semantic:requiredInput href="#_f69b97ef-53cb-4581-865e-01dfaba37c5b"/>
+        </semantic:informationRequirement>
+        <semantic:decisionTable triso:descriptionVisible="false" id="_5dd5c8bc-f81d-4f46-b374-a85e10b0929d" hitPolicy="UNIQUE" outputLabel="Transportation Cost Decision" typeRef="Any" triso:expressionId="_9b189b3c-e0db-4086-ae01-b8fa73cedeaa">
+            <semantic:input id="_6d5ad53a-eefe-4223-bf2f-352cb543e448" label="Transportation Request.Start">
+                <semantic:inputExpression typeRef="dateTime">
+                    <semantic:text>Transportation Request.Start</semantic:text>
+                </semantic:inputExpression>
+            </semantic:input>
+            <semantic:input id="_9bde6afa-2b58-4e9b-bbe5-046e4b5567c9" label="Transportation Request.End">
+                <semantic:inputExpression typeRef="dateTime">
+                    <semantic:text>Transportation Request.End</semantic:text>
+                </semantic:inputExpression>
+            </semantic:input>
+            <semantic:input id="_a95c04e2-2f38-4d85-8e57-3fb6c58246f2" label="Transportation Request.ModeType">
+                <semantic:inputExpression typeRef="tTransportationType">
+                    <semantic:text>Transportation Request.ModeType</semantic:text>
+                </semantic:inputExpression>
+                <semantic:inputValues triso:constraintsType="enumeration">
+                    <semantic:text>"Truck","Rail","Vessel"</semantic:text>
+                </semantic:inputValues>
+            </semantic:input>
+            <semantic:input id="_88de8cb2-2c6b-496e-a172-048eab7d7a03" label="Transportation Request.ShipmentVolume">
+                <semantic:inputExpression typeRef="Any">
+                    <semantic:text>Transportation Request.ShipmentVolume</semantic:text>
+                </semantic:inputExpression>
+            </semantic:input>
+            <semantic:input id="_93bd2edc-fc0b-4e91-b40f-a550d25e79f7" label="Transportation Request.ShipmentWeight">
+                <semantic:inputExpression typeRef="Any">
+                    <semantic:text>Transportation Request.ShipmentWeight</semantic:text>
+                </semantic:inputExpression>
+            </semantic:input>
+            <semantic:input id="_da353245-40be-4d03-90f7-03be436548e5" label="Transportation Request.GoodType">
+                <semantic:inputExpression typeRef="Any">
+                    <semantic:text>Transportation Request.GoodType</semantic:text>
+                </semantic:inputExpression>
+            </semantic:input>
+            <semantic:output id="_499f26cb-7da1-47fd-8b3b-fbc340c2ab38" triso:allowNull="true"/>
+            <semantic:annotation name="Description"/>
+            <semantic:rule id="_2f13b091-4586-4704-a97c-3c7651fda061">
+                <semantic:inputEntry id="_febfb67b-3a50-4738-b996-edf1485ef68e">
+                    <semantic:text/>
+                </semantic:inputEntry>
+                <semantic:inputEntry id="_857e1e99-3478-4770-90e3-c3ce1e7a7bb2">
+                    <semantic:text/>
+                </semantic:inputEntry>
+                <semantic:inputEntry id="_26f4c95e-d00f-43a1-a46b-3382e2157373">
+                    <semantic:text/>
+                </semantic:inputEntry>
+                <semantic:inputEntry id="_c65d083d-c371-416a-afea-117a8472c40f">
+                    <semantic:text/>
+                </semantic:inputEntry>
+                <semantic:inputEntry id="_8ed80ad2-36c9-4db4-88aa-78d9361a2b66">
+                    <semantic:text/>
+                </semantic:inputEntry>
+                <semantic:inputEntry id="_cf53be87-630f-4c36-a230-65d6126dd7cb">
+                    <semantic:text/>
+                </semantic:inputEntry>
+                <semantic:outputEntry id="_0081e5de-c415-4d01-8894-0ef581e67235">
+                    <semantic:text/>
+                </semantic:outputEntry>
+                <semantic:annotationEntry>
+                    <semantic:text/>
+                </semantic:annotationEntry>
+            </semantic:rule>
+        </semantic:decisionTable>
+    </semantic:decision>
+    <semantic:businessKnowledgeModel id="_459d4f1f-87f2-4293-8995-a6461ad044f1" name="Route Optimizer Logic" triso:readOnly="false">
+        <semantic:variable name="Route Optimizer Logic" id="_e0cf6e8c-12b0-4f9b-bbeb-0e8b642717f6" typeRef="Any"/>
+    </semantic:businessKnowledgeModel>
+    <semantic:decision id="_61aacf50-734e-4ce8-bbd0-0ccb11afed63" name="Reliability and Service Decision" triso:readOnly="false">
+        <semantic:variable name="Reliability and Service Decision" id="_d18cae14-b776-4ccd-91a6-997583af7906" typeRef="Any"/>
+        <semantic:informationRequirement id="_68fbc9ff-4c6a-44a2-9ab4-c16a240b4653" triso:readOnly="false">
+            <semantic:requiredInput href="#_5efd67ec-b456-4823-8c47-78b070fe4d5a"/>
+        </semantic:informationRequirement>
+        <semantic:informationRequirement id="_9b88db80-a29b-4737-8b0f-68ed7a6fac3b" triso:readOnly="false">
+            <semantic:requiredInput href="#_f69b97ef-53cb-4581-865e-01dfaba37c5b"/>
+        </semantic:informationRequirement>
+        <semantic:decisionTable triso:descriptionVisible="false" id="_dde4beca-1e11-40e6-bc9b-02c5c6caf854" hitPolicy="UNIQUE" outputLabel="Reliability and Service Decision" typeRef="Any" triso:expressionId="_92646eef-8029-4d9c-8b6b-2351b530b37c">
+            <semantic:input id="_08a8b479-5af7-466e-94f9-3aa8e97b076e" label="Transportation Cost Decision">
+                <semantic:inputExpression typeRef="Any">
+                    <semantic:text>Transportation Cost Decision</semantic:text>
+                </semantic:inputExpression>
+            </semantic:input>
+            <semantic:input id="_f3cbc518-7094-4558-b388-9a24e723a114" label="Carrier score">
+                <semantic:inputExpression typeRef="string">
+                    <semantic:text>Carrier score</semantic:text>
+                </semantic:inputExpression>
+            </semantic:input>
+            <semantic:output id="_371c52c2-5515-481b-ae13-1b19556fe9a1" triso:allowNull="true"/>
+            <semantic:annotation name="Description"/>
+            <semantic:rule id="_0ffc6245-fdf6-42b1-be55-d9ca9545d13c">
+                <semantic:inputEntry id="_e1b2d269-d744-407c-9829-0b3b9acc1e13">
+                    <semantic:text/>
+                </semantic:inputEntry>
+                <semantic:inputEntry id="_b2282cd7-235a-4c71-a1a5-0ad87f876a02">
+                    <semantic:text/>
+                </semantic:inputEntry>
+                <semantic:outputEntry id="_058afa4d-13b1-4727-994d-f3c992bad95e">
+                    <semantic:text/>
+                </semantic:outputEntry>
+                <semantic:annotationEntry>
+                    <semantic:text/>
+                </semantic:annotationEntry>
+            </semantic:rule>
+        </semantic:decisionTable>
+    </semantic:decision>
+    <semantic:inputData id="_5efd67ec-b456-4823-8c47-78b070fe4d5a" name="Carrier score" triso:readOnly="false">
+        <semantic:variable name="Carrier score" id="_d8c8afcf-a8f1-46f2-a600-dbc080bcfd8d" typeRef="string"/>
+    </semantic:inputData>
+    <semantic:decision id="_ad164346-ae3f-4b90-b9bb-3064c2dc8dc4" name="Recommend Transportation Service" triso:readOnly="false">
+        <semantic:variable name="Recommend Transportation Service" id="_df9095d6-8541-4013-92e5-63d849da29a9" typeRef="Any"/>
+        <semantic:informationRequirement id="_c179eebf-3ea7-46dd-8926-05dc06a9aec4" triso:readOnly="false">
+            <semantic:requiredDecision href="#_c51faaac-3b03-4574-9116-49d2d36b2c5f"/>
+        </semantic:informationRequirement>
+        <semantic:informationRequirement id="_40226feb-7d52-42b9-b971-a325e53428a5" triso:readOnly="false">
+            <semantic:requiredDecision href="#_00370b71-a52a-42a5-857e-0ac184b0e121"/>
+        </semantic:informationRequirement>
+        <semantic:informationRequirement id="_a6c3b993-9179-45b3-ba1d-f6682334de6b" triso:readOnly="false">
+            <semantic:requiredDecision href="#_61aacf50-734e-4ce8-bbd0-0ccb11afed63"/>
+        </semantic:informationRequirement>
+        <semantic:decisionTable triso:descriptionVisible="false" id="_78ab6dab-13ba-4b44-b3f2-60489eef0ee1" hitPolicy="UNIQUE" outputLabel="Recommend Transportation Service" typeRef="Any" triso:expressionId="_10e7fbe0-7f8f-4750-9451-bccc1d208ac8">
+            <semantic:input id="_ecd4af0c-99f0-4ba8-af83-dcfe6d801f79" triso:allowNull="true" label="New Input">
+                <semantic:inputExpression typeRef="string">
+                    <semantic:text>New Input</semantic:text>
+                </semantic:inputExpression>
+            </semantic:input>
+            <semantic:output id="_8755d8a9-178d-49a8-b3dc-e5ab86a230fa" triso:allowNull="true"/>
+            <semantic:annotation name="Description"/>
+            <semantic:rule id="_d36a88ab-3668-4e8c-a56f-591eb2238cd4">
+                <semantic:inputEntry id="_72b27f7f-f397-413f-b9b9-12ebab56124c">
+                    <semantic:text/>
+                </semantic:inputEntry>
+                <semantic:outputEntry id="_2ed35bc3-1a36-4405-8859-49c6e158f01f">
+                    <semantic:text/>
+                </semantic:outputEntry>
+                <semantic:annotationEntry>
+                    <semantic:text/>
+                </semantic:annotationEntry>
+            </semantic:rule>
+        </semantic:decisionTable>
+    </semantic:decision>
+    <ns1:DMNDI>
+        <ns1:DMNDiagram id="_4606d007-0d5a-4ac8-9efd-fb082bfe90a7" triso:modelElementRef="_4606d007-0d5a-4ac8-9efd-fb082bfe90a7" name="Selecting Transportation Mode">
+            <di:extension/>
+            <ns1:Size height="657.9921869487735" width="1198"/>
+            <ns1:DMNShape id="_fcd480b0-b0c3-406e-9769-4af36267d6fe" dmnElementRef="_f69b97ef-53cb-4581-865e-01dfaba37c5b">
+                <ns1:DMNStyle>
+                    <ns1:FillColor red="255" green="255" blue="153"/>
+                </ns1:DMNStyle>
+                <dc:Bounds x="524.0000319028692" y="433.99218214789016" width="135.48234176635742" height="60.00000762939453"/>
+                <ns1:DMNLabel sharedStyle="LS_ceaf902e-c7fe-4c1f-9740-f5f10f278086_0" trisodmn:defaultBounds="true"/>
+            </ns1:DMNShape>
+            <ns1:DMNShape id="_3e4eb70c-5f7e-44f4-927f-01295b72b557" dmnElementRef="_c51faaac-3b03-4574-9116-49d2d36b2c5f">
+                <dc:Bounds x="713.241197460643" y="290.18184816611074" width="153.0000000000001" height="60"/>
+                <ns1:DMNLabel sharedStyle="LS_ceaf902e-c7fe-4c1f-9740-f5f10f278086_0" trisodmn:defaultBounds="true"/>
+            </ns1:DMNShape>
+            <ns1:DMNShape id="_4fc95561-ceec-4239-a0b6-cdddb709216f" dmnElementRef="_00370b71-a52a-42a5-857e-0ac184b0e121">
+                <dc:Bounds x="515.2411946711455" y="290.18184101562076" width="153" height="60"/>
+                <ns1:DMNLabel sharedStyle="LS_ceaf902e-c7fe-4c1f-9740-f5f10f278086_1" trisodmn:defaultBounds="true"/>
+            </ns1:DMNShape>
+            <ns1:DMNShape id="_f3633128-d8aa-4152-bb02-2866fc2ff084" dmnElementRef="_459d4f1f-87f2-4293-8995-a6461ad044f1">
+                <dc:Bounds x="950.2784263308702" y="290.181845782614" width="153" height="60"/>
+                <ns1:DMNLabel sharedStyle="LS_ceaf902e-c7fe-4c1f-9740-f5f10f278086_1" trisodmn:defaultBounds="true"/>
+            </ns1:DMNShape>
+            <ns1:DMNShape id="_a286cd92-c7ab-4e04-8b3b-270a29da7140" dmnElementRef="_61aacf50-734e-4ce8-bbd0-0ccb11afed63">
+                <dc:Bounds x="310.2411917830294" y="290.1818386321242" width="153" height="60"/>
+                <ns1:DMNLabel sharedStyle="LS_ceaf902e-c7fe-4c1f-9740-f5f10f278086_1" trisodmn:defaultBounds="true"/>
+            </ns1:DMNShape>
+            <ns1:DMNShape id="_10130f52-e623-4dd7-8363-e869a17036b7" dmnElementRef="_5efd67ec-b456-4823-8c47-78b070fe4d5a">
+                <dc:Bounds x="117.03724850264905" y="290.18183243393037" width="135.48234176635745" height="60.00000762939453"/>
+                <ns1:DMNLabel sharedStyle="LS_ceaf902e-c7fe-4c1f-9740-f5f10f278086_1" trisodmn:defaultBounds="true"/>
+            </ns1:DMNShape>
+            <ns1:DMNShape id="_3669b053-e8e5-46c2-b337-96e60f2f154d" dmnElementRef="_ad164346-ae3f-4b90-b9bb-3064c2dc8dc4">
+                <dc:Bounds x="515.2412107775527" y="164.18183371015905" width="153" height="60"/>
+                <ns1:DMNLabel sharedStyle="LS_ceaf902e-c7fe-4c1f-9740-f5f10f278086_1" trisodmn:defaultBounds="true"/>
+            </ns1:DMNShape>
+            <ns1:DMNEdge id="_a86be9f5-f1eb-49a4-bd20-ec0430d9fa3f" dmnElementRef="_34ebf7bd-402e-4eee-9889-94be8a582a60">
+                <di:waypoint x="591.7380041623907" y="433.99218214789016"/>
+                <di:waypoint x="789.741197460643" y="350.18184816611074"/>
+                <ns1:DMNLabel sharedStyle="LS_ceaf902e-c7fe-4c1f-9740-f5f10f278086_1"/>
+            </ns1:DMNEdge>
+            <ns1:DMNEdge id="_4410fa0a-4be0-4c14-a0f1-65ef394cfebb" dmnElementRef="_c179eebf-3ea7-46dd-8926-05dc06a9aec4">
+                <di:waypoint x="789.741197460643" y="290.18184816611074"/>
+                <di:waypoint x="611.7412107775527" y="224.18183371015903"/>
+                <ns1:DMNLabel sharedStyle="LS_ceaf902e-c7fe-4c1f-9740-f5f10f278086_1"/>
+            </ns1:DMNEdge>
+            <ns1:DMNEdge id="_a3da269b-0ef2-4639-9573-7e23e01f8c67" dmnElementRef="_5ed20414-40d8-42a7-876e-152e0e544ff8">
+                <di:waypoint x="1103.2784263308702" y="320.181845782614"/>
+                <di:waypoint x="713.241197460643" y="320.18184816611074"/>
+                <ns1:DMNLabel sharedStyle="LS_ceaf902e-c7fe-4c1f-9740-f5f10f278086_1"/>
+            </ns1:DMNEdge>
+            <ns1:DMNEdge id="_c78ca89f-1d3b-4412-aeb1-79cb2ffc1b6c" dmnElementRef="_40226feb-7d52-42b9-b971-a325e53428a5">
+                <di:waypoint x="591.7411946711455" y="290.18184101562076"/>
+                <di:waypoint x="581.7412107775527" y="224.18183371015905"/>
+                <ns1:DMNLabel sharedStyle="LS_ceaf902e-c7fe-4c1f-9740-f5f10f278086_1"/>
+            </ns1:DMNEdge>
+            <ns1:DMNEdge id="_eb1fdfa2-3e5b-426d-8be4-5feaa955ac2a" dmnElementRef="_68fbc9ff-4c6a-44a2-9ab4-c16a240b4653">
+                <di:waypoint x="252.5195902690065" y="320.18183243393037"/>
+                <di:waypoint x="310.2411917830294" y="320.1818386321242"/>
+                <ns1:DMNLabel sharedStyle="LS_ceaf902e-c7fe-4c1f-9740-f5f10f278086_1"/>
+            </ns1:DMNEdge>
+            <ns1:DMNEdge id="_1651d8c2-8c28-4fe2-a29d-13eeb4c2f9f3" dmnElementRef="_a6c3b993-9179-45b3-ba1d-f6682334de6b">
+                <di:waypoint x="386.7411917830294" y="290.1818386321242"/>
+                <di:waypoint x="561.7412107775527" y="224.18183371015905"/>
+                <ns1:DMNLabel sharedStyle="LS_ceaf902e-c7fe-4c1f-9740-f5f10f278086_1"/>
+            </ns1:DMNEdge>
+            <ns1:DMNEdge id="_3a5e90da-2caf-4e40-baf0-24dcc04464ef" dmnElementRef="_45d7c79c-bf7f-48bc-b594-dea7bed83c9c">
+                <di:waypoint x="591.7380041623907" y="433.99218214789016"/>
+                <di:waypoint x="591.7411946711455" y="350.18184101562076"/>
+                <ns1:DMNLabel sharedStyle="LS_ceaf902e-c7fe-4c1f-9740-f5f10f278086_1"/>
+            </ns1:DMNEdge>
+            <ns1:DMNEdge id="_d81bec9e-34da-4836-90e2-b4cd64da89d3" dmnElementRef="_9b88db80-a29b-4737-8b0f-68ed7a6fac3b">
+                <di:waypoint x="591.7380041623907" y="433.99218214789016"/>
+                <di:waypoint x="386.7411917830293" y="350.1818386321242"/>
+                <ns1:DMNLabel sharedStyle="LS_ceaf902e-c7fe-4c1f-9740-f5f10f278086_1"/>
+            </ns1:DMNEdge>
+        </ns1:DMNDiagram>
+        <ns1:DMNStyle id="LS_ceaf902e-c7fe-4c1f-9740-f5f10f278086_0" fontFamily="arial,helvetica,sans-serif" fontSize="11" fontBold="false" fontItalic="false" fontUnderline="false" fontStrikeThrough="false"/>
+        <ns1:DMNStyle id="LS_ceaf902e-c7fe-4c1f-9740-f5f10f278086_1" fontFamily="arial,helvetica,sans-serif" fontSize="11" fontBold="false" fontItalic="false" fontUnderline="false" fontStrikeThrough="false"/>
+    </ns1:DMNDI>
+</semantic:definitions>
