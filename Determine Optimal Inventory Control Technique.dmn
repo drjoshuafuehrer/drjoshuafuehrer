@@ -1,0 +1,941 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<semantic:definitions xmlns:semantic="https://www.omg.org/spec/DMN/20240513/MODEL/"  xmlns:sdmn="https://www.omg.org/spec/SDMN/"  xmlns:triso="http://www.trisotech.com/2015/triso/modeling"  xmlns:dmndi="https://www.omg.org/spec/DMN/20230324/DMNDI/"  xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/"  xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/"  xmlns:trisodmn="http://www.trisotech.com/2016/triso/dmn"  xmlns:feel="https://www.omg.org/spec/DMN/20240513/FEEL/"  xmlns:tc="http://www.omg.org/spec/DMN/20160719/testcase"  xmlns:drools="http://www.drools.org/kie/dmn/1.1"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  xmlns:rss="http://purl.org/rss/2.0/"  xmlns:openapi="https://openapis.org/omg/extension/1.0"  xmlns:xsd="http://www.w3.org/2001/XMLSchema"   xmlns:i18n="http://www.omg.org/spec/BPMN/non-normative/extensions/i18n/1.0"  xmlns="http://www.trisotech.com/definitions/_1b23d528-1fbc-44b9-9bb3-6ff31191b6ca" id="_1b23d528-1fbc-44b9-9bb3-6ff31191b6ca" name="Determine Optimal Inventory Control Technique" namespace="http://www.trisotech.com/definitions/_1b23d528-1fbc-44b9-9bb3-6ff31191b6ca" exporter="Decision Modeler" exporterVersion="9.6.3" xml:lang="en" triso:logoChoice="Default">
+    <semantic:extensionElements/>
+    <semantic:itemDefinition name="Inventory" label="Inventory" isCollection="false">
+        <semantic:extensionElements>
+            <triso:reuseLink id="_9405bd9f-7b96-443a-b085-03bef91f71ed" modelName="Logistics Management Entity Model" itemName="Inventory" modelType="http://www.trisotech.com/graph/1.0/element#BusinessEntityModel" modelURI="http://www.trisotech.com/definitions/_8d80bed6-f1ed-40b5-9803-cdcc68dafa67" mimeType="application/vnd.triso-businessentity+json" uri="http://www.trisotech.com/definitions/_8d80bed6-f1ed-40b5-9803-cdcc68dafa67#Inventory" graphType="http://www.trisotech.com/graph/1.0/element#ItemDefinition" path="Book - SCM/Logistics Management Entity Model" graphURI="http://trisotech.com/graph/1.0/graph#59f76da1-1155-478f-86b2-ab737b67b7c0"/>
+        </semantic:extensionElements>
+        <semantic:typeRef>string</semantic:typeRef>
+        <semantic:allowedValues>
+            <semantic:extensionElements>
+                <triso:constraintDetails id="_03e2c79a-7bdd-49a4-9938-b83c40ebc713" constraintsType="enumeration">
+                    <triso:value>"Quantity","Warehouse ID","Inventory ID","Product ID","Reorder Level"</triso:value>
+                    <triso:display>"Quantity", "Warehouse ID", "Inventory ID", "Product ID", "Reorder Level"</triso:display>
+                    <triso:choices>
+                        <triso:value>"Quantity"</triso:value>
+                        <triso:display>"Quantity"</triso:display>
+                    </triso:choices>
+                    <triso:choices>
+                        <triso:value>"Warehouse ID"</triso:value>
+                        <triso:display>"Warehouse ID"</triso:display>
+                    </triso:choices>
+                    <triso:choices>
+                        <triso:value>"Inventory ID"</triso:value>
+                        <triso:display>"Inventory ID"</triso:display>
+                    </triso:choices>
+                    <triso:choices>
+                        <triso:value>"Product ID"</triso:value>
+                        <triso:display>"Product ID"</triso:display>
+                    </triso:choices>
+                    <triso:choices>
+                        <triso:value>"Reorder Level"</triso:value>
+                        <triso:display>"Reorder Level"</triso:display>
+                    </triso:choices>
+                </triso:constraintDetails>
+            </semantic:extensionElements>
+            <semantic:text>"Quantity","Warehouse ID","Inventory ID","Product ID","Reorder Level"</semantic:text>
+        </semantic:allowedValues>
+    </semantic:itemDefinition>
+    <semantic:itemDefinition name="Cost_Data" label="Cost Data" isCollection="false">
+        <semantic:extensionElements>
+            <triso:reuseLink id="_403064f3-fb95-4bf2-8ada-d1a148246f05" modelName="Logistics Management Entity Model" itemName="Cost Data" modelType="http://www.trisotech.com/graph/1.0/element#BusinessEntityModel" modelURI="http://www.trisotech.com/definitions/_8d80bed6-f1ed-40b5-9803-cdcc68dafa67" mimeType="application/vnd.triso-businessentity+json" uri="http://www.trisotech.com/definitions/_8d80bed6-f1ed-40b5-9803-cdcc68dafa67#Cost_Data" graphType="http://www.trisotech.com/graph/1.0/element#ItemDefinition" path="Book - SCM/Logistics Management Entity Model" graphURI="http://trisotech.com/graph/1.0/graph#59f76da1-1155-478f-86b2-ab737b67b7c0"/>
+        </semantic:extensionElements>
+        <semantic:itemComponent id="_4459dc77-54cc-41ba-a637-3ab41ac4c9bd" name="CostPerUnit" isCollection="false">
+            <semantic:typeRef>number</semantic:typeRef>
+        </semantic:itemComponent>
+        <semantic:itemComponent id="_4f5e58b2-6eae-41c3-ab13-f28ae4b47448" name="WarehouseCosts" isCollection="false">
+            <semantic:typeRef>number</semantic:typeRef>
+        </semantic:itemComponent>
+        <semantic:itemComponent id="_e9d125ba-8eb0-426d-9ef4-8c3bea62472d" name="AverageInventory" isCollection="false">
+            <semantic:typeRef>number</semantic:typeRef>
+            <semantic:allowedValues>
+                <semantic:extensionElements>
+                    <triso:constraintDetails id="_c5d03880-5575-46b2-9e11-f91f230ad149" constraintsType="expression">
+                        <triso:value>("BeginningInventory" + "EndingInventory") / 2</triso:value>
+                        <triso:display>("BeginningInventory" + "EndingInventory") / 2</triso:display>
+                    </triso:constraintDetails>
+                </semantic:extensionElements>
+                <semantic:text>("BeginningInventory" + "EndingInventory") / 2</semantic:text>
+            </semantic:allowedValues>
+        </semantic:itemComponent>
+        <semantic:itemComponent id="_372cc64b-f9bf-4791-847a-f8d6040cd3d9" name="HoldingCosts" isCollection="false">
+            <semantic:typeRef>number</semantic:typeRef>
+            <semantic:allowedValues>
+                <semantic:extensionElements>
+                    <triso:constraintDetails id="_7cee78d4-2dc0-4c98-be7f-c1dfc486ef24" constraintsType="expression">
+                        <triso:value>("Average Inventory" * "Cost per Unit") + "Warehouse Costs"</triso:value>
+                        <triso:display>("Average Inventory" * "Cost per Unit") + "Warehouse Costs"</triso:display>
+                    </triso:constraintDetails>
+                </semantic:extensionElements>
+                <semantic:text>("Average Inventory" * "Cost per Unit") + "Warehouse Costs"</semantic:text>
+            </semantic:allowedValues>
+        </semantic:itemComponent>
+    </semantic:itemDefinition>
+    <semantic:itemDefinition name="InventoryData" label="InventoryData" isCollection="false">
+        <semantic:extensionElements>
+            <triso:reuseLink id="_0f2f4af6-948e-4e78-b5c4-8eede3126664" modelName="Logistics Management Entity Model" itemName="InventoryData" modelType="http://www.trisotech.com/graph/1.0/element#BusinessEntityModel" modelURI="http://www.trisotech.com/definitions/_8d80bed6-f1ed-40b5-9803-cdcc68dafa67" mimeType="application/vnd.triso-businessentity+json" uri="http://www.trisotech.com/definitions/_8d80bed6-f1ed-40b5-9803-cdcc68dafa67#InventoryData" graphType="http://www.trisotech.com/graph/1.0/element#ItemDefinition" path="Book - SCM/Logistics Management Entity Model" graphURI="http://trisotech.com/graph/1.0/graph#59f76da1-1155-478f-86b2-ab737b67b7c0"/>
+        </semantic:extensionElements>
+        <semantic:itemComponent id="_e600da1d-80c3-4ee1-9504-27f31aa6609a" name="Inventory ID" isCollection="false">
+            <semantic:typeRef>string</semantic:typeRef>
+        </semantic:itemComponent>
+        <semantic:itemComponent id="_2114bfb1-cb5c-41a4-b39c-c58db8c98935" name="Warehouse ID" isCollection="false">
+            <semantic:typeRef>string</semantic:typeRef>
+        </semantic:itemComponent>
+        <semantic:itemComponent id="_f2358c1d-99b9-4346-9532-e30ef1b293be" name="Product ID" isCollection="false">
+            <semantic:typeRef>string</semantic:typeRef>
+        </semantic:itemComponent>
+        <semantic:itemComponent id="_3c4e277e-bca9-4c21-8752-2b13be9c97ca" name="Quantity" isCollection="false">
+            <semantic:typeRef>number</semantic:typeRef>
+            <semantic:allowedValues>
+                <semantic:extensionElements>
+                    <triso:constraintDetails id="_f60359f0-f3d4-4704-a71e-c093cec510f6" constraintsType="simple" min="0" minIncluded="false" max="1000000" maxIncluded="false">
+                        <triso:value>(0..1000000)</triso:value>
+                        <triso:display>(0..1000000)</triso:display>
+                    </triso:constraintDetails>
+                </semantic:extensionElements>
+                <semantic:text>(0..1000000)</semantic:text>
+            </semantic:allowedValues>
+        </semantic:itemComponent>
+        <semantic:itemComponent id="_541aa98f-0e12-4df2-a30f-89074543e5aa" name="Reorder Level" isCollection="false">
+            <semantic:typeRef>string</semantic:typeRef>
+        </semantic:itemComponent>
+        <semantic:itemComponent id="_c9100e79-f49b-4b28-bf32-3d68422fb31a" name="Sales" isCollection="false">
+            <semantic:typeRef>number</semantic:typeRef>
+        </semantic:itemComponent>
+        <semantic:itemComponent id="_0f97a840-4a84-4660-96f9-abd765d0b34e" name="BeginningInventory" isCollection="false">
+            <semantic:typeRef>number</semantic:typeRef>
+        </semantic:itemComponent>
+        <semantic:itemComponent id="_28bdbffb-1122-40a7-a2e0-407a72ab031c" name="EndingInventory" isCollection="false">
+            <semantic:typeRef>date</semantic:typeRef>
+        </semantic:itemComponent>
+        <semantic:itemComponent id="_7cb07088-878c-42c6-9488-479e77150f78" name="AverageInventory" isCollection="false">
+            <semantic:typeRef>number</semantic:typeRef>
+            <semantic:allowedValues>
+                <semantic:extensionElements>
+                    <triso:constraintDetails id="_ff00d34f-0162-4a1a-9466-86fc61aa6a44" constraintsType="expression">
+                        <triso:value>(BeginningInventory + EndingInventory) / 2</triso:value>
+                        <triso:display>(BeginningInventory + EndingInventory) / 2</triso:display>
+                    </triso:constraintDetails>
+                </semantic:extensionElements>
+                <semantic:text>(BeginningInventory + EndingInventory) / 2</semantic:text>
+            </semantic:allowedValues>
+        </semantic:itemComponent>
+        <semantic:itemComponent id="_85a6e27b-50d2-4541-9f9d-66a28d565551" name="InventoryTurnover" isCollection="false">
+            <semantic:typeRef>number</semantic:typeRef>
+            <semantic:allowedValues>
+                <semantic:extensionElements>
+                    <triso:constraintDetails id="_7513689b-6b44-4557-9fe6-5501b79fcd17" constraintsType="expression">
+                        <triso:value>"Sales" / "Average Inventory"</triso:value>
+                        <triso:display>"Sales" / "Average Inventory"</triso:display>
+                    </triso:constraintDetails>
+                </semantic:extensionElements>
+                <semantic:text>"Sales" / "Average Inventory"</semantic:text>
+            </semantic:allowedValues>
+        </semantic:itemComponent>
+        <semantic:itemComponent id="_216b1f82-cdac-400f-a16a-caee8c4a3c03" name="Location in Warehouse" isCollection="false">
+            <semantic:itemComponent id="_69a7eaa9-a622-4608-8eac-f0753d23354b" name="Aisle" isCollection="false">
+                <semantic:typeRef>string</semantic:typeRef>
+            </semantic:itemComponent>
+            <semantic:itemComponent id="_bdb42b53-1646-49d0-83e5-bc2508c99533" name="Shelf" isCollection="false">
+                <semantic:typeRef>string</semantic:typeRef>
+            </semantic:itemComponent>
+            <semantic:itemComponent id="_cf300685-ace6-4d31-b003-c5094782162b" name="Bin" isCollection="false">
+                <semantic:typeRef>string</semantic:typeRef>
+            </semantic:itemComponent>
+            <semantic:itemComponent id="_f01db46d-b600-4293-a758-92b1875cde81" name="Zone" isCollection="false">
+                <semantic:typeRef>string</semantic:typeRef>
+            </semantic:itemComponent>
+            <semantic:itemComponent id="_4914e5e8-c960-4c81-849a-c0806f336327" name="Coordinates" isCollection="false">
+                <semantic:typeRef>string</semantic:typeRef>
+            </semantic:itemComponent>
+        </semantic:itemComponent>
+        <semantic:itemComponent id="_ebd7a3cb-c148-4eb2-b4af-6cdb3eff90c6" name="Demand Status" isCollection="false">
+            <semantic:typeRef>tDemandStatus</semantic:typeRef>
+        </semantic:itemComponent>
+    </semantic:itemDefinition>
+    <semantic:itemDefinition name="SupplierData" label="SupplierData" isCollection="false">
+        <semantic:itemComponent id="_9bcc45b1-5dec-4974-aab4-9daf84defe92" name="OnTimeDeliveries" isCollection="false">
+            <semantic:typeRef>number</semantic:typeRef>
+        </semantic:itemComponent>
+        <semantic:itemComponent id="_ca77cd5c-8caa-403e-8a0c-650d9c1ccaf6" name="TotalDeliveries" isCollection="false">
+            <semantic:typeRef>string</semantic:typeRef>
+        </semantic:itemComponent>
+        <semantic:itemComponent id="_2a17ed4b-0c59-4945-b9d5-4283afeac741" name="SupplierReliability" isCollection="false">
+            <semantic:typeRef>number</semantic:typeRef>
+            <semantic:allowedValues>
+                <semantic:extensionElements>
+                    <triso:constraintDetails id="_2bd3709d-7b6f-4bb4-98b7-6262ccfc2bab" constraintsType="expression">
+                        <triso:value>(OnTimeDeliveries / TotalDeliveries) * 100</triso:value>
+                        <triso:display>(OnTimeDeliveries / TotalDeliveries) * 100</triso:display>
+                    </triso:constraintDetails>
+                </semantic:extensionElements>
+                <semantic:text>(OnTimeDeliveries / TotalDeliveries) * 100</semantic:text>
+            </semantic:allowedValues>
+        </semantic:itemComponent>
+    </semantic:itemDefinition>
+    <semantic:itemDefinition name="Warehouse" label="Warehouse" isCollection="false">
+        <semantic:extensionElements>
+            <triso:reuseLink id="_ba79009e-c534-41c4-b6cf-fa6ede472b18" modelName="Logistics Management Entity Model" itemName="Warehouse" modelType="http://www.trisotech.com/graph/1.0/element#BusinessEntityModel" modelURI="http://www.trisotech.com/definitions/_8d80bed6-f1ed-40b5-9803-cdcc68dafa67" mimeType="application/vnd.triso-businessentity+json" uri="http://www.trisotech.com/definitions/_8d80bed6-f1ed-40b5-9803-cdcc68dafa67#Warehouse" graphType="http://www.trisotech.com/graph/1.0/element#ItemDefinition" path="Book - SCM/Logistics Management Entity Model" graphURI="http://trisotech.com/graph/1.0/graph#59f76da1-1155-478f-86b2-ab737b67b7c0"/>
+        </semantic:extensionElements>
+        <semantic:typeRef>string</semantic:typeRef>
+        <semantic:allowedValues>
+            <semantic:extensionElements>
+                <triso:constraintDetails id="_77c0a9bc-91e6-4145-a06c-0450932c30f6" constraintsType="enumeration">
+                    <triso:value>"WarehouseID","Name","Capacity","Location ID"</triso:value>
+                    <triso:display>"WarehouseID", "Name", "Capacity", "Location ID"</triso:display>
+                    <triso:choices>
+                        <triso:value>"WarehouseID"</triso:value>
+                        <triso:display>"WarehouseID"</triso:display>
+                    </triso:choices>
+                    <triso:choices>
+                        <triso:value>"Name"</triso:value>
+                        <triso:display>"Name"</triso:display>
+                    </triso:choices>
+                    <triso:choices>
+                        <triso:value>"Capacity"</triso:value>
+                        <triso:display>"Capacity"</triso:display>
+                    </triso:choices>
+                    <triso:choices>
+                        <triso:value>"Location ID"</triso:value>
+                        <triso:display>"Location ID"</triso:display>
+                    </triso:choices>
+                </triso:constraintDetails>
+            </semantic:extensionElements>
+            <semantic:text>"WarehouseID","Name","Capacity","Location ID"</semantic:text>
+        </semantic:allowedValues>
+    </semantic:itemDefinition>
+    <semantic:itemDefinition name="Product" label="Product" isCollection="false">
+        <semantic:extensionElements>
+            <triso:reuseLink id="_5068da92-7176-4e1a-a922-07f2c0b60cd0" modelName="Logistics Management Entity Model" itemName="Product" modelType="http://www.trisotech.com/graph/1.0/element#BusinessEntityModel" modelURI="http://www.trisotech.com/definitions/_8d80bed6-f1ed-40b5-9803-cdcc68dafa67" mimeType="application/vnd.triso-businessentity+json" uri="http://www.trisotech.com/definitions/_8d80bed6-f1ed-40b5-9803-cdcc68dafa67#Product" graphType="http://www.trisotech.com/graph/1.0/element#ItemDefinition" path="Book - SCM/Logistics Management Entity Model" graphURI="http://trisotech.com/graph/1.0/graph#59f76da1-1155-478f-86b2-ab737b67b7c0"/>
+        </semantic:extensionElements>
+        <semantic:itemComponent id="_e1801715-edba-460d-a357-f553b1d36a8c" name="Product ID" isCollection="false">
+            <semantic:typeRef>string</semantic:typeRef>
+        </semantic:itemComponent>
+        <semantic:itemComponent id="_dabc5c49-7509-482f-b548-e93ebf2809b4" name="Name" isCollection="false">
+            <semantic:typeRef>string</semantic:typeRef>
+        </semantic:itemComponent>
+        <semantic:itemComponent id="_859484b7-2ebc-4224-8336-2175f060787c" name="Description" isCollection="false">
+            <semantic:typeRef>string</semantic:typeRef>
+        </semantic:itemComponent>
+        <semantic:itemComponent id="_8ee6fe1a-c57c-41e2-a14a-ebd9002187ad" name="Category" isCollection="false">
+            <semantic:typeRef>string</semantic:typeRef>
+        </semantic:itemComponent>
+        <semantic:itemComponent id="_204d4fa3-c2fa-4c97-be83-5e24000ac9fa" name="Price" isCollection="false">
+            <semantic:typeRef>number</semantic:typeRef>
+        </semantic:itemComponent>
+        <semantic:itemComponent id="_3fb3311f-1f43-4fcd-91dd-f7fb5800bd5b" name="Weight" isCollection="false">
+            <semantic:typeRef>number</semantic:typeRef>
+        </semantic:itemComponent>
+        <semantic:itemComponent id="_3c54356c-1925-4cb4-91b8-96d29ead727b" name="Dimensions" isCollection="false">
+            <semantic:typeRef>string</semantic:typeRef>
+        </semantic:itemComponent>
+    </semantic:itemDefinition>
+    <semantic:itemDefinition name="Supplier" label="Supplier" isCollection="false">
+        <semantic:extensionElements>
+            <triso:reuseLink id="_c1fcf6e7-8aa6-4813-b8f4-b3e0a2ba4319" modelName="Logistics Management Entity Model" itemName="Supplier" modelType="http://www.trisotech.com/graph/1.0/element#BusinessEntityModel" modelURI="http://www.trisotech.com/definitions/_8d80bed6-f1ed-40b5-9803-cdcc68dafa67" mimeType="application/vnd.triso-businessentity+json" uri="http://www.trisotech.com/definitions/_8d80bed6-f1ed-40b5-9803-cdcc68dafa67#Supplier" graphType="http://www.trisotech.com/graph/1.0/element#ItemDefinition" path="Book - SCM/Logistics Management Entity Model" graphURI="http://trisotech.com/graph/1.0/graph#59f76da1-1155-478f-86b2-ab737b67b7c0"/>
+        </semantic:extensionElements>
+        <semantic:itemComponent id="_3d975505-cb24-41c8-882f-19634227eb4b" name="SupplierID" isCollection="false">
+            <semantic:typeRef>string</semantic:typeRef>
+        </semantic:itemComponent>
+        <semantic:itemComponent id="_64a435e5-a175-4637-a971-c3f9968d0dbe" name="Name" isCollection="false">
+            <semantic:typeRef>string</semantic:typeRef>
+        </semantic:itemComponent>
+        <semantic:itemComponent id="_7995d193-a338-4f11-b598-9b6797369477" name="ContactInformation" isCollection="false">
+            <semantic:typeRef>string</semantic:typeRef>
+        </semantic:itemComponent>
+        <semantic:itemComponent id="_b9361e08-3da5-4776-b274-b312f7c7d767" name="Address" isCollection="false">
+            <semantic:typeRef>string</semantic:typeRef>
+        </semantic:itemComponent>
+        <semantic:itemComponent id="_1ce19dd6-5c1f-4463-b7d7-2bd752032aa5" name="OnTimeDeliveries" isCollection="false">
+            <semantic:typeRef>number</semantic:typeRef>
+        </semantic:itemComponent>
+        <semantic:itemComponent id="_77871dec-346a-432d-b969-e2f8d780fdb6" name="TotalDeliveries" isCollection="false">
+            <semantic:typeRef>number</semantic:typeRef>
+        </semantic:itemComponent>
+        <semantic:itemComponent id="_baabca45-739e-4eb5-8572-f761d2997961" name="SupplierReliability" isCollection="false">
+            <semantic:typeRef>number</semantic:typeRef>
+            <semantic:allowedValues>
+                <semantic:extensionElements>
+                    <triso:constraintDetails id="_e625bc3b-aede-4289-9ee4-27763a90485b" constraintsType="expression">
+                        <triso:value>("OnTimeDeliveries" / "TotalDeliveries") * 100</triso:value>
+                        <triso:display>("OnTimeDeliveries" / "TotalDeliveries") * 100</triso:display>
+                    </triso:constraintDetails>
+                </semantic:extensionElements>
+                <semantic:text>("OnTimeDeliveries" / "TotalDeliveries") * 100</semantic:text>
+            </semantic:allowedValues>
+        </semantic:itemComponent>
+    </semantic:itemDefinition>
+    <semantic:itemDefinition name="Location" label="Location" isCollection="false">
+        <semantic:extensionElements>
+            <triso:reuseLink id="_2f069326-ac64-42a0-b97c-255e362ff303" modelName="Logistics Management Entity Model" itemName="Location" modelType="http://www.trisotech.com/graph/1.0/element#BusinessEntityModel" modelURI="http://www.trisotech.com/definitions/_8d80bed6-f1ed-40b5-9803-cdcc68dafa67" mimeType="application/vnd.triso-businessentity+json" uri="http://www.trisotech.com/definitions/_8d80bed6-f1ed-40b5-9803-cdcc68dafa67#Location" graphType="http://www.trisotech.com/graph/1.0/element#ItemDefinition" path="Book - SCM/Logistics Management Entity Model" graphURI="http://trisotech.com/graph/1.0/graph#59f76da1-1155-478f-86b2-ab737b67b7c0"/>
+        </semantic:extensionElements>
+        <semantic:typeRef>string</semantic:typeRef>
+        <semantic:allowedValues>
+            <semantic:extensionElements>
+                <triso:constraintDetails id="_64112765-3ab4-4f80-947f-98dd6b77cd84" constraintsType="enumeration">
+                    <triso:value>"Address","Location ID","City","State","ZIP Code","Country"</triso:value>
+                    <triso:display>"Address", "Location ID", "City", "State", "ZIP Code", "Country"</triso:display>
+                    <triso:choices>
+                        <triso:value>"Address"</triso:value>
+                        <triso:display>"Address"</triso:display>
+                    </triso:choices>
+                    <triso:choices>
+                        <triso:value>"Location ID"</triso:value>
+                        <triso:display>"Location ID"</triso:display>
+                    </triso:choices>
+                    <triso:choices>
+                        <triso:value>"City"</triso:value>
+                        <triso:display>"City"</triso:display>
+                    </triso:choices>
+                    <triso:choices>
+                        <triso:value>"State"</triso:value>
+                        <triso:display>"State"</triso:display>
+                    </triso:choices>
+                    <triso:choices>
+                        <triso:value>"ZIP Code"</triso:value>
+                        <triso:display>"ZIP Code"</triso:display>
+                    </triso:choices>
+                    <triso:choices>
+                        <triso:value>"Country"</triso:value>
+                        <triso:display>"Country"</triso:display>
+                    </triso:choices>
+                </triso:constraintDetails>
+            </semantic:extensionElements>
+            <semantic:text>"Address","Location ID","City","State","ZIP Code","Country"</semantic:text>
+        </semantic:allowedValues>
+    </semantic:itemDefinition>
+    <semantic:itemDefinition name="Demand" label="Demand" isCollection="false">
+        <semantic:extensionElements>
+            <triso:reuseLink id="_0a8f634a-09df-4116-8920-3070f9fd91cc" modelName="Logistics Management Entity Model" itemName="Demand" modelType="http://www.trisotech.com/graph/1.0/element#BusinessEntityModel" modelURI="http://www.trisotech.com/definitions/_8d80bed6-f1ed-40b5-9803-cdcc68dafa67" mimeType="application/vnd.triso-businessentity+json" uri="http://www.trisotech.com/definitions/_8d80bed6-f1ed-40b5-9803-cdcc68dafa67#Demand" graphType="http://www.trisotech.com/graph/1.0/element#ItemDefinition" path="Book - SCM/Logistics Management Entity Model" graphURI="http://trisotech.com/graph/1.0/graph#59f76da1-1155-478f-86b2-ab737b67b7c0"/>
+        </semantic:extensionElements>
+        <semantic:itemComponent id="_1f8cea20-1bd0-40f0-9815-a8d09ce36d96" name="HistoricalDemand" isCollection="false">
+            <semantic:typeRef>number</semantic:typeRef>
+            <semantic:allowedValues>
+                <semantic:extensionElements>
+                    <triso:constraintDetails id="_8aa52a5c-1d3d-4a4d-b3d0-00939a30e41b" constraintsType="expression">
+                        <triso:value>&gt;"list"&lt;"number"</triso:value>
+                        <triso:display>&gt;"list"&lt;"number"</triso:display>
+                    </triso:constraintDetails>
+                </semantic:extensionElements>
+                <semantic:text>&gt;"list"&lt;"number"</semantic:text>
+            </semantic:allowedValues>
+        </semantic:itemComponent>
+        <semantic:itemComponent id="_ff4e01fb-95e2-4eb3-89e9-0cfdbe546bad" name="AverageDemand" isCollection="false">
+            <semantic:typeRef>number</semantic:typeRef>
+            <semantic:allowedValues>
+                <semantic:extensionElements>
+                    <triso:constraintDetails id="_63276e42-d338-4346-887a-e0676364d9ab" constraintsType="expression">
+                        <triso:value>sum("Historical Demand") / count("Historical Demand")</triso:value>
+                        <triso:display>sum("Historical Demand") / count("Historical Demand")</triso:display>
+                    </triso:constraintDetails>
+                </semantic:extensionElements>
+                <semantic:text>sum("Historical Demand") / count("Historical Demand")</semantic:text>
+            </semantic:allowedValues>
+        </semantic:itemComponent>
+        <semantic:itemComponent id="_bd0bbedb-689d-4410-b450-4994ce5073de" name="DemandStandardDeviation" isCollection="false">
+            <semantic:typeRef>number</semantic:typeRef>
+            <semantic:allowedValues>
+                <semantic:extensionElements>
+                    <triso:constraintDetails id="_817e20e1-2d1e-4bc8-8392-eedcc625b36a" constraintsType="expression">
+                        <triso:value>sqrt(sum(for d in "Historical Demand" return (d - "Average Demand") ** 2) / count("Historical Demand"))</triso:value>
+                        <triso:display>sqrt(sum(for d in "Historical Demand" return (d - "Average Demand") ** 2) / count("Historical Demand"))</triso:display>
+                    </triso:constraintDetails>
+                </semantic:extensionElements>
+                <semantic:text>sqrt(sum(for d in "Historical Demand" return (d - "Average Demand") ** 2) / count("Historical Demand"))</semantic:text>
+            </semantic:allowedValues>
+        </semantic:itemComponent>
+        <semantic:itemComponent id="_a174845f-0b8f-47fb-90d9-e34a1e5f7cf0" name="DemandVariability" isCollection="false">
+            <semantic:typeRef>number</semantic:typeRef>
+            <semantic:allowedValues>
+                <semantic:extensionElements>
+                    <triso:constraintDetails id="_74da7b25-b42b-4250-9665-91da58b59a2d" constraintsType="expression">
+                        <triso:value>"Demand Standard Deviation" / "Average Demand"</triso:value>
+                        <triso:display>"Demand Standard Deviation" / "Average Demand"</triso:display>
+                    </triso:constraintDetails>
+                </semantic:extensionElements>
+                <semantic:text>"Demand Standard Deviation" / "Average Demand"</semantic:text>
+            </semantic:allowedValues>
+        </semantic:itemComponent>
+    </semantic:itemDefinition>
+    <semantic:itemDefinition name="Inventory_Turnover_Category" label="Inventory Turnover Category">
+        <semantic:itemComponent id="_06a484b7-add5-40b6-b007-071979ad5674" name="High">
+            <semantic:typeRef>string</semantic:typeRef>
+            <semantic:allowedValues>
+                <semantic:extensionElements>
+                    <triso:constraintDetails id="_bd9023fc-b0f3-492c-9b4e-b3ebc9e0cb60" constraintsType="expression">
+                        <triso:value>"InventoryTurnover" &gt; 5</triso:value>
+                        <triso:display>"InventoryTurnover" &gt; 5</triso:display>
+                    </triso:constraintDetails>
+                </semantic:extensionElements>
+                <semantic:text>"InventoryTurnover" &gt; 5</semantic:text>
+            </semantic:allowedValues>
+        </semantic:itemComponent>
+        <semantic:itemComponent id="_0d70d540-cfd7-49e9-becb-0e94de11cdfe" name="Moderate">
+            <semantic:typeRef>string</semantic:typeRef>
+            <semantic:allowedValues>
+                <semantic:extensionElements>
+                    <triso:constraintDetails id="_6fd867e0-52c3-41a7-8dac-40b7c17fa276" constraintsType="expression">
+                        <triso:value>2 &lt;= "InventoryTurnover" &lt;= 5</triso:value>
+                        <triso:display>2 &lt;= "InventoryTurnover" &lt;= 5</triso:display>
+                    </triso:constraintDetails>
+                </semantic:extensionElements>
+                <semantic:text>2 &lt;= "InventoryTurnover" &lt;= 5</semantic:text>
+            </semantic:allowedValues>
+        </semantic:itemComponent>
+        <semantic:itemComponent id="_3ff61b75-358f-4529-a4f3-c9cbf8df46ab" name="Low">
+            <semantic:typeRef>string</semantic:typeRef>
+            <semantic:allowedValues>
+                <semantic:extensionElements>
+                    <triso:constraintDetails id="_869a627f-3989-4118-8252-c75de50f0043" constraintsType="expression">
+                        <triso:value>"InventoryTurnover" &lt; 2</triso:value>
+                        <triso:display>"InventoryTurnover" &lt; 2</triso:display>
+                    </triso:constraintDetails>
+                </semantic:extensionElements>
+                <semantic:text>"InventoryTurnover" &lt; 2</semantic:text>
+            </semantic:allowedValues>
+        </semantic:itemComponent>
+    </semantic:itemDefinition>
+    <semantic:itemDefinition name="Inventory_Turnover_Rating" label="Inventory Turnover Rating">
+        <semantic:typeRef>string</semantic:typeRef>
+        <semantic:allowedValues>
+            <semantic:extensionElements>
+                <triso:constraintDetails id="_9c91fc69-a249-4c74-877f-dcac1d6b95f3" constraintsType="enumeration">
+                    <triso:value>"High","Moderate","Low"</triso:value>
+                    <triso:display>"High", "Moderate", "Low"</triso:display>
+                    <triso:choices>
+                        <triso:value>"High"</triso:value>
+                        <triso:display>"High"</triso:display>
+                    </triso:choices>
+                    <triso:choices>
+                        <triso:value>"Moderate"</triso:value>
+                        <triso:display>"Moderate"</triso:display>
+                    </triso:choices>
+                    <triso:choices>
+                        <triso:value>"Low"</triso:value>
+                        <triso:display>"Low"</triso:display>
+                    </triso:choices>
+                </triso:constraintDetails>
+            </semantic:extensionElements>
+            <semantic:text>"High","Moderate","Low"</semantic:text>
+        </semantic:allowedValues>
+    </semantic:itemDefinition>
+    <semantic:itemDefinition name="tDetermineInventoryControlTechnique" label="tDetermineInventoryControlTechnique">
+        <semantic:typeRef>string</semantic:typeRef>
+        <semantic:allowedValues triso:allowNull="true">
+            <semantic:extensionElements>
+                <triso:constraintDetails id="_a39855c8-0caa-402f-a0e3-43f9d069043b" constraintsType="enumeration">
+                    <triso:value>"Review Required","ABC Analysis","JIT","Safety Stock","EOQ"</triso:value>
+                    <triso:display>"Review Required", "ABC Analysis", "JIT", "Safety Stock", "EOQ"</triso:display>
+                    <triso:choices>
+                        <triso:value>"Review Required"</triso:value>
+                        <triso:display>"Review Required"</triso:display>
+                    </triso:choices>
+                    <triso:choices>
+                        <triso:value>"ABC Analysis"</triso:value>
+                        <triso:display>"ABC Analysis"</triso:display>
+                    </triso:choices>
+                    <triso:choices>
+                        <triso:value>"JIT"</triso:value>
+                        <triso:display>"JIT"</triso:display>
+                    </triso:choices>
+                    <triso:choices>
+                        <triso:value>"Safety Stock"</triso:value>
+                        <triso:display>"Safety Stock"</triso:display>
+                    </triso:choices>
+                    <triso:choices>
+                        <triso:value>"EOQ"</triso:value>
+                        <triso:display>"EOQ"</triso:display>
+                    </triso:choices>
+                </triso:constraintDetails>
+            </semantic:extensionElements>
+            <semantic:text>"Review Required","ABC Analysis","JIT","Safety Stock","EOQ",null</semantic:text>
+        </semantic:allowedValues>
+    </semantic:itemDefinition>
+    <semantic:itemDefinition name="tCheckSupplierReliability" label="tCheckSupplierReliability">
+        <semantic:typeRef>string</semantic:typeRef>
+        <semantic:allowedValues>
+            <semantic:extensionElements>
+                <triso:constraintDetails id="_dd883d2a-8312-422a-acf6-5e47cff97a0c" constraintsType="enumeration">
+                    <triso:value>"High","Moderate","Low"</triso:value>
+                    <triso:display>"High", "Moderate", "Low"</triso:display>
+                    <triso:choices>
+                        <triso:value>"High"</triso:value>
+                        <triso:display>"High"</triso:display>
+                    </triso:choices>
+                    <triso:choices>
+                        <triso:value>"Moderate"</triso:value>
+                        <triso:display>"Moderate"</triso:display>
+                    </triso:choices>
+                    <triso:choices>
+                        <triso:value>"Low"</triso:value>
+                        <triso:display>"Low"</triso:display>
+                    </triso:choices>
+                </triso:constraintDetails>
+            </semantic:extensionElements>
+            <semantic:text>"High","Moderate","Low"</semantic:text>
+        </semantic:allowedValues>
+    </semantic:itemDefinition>
+    <semantic:itemDefinition name="tAnalyzeHoldingCosts" label="tAnalyzeHoldingCosts">
+        <semantic:typeRef>string</semantic:typeRef>
+        <semantic:allowedValues>
+            <semantic:extensionElements>
+                <triso:constraintDetails id="_6878dbd0-7870-4b7f-9e44-3963cf0e19d7" constraintsType="enumeration">
+                    <triso:value>"High","Moderate","Low"</triso:value>
+                    <triso:display>"High", "Moderate", "Low"</triso:display>
+                    <triso:choices>
+                        <triso:value>"High"</triso:value>
+                        <triso:display>"High"</triso:display>
+                    </triso:choices>
+                    <triso:choices>
+                        <triso:value>"Moderate"</triso:value>
+                        <triso:display>"Moderate"</triso:display>
+                    </triso:choices>
+                    <triso:choices>
+                        <triso:value>"Low"</triso:value>
+                        <triso:display>"Low"</triso:display>
+                    </triso:choices>
+                </triso:constraintDetails>
+            </semantic:extensionElements>
+            <semantic:text>"High","Moderate","Low"</semantic:text>
+        </semantic:allowedValues>
+    </semantic:itemDefinition>
+    <semantic:itemDefinition name="tEvaluateDemandVariability" label="tEvaluateDemandVariability">
+        <semantic:typeRef>string</semantic:typeRef>
+        <semantic:allowedValues>
+            <semantic:extensionElements>
+                <triso:constraintDetails id="_c5756fd2-523c-4f09-85ac-b97f3fecc2ee" constraintsType="enumeration">
+                    <triso:value>"High","Moderate","Low"</triso:value>
+                    <triso:display>"High", "Moderate", "Low"</triso:display>
+                    <triso:choices>
+                        <triso:value>"High"</triso:value>
+                        <triso:display>"High"</triso:display>
+                    </triso:choices>
+                    <triso:choices>
+                        <triso:value>"Moderate"</triso:value>
+                        <triso:display>"Moderate"</triso:display>
+                    </triso:choices>
+                    <triso:choices>
+                        <triso:value>"Low"</triso:value>
+                        <triso:display>"Low"</triso:display>
+                    </triso:choices>
+                </triso:constraintDetails>
+            </semantic:extensionElements>
+            <semantic:text>"High","Moderate","Low"</semantic:text>
+        </semantic:allowedValues>
+    </semantic:itemDefinition>
+    <semantic:itemDefinition name="tDemandStatus" label="tDemandStatus" isCollection="false">
+        <semantic:extensionElements>
+            <triso:reuseLink id="_60fdb095-0cb5-4ae8-ab55-a2c06f34600b" modelName="Logistics Management Entity Model" itemName="tDemandStatus" modelType="http://www.trisotech.com/graph/1.0/element#BusinessEntityModel" modelURI="http://www.trisotech.com/definitions/_8d80bed6-f1ed-40b5-9803-cdcc68dafa67" mimeType="application/vnd.triso-businessentity+json" uri="http://www.trisotech.com/definitions/_8d80bed6-f1ed-40b5-9803-cdcc68dafa67#tDemandStatus" graphType="http://www.trisotech.com/graph/1.0/element#ItemDefinition" path="Book - SCM/Logistics Management Entity Model" graphURI="http://trisotech.com/graph/1.0/graph#59f76da1-1155-478f-86b2-ab737b67b7c0"/>
+        </semantic:extensionElements>
+        <semantic:typeRef>string</semantic:typeRef>
+        <semantic:allowedValues>
+            <semantic:extensionElements>
+                <triso:constraintDetails id="_46b6b84d-dfd6-4077-8a3d-f8ad9f35ddce" constraintsType="enumeration">
+                    <triso:value>"High","Low"</triso:value>
+                    <triso:display>"High", "Low"</triso:display>
+                    <triso:choices>
+                        <triso:value>"High"</triso:value>
+                        <triso:display>"High"</triso:display>
+                    </triso:choices>
+                    <triso:choices>
+                        <triso:value>"Low"</triso:value>
+                        <triso:display>"Low"</triso:display>
+                    </triso:choices>
+                </triso:constraintDetails>
+                <triso:constraintDetails id="_ee5401ce-c9c0-4731-98c6-18f8428a7515" constraintsType="enumeration">
+                    <triso:value>"High","Low"</triso:value>
+                    <triso:display>"High", "Low"</triso:display>
+                    <triso:choices>
+                        <triso:value>"High"</triso:value>
+                        <triso:display>"High"</triso:display>
+                    </triso:choices>
+                    <triso:choices>
+                        <triso:value>"Low"</triso:value>
+                        <triso:display>"Low"</triso:display>
+                    </triso:choices>
+                </triso:constraintDetails>
+            </semantic:extensionElements>
+            <semantic:text>(? in ["High","Low"]) and (? in ["High","Low"])</semantic:text>
+        </semantic:allowedValues>
+    </semantic:itemDefinition>
+    <semantic:decisionService id="_1b23d528-1fbc-44b9-9bb3-6ff31191b6ca_DS" name="Whole Model Decision Service" triso:dynamicDecisionService="true" triso:wholeModelService="true">
+        <semantic:variable name="Whole Model Decision Service" id="_1b23d528-1fbc-44b9-9bb3-6ff31191b6ca_DS_VAR" typeRef="Any"/>
+        <semantic:outputDecision href="#_af374d59-4b90-4acb-a044-0755fe29bc3f"/>
+        <semantic:encapsulatedDecision href="#_f70a2573-2964-4c7d-ab79-ee652d65dd68"/>
+        <semantic:encapsulatedDecision href="#_1ec5730d-3b20-41ff-8a78-5ab31f11c488"/>
+        <semantic:encapsulatedDecision href="#_6a0fb87d-8343-48f7-88a2-dad68fbdeaa8"/>
+        <semantic:encapsulatedDecision href="#_7260a460-d335-4279-97b2-bcc153ece263"/>
+        <semantic:inputData href="#_e5386c1d-46e1-45f7-949e-d6a1a84ddcb4"/>
+        <semantic:inputData href="#_d559870e-10a8-4af0-8b26-64feb788fabb"/>
+        <semantic:inputData href="#_a0285c47-1624-45de-b548-6448d9d44484"/>
+        <semantic:inputData href="#_2daaee0c-c278-44b5-a376-fab30cce12ac"/>
+    </semantic:decisionService>
+    <semantic:decisionService id="_e27cbc0c-3f88-42f8-898a-254c3eb925f9_DS" name="Diagram Determine Optimal Inventory Control Technique" triso:dynamicDecisionService="true">
+        <semantic:variable name="Diagram Determine Optimal Inventory Control Technique" id="_e27cbc0c-3f88-42f8-898a-254c3eb925f9_DS_VAR" typeRef="Any"/>
+        <semantic:outputDecision href="#_af374d59-4b90-4acb-a044-0755fe29bc3f"/>
+        <semantic:encapsulatedDecision href="#_f70a2573-2964-4c7d-ab79-ee652d65dd68"/>
+        <semantic:encapsulatedDecision href="#_1ec5730d-3b20-41ff-8a78-5ab31f11c488"/>
+        <semantic:encapsulatedDecision href="#_6a0fb87d-8343-48f7-88a2-dad68fbdeaa8"/>
+        <semantic:encapsulatedDecision href="#_7260a460-d335-4279-97b2-bcc153ece263"/>
+        <semantic:inputData href="#_e5386c1d-46e1-45f7-949e-d6a1a84ddcb4"/>
+        <semantic:inputData href="#_d559870e-10a8-4af0-8b26-64feb788fabb"/>
+        <semantic:inputData href="#_a0285c47-1624-45de-b548-6448d9d44484"/>
+        <semantic:inputData href="#_2daaee0c-c278-44b5-a376-fab30cce12ac"/>
+    </semantic:decisionService>
+    <semantic:decision id="_f70a2573-2964-4c7d-ab79-ee652d65dd68" name="Assess Inventory Turnover" triso:readOnly="false">
+        <semantic:description>&lt;p&gt;&lt;strong&gt;Assess Inventory Turnover&lt;/strong&gt;: This decision evaluates how frequently inventory is sold and replaced over a given period.&lt;/p&gt;</semantic:description>
+        <semantic:variable name="Assess Inventory Turnover" id="_0f61259c-0fff-4793-a578-5a0778d4c52d" typeRef="Inventory_Turnover_Rating"/>
+        <semantic:informationRequirement id="_a559c3f5-1988-4e2f-b605-4743ca5ab0e3" triso:readOnly="false">
+            <semantic:requiredInput href="#_a0285c47-1624-45de-b548-6448d9d44484"/>
+        </semantic:informationRequirement>
+        <semantic:literalExpression id="_3af151d1-e9c8-4301-a7db-a4f9309e074c" triso:unparsed="false" triso:descriptionVisible="false" typeRef="Inventory_Turnover_Rating" triso:expressionId="_e3f3b003-d27b-4d26-b408-b6d3a59ec158">
+            <semantic:text>"Inventory Turnover" = "Sales" / "Average Inventory"</semantic:text>
+        </semantic:literalExpression>
+    </semantic:decision>
+    <semantic:decision id="_1ec5730d-3b20-41ff-8a78-5ab31f11c488" name="Evaluate Demand Variability" triso:readOnly="false">
+        <semantic:description>&lt;p&gt;&lt;strong&gt;Evaluate Demand Variability&lt;/strong&gt;: This decision assesses how much demand fluctuates over time.&lt;/p&gt;</semantic:description>
+        <semantic:variable name="Evaluate Demand Variability" id="_a25e040f-00d0-4531-a25a-6a132a3677ad" typeRef="tEvaluateDemandVariability"/>
+        <semantic:informationRequirement id="_43751a6a-0434-4cc4-a1c4-fcf403041d23" triso:readOnly="false">
+            <semantic:requiredInput href="#_d559870e-10a8-4af0-8b26-64feb788fabb"/>
+        </semantic:informationRequirement>
+        <semantic:literalExpression id="_c2fcb398-85db-4c81-be34-2496fabf1c21" triso:descriptionVisible="false" typeRef="tEvaluateDemandVariability" triso:expressionId="_353be651-ae22-4ab4-9926-3fc2da9020ca">
+            <semantic:text>"Demand Variability" = "Demand Standard Deviation" / "Average Demand"</semantic:text>
+        </semantic:literalExpression>
+    </semantic:decision>
+    <semantic:decision id="_6a0fb87d-8343-48f7-88a2-dad68fbdeaa8" name="Analyze Holding Costs" triso:readOnly="false">
+        <semantic:description>&lt;p&gt;&lt;strong&gt;Analyze Holding Costs&lt;/strong&gt;: This decision considers the costs of storing inventory, including warehousing, insurance, and obsolescence.&lt;/p&gt;</semantic:description>
+        <semantic:variable name="Analyze Holding Costs" id="_ecbb3841-c52d-48f4-adea-e2cde46f79b3" typeRef="tAnalyzeHoldingCosts"/>
+        <semantic:informationRequirement id="_6f4ca148-433e-46d9-83f4-291274859288" triso:readOnly="false">
+            <semantic:requiredInput href="#_e5386c1d-46e1-45f7-949e-d6a1a84ddcb4"/>
+        </semantic:informationRequirement>
+        <semantic:literalExpression id="_f826bc05-d030-4913-b819-41a0dbc78202" triso:descriptionVisible="false" typeRef="tAnalyzeHoldingCosts" triso:expressionId="_5a3735b7-671e-477c-9428-d150f63d531d">
+            <semantic:text>"Holding Costs" = ("Average Inventory" * "Cost per Unit") + "Warehouse Costs"</semantic:text>
+        </semantic:literalExpression>
+    </semantic:decision>
+    <semantic:decision id="_7260a460-d335-4279-97b2-bcc153ece263" name="Check Supplier Reliability" triso:readOnly="false">
+        <semantic:description>&lt;p&gt;&lt;strong&gt;Check Supplier Reliability&lt;/strong&gt;: This decision examines the consistency and reliability of suppliers in terms of lead times and delivery performance.&lt;/p&gt;</semantic:description>
+        <semantic:variable name="Check Supplier Reliability" id="_9d8defa5-ead7-4577-8291-cfb8234d68e9" typeRef="tCheckSupplierReliability"/>
+        <semantic:informationRequirement id="_43309856-7a90-404d-9731-a2495f836126" triso:readOnly="false">
+            <semantic:requiredInput href="#_2daaee0c-c278-44b5-a376-fab30cce12ac"/>
+        </semantic:informationRequirement>
+        <semantic:literalExpression id="_0aa751e1-46aa-4819-abdf-987f52b74c87" triso:descriptionVisible="false" typeRef="tCheckSupplierReliability" triso:expressionId="_c73a477d-36b0-422c-8a79-5f942e7ce5ec">
+            <semantic:text>"SupplierReliability" = ("Number of On-time Deliveries" / "Total Deliveries") * 100</semantic:text>
+        </semantic:literalExpression>
+    </semantic:decision>
+    <semantic:knowledgeSource id="_da30dc95-2847-43b6-b216-259f98e5b6c7" name="NetSuite" triso:readOnly="false">
+        <semantic:authorityRequirement id="_084806be-bd41-4d58-a22a-71cc5d53b365" triso:readOnly="false">
+            <semantic:requiredInput href="#_a0285c47-1624-45de-b548-6448d9d44484"/>
+        </semantic:authorityRequirement>
+    </semantic:knowledgeSource>
+    <semantic:knowledgeSource id="_d2f49cb6-c222-4a0c-99a6-04ce0185c199" name="SAP" triso:readOnly="false">
+        <semantic:authorityRequirement id="_32ba5379-6369-459c-ac52-383c402811c0" triso:readOnly="false">
+            <semantic:requiredInput href="#_2daaee0c-c278-44b5-a376-fab30cce12ac"/>
+        </semantic:authorityRequirement>
+        <semantic:authorityRequirement id="_8771c618-87fb-4cf1-aff5-a4ea8d794b04" triso:readOnly="false">
+            <semantic:requiredInput href="#_e5386c1d-46e1-45f7-949e-d6a1a84ddcb4"/>
+        </semantic:authorityRequirement>
+    </semantic:knowledgeSource>
+    <semantic:knowledgeSource id="_515b0e1e-f15c-4324-b079-5d84226a9b8a" name="Anaplan" triso:readOnly="false">
+        <semantic:authorityRequirement id="_ea76ea93-532e-4473-be55-e50bd31b6973" triso:readOnly="false">
+            <semantic:requiredInput href="#_d559870e-10a8-4af0-8b26-64feb788fabb"/>
+        </semantic:authorityRequirement>
+    </semantic:knowledgeSource>
+    <semantic:decision id="_af374d59-4b90-4acb-a044-0755fe29bc3f" name="Determine Inventory Control Technique" triso:readOnly="false">
+        <semantic:variable name="Determine Inventory Control Technique" id="_a36c049d-5fa9-4e43-9d6d-a2249972654d" typeRef="tDetermineInventoryControlTechnique"/>
+        <semantic:informationRequirement id="_dd88a9d1-ff3c-41a7-90fb-b8c2b40dc85b" triso:readOnly="false">
+            <semantic:requiredDecision href="#_1ec5730d-3b20-41ff-8a78-5ab31f11c488"/>
+        </semantic:informationRequirement>
+        <semantic:informationRequirement id="_f43ae72d-cca7-412c-83df-e03638b9090b" triso:readOnly="false">
+            <semantic:requiredDecision href="#_6a0fb87d-8343-48f7-88a2-dad68fbdeaa8"/>
+        </semantic:informationRequirement>
+        <semantic:informationRequirement id="_ade3f317-645b-46bf-a86a-012b22388e25" triso:readOnly="false">
+            <semantic:requiredDecision href="#_7260a460-d335-4279-97b2-bcc153ece263"/>
+        </semantic:informationRequirement>
+        <semantic:informationRequirement id="_2e2f0f21-fea9-4d6d-b96d-6568a05f59a8" triso:readOnly="false">
+            <semantic:requiredDecision href="#_f70a2573-2964-4c7d-ab79-ee652d65dd68"/>
+        </semantic:informationRequirement>
+        <semantic:decisionTable triso:descriptionVisible="false" id="_a5882c99-4f3d-4c32-9858-8b54f37c77ba" hitPolicy="UNIQUE" outputLabel="Determine Inventory Control Technique" typeRef="tDetermineInventoryControlTechnique" triso:expressionId="_5e67f5c4-c7f8-44b3-9704-ebc265dfd1e5">
+            <semantic:input id="_7d032375-1dda-464c-ab48-219b856b7628" triso:allowNull="false" label="Assess Inventory Turnover">
+                <semantic:inputExpression typeRef="Inventory_Turnover_Rating">
+                    <semantic:text>Assess Inventory Turnover</semantic:text>
+                </semantic:inputExpression>
+                <semantic:inputValues triso:constraintsType="enumeration">
+                    <semantic:text>"High","Moderate","Low"</semantic:text>
+                </semantic:inputValues>
+            </semantic:input>
+            <semantic:input id="_431f60cc-d51c-4252-af63-52c9b8a4eb19" label="Evaluate Demand Variability">
+                <semantic:inputExpression typeRef="tEvaluateDemandVariability">
+                    <semantic:text>Evaluate Demand Variability</semantic:text>
+                </semantic:inputExpression>
+                <semantic:inputValues triso:constraintsType="enumeration">
+                    <semantic:text>"High","Moderate","Low"</semantic:text>
+                </semantic:inputValues>
+            </semantic:input>
+            <semantic:input id="_e4245cbb-1227-467d-8bc3-455292b3a397" label="Analyze Holding Costs">
+                <semantic:inputExpression typeRef="tAnalyzeHoldingCosts">
+                    <semantic:text>Analyze Holding Costs</semantic:text>
+                </semantic:inputExpression>
+                <semantic:inputValues triso:constraintsType="enumeration">
+                    <semantic:text>"High","Moderate","Low"</semantic:text>
+                </semantic:inputValues>
+            </semantic:input>
+            <semantic:input id="_3ac1f494-7faf-42cd-887c-76147fd37069" label="Check Supplier Reliability">
+                <semantic:inputExpression typeRef="tCheckSupplierReliability">
+                    <semantic:text>Check Supplier Reliability</semantic:text>
+                </semantic:inputExpression>
+                <semantic:inputValues triso:constraintsType="enumeration">
+                    <semantic:text>"High","Moderate","Low"</semantic:text>
+                </semantic:inputValues>
+            </semantic:input>
+            <semantic:output id="_624d3f5b-374e-49b2-bd41-79b16b23ffda" triso:allowNull="true">
+                <semantic:outputValues triso:constraintsType="enumeration">
+                    <semantic:text>"Review Required","ABC Analysis","JIT","Safety Stock","EOQ",null,null</semantic:text>
+                </semantic:outputValues>
+            </semantic:output>
+            <semantic:annotation name="Description"/>
+            <semantic:rule id="_02543073-eff1-4bb5-bf33-a628880b73d5">
+                <semantic:inputEntry id="_8b3c8e3a-b654-4a74-b532-64faec1cb328" triso:unparsed="false">
+                    <semantic:text>"High"</semantic:text>
+                </semantic:inputEntry>
+                <semantic:inputEntry id="_5cf2421a-97e9-4c44-90c6-73a3e7418d38">
+                    <semantic:text>"Moderate"</semantic:text>
+                </semantic:inputEntry>
+                <semantic:inputEntry id="_f018a6c3-4978-4169-8c03-f3e16358357e">
+                    <semantic:text>"High"</semantic:text>
+                </semantic:inputEntry>
+                <semantic:inputEntry id="_36d3b793-0fd8-47cf-b0bd-1fd9ac873414">
+                    <semantic:text>"High"</semantic:text>
+                </semantic:inputEntry>
+                <semantic:outputEntry id="_c87f1b84-6a1d-4c69-9cb7-324fe51238e8">
+                    <semantic:text>"Review Required"</semantic:text>
+                </semantic:outputEntry>
+                <semantic:annotationEntry>
+                    <semantic:text/>
+                </semantic:annotationEntry>
+            </semantic:rule>
+            <semantic:rule id="_35ebf5e9-e7a0-43a7-b998-9439fdeecbc1">
+                <semantic:inputEntry id="_5b7f9b5e-c99f-4462-b6a3-f4e96572c7bf">
+                    <semantic:text>"High"</semantic:text>
+                </semantic:inputEntry>
+                <semantic:inputEntry id="_7aa3dd47-49a2-4013-909e-96ddc1cc9bd2">
+                    <semantic:text>"Low"</semantic:text>
+                </semantic:inputEntry>
+                <semantic:inputEntry id="_aa5000c4-890b-4ba4-93ee-2f37c1af35b0">
+                    <semantic:text>"High"</semantic:text>
+                </semantic:inputEntry>
+                <semantic:inputEntry id="_7fd68caa-7c6f-4bbb-b636-1a6e438e3a3a">
+                    <semantic:text>"Low"</semantic:text>
+                </semantic:inputEntry>
+                <semantic:outputEntry id="_2ab48d4d-81fe-4efd-bc34-bb402081b2f5">
+                    <semantic:text>"JIT"</semantic:text>
+                </semantic:outputEntry>
+                <semantic:annotationEntry>
+                    <semantic:text/>
+                </semantic:annotationEntry>
+            </semantic:rule>
+            <semantic:rule id="_630f7abf-2f63-4bb1-9bd9-33ed2bd39cbd">
+                <semantic:inputEntry id="_07046d44-a0a4-4eb8-aad1-4e50cb5ac047">
+                    <semantic:text>"Moderate"</semantic:text>
+                </semantic:inputEntry>
+                <semantic:inputEntry id="_c58d5479-4b51-45f0-9976-3b4baa822c2e">
+                    <semantic:text>"Moderate"</semantic:text>
+                </semantic:inputEntry>
+                <semantic:inputEntry id="_23f4f66f-d497-4382-9450-d4a0dc9583f8">
+                    <semantic:text>"Moderate"</semantic:text>
+                </semantic:inputEntry>
+                <semantic:inputEntry id="_ce5cce66-7699-4a78-96ed-1253f58a7964">
+                    <semantic:text>"Moderate"</semantic:text>
+                </semantic:inputEntry>
+                <semantic:outputEntry id="_56f7ab9e-2310-4639-98e4-773b60feb094">
+                    <semantic:text>"EOQ"</semantic:text>
+                </semantic:outputEntry>
+                <semantic:annotationEntry>
+                    <semantic:text/>
+                </semantic:annotationEntry>
+            </semantic:rule>
+            <semantic:rule id="_840a25cc-d074-45ab-b7d3-e37624be7616">
+                <semantic:inputEntry id="_5cf1c394-c25a-4725-8f4c-b46661786b9f">
+                    <semantic:text>"High"</semantic:text>
+                </semantic:inputEntry>
+                <semantic:inputEntry id="_71ea4cad-9fc4-4c98-9f80-3a029e35c924">
+                    <semantic:text>"High"</semantic:text>
+                </semantic:inputEntry>
+                <semantic:inputEntry id="_b6a3fab7-c55e-4df2-bb24-3a9b2422f2bc">
+                    <semantic:text>"Low"</semantic:text>
+                </semantic:inputEntry>
+                <semantic:inputEntry id="_e6a33d5d-b21f-4064-9151-2c54d9b168d0">
+                    <semantic:text>"High"</semantic:text>
+                </semantic:inputEntry>
+                <semantic:outputEntry id="_e4365e20-383d-439d-833d-29fe809cee33">
+                    <semantic:text>"ABC Analysis"</semantic:text>
+                </semantic:outputEntry>
+                <semantic:annotationEntry>
+                    <semantic:text/>
+                </semantic:annotationEntry>
+            </semantic:rule>
+            <semantic:rule id="_5b236007-3a0f-43b4-9af4-b7e659f685cd">
+                <semantic:inputEntry id="_4f1169ea-5260-452d-ae56-116151668225">
+                    <semantic:text>"High"</semantic:text>
+                </semantic:inputEntry>
+                <semantic:inputEntry id="_38425c1a-9d06-43a2-b133-e5848e1eafc1">
+                    <semantic:text>"Moderate"</semantic:text>
+                </semantic:inputEntry>
+                <semantic:inputEntry id="_8df7fcf1-7f01-46a6-a51e-b904f13af53d">
+                    <semantic:text>"High"</semantic:text>
+                </semantic:inputEntry>
+                <semantic:inputEntry id="_256ec917-20e8-4cf6-9615-8961629ee9d3">
+                    <semantic:text>"High"</semantic:text>
+                </semantic:inputEntry>
+                <semantic:outputEntry id="_6d49daa6-a41a-43ed-a7bf-03feab413a61">
+                    <semantic:text>"ABC Analysis"</semantic:text>
+                </semantic:outputEntry>
+                <semantic:annotationEntry>
+                    <semantic:text/>
+                </semantic:annotationEntry>
+            </semantic:rule>
+        </semantic:decisionTable>
+    </semantic:decision>
+    <semantic:inputData id="_e5386c1d-46e1-45f7-949e-d6a1a84ddcb4" name="Cost Data" triso:readOnly="false">
+        <semantic:description>&lt;p&gt;Data on holding costs, ordering costs, and shortage costs.&lt;/p&gt;</semantic:description>
+        <semantic:extensionElements>
+            <triso:reuseLink id="_d08f9e8b-6bef-4dfe-bf55-f7c8c3b2f485" modelName="Logistics Management Entity Model" itemName="Cost Data" modelType="http://www.trisotech.com/graph/1.0/element#BusinessEntityModel" modelURI="http://www.trisotech.com/definitions/_8d80bed6-f1ed-40b5-9803-cdcc68dafa67" mimeType="application/vnd.triso-businessentity+json" uri="http://www.trisotech.com/definitions/_8d80bed6-f1ed-40b5-9803-cdcc68dafa67#_72163f93-a095-4b6d-90fb-253d1a307d71" graphType="http://www.trisotech.com/graph/1.0/element#Term" path="Book - SCM/Logistics Management Entity Model" graphURI="http://trisotech.com/graph/1.0/graph#59f76da1-1155-478f-86b2-ab737b67b7c0"/>
+        </semantic:extensionElements>
+        <semantic:variable name="Cost Data" id="_5c64ad9d-e25d-4aa8-9ea6-675e4ef43c8d" typeRef="Cost_Data"/>
+    </semantic:inputData>
+    <semantic:inputData id="_d559870e-10a8-4af0-8b26-64feb788fabb" name="Demand Forecast" triso:readOnly="false">
+        <semantic:description>&lt;p&gt;Projected demand data.&lt;/p&gt;</semantic:description>
+        <semantic:extensionElements>
+            <triso:reuseLink id="_dfc576be-d6b6-4157-bb46-9d78485c94b8" modelName="Logistics Management Entity Model" itemName="Demand Forecast" modelType="http://www.trisotech.com/graph/1.0/element#BusinessEntityModel" modelURI="http://www.trisotech.com/definitions/_8d80bed6-f1ed-40b5-9803-cdcc68dafa67" mimeType="application/vnd.triso-businessentity+json" uri="http://www.trisotech.com/definitions/_8d80bed6-f1ed-40b5-9803-cdcc68dafa67#_2dadcc89-1862-4e10-bce7-df3006de9b6b" graphType="http://www.trisotech.com/graph/1.0/element#Term" path="Book - SCM/Logistics Management Entity Model" graphURI="http://trisotech.com/graph/1.0/graph#59f76da1-1155-478f-86b2-ab737b67b7c0"/>
+        </semantic:extensionElements>
+        <semantic:variable name="Demand Forecast" id="_28e79120-e26e-419d-82ed-0d7857f7f411" typeRef="Demand"/>
+    </semantic:inputData>
+    <semantic:inputData id="_a0285c47-1624-45de-b548-6448d9d44484" name="Inventory" triso:readOnly="false">
+        <semantic:description>&lt;p&gt;Inventory represents the stock of products available in the warehouse. It includes attributes such as a unique identifier (InventoryID), warehouse ID, product ID, quantity, and reorder level. Inventory management ensures that the right amount of product is available to meet demand without overstocking.&lt;/p&gt;</semantic:description>
+        <semantic:extensionElements>
+            <triso:reuseLink id="_6666bf71-653b-4c53-82e3-5acd74b1edee" modelName="Logistics Management Entity Model" itemName="Inventory" modelType="http://www.trisotech.com/graph/1.0/element#BusinessEntityModel" modelURI="http://www.trisotech.com/definitions/_8d80bed6-f1ed-40b5-9803-cdcc68dafa67" mimeType="application/vnd.triso-businessentity+json" uri="http://www.trisotech.com/definitions/_8d80bed6-f1ed-40b5-9803-cdcc68dafa67#_b255f6ab-4b5d-42b8-aafb-c72da914ebe5" graphType="http://www.trisotech.com/graph/1.0/element#Term" path="Book - SCM/Logistics Management Entity Model" graphURI="http://trisotech.com/graph/1.0/graph#59f76da1-1155-478f-86b2-ab737b67b7c0"/>
+        </semantic:extensionElements>
+        <semantic:variable name="Inventory" id="_89f0ae6f-9a01-4a7e-81d5-3ceda5d63c59" typeRef="InventoryData"/>
+    </semantic:inputData>
+    <semantic:inputData id="_2daaee0c-c278-44b5-a376-fab30cce12ac" name="Supplier" triso:readOnly="false">
+        <semantic:description>&lt;p&gt;A Supplier is an external entity that provides products to the warehouse. Suppliers have attributes such as a unique identifier (SupplierID), name, contact information, and address. They are essential for maintaining the inventory levels by supplying necessary goods. It also contains information on lead times and delivery performance.&lt;/p&gt;</semantic:description>
+        <semantic:extensionElements>
+            <triso:reuseLink id="_ee92e337-6b71-4a52-b006-f5568c04df8e" modelName="Logistics Management Entity Model" itemName="Supplier" modelType="http://www.trisotech.com/graph/1.0/element#BusinessEntityModel" modelURI="http://www.trisotech.com/definitions/_8d80bed6-f1ed-40b5-9803-cdcc68dafa67" mimeType="application/vnd.triso-businessentity+json" uri="http://www.trisotech.com/definitions/_8d80bed6-f1ed-40b5-9803-cdcc68dafa67#_3483c4a4-f4ce-4ef7-8fd0-586a90cbb734" graphType="http://www.trisotech.com/graph/1.0/element#Term" path="Book - SCM/Logistics Management Entity Model" graphURI="http://trisotech.com/graph/1.0/graph#59f76da1-1155-478f-86b2-ab737b67b7c0"/>
+        </semantic:extensionElements>
+        <semantic:variable name="Supplier" id="_289fb17c-649b-49ca-9fb3-36cbb42d02c4" typeRef="Supplier"/>
+    </semantic:inputData>
+    <dmndi:DMNDI>
+        <dmndi:DMNDiagram id="_e27cbc0c-3f88-42f8-898a-254c3eb925f9" triso:modelElementRef="_27df5457-77d3-425b-bc58-02144971a244" name="Determine Optimal Inventory Control Technique">
+            <di:extension/>
+            <dmndi:Size height="1050" width="1636.7411708831787"/>
+            <dmndi:DMNShape id="_26db55a5-0ad8-45d6-8799-ae416943c51c" dmnElementRef="_f70a2573-2964-4c7d-ab79-ee652d65dd68">
+                <dc:Bounds x="358" y="318" width="153" height="60"/>
+                <dmndi:DMNLabel sharedStyle="LS_1b23d528-1fbc-44b9-9bb3-6ff31191b6ca_0" trisodmn:defaultBounds="true"/>
+            </dmndi:DMNShape>
+            <dmndi:DMNShape id="_8cb814ba-7105-42a6-9d9f-75617893a403" dmnElementRef="_1ec5730d-3b20-41ff-8a78-5ab31f11c488">
+                <dc:Bounds x="562" y="318" width="153" height="60"/>
+                <dmndi:DMNLabel sharedStyle="LS_1b23d528-1fbc-44b9-9bb3-6ff31191b6ca_0" trisodmn:defaultBounds="true"/>
+            </dmndi:DMNShape>
+            <dmndi:DMNShape id="_ad1b1503-1b1d-4c06-a2ba-f3190cff6953" dmnElementRef="_6a0fb87d-8343-48f7-88a2-dad68fbdeaa8">
+                <dc:Bounds x="762" y="318" width="153" height="60"/>
+                <dmndi:DMNLabel sharedStyle="LS_1b23d528-1fbc-44b9-9bb3-6ff31191b6ca_0" trisodmn:defaultBounds="true"/>
+            </dmndi:DMNShape>
+            <dmndi:DMNShape id="_0d3c69a2-bbc9-4bc6-b1a9-d3b8c3dddcf1" dmnElementRef="_7260a460-d335-4279-97b2-bcc153ece263">
+                <dc:Bounds x="954" y="318" width="153" height="60"/>
+                <dmndi:DMNLabel sharedStyle="LS_1b23d528-1fbc-44b9-9bb3-6ff31191b6ca_0" trisodmn:defaultBounds="true"/>
+            </dmndi:DMNShape>
+            <dmndi:DMNShape id="_fe4115d7-20ed-4aa8-a6a6-bdb0e5d10b2e" dmnElementRef="_da30dc95-2847-43b6-b216-259f98e5b6c7">
+                <dc:Bounds x="384.5" y="560.0213203430176" width="100" height="69.95735931396484"/>
+                <dmndi:DMNLabel sharedStyle="LS_1b23d528-1fbc-44b9-9bb3-6ff31191b6ca_0" trisodmn:defaultBounds="true"/>
+            </dmndi:DMNShape>
+            <dmndi:DMNShape id="_bab87b88-e26e-469f-9c96-54559672608f" dmnElementRef="_d2f49cb6-c222-4a0c-99a6-04ce0185c199">
+                <dc:Bounds x="897.5" y="560.0213203430176" width="100" height="69.95735931396484"/>
+                <dmndi:DMNLabel sharedStyle="LS_1b23d528-1fbc-44b9-9bb3-6ff31191b6ca_0" trisodmn:defaultBounds="true"/>
+            </dmndi:DMNShape>
+            <dmndi:DMNShape id="_2065f59f-3af8-4391-ae9d-d3417cb73752" dmnElementRef="_515b0e1e-f15c-4324-b079-5d84226a9b8a">
+                <dc:Bounds x="588.5" y="560.0213203430176" width="100" height="69.95735931396484"/>
+                <dmndi:DMNLabel sharedStyle="LS_1b23d528-1fbc-44b9-9bb3-6ff31191b6ca_0" trisodmn:defaultBounds="true"/>
+            </dmndi:DMNShape>
+            <dmndi:DMNShape id="_7ee28069-bc5a-485d-ae9a-8c7fe866ce25" dmnElementRef="_af374d59-4b90-4acb-a044-0755fe29bc3f">
+                <dc:Bounds x="651" y="158" width="153" height="60"/>
+                <dmndi:DMNLabel sharedStyle="LS_1b23d528-1fbc-44b9-9bb3-6ff31191b6ca_0" trisodmn:defaultBounds="true"/>
+            </dmndi:DMNShape>
+            <dmndi:DMNShape id="_b00849ba-7ab8-4d7e-a575-664ece81dbcc" dmnElementRef="_e5386c1d-46e1-45f7-949e-d6a1a84ddcb4">
+                <dc:Bounds x="770.7588291168213" y="444.99999618530273" width="135.48234176635742" height="60.00000762939453"/>
+                <dmndi:DMNLabel sharedStyle="LS_1b23d528-1fbc-44b9-9bb3-6ff31191b6ca_0" trisodmn:defaultBounds="true"/>
+            </dmndi:DMNShape>
+            <dmndi:DMNShape id="_51e31bbf-b037-40c6-9665-063edca36dcc" dmnElementRef="_d559870e-10a8-4af0-8b26-64feb788fabb">
+                <dc:Bounds x="570.7588291168213" y="444.99999618530273" width="135.48234176635742" height="60.00000762939453"/>
+                <dmndi:DMNLabel sharedStyle="LS_1b23d528-1fbc-44b9-9bb3-6ff31191b6ca_0" trisodmn:defaultBounds="true"/>
+            </dmndi:DMNShape>
+            <dmndi:DMNShape id="_053e3a57-bd47-4a09-80c1-667d273bace4" dmnElementRef="_a0285c47-1624-45de-b548-6448d9d44484">
+                <dc:Bounds x="366.7588291168213" y="444.99999618530273" width="135.48234176635742" height="60.00000762939453"/>
+                <dmndi:DMNLabel sharedStyle="LS_1b23d528-1fbc-44b9-9bb3-6ff31191b6ca_0" trisodmn:defaultBounds="true"/>
+            </dmndi:DMNShape>
+            <dmndi:DMNShape id="_99c177c9-4214-46bc-9d43-28fead93b9b1" dmnElementRef="_2daaee0c-c278-44b5-a376-fab30cce12ac">
+                <dc:Bounds x="962.7588291168213" y="444.99999618530273" width="135.48234176635742" height="60.00000762939453"/>
+                <dmndi:DMNLabel sharedStyle="LS_1b23d528-1fbc-44b9-9bb3-6ff31191b6ca_0" trisodmn:defaultBounds="true"/>
+            </dmndi:DMNShape>
+            <dmndi:DMNEdge id="_afce6e50-d784-43f4-8f12-5a9d3cb65735" dmnElementRef="_dd88a9d1-ff3c-41a7-90fb-b8c2b40dc85b">
+                <di:waypoint x="638.5" y="318"/>
+                <di:waypoint x="727.5" y="218"/>
+                <dmndi:DMNLabel sharedStyle="LS_1b23d528-1fbc-44b9-9bb3-6ff31191b6ca_0"/>
+            </dmndi:DMNEdge>
+            <dmndi:DMNEdge id="_f5ceb0a0-4dca-4942-a83f-530e3af5401f" dmnElementRef="_f43ae72d-cca7-412c-83df-e03638b9090b">
+                <di:waypoint x="838.5" y="318"/>
+                <di:waypoint x="727.5" y="218"/>
+                <dmndi:DMNLabel sharedStyle="LS_1b23d528-1fbc-44b9-9bb3-6ff31191b6ca_0"/>
+            </dmndi:DMNEdge>
+            <dmndi:DMNEdge id="_403bfcb5-e36a-4962-95c4-5b203b340516" dmnElementRef="_ade3f317-645b-46bf-a86a-012b22388e25">
+                <di:waypoint x="1030.5" y="318"/>
+                <di:waypoint x="727.5" y="218"/>
+                <dmndi:DMNLabel sharedStyle="LS_1b23d528-1fbc-44b9-9bb3-6ff31191b6ca_0"/>
+            </dmndi:DMNEdge>
+            <dmndi:DMNEdge id="_abe3a2e2-dbb1-48ff-85c3-8f163a3101b9" dmnElementRef="_2e2f0f21-fea9-4d6d-b96d-6568a05f59a8">
+                <di:waypoint x="434.5" y="318"/>
+                <di:waypoint x="727.5" y="218"/>
+                <dmndi:DMNLabel sharedStyle="LS_1b23d528-1fbc-44b9-9bb3-6ff31191b6ca_0"/>
+            </dmndi:DMNEdge>
+            <dmndi:DMNEdge id="_537d8f50-b6d3-4541-8898-e2c1fe16e681" dmnElementRef="_a559c3f5-1988-4e2f-b605-4743ca5ab0e3">
+                <di:waypoint x="434.4968013763428" y="444.99999618530273"/>
+                <di:waypoint x="434.5" y="378"/>
+                <dmndi:DMNLabel sharedStyle="LS_1b23d528-1fbc-44b9-9bb3-6ff31191b6ca_0"/>
+            </dmndi:DMNEdge>
+            <dmndi:DMNEdge id="_f855aa39-8512-4206-9c1d-73d9c11ec2a3" dmnElementRef="_43751a6a-0434-4cc4-a1c4-fcf403041d23">
+                <di:waypoint x="638.4968013763428" y="444.99999618530273"/>
+                <di:waypoint x="638.5" y="378"/>
+                <dmndi:DMNLabel sharedStyle="LS_1b23d528-1fbc-44b9-9bb3-6ff31191b6ca_0"/>
+            </dmndi:DMNEdge>
+            <dmndi:DMNEdge id="_d2c9ac08-9261-401b-b16a-2cffff50b866" dmnElementRef="_6f4ca148-433e-46d9-83f4-291274859288">
+                <di:waypoint x="838.4968013763428" y="444.99999618530273"/>
+                <di:waypoint x="838.5" y="378"/>
+                <dmndi:DMNLabel sharedStyle="LS_1b23d528-1fbc-44b9-9bb3-6ff31191b6ca_0"/>
+            </dmndi:DMNEdge>
+            <dmndi:DMNEdge id="_96ea68f9-e7c3-4862-8e31-bfd66851f8f3" dmnElementRef="_43309856-7a90-404d-9731-a2495f836126">
+                <di:waypoint x="1030.4968013763428" y="444.99999618530273"/>
+                <di:waypoint x="1030.5" y="378"/>
+                <dmndi:DMNLabel sharedStyle="LS_1b23d528-1fbc-44b9-9bb3-6ff31191b6ca_0"/>
+            </dmndi:DMNEdge>
+            <dmndi:DMNEdge id="_001bcf4b-d0a7-4ff0-8ff6-8b8c7ba31d49" dmnElementRef="_084806be-bd41-4d58-a22a-71cc5d53b365">
+                <di:waypoint x="434.4968013763428" y="504.99999618530273"/>
+                <di:waypoint x="434.5" y="560.0213203430176"/>
+                <dmndi:DMNLabel sharedStyle="LS_1b23d528-1fbc-44b9-9bb3-6ff31191b6ca_0"/>
+            </dmndi:DMNEdge>
+            <dmndi:DMNEdge id="_4948df34-ceed-4e97-bef7-1f920e46a9b2" dmnElementRef="_ea76ea93-532e-4473-be55-e50bd31b6973">
+                <di:waypoint x="638.4968013763428" y="504.99999618530273"/>
+                <di:waypoint x="638.5" y="560.0213203430176"/>
+                <dmndi:DMNLabel sharedStyle="LS_1b23d528-1fbc-44b9-9bb3-6ff31191b6ca_0"/>
+            </dmndi:DMNEdge>
+            <dmndi:DMNEdge id="_1073e8b3-73b6-4e41-97c6-2aeec292535d" dmnElementRef="_32ba5379-6369-459c-ac52-383c402811c0">
+                <di:waypoint x="1030.4968013763428" y="504.99999618530273"/>
+                <di:waypoint x="947.5" y="560.0213203430176"/>
+                <dmndi:DMNLabel sharedStyle="LS_1b23d528-1fbc-44b9-9bb3-6ff31191b6ca_0"/>
+            </dmndi:DMNEdge>
+            <dmndi:DMNEdge id="_066723fb-8922-422d-96ae-fd1a48e0a98c" dmnElementRef="_8771c618-87fb-4cf1-aff5-a4ea8d794b04">
+                <di:waypoint x="838.4968013763428" y="504.99999618530273"/>
+                <di:waypoint x="947.5" y="560.0213203430176"/>
+                <dmndi:DMNLabel sharedStyle="LS_1b23d528-1fbc-44b9-9bb3-6ff31191b6ca_0"/>
+            </dmndi:DMNEdge>
+        </dmndi:DMNDiagram>
+        <dmndi:DMNStyle id="LS_1b23d528-1fbc-44b9-9bb3-6ff31191b6ca_0" fontFamily="arial,helvetica,sans-serif" fontSize="11" fontBold="false" fontItalic="false" fontUnderline="false" fontStrikeThrough="false"/>
+    </dmndi:DMNDI>
+</semantic:definitions>
