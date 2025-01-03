@@ -1,0 +1,2009 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<semantic:definitions xmlns:semantic="https://www.omg.org/spec/DMN/20240513/MODEL/"  xmlns:sdmn="https://www.omg.org/spec/SDMN/"  xmlns:triso="http://www.trisotech.com/2015/triso/modeling"  xmlns:dmndi="https://www.omg.org/spec/DMN/20230324/DMNDI/"  xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/"  xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/"  xmlns:trisodmn="http://www.trisotech.com/2016/triso/dmn"  xmlns:feel="https://www.omg.org/spec/DMN/20240513/FEEL/"  xmlns:tc="http://www.omg.org/spec/DMN/20160719/testcase"  xmlns:drools="http://www.drools.org/kie/dmn/1.1"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  xmlns:rss="http://purl.org/rss/2.0/"  xmlns:openapi="https://openapis.org/omg/extension/1.0"  xmlns:xsd="http://www.w3.org/2001/XMLSchema"   xmlns:i18n="http://www.omg.org/spec/BPMN/non-normative/extensions/i18n/1.0"  xmlns="http://www.trisotech.com/definitions/_291e4915-10d2-4ef2-ad49-b5ac9023aaf3" id="_291e4915-10d2-4ef2-ad49-b5ac9023aaf3" name="Determine Transportation Mode" namespace="http://www.trisotech.com/definitions/_291e4915-10d2-4ef2-ad49-b5ac9023aaf3" exporter="Decision Modeler" exporterVersion="9.6.3" xml:lang="en" triso:logoChoice="Default">
+    <semantic:extensionElements/>
+    <semantic:itemDefinition name="Shipment_Size" label="Shipment Size">
+        <semantic:typeRef>number</semantic:typeRef>
+        <semantic:allowedValues>
+            <semantic:extensionElements>
+                <triso:constraintDetails id="_6e0d5e5d-e617-4f1d-97e4-ca35c6f15a78" constraintsType="simple" min="1" minIncluded="true" max="500000" maxIncluded="true">
+                    <triso:value>[1..500000]</triso:value>
+                    <triso:display>[1..500000]</triso:display>
+                </triso:constraintDetails>
+            </semantic:extensionElements>
+            <semantic:text>[1..500000]</semantic:text>
+        </semantic:allowedValues>
+    </semantic:itemDefinition>
+    <semantic:itemDefinition name="tDeliveryTimeRequirement" label="tDeliveryTimeRequirement">
+        <semantic:typeRef>range&lt;number&gt;</semantic:typeRef>
+        <semantic:allowedValues>
+            <semantic:extensionElements>
+                <triso:constraintDetails id="_03c638a0-8d65-46ed-bb8c-51a087ea97f8" constraintsType="expression">
+                    <triso:value>"Delivery_Time_Requirement" &lt;= 2</triso:value>
+                    <triso:display>"Delivery_Time_Requirement" &lt;= 2</triso:display>
+                </triso:constraintDetails>
+                <triso:constraintDetails id="_e756cedc-4966-4ce9-a8b5-05c9e0db9140" constraintsType="expression">
+                    <triso:value>"Delivery_Time_Requirement" &gt;= "3 AND Delivery_Time_Requirement" &lt;= 7</triso:value>
+                    <triso:display>"Delivery_Time_Requirement" &gt;= "3 AND Delivery_Time_Requirement" &lt;= 7</triso:display>
+                </triso:constraintDetails>
+                <triso:constraintDetails id="_12b2c75d-2962-4ed4-99cd-1706a8aa2317" constraintsType="expression">
+                    <triso:value>"Delivery_Time_Requirement" &gt; 7</triso:value>
+                    <triso:display>"Delivery_Time_Requirement" &gt; 7</triso:display>
+                </triso:constraintDetails>
+            </semantic:extensionElements>
+            <semantic:text>("Delivery_Time_Requirement" &lt;= 2) and ("Delivery_Time_Requirement" &gt;= "3 AND Delivery_Time_Requirement" &lt;= 7) and ("Delivery_Time_Requirement" &gt; 7)</semantic:text>
+        </semantic:allowedValues>
+    </semantic:itemDefinition>
+    <semantic:itemDefinition name="Delivery_Time_Requirement" label="Delivery Time Requirement">
+        <semantic:typeRef>number</semantic:typeRef>
+        <semantic:allowedValues>
+            <semantic:extensionElements>
+                <triso:constraintDetails id="_fdfef367-a323-401b-9e9d-36cc092d885c" constraintsType="simple" min="1" minIncluded="true" max="360" maxIncluded="true">
+                    <triso:value>[1..360]</triso:value>
+                    <triso:display>[1..360]</triso:display>
+                </triso:constraintDetails>
+            </semantic:extensionElements>
+            <semantic:text>[1..360]</semantic:text>
+        </semantic:allowedValues>
+    </semantic:itemDefinition>
+    <semantic:itemDefinition name="tDistance" label="tDistance">
+        <semantic:typeRef>range&lt;number&gt;</semantic:typeRef>
+        <semantic:allowedValues>
+            <semantic:extensionElements>
+                <triso:constraintDetails id="_768eeba0-2685-48de-81a0-66410e18c216" constraintsType="expression">
+                    <triso:value>"Distance" &lt;= 500</triso:value>
+                    <triso:display>"Distance" &lt;= 500</triso:display>
+                </triso:constraintDetails>
+                <triso:constraintDetails id="_a5072ac6-d7e6-4b68-b361-ea7f77eabb4e" constraintsType="expression">
+                    <triso:value>"Distance" &gt; "500 AND Distance" &lt;= 2000</triso:value>
+                    <triso:display>"Distance" &gt; "500 AND Distance" &lt;= 2000</triso:display>
+                </triso:constraintDetails>
+                <triso:constraintDetails id="_b0c863d1-731a-46cf-b859-9700861da7d0" constraintsType="expression">
+                    <triso:value>"Distance" &gt; 2000</triso:value>
+                    <triso:display>"Distance" &gt; 2000</triso:display>
+                </triso:constraintDetails>
+            </semantic:extensionElements>
+            <semantic:text>("Distance" &lt;= 500) and ("Distance" &gt; "500 AND Distance" &lt;= 2000) and ("Distance" &gt; 2000)</semantic:text>
+        </semantic:allowedValues>
+    </semantic:itemDefinition>
+    <semantic:itemDefinition name="Distance" label="Distance">
+        <semantic:typeRef>number</semantic:typeRef>
+        <semantic:allowedValues>
+            <semantic:extensionElements>
+                <triso:constraintDetails id="_d90402bd-6d60-40d9-b7f9-85cbea11b6e9" constraintsType="simple" min="1" minIncluded="true" max="7918" maxIncluded="true">
+                    <triso:value>[1..7918]</triso:value>
+                    <triso:display>[1..7918]</triso:display>
+                </triso:constraintDetails>
+            </semantic:extensionElements>
+            <semantic:text>[1..7918]</semantic:text>
+        </semantic:allowedValues>
+    </semantic:itemDefinition>
+    <semantic:itemDefinition name="tCargoType" label="tCargoType">
+        <semantic:typeRef>string</semantic:typeRef>
+        <semantic:allowedValues>
+            <semantic:extensionElements>
+                <triso:constraintDetails id="_f82e2fe0-7bed-4ba3-be69-7d283a16e112" constraintsType="enumeration">
+                    <triso:value>"Perishable","Hazardous","Bulk","High-Value"</triso:value>
+                    <triso:display>"Perishable", "Hazardous", "Bulk", "High-Value"</triso:display>
+                    <triso:choices>
+                        <triso:value>"Perishable"</triso:value>
+                        <triso:display>"Perishable"</triso:display>
+                    </triso:choices>
+                    <triso:choices>
+                        <triso:value>"Hazardous"</triso:value>
+                        <triso:display>"Hazardous"</triso:display>
+                    </triso:choices>
+                    <triso:choices>
+                        <triso:value>"Bulk"</triso:value>
+                        <triso:display>"Bulk"</triso:display>
+                    </triso:choices>
+                    <triso:choices>
+                        <triso:value>"High-Value"</triso:value>
+                        <triso:display>"High-Value"</triso:display>
+                    </triso:choices>
+                </triso:constraintDetails>
+            </semantic:extensionElements>
+            <semantic:text>"Perishable","Hazardous","Bulk","High-Value"</semantic:text>
+        </semantic:allowedValues>
+    </semantic:itemDefinition>
+    <semantic:itemDefinition name="Cargo_Type" label="Cargo Type">
+        <semantic:typeRef>tCargoType</semantic:typeRef>
+    </semantic:itemDefinition>
+    <semantic:itemDefinition name="tEnvironmentalConsiderations" label="tEnvironmentalConsiderations">
+        <semantic:typeRef>string</semantic:typeRef>
+        <semantic:allowedValues>
+            <semantic:extensionElements>
+                <triso:constraintDetails id="_02f9b304-5de7-4b8a-9e25-35359de14bab" constraintsType="enumeration">
+                    <triso:value>"Low Carbon Emission Priority","Balanced","High-Speed Priority"</triso:value>
+                    <triso:display>"Low Carbon Emission Priority", "Balanced", "High-Speed Priority"</triso:display>
+                    <triso:choices>
+                        <triso:value>"Low Carbon Emission Priority"</triso:value>
+                        <triso:display>"Low Carbon Emission Priority"</triso:display>
+                    </triso:choices>
+                    <triso:choices>
+                        <triso:value>"Balanced"</triso:value>
+                        <triso:display>"Balanced"</triso:display>
+                    </triso:choices>
+                    <triso:choices>
+                        <triso:value>"High-Speed Priority"</triso:value>
+                        <triso:display>"High-Speed Priority"</triso:display>
+                    </triso:choices>
+                </triso:constraintDetails>
+            </semantic:extensionElements>
+            <semantic:text>"Low Carbon Emission Priority","Balanced","High-Speed Priority"</semantic:text>
+        </semantic:allowedValues>
+    </semantic:itemDefinition>
+    <semantic:itemDefinition name="Environmental_Considerations" label="Environmental Considerations">
+        <semantic:typeRef>tEnvironmentalConsiderations</semantic:typeRef>
+    </semantic:itemDefinition>
+    <semantic:itemDefinition name="CostConstraints" label="CostConstraints">
+        <semantic:typeRef>tCostConstraints</semantic:typeRef>
+    </semantic:itemDefinition>
+    <semantic:itemDefinition name="tTransportationMode" label="tTransportationMode">
+        <semantic:typeRef>string</semantic:typeRef>
+        <semantic:allowedValues>
+            <semantic:extensionElements>
+                <triso:constraintDetails id="_aef02f5a-e97c-4055-af8c-3bf2b971ad09" constraintsType="enumeration">
+                    <triso:value>"Road","Sea","Air","Rail","Intermodal"</triso:value>
+                    <triso:display>"Road", "Sea", "Air", "Rail", "Intermodal"</triso:display>
+                    <triso:choices>
+                        <triso:value>"Road"</triso:value>
+                        <triso:display>"Road"</triso:display>
+                    </triso:choices>
+                    <triso:choices>
+                        <triso:value>"Sea"</triso:value>
+                        <triso:display>"Sea"</triso:display>
+                    </triso:choices>
+                    <triso:choices>
+                        <triso:value>"Air"</triso:value>
+                        <triso:display>"Air"</triso:display>
+                    </triso:choices>
+                    <triso:choices>
+                        <triso:value>"Rail"</triso:value>
+                        <triso:display>"Rail"</triso:display>
+                    </triso:choices>
+                    <triso:choices>
+                        <triso:value>"Intermodal"</triso:value>
+                        <triso:display>"Intermodal"</triso:display>
+                    </triso:choices>
+                </triso:constraintDetails>
+            </semantic:extensionElements>
+            <semantic:text>"Road","Sea","Air","Rail","Intermodal"</semantic:text>
+        </semantic:allowedValues>
+    </semantic:itemDefinition>
+    <semantic:itemDefinition name="DeliveryTime" label="DeliveryTime">
+        <semantic:typeRef>string</semantic:typeRef>
+        <semantic:allowedValues>
+            <semantic:extensionElements>
+                <triso:constraintDetails id="_90c659a1-4da6-44b6-84b7-82a44b0d8c00" constraintsType="enumeration">
+                    <triso:value>"Yes","No"</triso:value>
+                    <triso:display>"Yes", "No"</triso:display>
+                    <triso:choices>
+                        <triso:value>"Yes"</triso:value>
+                        <triso:display>"Yes"</triso:display>
+                    </triso:choices>
+                    <triso:choices>
+                        <triso:value>"No"</triso:value>
+                        <triso:display>"No"</triso:display>
+                    </triso:choices>
+                </triso:constraintDetails>
+            </semantic:extensionElements>
+            <semantic:text>"Yes","No"</semantic:text>
+        </semantic:allowedValues>
+    </semantic:itemDefinition>
+    <semantic:itemDefinition name="DistanceType" label="DistanceType">
+        <semantic:typeRef>string</semantic:typeRef>
+        <semantic:allowedValues>
+            <semantic:extensionElements>
+                <triso:constraintDetails id="_1d19d732-50fb-4c10-9621-281b4e6effd6" constraintsType="enumeration">
+                    <triso:value>"Yes","No"</triso:value>
+                    <triso:display>"Yes", "No"</triso:display>
+                    <triso:choices>
+                        <triso:value>"Yes"</triso:value>
+                        <triso:display>"Yes"</triso:display>
+                    </triso:choices>
+                    <triso:choices>
+                        <triso:value>"No"</triso:value>
+                        <triso:display>"No"</triso:display>
+                    </triso:choices>
+                </triso:constraintDetails>
+            </semantic:extensionElements>
+            <semantic:text>"Yes","No"</semantic:text>
+        </semantic:allowedValues>
+    </semantic:itemDefinition>
+    <semantic:itemDefinition name="CargoType" label="CargoType">
+        <semantic:typeRef>string</semantic:typeRef>
+        <semantic:allowedValues>
+            <semantic:extensionElements>
+                <triso:constraintDetails id="_43248684-9f93-4fa5-a194-d6c9485bb023" constraintsType="enumeration">
+                    <triso:value>"Yes","No"</triso:value>
+                    <triso:display>"Yes", "No"</triso:display>
+                    <triso:choices>
+                        <triso:value>"Yes"</triso:value>
+                        <triso:display>"Yes"</triso:display>
+                    </triso:choices>
+                    <triso:choices>
+                        <triso:value>"No"</triso:value>
+                        <triso:display>"No"</triso:display>
+                    </triso:choices>
+                </triso:constraintDetails>
+            </semantic:extensionElements>
+            <semantic:text>"Yes","No"</semantic:text>
+        </semantic:allowedValues>
+    </semantic:itemDefinition>
+    <semantic:itemDefinition name="EnvironmentalImpact" label="EnvironmentalImpact">
+        <semantic:typeRef>string</semantic:typeRef>
+        <semantic:allowedValues>
+            <semantic:extensionElements>
+                <triso:constraintDetails id="_46ecccf4-0185-455b-8bac-7cd4ba744c43" constraintsType="enumeration">
+                    <triso:value>"Yes","No"</triso:value>
+                    <triso:display>"Yes", "No"</triso:display>
+                    <triso:choices>
+                        <triso:value>"Yes"</triso:value>
+                        <triso:display>"Yes"</triso:display>
+                    </triso:choices>
+                    <triso:choices>
+                        <triso:value>"No"</triso:value>
+                        <triso:display>"No"</triso:display>
+                    </triso:choices>
+                </triso:constraintDetails>
+            </semantic:extensionElements>
+            <semantic:text>"Yes","No"</semantic:text>
+        </semantic:allowedValues>
+    </semantic:itemDefinition>
+    <semantic:itemDefinition name="ShipmentSize" label="ShipmentSize">
+        <semantic:typeRef>string</semantic:typeRef>
+        <semantic:allowedValues>
+            <semantic:extensionElements>
+                <triso:constraintDetails id="_b223654e-c546-4477-a900-bf602317b258" constraintsType="enumeration">
+                    <triso:value>"Yes","No"</triso:value>
+                    <triso:display>"Yes", "No"</triso:display>
+                    <triso:choices>
+                        <triso:value>"Yes"</triso:value>
+                        <triso:display>"Yes"</triso:display>
+                    </triso:choices>
+                    <triso:choices>
+                        <triso:value>"No"</triso:value>
+                        <triso:display>"No"</triso:display>
+                    </triso:choices>
+                </triso:constraintDetails>
+            </semantic:extensionElements>
+            <semantic:text>"Yes","No"</semantic:text>
+        </semantic:allowedValues>
+    </semantic:itemDefinition>
+    <semantic:itemDefinition name="tFinal_Decision" label="tFinal_Decision">
+        <semantic:typeRef>string</semantic:typeRef>
+        <semantic:allowedValues>
+            <semantic:extensionElements>
+                <triso:constraintDetails id="_de161499-5cb6-44ed-93d2-563e24ebaa30" constraintsType="enumeration">
+                    <triso:value>"Yes","No"</triso:value>
+                    <triso:display>"Yes", "No"</triso:display>
+                    <triso:choices>
+                        <triso:value>"Yes"</triso:value>
+                        <triso:display>"Yes"</triso:display>
+                    </triso:choices>
+                    <triso:choices>
+                        <triso:value>"No"</triso:value>
+                        <triso:display>"No"</triso:display>
+                    </triso:choices>
+                </triso:constraintDetails>
+            </semantic:extensionElements>
+            <semantic:text>"Yes","No"</semantic:text>
+        </semantic:allowedValues>
+    </semantic:itemDefinition>
+    <semantic:itemDefinition name="Final_Decision" label="Final_Decision" isCollection="false">
+        <semantic:itemComponent id="_cdf552f3-ce29-4314-b0e4-6cfed1054c6e" name="Determine Transportation Mode" isCollection="false">
+            <semantic:typeRef>string</semantic:typeRef>
+            <semantic:allowedValues>
+                <semantic:extensionElements>
+                    <triso:constraintDetails id="_8a9f0f36-aa91-42ac-a7e2-e337911d485f" constraintsType="enumeration">
+                        <triso:value>"Yes","No"</triso:value>
+                        <triso:display>"Yes", "No"</triso:display>
+                        <triso:choices>
+                            <triso:value>"Yes"</triso:value>
+                            <triso:display>"Yes"</triso:display>
+                        </triso:choices>
+                        <triso:choices>
+                            <triso:value>"No"</triso:value>
+                            <triso:display>"No"</triso:display>
+                        </triso:choices>
+                    </triso:constraintDetails>
+                </semantic:extensionElements>
+                <semantic:text>"Yes","No"</semantic:text>
+            </semantic:allowedValues>
+        </semantic:itemComponent>
+        <semantic:itemComponent id="_e2fc6a78-0b9c-4b3b-b137-f71f1107ae7f" name="Reason" isCollection="false">
+            <semantic:typeRef>string</semantic:typeRef>
+        </semantic:itemComponent>
+    </semantic:itemDefinition>
+    <semantic:itemDefinition name="Transportation_Mode" label="Transportation Mode">
+        <semantic:typeRef>string</semantic:typeRef>
+        <semantic:allowedValues>
+            <semantic:extensionElements>
+                <triso:constraintDetails id="_62831c81-5f60-4bf3-97af-cb152cf8e879" constraintsType="enumeration">
+                    <triso:value>"Road","Sea","Air","Rail","Intermodal"</triso:value>
+                    <triso:display>"Road", "Sea", "Air", "Rail", "Intermodal"</triso:display>
+                    <triso:choices>
+                        <triso:value>"Road"</triso:value>
+                        <triso:display>"Road"</triso:display>
+                    </triso:choices>
+                    <triso:choices>
+                        <triso:value>"Sea"</triso:value>
+                        <triso:display>"Sea"</triso:display>
+                    </triso:choices>
+                    <triso:choices>
+                        <triso:value>"Air"</triso:value>
+                        <triso:display>"Air"</triso:display>
+                    </triso:choices>
+                    <triso:choices>
+                        <triso:value>"Rail"</triso:value>
+                        <triso:display>"Rail"</triso:display>
+                    </triso:choices>
+                    <triso:choices>
+                        <triso:value>"Intermodal"</triso:value>
+                        <triso:display>"Intermodal"</triso:display>
+                    </triso:choices>
+                </triso:constraintDetails>
+            </semantic:extensionElements>
+            <semantic:text>"Road","Sea","Air","Rail","Intermodal"</semantic:text>
+        </semantic:allowedValues>
+    </semantic:itemDefinition>
+    <semantic:itemDefinition name="tModeSuitabilityBasedonDeliveryTimeRequirement" label="tModeSuitabilityBasedonDeliveryTimeRequirement">
+        <semantic:typeRef>string</semantic:typeRef>
+        <semantic:allowedValues triso:allowNull="false">
+            <semantic:extensionElements>
+                <triso:constraintDetails id="_605f021f-63a6-48e2-97d4-dd52dcf15261" constraintsType="enumeration">
+                    <triso:value>"Road","Sea","Air","Rail","Intermodal"</triso:value>
+                    <triso:display>"Road", "Sea", "Air", "Rail", "Intermodal"</triso:display>
+                    <triso:choices>
+                        <triso:value>"Road"</triso:value>
+                        <triso:display>"Road"</triso:display>
+                    </triso:choices>
+                    <triso:choices>
+                        <triso:value>"Sea"</triso:value>
+                        <triso:display>"Sea"</triso:display>
+                    </triso:choices>
+                    <triso:choices>
+                        <triso:value>"Air"</triso:value>
+                        <triso:display>"Air"</triso:display>
+                    </triso:choices>
+                    <triso:choices>
+                        <triso:value>"Rail"</triso:value>
+                        <triso:display>"Rail"</triso:display>
+                    </triso:choices>
+                    <triso:choices>
+                        <triso:value>"Intermodal"</triso:value>
+                        <triso:display>"Intermodal"</triso:display>
+                    </triso:choices>
+                </triso:constraintDetails>
+            </semantic:extensionElements>
+            <semantic:text>"Road","Sea","Air","Rail","Intermodal"</semantic:text>
+        </semantic:allowedValues>
+    </semantic:itemDefinition>
+    <semantic:itemDefinition name="Cost_Constraints" label="Cost Constraints">
+        <semantic:typeRef>number</semantic:typeRef>
+        <semantic:allowedValues>
+            <semantic:extensionElements>
+                <triso:constraintDetails id="_30edac97-c7ee-4fb1-8630-f9a1c6017229" constraintsType="simple" min="1" minIncluded="true" max="1000000" maxIncluded="true">
+                    <triso:value>[1..1000000]</triso:value>
+                    <triso:display>[1..1000000]</triso:display>
+                </triso:constraintDetails>
+            </semantic:extensionElements>
+            <semantic:text>[1..1000000]</semantic:text>
+        </semantic:allowedValues>
+    </semantic:itemDefinition>
+    <semantic:itemDefinition name="tCostConstraints" label="tCostConstraints">
+        <semantic:typeRef>string</semantic:typeRef>
+        <semantic:allowedValues>
+            <semantic:extensionElements>
+                <triso:constraintDetails id="_a1ab33d5-e5e7-4992-8bd8-1111d3dca2f4" constraintsType="enumeration">
+                    <triso:value>"Road","Sea","Air","Rail","Intermodal"</triso:value>
+                    <triso:display>"Road", "Sea", "Air", "Rail", "Intermodal"</triso:display>
+                    <triso:choices>
+                        <triso:value>"Road"</triso:value>
+                        <triso:display>"Road"</triso:display>
+                    </triso:choices>
+                    <triso:choices>
+                        <triso:value>"Sea"</triso:value>
+                        <triso:display>"Sea"</triso:display>
+                    </triso:choices>
+                    <triso:choices>
+                        <triso:value>"Air"</triso:value>
+                        <triso:display>"Air"</triso:display>
+                    </triso:choices>
+                    <triso:choices>
+                        <triso:value>"Rail"</triso:value>
+                        <triso:display>"Rail"</triso:display>
+                    </triso:choices>
+                    <triso:choices>
+                        <triso:value>"Intermodal"</triso:value>
+                        <triso:display>"Intermodal"</triso:display>
+                    </triso:choices>
+                </triso:constraintDetails>
+            </semantic:extensionElements>
+            <semantic:text>"Road","Sea","Air","Rail","Intermodal"</semantic:text>
+        </semantic:allowedValues>
+    </semantic:itemDefinition>
+    <semantic:itemDefinition name="FinalDecision" label="FinalDecision">
+        <semantic:typeRef>string</semantic:typeRef>
+        <semantic:allowedValues>
+            <semantic:extensionElements>
+                <triso:constraintDetails id="_9f9f6091-fbca-485f-a08f-605f1ff043ed" constraintsType="enumeration">
+                    <triso:value>"Yes","No"</triso:value>
+                    <triso:display>"Yes", "No"</triso:display>
+                    <triso:choices>
+                        <triso:value>"Yes"</triso:value>
+                        <triso:display>"Yes"</triso:display>
+                    </triso:choices>
+                    <triso:choices>
+                        <triso:value>"No"</triso:value>
+                        <triso:display>"No"</triso:display>
+                    </triso:choices>
+                </triso:constraintDetails>
+            </semantic:extensionElements>
+            <semantic:text>"Yes","No"</semantic:text>
+        </semantic:allowedValues>
+    </semantic:itemDefinition>
+    <semantic:itemDefinition name="tModeSuitabilityBasedonCostConstraints" label="tModeSuitabilityBasedonCostConstraints">
+        <semantic:typeRef>string</semantic:typeRef>
+        <semantic:allowedValues triso:allowNull="false">
+            <semantic:extensionElements>
+                <triso:constraintDetails id="_87b8928b-3918-4002-917c-69d71f6cf222" constraintsType="enumeration">
+                    <triso:value>"Road","Sea","Air","Rail","Intermodal"</triso:value>
+                    <triso:display>"Road", "Sea", "Air", "Rail", "Intermodal"</triso:display>
+                    <triso:choices>
+                        <triso:value>"Road"</triso:value>
+                        <triso:display>"Road"</triso:display>
+                    </triso:choices>
+                    <triso:choices>
+                        <triso:value>"Sea"</triso:value>
+                        <triso:display>"Sea"</triso:display>
+                    </triso:choices>
+                    <triso:choices>
+                        <triso:value>"Air"</triso:value>
+                        <triso:display>"Air"</triso:display>
+                    </triso:choices>
+                    <triso:choices>
+                        <triso:value>"Rail"</triso:value>
+                        <triso:display>"Rail"</triso:display>
+                    </triso:choices>
+                    <triso:choices>
+                        <triso:value>"Intermodal"</triso:value>
+                        <triso:display>"Intermodal"</triso:display>
+                    </triso:choices>
+                </triso:constraintDetails>
+            </semantic:extensionElements>
+            <semantic:text>"Road","Sea","Air","Rail","Intermodal"</semantic:text>
+        </semantic:allowedValues>
+    </semantic:itemDefinition>
+    <semantic:itemDefinition name="tModeSuitabilityBasedonShipmentSize" label="tModeSuitabilityBasedonShipmentSize">
+        <semantic:typeRef>string</semantic:typeRef>
+        <semantic:allowedValues>
+            <semantic:extensionElements>
+                <triso:constraintDetails id="_467e3a2a-a354-4d31-92d4-be3ec2cc1412" constraintsType="enumeration">
+                    <triso:value>"Road","Sea","Air","Rail","Intermodal"</triso:value>
+                    <triso:display>"Road", "Sea", "Air", "Rail", "Intermodal"</triso:display>
+                    <triso:choices>
+                        <triso:value>"Road"</triso:value>
+                        <triso:display>"Road"</triso:display>
+                    </triso:choices>
+                    <triso:choices>
+                        <triso:value>"Sea"</triso:value>
+                        <triso:display>"Sea"</triso:display>
+                    </triso:choices>
+                    <triso:choices>
+                        <triso:value>"Air"</triso:value>
+                        <triso:display>"Air"</triso:display>
+                    </triso:choices>
+                    <triso:choices>
+                        <triso:value>"Rail"</triso:value>
+                        <triso:display>"Rail"</triso:display>
+                    </triso:choices>
+                    <triso:choices>
+                        <triso:value>"Intermodal"</triso:value>
+                        <triso:display>"Intermodal"</triso:display>
+                    </triso:choices>
+                </triso:constraintDetails>
+            </semantic:extensionElements>
+            <semantic:text>"Road","Sea","Air","Rail","Intermodal"</semantic:text>
+        </semantic:allowedValues>
+    </semantic:itemDefinition>
+    <semantic:itemDefinition name="tModeSuitabilityBasedonDistance" label="tModeSuitabilityBasedonDistance">
+        <semantic:typeRef>string</semantic:typeRef>
+        <semantic:allowedValues>
+            <semantic:extensionElements>
+                <triso:constraintDetails id="_d6283ae3-e487-4f42-84ce-7ffed7b32461" constraintsType="enumeration">
+                    <triso:value>"Road","Sea","Air","Rail","Intermodal"</triso:value>
+                    <triso:display>"Road", "Sea", "Air", "Rail", "Intermodal"</triso:display>
+                    <triso:choices>
+                        <triso:value>"Road"</triso:value>
+                        <triso:display>"Road"</triso:display>
+                    </triso:choices>
+                    <triso:choices>
+                        <triso:value>"Sea"</triso:value>
+                        <triso:display>"Sea"</triso:display>
+                    </triso:choices>
+                    <triso:choices>
+                        <triso:value>"Air"</triso:value>
+                        <triso:display>"Air"</triso:display>
+                    </triso:choices>
+                    <triso:choices>
+                        <triso:value>"Rail"</triso:value>
+                        <triso:display>"Rail"</triso:display>
+                    </triso:choices>
+                    <triso:choices>
+                        <triso:value>"Intermodal"</triso:value>
+                        <triso:display>"Intermodal"</triso:display>
+                    </triso:choices>
+                </triso:constraintDetails>
+            </semantic:extensionElements>
+            <semantic:text>"Road","Sea","Air","Rail","Intermodal"</semantic:text>
+        </semantic:allowedValues>
+    </semantic:itemDefinition>
+    <semantic:itemDefinition name="tModeSuitabilityBasedonCargoType" label="tModeSuitabilityBasedonCargoType">
+        <semantic:typeRef>string</semantic:typeRef>
+        <semantic:allowedValues>
+            <semantic:extensionElements>
+                <triso:constraintDetails id="_7f6dd3bf-be04-4afd-9098-eb834c72800a" constraintsType="enumeration">
+                    <triso:value>"Road","Sea","Air","Rail","Intermodal"</triso:value>
+                    <triso:display>"Road", "Sea", "Air", "Rail", "Intermodal"</triso:display>
+                    <triso:choices>
+                        <triso:value>"Road"</triso:value>
+                        <triso:display>"Road"</triso:display>
+                    </triso:choices>
+                    <triso:choices>
+                        <triso:value>"Sea"</triso:value>
+                        <triso:display>"Sea"</triso:display>
+                    </triso:choices>
+                    <triso:choices>
+                        <triso:value>"Air"</triso:value>
+                        <triso:display>"Air"</triso:display>
+                    </triso:choices>
+                    <triso:choices>
+                        <triso:value>"Rail"</triso:value>
+                        <triso:display>"Rail"</triso:display>
+                    </triso:choices>
+                    <triso:choices>
+                        <triso:value>"Intermodal"</triso:value>
+                        <triso:display>"Intermodal"</triso:display>
+                    </triso:choices>
+                </triso:constraintDetails>
+            </semantic:extensionElements>
+            <semantic:text>"Road","Sea","Air","Rail","Intermodal"</semantic:text>
+        </semantic:allowedValues>
+    </semantic:itemDefinition>
+    <semantic:itemDefinition name="tModeSuitabilityBasedonEnvironmentalConsiderations" label="tModeSuitabilityBasedonEnvironmentalConsiderations">
+        <semantic:typeRef>string</semantic:typeRef>
+        <semantic:allowedValues>
+            <semantic:extensionElements>
+                <triso:constraintDetails id="_8a7d6054-78be-4834-ab35-160dd9eef66e" constraintsType="enumeration">
+                    <triso:value>"Road","Sea","Air","Rail","Intermodal"</triso:value>
+                    <triso:display>"Road", "Sea", "Air", "Rail", "Intermodal"</triso:display>
+                    <triso:choices>
+                        <triso:value>"Road"</triso:value>
+                        <triso:display>"Road"</triso:display>
+                    </triso:choices>
+                    <triso:choices>
+                        <triso:value>"Sea"</triso:value>
+                        <triso:display>"Sea"</triso:display>
+                    </triso:choices>
+                    <triso:choices>
+                        <triso:value>"Air"</triso:value>
+                        <triso:display>"Air"</triso:display>
+                    </triso:choices>
+                    <triso:choices>
+                        <triso:value>"Rail"</triso:value>
+                        <triso:display>"Rail"</triso:display>
+                    </triso:choices>
+                    <triso:choices>
+                        <triso:value>"Intermodal"</triso:value>
+                        <triso:display>"Intermodal"</triso:display>
+                    </triso:choices>
+                </triso:constraintDetails>
+            </semantic:extensionElements>
+            <semantic:text>"Road","Sea","Air","Rail","Intermodal"</semantic:text>
+        </semantic:allowedValues>
+    </semantic:itemDefinition>
+    <semantic:itemDefinition name="tDetermineTransportationMode" label="tDetermineTransportationMode">
+        <semantic:typeRef>string</semantic:typeRef>
+        <semantic:allowedValues>
+            <semantic:extensionElements>
+                <triso:constraintDetails id="_e6c305b3-29d4-4651-aaf9-170a2c5c1165" constraintsType="enumeration">
+                    <triso:value>"Road","Air","Sea","Rail","Intermodal"</triso:value>
+                    <triso:display>"Road", "Air", "Sea", "Rail", "Intermodal"</triso:display>
+                    <triso:choices>
+                        <triso:value>"Road"</triso:value>
+                        <triso:display>"Road"</triso:display>
+                    </triso:choices>
+                    <triso:choices>
+                        <triso:value>"Air"</triso:value>
+                        <triso:display>"Air"</triso:display>
+                    </triso:choices>
+                    <triso:choices>
+                        <triso:value>"Sea"</triso:value>
+                        <triso:display>"Sea"</triso:display>
+                    </triso:choices>
+                    <triso:choices>
+                        <triso:value>"Rail"</triso:value>
+                        <triso:display>"Rail"</triso:display>
+                    </triso:choices>
+                    <triso:choices>
+                        <triso:value>"Intermodal"</triso:value>
+                        <triso:display>"Intermodal"</triso:display>
+                    </triso:choices>
+                </triso:constraintDetails>
+            </semantic:extensionElements>
+            <semantic:text>"Road","Air","Sea","Rail","Intermodal"</semantic:text>
+        </semantic:allowedValues>
+    </semantic:itemDefinition>
+    <semantic:decisionService id="_291e4915-10d2-4ef2-ad49-b5ac9023aaf3_DS" name="Whole Model Decision Service" triso:dynamicDecisionService="true" triso:wholeModelService="true">
+        <semantic:variable name="Whole Model Decision Service" id="_291e4915-10d2-4ef2-ad49-b5ac9023aaf3_DS_VAR" typeRef="Any"/>
+        <semantic:outputDecision href="#_ca191eb5-5b57-4c04-aebf-ce160c92901d"/>
+        <semantic:encapsulatedDecision href="#_7e1991f0-ce93-460d-85af-411d1d2fadc1"/>
+        <semantic:encapsulatedDecision href="#_9058fe4b-8c86-4401-b82e-15a9bbb2f46a"/>
+        <semantic:encapsulatedDecision href="#_fb54c6e7-1efe-4724-a7e6-33b3f6f1da4a"/>
+        <semantic:encapsulatedDecision href="#_4001b062-26ab-4bb7-b340-1596bcaeb6c8"/>
+        <semantic:encapsulatedDecision href="#_c9ced90b-f8a7-45a5-89cf-5a16845d7b60"/>
+        <semantic:encapsulatedDecision href="#_f68ba448-9b50-4c83-ae09-00e4bff244ba"/>
+        <semantic:inputData href="#_d2d99940-4658-49f3-86ae-4ceecf79747d"/>
+        <semantic:inputData href="#_ac6c661b-df6e-4418-8c34-e876a6f7570b"/>
+        <semantic:inputData href="#_cb040302-8591-4a08-af84-6f5642eae3cd"/>
+        <semantic:inputData href="#_d1f04b11-6f95-42eb-b5a1-216a8db24534"/>
+        <semantic:inputData href="#_a334ada3-fe3c-4964-944a-1637035499ae"/>
+        <semantic:inputData href="#_f8a6f0f1-7e3c-456e-b90a-dbe4883b8bea"/>
+    </semantic:decisionService>
+    <semantic:decisionService id="_c910d948-cebd-4785-a4dc-0aad20d927fc_DS" name="Diagram Page 1" triso:dynamicDecisionService="true">
+        <semantic:variable name="Diagram Page 1" id="_c910d948-cebd-4785-a4dc-0aad20d927fc_DS_VAR" typeRef="Any"/>
+        <semantic:outputDecision href="#_ca191eb5-5b57-4c04-aebf-ce160c92901d"/>
+        <semantic:encapsulatedDecision href="#_7e1991f0-ce93-460d-85af-411d1d2fadc1"/>
+        <semantic:encapsulatedDecision href="#_9058fe4b-8c86-4401-b82e-15a9bbb2f46a"/>
+        <semantic:encapsulatedDecision href="#_fb54c6e7-1efe-4724-a7e6-33b3f6f1da4a"/>
+        <semantic:encapsulatedDecision href="#_4001b062-26ab-4bb7-b340-1596bcaeb6c8"/>
+        <semantic:encapsulatedDecision href="#_c9ced90b-f8a7-45a5-89cf-5a16845d7b60"/>
+        <semantic:encapsulatedDecision href="#_f68ba448-9b50-4c83-ae09-00e4bff244ba"/>
+        <semantic:inputData href="#_d2d99940-4658-49f3-86ae-4ceecf79747d"/>
+        <semantic:inputData href="#_ac6c661b-df6e-4418-8c34-e876a6f7570b"/>
+        <semantic:inputData href="#_cb040302-8591-4a08-af84-6f5642eae3cd"/>
+        <semantic:inputData href="#_d1f04b11-6f95-42eb-b5a1-216a8db24534"/>
+        <semantic:inputData href="#_a334ada3-fe3c-4964-944a-1637035499ae"/>
+        <semantic:inputData href="#_f8a6f0f1-7e3c-456e-b90a-dbe4883b8bea"/>
+    </semantic:decisionService>
+    <semantic:decision id="_ca191eb5-5b57-4c04-aebf-ce160c92901d" name="Determine Transportation Mode" triso:readOnly="false">
+        <semantic:variable name="Determine Transportation Mode" id="_9e86b0ba-efca-4076-9ba8-0f4f30d38bad" typeRef="tDetermineTransportationMode"/>
+        <semantic:informationRequirement id="_f78cc2b0-9fff-4c15-a52f-0133731bff48" triso:readOnly="false">
+            <semantic:requiredDecision href="#_fb54c6e7-1efe-4724-a7e6-33b3f6f1da4a"/>
+        </semantic:informationRequirement>
+        <semantic:informationRequirement id="_1bd28b3a-3cdc-4739-9893-1850e151e45c" triso:readOnly="false">
+            <semantic:requiredDecision href="#_9058fe4b-8c86-4401-b82e-15a9bbb2f46a"/>
+        </semantic:informationRequirement>
+        <semantic:informationRequirement id="_2fb9fdaf-be4c-4a92-9941-0a533b9ee4c4" triso:readOnly="false">
+            <semantic:requiredDecision href="#_c9ced90b-f8a7-45a5-89cf-5a16845d7b60"/>
+        </semantic:informationRequirement>
+        <semantic:informationRequirement id="_0daa1687-fcbf-4a0d-9c98-4652f2875b2a" triso:readOnly="false">
+            <semantic:requiredDecision href="#_4001b062-26ab-4bb7-b340-1596bcaeb6c8"/>
+        </semantic:informationRequirement>
+        <semantic:informationRequirement id="_a3c762cf-ad0c-4c2f-81eb-0b8e5b5a9814" triso:readOnly="false">
+            <semantic:requiredDecision href="#_f68ba448-9b50-4c83-ae09-00e4bff244ba"/>
+        </semantic:informationRequirement>
+        <semantic:informationRequirement id="_42075740-55b3-42ff-b424-f70460301815" triso:readOnly="false">
+            <semantic:requiredDecision href="#_7e1991f0-ce93-460d-85af-411d1d2fadc1"/>
+        </semantic:informationRequirement>
+        <semantic:decisionTable triso:descriptionVisible="false" id="_ab9ca148-e1d6-41f5-aa4c-b65e35f583bd" hitPolicy="PRIORITY" outputLabel="Determine Transportation Mode" typeRef="tDetermineTransportationMode" triso:expressionId="_79b6188c-d92e-4281-b07f-20a6a5169cb9">
+            <semantic:input id="_2d7c30a9-67ad-4f15-8716-a746841f11df" triso:allowNull="false" label="Mode Suitability Based on Cost Constraints">
+                <semantic:inputExpression typeRef="tModeSuitabilityBasedonCostConstraints">
+                    <semantic:text>Mode Suitability Based on Cost Constraints</semantic:text>
+                </semantic:inputExpression>
+                <semantic:inputValues triso:constraintsType="enumeration">
+                    <semantic:text>"Road","Sea","Air","Rail","Intermodal"</semantic:text>
+                </semantic:inputValues>
+            </semantic:input>
+            <semantic:input id="_a7735b47-417f-4ab8-89b5-ac114fcf6882" triso:allowNull="false" label="Mode Suitability Based on Delivery Time Requirement">
+                <semantic:inputExpression typeRef="tModeSuitabilityBasedonDeliveryTimeRequirement">
+                    <semantic:text>Mode Suitability Based on Delivery Time Requirement</semantic:text>
+                </semantic:inputExpression>
+                <semantic:inputValues triso:constraintsType="enumeration">
+                    <semantic:text>"Road","Sea","Air","Rail","Intermodal"</semantic:text>
+                </semantic:inputValues>
+            </semantic:input>
+            <semantic:input id="_ca88b07c-580d-4441-b96f-637fb3d7bc89" triso:allowNull="false" label="Mode Suitability Based on Shipment Size">
+                <semantic:inputExpression typeRef="tModeSuitabilityBasedonShipmentSize">
+                    <semantic:text>Mode Suitability Based on Shipment Size</semantic:text>
+                </semantic:inputExpression>
+                <semantic:inputValues triso:constraintsType="enumeration">
+                    <semantic:text>"Road","Sea","Air","Rail","Intermodal"</semantic:text>
+                </semantic:inputValues>
+            </semantic:input>
+            <semantic:input id="_1f7a7f3c-19f3-43e7-88b2-eecec1e47d57" triso:allowNull="false" label="Mode Suitability Based on Distance">
+                <semantic:inputExpression typeRef="tModeSuitabilityBasedonDistance">
+                    <semantic:text>Mode Suitability Based on Distance</semantic:text>
+                </semantic:inputExpression>
+                <semantic:inputValues triso:constraintsType="enumeration">
+                    <semantic:text>"Road","Sea","Air","Rail","Intermodal"</semantic:text>
+                </semantic:inputValues>
+            </semantic:input>
+            <semantic:input id="_cc817105-4909-4d28-8177-2182c993145c" triso:allowNull="false" label="Mode Suitability Based on Cargo Type">
+                <semantic:inputExpression typeRef="tModeSuitabilityBasedonCargoType">
+                    <semantic:text>Mode Suitability Based on Cargo Type</semantic:text>
+                </semantic:inputExpression>
+                <semantic:inputValues triso:constraintsType="enumeration">
+                    <semantic:text>"Road","Sea","Air","Rail","Intermodal"</semantic:text>
+                </semantic:inputValues>
+            </semantic:input>
+            <semantic:input id="_3fe138a0-d134-492a-bd39-e1d8cfa1aae8" triso:allowNull="false" label="Mode Suitability Based on Environmental Considerations">
+                <semantic:inputExpression typeRef="tModeSuitabilityBasedonEnvironmentalConsiderations">
+                    <semantic:text>Mode Suitability Based on Environmental Considerations</semantic:text>
+                </semantic:inputExpression>
+                <semantic:inputValues triso:constraintsType="enumeration">
+                    <semantic:text>"Road","Sea","Air","Rail","Intermodal"</semantic:text>
+                </semantic:inputValues>
+            </semantic:input>
+            <semantic:output id="_18b9c110-cc32-45ab-be64-b3ee5bddf348" triso:allowNull="true">
+                <semantic:outputValues triso:constraintsType="enumeration">
+                    <semantic:text>"Road","Air","Sea","Rail","Intermodal",null</semantic:text>
+                </semantic:outputValues>
+            </semantic:output>
+            <semantic:annotation name="Description"/>
+            <semantic:rule id="_46b48e21-ddf8-42b6-9c00-1f0f984f88e0">
+                <semantic:inputEntry id="_07cb3c97-53b9-4f69-85f7-2211d18d6723">
+                    <semantic:text>"Road"</semantic:text>
+                </semantic:inputEntry>
+                <semantic:inputEntry id="_64ae4685-32be-474e-a095-89b21037f66c">
+                    <semantic:text>"Road"</semantic:text>
+                </semantic:inputEntry>
+                <semantic:inputEntry id="_02d143fd-3b6d-4eaa-af1a-93c45fad90fb">
+                    <semantic:text>"Road"</semantic:text>
+                </semantic:inputEntry>
+                <semantic:inputEntry id="_99613951-93dc-4d23-b50c-a5d5e3827652">
+                    <semantic:text>"Road"</semantic:text>
+                </semantic:inputEntry>
+                <semantic:inputEntry id="_62a1aac7-d957-4bb3-8803-e9884b6b6b53">
+                    <semantic:text>"Road"</semantic:text>
+                </semantic:inputEntry>
+                <semantic:inputEntry id="_9d82b190-f87c-467f-abb2-1b0fe3148d78">
+                    <semantic:text>"Road"</semantic:text>
+                </semantic:inputEntry>
+                <semantic:outputEntry id="_f1071224-e9e1-424b-9e9d-ead96c717e20">
+                    <semantic:text>"Road"</semantic:text>
+                </semantic:outputEntry>
+                <semantic:annotationEntry>
+                    <semantic:text/>
+                </semantic:annotationEntry>
+            </semantic:rule>
+            <semantic:rule id="_44e00db9-d2da-4350-9549-35ae159b332b">
+                <semantic:inputEntry id="_558676a4-e77e-4358-ac99-5cb82d6bfe5b">
+                    <semantic:text>"Sea"</semantic:text>
+                </semantic:inputEntry>
+                <semantic:inputEntry id="_1f9d4018-468f-4de4-94da-780bbc365d2a">
+                    <semantic:text>"Sea"</semantic:text>
+                </semantic:inputEntry>
+                <semantic:inputEntry id="_14a8159e-047b-480b-82f1-56db56338031">
+                    <semantic:text>"Sea"</semantic:text>
+                </semantic:inputEntry>
+                <semantic:inputEntry id="_b3b5b0d6-27cd-4ff6-9460-d145ce04eed3">
+                    <semantic:text>"Sea"</semantic:text>
+                </semantic:inputEntry>
+                <semantic:inputEntry id="_533a5c6e-8dac-43c1-aacd-24ac567eee88">
+                    <semantic:text>"Sea"</semantic:text>
+                </semantic:inputEntry>
+                <semantic:inputEntry id="_a228f590-3251-438d-9ea0-3fddeaa10815">
+                    <semantic:text>"Sea"</semantic:text>
+                </semantic:inputEntry>
+                <semantic:outputEntry id="_f8154d0a-c0d8-4f49-8741-2be5ed4b9b27">
+                    <semantic:text>"Sea"</semantic:text>
+                </semantic:outputEntry>
+                <semantic:annotationEntry>
+                    <semantic:text/>
+                </semantic:annotationEntry>
+            </semantic:rule>
+            <semantic:rule id="_887a68ee-e1fe-4a19-b8fc-bdb579649ac9">
+                <semantic:inputEntry id="_4316b373-286e-4106-af4d-4d566b075c97">
+                    <semantic:text>"Air"</semantic:text>
+                </semantic:inputEntry>
+                <semantic:inputEntry id="_e31f5023-7536-41f2-b3a6-a33a7a791bf3">
+                    <semantic:text>"Air"</semantic:text>
+                </semantic:inputEntry>
+                <semantic:inputEntry id="_d29626d1-5a16-4229-b03e-3c88bf21bd98">
+                    <semantic:text>"Air"</semantic:text>
+                </semantic:inputEntry>
+                <semantic:inputEntry id="_b9e15120-7e7f-4f8c-b055-e4a62c9bc1b6">
+                    <semantic:text>"Air"</semantic:text>
+                </semantic:inputEntry>
+                <semantic:inputEntry id="_19d672e0-80ce-4cb4-ad94-d43070850b60">
+                    <semantic:text>-</semantic:text>
+                </semantic:inputEntry>
+                <semantic:inputEntry id="_331e64e3-dc18-493b-a63c-8aa0e90d58a8">
+                    <semantic:text>"Air"</semantic:text>
+                </semantic:inputEntry>
+                <semantic:outputEntry id="_4c8cfc60-467a-4ce2-9c17-03860d747eb9">
+                    <semantic:text>"Air"</semantic:text>
+                </semantic:outputEntry>
+                <semantic:annotationEntry>
+                    <semantic:text/>
+                </semantic:annotationEntry>
+            </semantic:rule>
+            <semantic:rule id="_f069e4eb-20c2-4a8f-8ae6-894ec1cf8c83">
+                <semantic:inputEntry id="_64973741-67ce-493b-8040-a7854012cce2">
+                    <semantic:text>"Rail"</semantic:text>
+                </semantic:inputEntry>
+                <semantic:inputEntry id="_37bf36dd-7454-4c91-a5b3-e6b0937e6869">
+                    <semantic:text>"Rail"</semantic:text>
+                </semantic:inputEntry>
+                <semantic:inputEntry id="_f504c4fb-235b-4119-9539-fd23cc5ec321">
+                    <semantic:text>"Rail"</semantic:text>
+                </semantic:inputEntry>
+                <semantic:inputEntry id="_983de5a5-5f00-4c3c-b657-cfd7a08cc6a0">
+                    <semantic:text>"Rail"</semantic:text>
+                </semantic:inputEntry>
+                <semantic:inputEntry id="_71b8a1b2-52b3-47a0-81e9-b7c2e6966e2f">
+                    <semantic:text>"Rail"</semantic:text>
+                </semantic:inputEntry>
+                <semantic:inputEntry id="_14ce9d74-359c-4beb-ac5d-30fefebabfc3">
+                    <semantic:text>"Rail"</semantic:text>
+                </semantic:inputEntry>
+                <semantic:outputEntry id="_ead4c560-cc91-4db6-84a4-05525eda0f13">
+                    <semantic:text>"Rail"</semantic:text>
+                </semantic:outputEntry>
+                <semantic:annotationEntry>
+                    <semantic:text/>
+                </semantic:annotationEntry>
+            </semantic:rule>
+            <semantic:rule id="_bea01766-4950-4405-9dea-1e71269395cc">
+                <semantic:inputEntry id="_2b2e3318-4a44-4815-9a8b-ef99aba5884d">
+                    <semantic:text>"Intermodal"</semantic:text>
+                </semantic:inputEntry>
+                <semantic:inputEntry id="_ff0d5ef5-032f-4032-b5da-3812c4917966">
+                    <semantic:text>"Intermodal"</semantic:text>
+                </semantic:inputEntry>
+                <semantic:inputEntry id="_8c6194c1-a436-44c9-9657-91945c84dd33">
+                    <semantic:text>"Intermodal"</semantic:text>
+                </semantic:inputEntry>
+                <semantic:inputEntry id="_e4115fa1-4aee-4f98-a0a6-00ef3494d5b9">
+                    <semantic:text>"Intermodal"</semantic:text>
+                </semantic:inputEntry>
+                <semantic:inputEntry id="_01c4cb91-661b-4f66-a8c1-65a6d54df49b">
+                    <semantic:text>"Intermodal"</semantic:text>
+                </semantic:inputEntry>
+                <semantic:inputEntry id="_07619dd1-a875-406f-91c2-f911721b442b">
+                    <semantic:text>"Intermodal"</semantic:text>
+                </semantic:inputEntry>
+                <semantic:outputEntry id="_31c94d8e-8e25-4687-abd1-773f5fd876cf">
+                    <semantic:text>"Intermodal"</semantic:text>
+                </semantic:outputEntry>
+                <semantic:annotationEntry>
+                    <semantic:text/>
+                </semantic:annotationEntry>
+            </semantic:rule>
+        </semantic:decisionTable>
+    </semantic:decision>
+    <semantic:inputData id="_d2d99940-4658-49f3-86ae-4ceecf79747d" name="Shipment Size" triso:readOnly="false">
+        <semantic:variable name="Shipment Size" id="_36c1f35f-6540-422f-bfa0-d663a6b199a3" typeRef="Shipment_Size"/>
+    </semantic:inputData>
+    <semantic:inputData id="_ac6c661b-df6e-4418-8c34-e876a6f7570b" name="Delivery Time Requirement" triso:readOnly="false">
+        <semantic:variable name="Delivery Time Requirement" id="_e74350dd-7812-470e-b006-006297e3192e" typeRef="Delivery_Time_Requirement"/>
+    </semantic:inputData>
+    <semantic:inputData id="_cb040302-8591-4a08-af84-6f5642eae3cd" name="Cost Constraints" triso:readOnly="false">
+        <semantic:variable name="Cost Constraints" id="_1ed5efc3-60aa-4a79-a98b-83d23e887572" typeRef="Cost_Constraints"/>
+    </semantic:inputData>
+    <semantic:inputData id="_d1f04b11-6f95-42eb-b5a1-216a8db24534" name="Distance" triso:readOnly="false">
+        <semantic:variable name="Distance" id="_5dea9c8d-464c-4daa-89af-1370edfb195d" typeRef="Distance"/>
+    </semantic:inputData>
+    <semantic:inputData id="_a334ada3-fe3c-4964-944a-1637035499ae" name="Environmental Considerations" triso:readOnly="false">
+        <semantic:variable name="Environmental Considerations" id="_3a194f96-086e-43ab-8923-e7a38865fa03" typeRef="Environmental_Considerations"/>
+    </semantic:inputData>
+    <semantic:inputData id="_f8a6f0f1-7e3c-456e-b90a-dbe4883b8bea" name="Cargo Type" triso:readOnly="false">
+        <semantic:variable name="Cargo Type" id="_5964fbc1-e858-401d-84a5-f8dbb4d76bb5" typeRef="Cargo_Type"/>
+    </semantic:inputData>
+    <semantic:decision id="_7e1991f0-ce93-460d-85af-411d1d2fadc1" name="Mode Suitability Based on Shipment Size" triso:readOnly="false">
+        <semantic:variable name="Mode Suitability Based on Shipment Size" id="_9476a59a-4a6e-4e02-8a2a-9dd1692551c6" typeRef="tModeSuitabilityBasedonShipmentSize"/>
+        <semantic:informationRequirement id="_1523b047-db1d-42f0-a675-34af24beb193" triso:readOnly="false">
+            <semantic:requiredInput href="#_d2d99940-4658-49f3-86ae-4ceecf79747d"/>
+        </semantic:informationRequirement>
+        <semantic:decisionTable triso:descriptionVisible="false" id="_f0633d99-dce5-4d22-a494-33c7fa1552a0" hitPolicy="COLLECT" outputLabel="Mode Suitability Based on Shipment Size" typeRef="tModeSuitabilityBasedonShipmentSize" triso:expressionId="_642cbcf3-f414-4b2f-99c7-7ebae5981afa">
+            <semantic:input id="_cbec1e58-c754-4740-8ef3-7647ecd1ccf5" label="Shipment Size">
+                <semantic:inputExpression typeRef="Shipment_Size">
+                    <semantic:text>Shipment Size</semantic:text>
+                </semantic:inputExpression>
+                <semantic:inputValues triso:constraintsType="simple">
+                    <semantic:text>[1..500000]</semantic:text>
+                </semantic:inputValues>
+            </semantic:input>
+            <semantic:output id="_47fef4d0-93ab-4446-a022-9d7568a2f8d8" triso:allowNull="false">
+                <semantic:outputValues triso:constraintsType="enumeration">
+                    <semantic:text>"Road","Sea","Air","Rail","Intermodal"</semantic:text>
+                </semantic:outputValues>
+            </semantic:output>
+            <semantic:annotation name="Description"/>
+            <semantic:rule id="_0adbe73c-f782-4043-a66c-db8897e982d5">
+                <semantic:inputEntry id="_8080cf84-ae34-4566-8658-dd3dcddf4a1c">
+                    <semantic:text>[1..330]</semantic:text>
+                </semantic:inputEntry>
+                <semantic:outputEntry id="_21d8b0de-b78e-49f3-8c16-8da1a2359ef4">
+                    <semantic:text>"Road"</semantic:text>
+                </semantic:outputEntry>
+                <semantic:annotationEntry>
+                    <semantic:text/>
+                </semantic:annotationEntry>
+            </semantic:rule>
+            <semantic:rule id="_6221b26a-b928-40f7-9e75-e70a85d7bbdb">
+                <semantic:inputEntry id="_ab1a09af-fd11-4622-ae77-1ac508f74863">
+                    <semantic:text>[1..330]</semantic:text>
+                </semantic:inputEntry>
+                <semantic:outputEntry id="_708e97d7-1965-4b31-8b78-246a14fb9ee5">
+                    <semantic:text>"Air"</semantic:text>
+                </semantic:outputEntry>
+                <semantic:annotationEntry>
+                    <semantic:text/>
+                </semantic:annotationEntry>
+            </semantic:rule>
+            <semantic:rule id="_8a6f0df5-4261-4805-a3bd-36c63a04deca">
+                <semantic:inputEntry id="_a6c91126-74ca-4d2b-a33a-28ceab83bc8d">
+                    <semantic:text>[331..11000]</semantic:text>
+                </semantic:inputEntry>
+                <semantic:outputEntry id="_db9a1121-6e40-4538-a162-30fbff810cdf">
+                    <semantic:text>"Road"</semantic:text>
+                </semantic:outputEntry>
+                <semantic:annotationEntry>
+                    <semantic:text/>
+                </semantic:annotationEntry>
+            </semantic:rule>
+            <semantic:rule id="_313cd526-547c-4bf2-b2c0-59c483ff4592">
+                <semantic:inputEntry id="_e54c221d-29a2-408a-b915-8944fcf36661">
+                    <semantic:text>[331..11000]</semantic:text>
+                </semantic:inputEntry>
+                <semantic:outputEntry id="_f00bd524-c608-43bb-81db-711f2ec84f61">
+                    <semantic:text>"Sea"</semantic:text>
+                </semantic:outputEntry>
+                <semantic:annotationEntry>
+                    <semantic:text/>
+                </semantic:annotationEntry>
+            </semantic:rule>
+            <semantic:rule id="_fdb32242-bc9f-4338-bdc9-d601f47eea8f">
+                <semantic:inputEntry id="_5fbac367-bda1-4781-a452-dbf9a8e0f920">
+                    <semantic:text>[331..11000]</semantic:text>
+                </semantic:inputEntry>
+                <semantic:outputEntry id="_7908b901-ce33-4f82-81db-07be560d32f5">
+                    <semantic:text>"Air"</semantic:text>
+                </semantic:outputEntry>
+                <semantic:annotationEntry>
+                    <semantic:text/>
+                </semantic:annotationEntry>
+            </semantic:rule>
+            <semantic:rule id="_2b043fb3-c51d-4c43-962a-d7362d290eee">
+                <semantic:inputEntry id="_042967ed-cacc-4ce7-90da-b9a6b27c00f3">
+                    <semantic:text>[331..11000]</semantic:text>
+                </semantic:inputEntry>
+                <semantic:outputEntry id="_c983c8d4-136b-4f38-afeb-3c896f079d46">
+                    <semantic:text>"Rail"</semantic:text>
+                </semantic:outputEntry>
+                <semantic:annotationEntry>
+                    <semantic:text/>
+                </semantic:annotationEntry>
+            </semantic:rule>
+            <semantic:rule id="_6cd294b3-e167-4dee-9fdd-bda96671b858">
+                <semantic:inputEntry id="_1d0ca87c-40e5-4712-b23a-8d9a88ca5737">
+                    <semantic:text>[331..11000]</semantic:text>
+                </semantic:inputEntry>
+                <semantic:outputEntry id="_7bc37dc0-2d32-49c0-8211-4392ae59e776">
+                    <semantic:text>"Intermodal"</semantic:text>
+                </semantic:outputEntry>
+                <semantic:annotationEntry>
+                    <semantic:text/>
+                </semantic:annotationEntry>
+            </semantic:rule>
+            <semantic:rule id="_e782f547-0607-4959-912f-2bcec8902fbb">
+                <semantic:inputEntry id="_df0e67bb-4909-479b-b21c-bbbd2fc72c42">
+                    <semantic:text>[11001..44000]</semantic:text>
+                </semantic:inputEntry>
+                <semantic:outputEntry id="_0a14733e-6aac-4f63-8357-040961923920">
+                    <semantic:text>"Road"</semantic:text>
+                </semantic:outputEntry>
+                <semantic:annotationEntry>
+                    <semantic:text/>
+                </semantic:annotationEntry>
+            </semantic:rule>
+            <semantic:rule id="_c67a8522-606b-449a-adcf-bd607b954960">
+                <semantic:inputEntry id="_133f0634-69a5-447a-882e-b5b611434874">
+                    <semantic:text>[11001..44000]</semantic:text>
+                </semantic:inputEntry>
+                <semantic:outputEntry id="_600f45b0-363b-479a-a4b3-ee66e2217bec">
+                    <semantic:text>"Sea"</semantic:text>
+                </semantic:outputEntry>
+                <semantic:annotationEntry>
+                    <semantic:text/>
+                </semantic:annotationEntry>
+            </semantic:rule>
+            <semantic:rule id="_5be639ad-25ef-4ed6-944b-fbdf6b94a37a">
+                <semantic:inputEntry id="_aaad53bb-d6a8-4f40-8d95-e848b12de441">
+                    <semantic:text>[11001..44000]</semantic:text>
+                </semantic:inputEntry>
+                <semantic:outputEntry id="_f28a1a3f-c10f-4f26-b6f7-4d9b71886c22">
+                    <semantic:text>"Rail"</semantic:text>
+                </semantic:outputEntry>
+                <semantic:annotationEntry>
+                    <semantic:text/>
+                </semantic:annotationEntry>
+            </semantic:rule>
+            <semantic:rule id="_82754207-4954-4e1d-a8af-3fde4843cecd">
+                <semantic:inputEntry id="_e84dac1d-162a-4524-89ba-7686a36a0b30">
+                    <semantic:text>[11001..44000]</semantic:text>
+                </semantic:inputEntry>
+                <semantic:outputEntry id="_019552b4-d85b-4268-b962-18f2bd992311">
+                    <semantic:text>"Intermodal"</semantic:text>
+                </semantic:outputEntry>
+                <semantic:annotationEntry>
+                    <semantic:text/>
+                </semantic:annotationEntry>
+            </semantic:rule>
+            <semantic:rule id="_fd382204-bc3c-4583-835d-b86b9a375dd7">
+                <semantic:inputEntry id="_b4c32e05-6ca9-4934-b0ad-dd0f56a1f74d">
+                    <semantic:text>[44001..88000]</semantic:text>
+                </semantic:inputEntry>
+                <semantic:outputEntry id="_16e3cde9-9d0d-4750-aee2-dacd4af81336">
+                    <semantic:text>"Sea"</semantic:text>
+                </semantic:outputEntry>
+                <semantic:annotationEntry>
+                    <semantic:text/>
+                </semantic:annotationEntry>
+            </semantic:rule>
+            <semantic:rule id="_f69a9f76-6e65-40fd-af75-033588ec40d9">
+                <semantic:inputEntry id="_ba31e16e-85a5-4781-9089-74719502cae9">
+                    <semantic:text>[44001..88000]</semantic:text>
+                </semantic:inputEntry>
+                <semantic:outputEntry id="_ef41f930-1aa1-41e8-8390-d9a12fb7b152">
+                    <semantic:text>"Rail"</semantic:text>
+                </semantic:outputEntry>
+                <semantic:annotationEntry>
+                    <semantic:text/>
+                </semantic:annotationEntry>
+            </semantic:rule>
+            <semantic:rule id="_6398aced-6e88-40f7-b40c-2f3023c9d266">
+                <semantic:inputEntry id="_578a0a6e-2ee3-406a-8ec9-1d529be84065">
+                    <semantic:text>[44001..88000]</semantic:text>
+                </semantic:inputEntry>
+                <semantic:outputEntry id="_cef8b44b-5ecb-4318-9992-ba5291bf3885">
+                    <semantic:text>"Intermodal"</semantic:text>
+                </semantic:outputEntry>
+                <semantic:annotationEntry>
+                    <semantic:text/>
+                </semantic:annotationEntry>
+            </semantic:rule>
+            <semantic:rule id="_a46ab145-859d-48e4-905c-1c246a64e608">
+                <semantic:inputEntry id="_b23d8690-d6dc-4bdd-886f-c7b1328491d2">
+                    <semantic:text>&gt; 88000</semantic:text>
+                </semantic:inputEntry>
+                <semantic:outputEntry id="_3a749022-fb3d-43e7-aa95-3ca232cbd722">
+                    <semantic:text>"Sea"</semantic:text>
+                </semantic:outputEntry>
+                <semantic:annotationEntry>
+                    <semantic:text/>
+                </semantic:annotationEntry>
+            </semantic:rule>
+            <semantic:rule id="_35407a76-096b-43d1-9e53-e37c570dd4fa">
+                <semantic:inputEntry id="_4e50759d-25b2-4d26-b9fc-1ff4a1036234">
+                    <semantic:text>&gt; 88000</semantic:text>
+                </semantic:inputEntry>
+                <semantic:outputEntry id="_ccf81355-368a-42cb-9db1-3f19e4a67647">
+                    <semantic:text>"Rail"</semantic:text>
+                </semantic:outputEntry>
+                <semantic:annotationEntry>
+                    <semantic:text/>
+                </semantic:annotationEntry>
+            </semantic:rule>
+            <semantic:rule id="_447e8f74-d44f-408a-8dca-2063b44135ae">
+                <semantic:inputEntry id="_84f62db8-3130-44c6-9c97-9aa737e496ea">
+                    <semantic:text>&gt; 88000</semantic:text>
+                </semantic:inputEntry>
+                <semantic:outputEntry id="_3cbfa9e8-6fa7-4d3f-acc0-c0e7373eab51">
+                    <semantic:text>"Intermodal"</semantic:text>
+                </semantic:outputEntry>
+                <semantic:annotationEntry>
+                    <semantic:text/>
+                </semantic:annotationEntry>
+            </semantic:rule>
+        </semantic:decisionTable>
+    </semantic:decision>
+    <semantic:decision id="_9058fe4b-8c86-4401-b82e-15a9bbb2f46a" name="Mode Suitability Based on Environmental Considerations" triso:readOnly="false">
+        <semantic:variable name="Mode Suitability Based on Environmental Considerations" id="_3f84850f-bb38-4b32-b19c-cabd6d5c1f81" typeRef="tModeSuitabilityBasedonEnvironmentalConsiderations"/>
+        <semantic:informationRequirement id="_a3806a16-e607-4c3e-ac4f-cfd9ad1bcb38" triso:readOnly="false">
+            <semantic:requiredInput href="#_a334ada3-fe3c-4964-944a-1637035499ae"/>
+        </semantic:informationRequirement>
+        <semantic:decisionTable triso:descriptionVisible="false" id="_ecbea91f-cbda-4d9a-be21-e75e225d3e9a" hitPolicy="COLLECT" outputLabel="Mode Suitability Based on Environmental Considerations" typeRef="tModeSuitabilityBasedonEnvironmentalConsiderations" triso:expressionId="_5824fbfa-7a4a-4dea-b05e-4a3e1a3e8eda">
+            <semantic:input id="_811b556e-b2f4-4897-83c6-9af9e6b9975d" label="Environmental Considerations">
+                <semantic:inputExpression typeRef="Environmental_Considerations">
+                    <semantic:text>Environmental Considerations</semantic:text>
+                </semantic:inputExpression>
+            </semantic:input>
+            <semantic:output id="_db026dd6-36b1-4d16-bdb5-74c0e66c2a2a" triso:allowNull="false">
+                <semantic:outputValues triso:constraintsType="enumeration">
+                    <semantic:text>"Road","Sea","Air","Rail","Intermodal"</semantic:text>
+                </semantic:outputValues>
+            </semantic:output>
+            <semantic:annotation name="Description"/>
+            <semantic:rule id="_c8bce497-89d1-44b0-8887-9b88cec35a9d">
+                <semantic:inputEntry id="_4f9be928-a2be-473f-9f35-3a30fd2fefc2">
+                    <semantic:text>"Low Carbon Emission Priority"</semantic:text>
+                </semantic:inputEntry>
+                <semantic:outputEntry id="_c0dfd8be-e394-45f5-b740-336ff32e74ef">
+                    <semantic:text>"Sea"</semantic:text>
+                </semantic:outputEntry>
+                <semantic:annotationEntry>
+                    <semantic:text>Sea and Rail are preferred for their lower carbon footprints. Road and Air are excluded due to higher emissions.</semantic:text>
+                </semantic:annotationEntry>
+            </semantic:rule>
+            <semantic:rule id="_440e30a7-6785-4866-9b2c-825130a67073">
+                <semantic:inputEntry id="_a9f097c2-fb44-4e06-9d06-b9ddb9756e95">
+                    <semantic:text>"Low Carbon Emission Priority"</semantic:text>
+                </semantic:inputEntry>
+                <semantic:outputEntry id="_7b092e7a-7db1-4ff2-ab6c-0826b32bb7c0">
+                    <semantic:text>"Rail"</semantic:text>
+                </semantic:outputEntry>
+                <semantic:annotationEntry>
+                    <semantic:text/>
+                </semantic:annotationEntry>
+            </semantic:rule>
+            <semantic:rule id="_9e838ab1-9264-48e2-a55b-15cef6f1c515">
+                <semantic:inputEntry id="_e2e6066d-2979-4307-893f-8a3d4d0d91fb">
+                    <semantic:text>"Low Carbon Emission Priority"</semantic:text>
+                </semantic:inputEntry>
+                <semantic:outputEntry id="_8a1c7473-b43b-4d10-b766-5358070f7c97">
+                    <semantic:text>"Intermodal"</semantic:text>
+                </semantic:outputEntry>
+                <semantic:annotationEntry>
+                    <semantic:text/>
+                </semantic:annotationEntry>
+            </semantic:rule>
+            <semantic:rule id="_ff47e7e2-db77-47fc-956c-667698dd509d">
+                <semantic:inputEntry id="_510612ec-5c8d-4d09-ae37-3dea48750f81">
+                    <semantic:text>"Balanced"</semantic:text>
+                </semantic:inputEntry>
+                <semantic:outputEntry id="_55508136-a62c-4fbd-bb2a-513eec22dc05">
+                    <semantic:text>"Road"</semantic:text>
+                </semantic:outputEntry>
+                <semantic:annotationEntry>
+                    <semantic:text>All modes are considered, balancing environmental concerns with other factors like cost and speed.</semantic:text>
+                </semantic:annotationEntry>
+            </semantic:rule>
+            <semantic:rule id="_05f93c2c-df36-42a0-a2de-8d8bda0f0569">
+                <semantic:inputEntry id="_0ef70140-7299-421a-8b11-2fda5cf1ac24">
+                    <semantic:text>"Balanced"</semantic:text>
+                </semantic:inputEntry>
+                <semantic:outputEntry id="_5e8b4a16-4f33-43ac-ba50-9ee509aed3d9">
+                    <semantic:text>"Sea"</semantic:text>
+                </semantic:outputEntry>
+                <semantic:annotationEntry>
+                    <semantic:text/>
+                </semantic:annotationEntry>
+            </semantic:rule>
+            <semantic:rule id="_52d268bd-0c5b-4f4e-adb4-ff87c036ccdd">
+                <semantic:inputEntry id="_9f254781-6bb2-47ed-8abe-073520239706">
+                    <semantic:text>"Balanced"</semantic:text>
+                </semantic:inputEntry>
+                <semantic:outputEntry id="_a169767b-7223-433c-b262-32231f98465b">
+                    <semantic:text>"Air"</semantic:text>
+                </semantic:outputEntry>
+                <semantic:annotationEntry>
+                    <semantic:text/>
+                </semantic:annotationEntry>
+            </semantic:rule>
+            <semantic:rule id="_a3447f2f-22d2-455c-afc5-c8c2316a13f9">
+                <semantic:inputEntry id="_aaaab4af-964f-43ee-abf8-e7e2d908d01e">
+                    <semantic:text>"Balanced"</semantic:text>
+                </semantic:inputEntry>
+                <semantic:outputEntry id="_591f9bc6-16d9-4335-a4ce-e641203eaf80">
+                    <semantic:text>"Rail"</semantic:text>
+                </semantic:outputEntry>
+                <semantic:annotationEntry>
+                    <semantic:text/>
+                </semantic:annotationEntry>
+            </semantic:rule>
+            <semantic:rule id="_da0e1dce-b800-4838-bddf-d8d6b6e7b0e5">
+                <semantic:inputEntry id="_97f2712f-2d91-4c67-8aae-0b2f1322b6f1">
+                    <semantic:text>"Balanced"</semantic:text>
+                </semantic:inputEntry>
+                <semantic:outputEntry id="_95641027-a0d2-4ced-8075-a1990c3998a5">
+                    <semantic:text>"Intermodal"</semantic:text>
+                </semantic:outputEntry>
+                <semantic:annotationEntry>
+                    <semantic:text/>
+                </semantic:annotationEntry>
+            </semantic:rule>
+            <semantic:rule id="_3b28e3bf-817f-4d0c-846f-0ed0b9068874">
+                <semantic:inputEntry id="_e33dd9b1-5abf-44e7-81ca-ba56031ba787">
+                    <semantic:text>"High-Speed Priority"</semantic:text>
+                </semantic:inputEntry>
+                <semantic:outputEntry id="_5f0e6e65-e988-4b1e-9249-9e0b0cc68f8a">
+                    <semantic:text>"Road"</semantic:text>
+                </semantic:outputEntry>
+                <semantic:annotationEntry>
+                    <semantic:text>Air and Road are prioritized when speed is the main concern, even though they may have a higher environmental impact. Sea and Rail are less suitable in this case.</semantic:text>
+                </semantic:annotationEntry>
+            </semantic:rule>
+            <semantic:rule id="_0e9b8319-63c1-45e2-b1da-aa396d3ba8a2">
+                <semantic:inputEntry id="_700bf0ae-c2bc-4107-a355-280a6d434e09">
+                    <semantic:text>"High-Speed Priority"</semantic:text>
+                </semantic:inputEntry>
+                <semantic:outputEntry id="_cd3c439f-7413-4bd7-a348-69bc97ecbd04">
+                    <semantic:text>"Air"</semantic:text>
+                </semantic:outputEntry>
+                <semantic:annotationEntry>
+                    <semantic:text/>
+                </semantic:annotationEntry>
+            </semantic:rule>
+            <semantic:rule id="_1dc367d0-dd86-430a-a436-c3515feb38cb">
+                <semantic:inputEntry id="_175c9c57-aced-4783-b503-2d4f35255268">
+                    <semantic:text>"High-Speed Priority"</semantic:text>
+                </semantic:inputEntry>
+                <semantic:outputEntry id="_50b04149-bef6-4750-bbf9-42927a076c45">
+                    <semantic:text>"Intermodal"</semantic:text>
+                </semantic:outputEntry>
+                <semantic:annotationEntry>
+                    <semantic:text/>
+                </semantic:annotationEntry>
+            </semantic:rule>
+        </semantic:decisionTable>
+    </semantic:decision>
+    <semantic:decision id="_fb54c6e7-1efe-4724-a7e6-33b3f6f1da4a" name="Mode Suitability Based on Cost Constraints" triso:readOnly="false">
+        <semantic:variable name="Mode Suitability Based on Cost Constraints" id="_752578db-da9c-4aba-82e4-f695bada00c9" typeRef="tModeSuitabilityBasedonCostConstraints"/>
+        <semantic:informationRequirement id="_07a61f75-c4fa-4e64-8871-4083806287a3" triso:readOnly="false">
+            <semantic:requiredInput href="#_cb040302-8591-4a08-af84-6f5642eae3cd"/>
+        </semantic:informationRequirement>
+        <semantic:decisionTable triso:descriptionVisible="false" id="_4f492b94-66e0-4297-b7f0-6008f24678ac" hitPolicy="COLLECT" outputLabel="Mode Suitability Based on Cost Constraints" typeRef="tModeSuitabilityBasedonCostConstraints" triso:expressionId="_ef37d6b3-e6dc-4041-86fe-486aa625499b">
+            <semantic:input id="_c2363ca6-3621-42cd-9212-4a17ca9f13f2" label="Cost Constraints">
+                <semantic:inputExpression typeRef="Cost_Constraints">
+                    <semantic:text>Cost Constraints</semantic:text>
+                </semantic:inputExpression>
+                <semantic:inputValues triso:constraintsType="simple">
+                    <semantic:text>[1..1000000]</semantic:text>
+                </semantic:inputValues>
+            </semantic:input>
+            <semantic:output id="_8481255d-e1cc-4bd1-9c8f-b98088e561e6" triso:allowNull="true">
+                <semantic:outputValues triso:constraintsType="enumeration">
+                    <semantic:text>"Road","Sea","Air","Rail","Intermodal",null</semantic:text>
+                </semantic:outputValues>
+            </semantic:output>
+            <semantic:annotation name="Description"/>
+            <semantic:rule id="_5fec077a-ce00-454f-9046-43eb6c22b97f">
+                <semantic:inputEntry id="_f4c9e9c2-e34e-44f0-b985-c275521015df">
+                    <semantic:text>[1..500]</semantic:text>
+                </semantic:inputEntry>
+                <semantic:outputEntry id="_ac5c12e7-1cb7-4062-9291-997574b07bc4">
+                    <semantic:text>"Road"</semantic:text>
+                </semantic:outputEntry>
+                <semantic:annotationEntry>
+                    <semantic:text>.</semantic:text>
+                </semantic:annotationEntry>
+            </semantic:rule>
+            <semantic:rule id="_c9bb0ff9-a887-4091-885b-7e0762df69c1">
+                <semantic:inputEntry id="_cff8c34d-0553-45f5-9808-87b0ccdb4997">
+                    <semantic:text>[1..500]</semantic:text>
+                </semantic:inputEntry>
+                <semantic:outputEntry id="_6d3fe193-3b0c-4359-b260-d797a2df65fd">
+                    <semantic:text>"Sea"</semantic:text>
+                </semantic:outputEntry>
+                <semantic:annotationEntry>
+                    <semantic:text/>
+                </semantic:annotationEntry>
+            </semantic:rule>
+            <semantic:rule id="_7f8e651a-a4d3-478a-8952-7a81be4f9fb8">
+                <semantic:inputEntry id="_59025da7-4527-4d7a-8042-19bd384d72dd">
+                    <semantic:text>[1..500]</semantic:text>
+                </semantic:inputEntry>
+                <semantic:outputEntry id="_c0984d53-5046-4e20-81f9-bd32619915cd">
+                    <semantic:text>"Rail"</semantic:text>
+                </semantic:outputEntry>
+                <semantic:annotationEntry>
+                    <semantic:text/>
+                </semantic:annotationEntry>
+            </semantic:rule>
+            <semantic:rule id="_e6bf76a4-153a-44d6-9fda-8e58f16f4580">
+                <semantic:inputEntry id="_7a196289-17ca-4477-8127-691bacf031aa">
+                    <semantic:text>[1..500]</semantic:text>
+                </semantic:inputEntry>
+                <semantic:outputEntry id="_1fac52fc-095c-4728-af69-1310f8a8776f">
+                    <semantic:text>"Intermodal"</semantic:text>
+                </semantic:outputEntry>
+                <semantic:annotationEntry>
+                    <semantic:text/>
+                </semantic:annotationEntry>
+            </semantic:rule>
+            <semantic:rule id="_4684b687-8791-4f80-b50f-f013aeca116b">
+                <semantic:inputEntry id="_4142ca0f-6ef3-42ad-985e-3995666bc98e">
+                    <semantic:text>[501..2000]</semantic:text>
+                </semantic:inputEntry>
+                <semantic:outputEntry id="_dbe5f967-84f1-4b0c-86c4-54e14a6c0fad">
+                    <semantic:text>"Road"</semantic:text>
+                </semantic:outputEntry>
+                <semantic:annotationEntry>
+                    <semantic:text/>
+                </semantic:annotationEntry>
+            </semantic:rule>
+            <semantic:rule id="_733ccf0b-e7c6-4120-9026-5afb54a5087a">
+                <semantic:inputEntry id="_46645fa4-07be-42f7-9719-b55bb2d14dc6">
+                    <semantic:text>[501..2000]</semantic:text>
+                </semantic:inputEntry>
+                <semantic:outputEntry id="_40840b48-3373-4f9d-96ec-d40b9682a3a9">
+                    <semantic:text>"Sea"</semantic:text>
+                </semantic:outputEntry>
+                <semantic:annotationEntry>
+                    <semantic:text/>
+                </semantic:annotationEntry>
+            </semantic:rule>
+            <semantic:rule id="_cffa94d6-73ad-4d5b-a9a5-e11aff5f86b1">
+                <semantic:inputEntry id="_217ce83a-5588-482d-850d-8fbcc8644e22">
+                    <semantic:text>[501..2000]</semantic:text>
+                </semantic:inputEntry>
+                <semantic:outputEntry id="_b7159cca-4382-4476-bb71-14dcf8e2b841">
+                    <semantic:text>"Air"</semantic:text>
+                </semantic:outputEntry>
+                <semantic:annotationEntry>
+                    <semantic:text/>
+                </semantic:annotationEntry>
+            </semantic:rule>
+            <semantic:rule id="_98e2e0ab-9f40-46b4-97a4-d594a1281cf6">
+                <semantic:inputEntry id="_031f3989-46a5-43b4-8a32-e65838720152">
+                    <semantic:text>[501..2000]</semantic:text>
+                </semantic:inputEntry>
+                <semantic:outputEntry id="_ba719447-05ea-4cca-8e77-f8bf444292ee">
+                    <semantic:text>"Rail"</semantic:text>
+                </semantic:outputEntry>
+                <semantic:annotationEntry>
+                    <semantic:text/>
+                </semantic:annotationEntry>
+            </semantic:rule>
+            <semantic:rule id="_b4345da6-2387-4457-a1aa-3be4a7198c91">
+                <semantic:inputEntry id="_9afebe99-0352-471e-ad87-1d9fadc9c286">
+                    <semantic:text>[501..2000]</semantic:text>
+                </semantic:inputEntry>
+                <semantic:outputEntry id="_5f1ae381-87fd-4bfc-a4fa-467c3e814ed6">
+                    <semantic:text>"Intermodal"</semantic:text>
+                </semantic:outputEntry>
+                <semantic:annotationEntry>
+                    <semantic:text/>
+                </semantic:annotationEntry>
+            </semantic:rule>
+            <semantic:rule id="_9945afa2-40a0-4a7d-9e7e-63b0d8be9cbb">
+                <semantic:inputEntry id="_5ace6ab6-aee0-4054-8736-af3d19f649bd">
+                    <semantic:text>&gt; 2000</semantic:text>
+                </semantic:inputEntry>
+                <semantic:outputEntry id="_9fee764c-0eac-49f3-97e3-a3d09c866817">
+                    <semantic:text>"Road"</semantic:text>
+                </semantic:outputEntry>
+                <semantic:annotationEntry>
+                    <semantic:text/>
+                </semantic:annotationEntry>
+            </semantic:rule>
+            <semantic:rule id="_8ebcb726-52a8-4d83-b1ff-48e0e559800a">
+                <semantic:inputEntry id="_20ca11e5-7d5c-4bd1-bc86-eebd10563d31">
+                    <semantic:text>&gt; 2000</semantic:text>
+                </semantic:inputEntry>
+                <semantic:outputEntry id="_fe33105e-7606-4833-9bfd-0e12c88e0458">
+                    <semantic:text>"Sea"</semantic:text>
+                </semantic:outputEntry>
+                <semantic:annotationEntry>
+                    <semantic:text/>
+                </semantic:annotationEntry>
+            </semantic:rule>
+            <semantic:rule id="_8c04ec74-4da5-4fa0-a1c1-12d8e1ea1618">
+                <semantic:inputEntry id="_7661510d-606a-4822-89eb-f593d63e15b3">
+                    <semantic:text>&gt; 2000</semantic:text>
+                </semantic:inputEntry>
+                <semantic:outputEntry id="_6f8c3d81-9594-40bd-a151-581d507359cc">
+                    <semantic:text>"Air"</semantic:text>
+                </semantic:outputEntry>
+                <semantic:annotationEntry>
+                    <semantic:text/>
+                </semantic:annotationEntry>
+            </semantic:rule>
+            <semantic:rule id="_36dab350-e6a6-4e69-a31e-1ab5030c071f">
+                <semantic:inputEntry id="_cc3916b6-f6dc-4b1f-8edd-a08a548e80bc">
+                    <semantic:text>&gt; 2000</semantic:text>
+                </semantic:inputEntry>
+                <semantic:outputEntry id="_46e6168d-856c-4351-96b2-a215a42b48a1">
+                    <semantic:text>"Rail"</semantic:text>
+                </semantic:outputEntry>
+                <semantic:annotationEntry>
+                    <semantic:text/>
+                </semantic:annotationEntry>
+            </semantic:rule>
+            <semantic:rule id="_8522a98c-5a05-463c-9e15-26f420a0f984">
+                <semantic:inputEntry id="_657ecd07-cc6a-48ec-bab7-f58a04436041">
+                    <semantic:text>&gt; 2000</semantic:text>
+                </semantic:inputEntry>
+                <semantic:outputEntry id="_53c2a220-0676-45eb-a7f2-113f1620a2a6">
+                    <semantic:text>"Intermodal"</semantic:text>
+                </semantic:outputEntry>
+                <semantic:annotationEntry>
+                    <semantic:text/>
+                </semantic:annotationEntry>
+            </semantic:rule>
+        </semantic:decisionTable>
+    </semantic:decision>
+    <semantic:decision id="_4001b062-26ab-4bb7-b340-1596bcaeb6c8" name="Mode Suitability Based on Distance" triso:readOnly="false">
+        <semantic:variable name="Mode Suitability Based on Distance" id="_8b9ae448-009a-4a08-9b68-3120bbabbb7a" typeRef="tModeSuitabilityBasedonDistance"/>
+        <semantic:informationRequirement id="_c29651ca-9bcc-41ef-abff-939076c6bb9a" triso:readOnly="false">
+            <semantic:requiredInput href="#_d1f04b11-6f95-42eb-b5a1-216a8db24534"/>
+        </semantic:informationRequirement>
+        <semantic:decisionTable triso:descriptionVisible="false" id="_1d9bf7a9-eca9-433b-914d-14e164952626" hitPolicy="COLLECT" outputLabel="Mode Suitability Based on Distance" typeRef="tModeSuitabilityBasedonDistance" triso:expressionId="_56cbe20b-b9a6-43ca-bc87-40c02ced2151">
+            <semantic:input id="_e333c41d-13f1-44b1-96eb-690ffd864663" label="Distance">
+                <semantic:inputExpression typeRef="Distance">
+                    <semantic:text>Distance</semantic:text>
+                </semantic:inputExpression>
+                <semantic:inputValues triso:constraintsType="simple">
+                    <semantic:text>[1..7918]</semantic:text>
+                </semantic:inputValues>
+            </semantic:input>
+            <semantic:output id="_b9c9656f-1a73-4658-9c20-781465c2f466" triso:allowNull="false">
+                <semantic:outputValues triso:constraintsType="enumeration">
+                    <semantic:text>"Road","Sea","Air","Rail","Intermodal"</semantic:text>
+                </semantic:outputValues>
+            </semantic:output>
+            <semantic:annotation name="Description"/>
+            <semantic:rule id="_1b9de989-0531-4156-bf1c-68fa197c8925">
+                <semantic:inputEntry id="_73ba94bb-7b02-45de-91bc-79dc8e431ba0">
+                    <semantic:text>[1..500]</semantic:text>
+                </semantic:inputEntry>
+                <semantic:outputEntry id="_352c7941-ad74-4075-9fb9-019baba033de">
+                    <semantic:text>"Road"</semantic:text>
+                </semantic:outputEntry>
+                <semantic:annotationEntry>
+                    <semantic:text>Road and Air are preferred for short distances due to their flexibility and speed</semantic:text>
+                </semantic:annotationEntry>
+            </semantic:rule>
+            <semantic:rule id="_5b114aff-af52-4266-93f4-be44313f961a">
+                <semantic:inputEntry id="_b952dadd-5bfe-464b-8cb5-98b160829d3b">
+                    <semantic:text>[1..500]</semantic:text>
+                </semantic:inputEntry>
+                <semantic:outputEntry id="_f7764a3c-e146-4792-a10a-6d4d932a0708">
+                    <semantic:text>"Air"</semantic:text>
+                </semantic:outputEntry>
+                <semantic:annotationEntry>
+                    <semantic:text/>
+                </semantic:annotationEntry>
+            </semantic:rule>
+            <semantic:rule id="_ceef52b2-d63c-42b3-8c40-2007e7ff4192">
+                <semantic:inputEntry id="_061e70c1-2d30-46f4-ade5-e35ef3a0c32d">
+                    <semantic:text>[1..500]</semantic:text>
+                </semantic:inputEntry>
+                <semantic:outputEntry id="_3c57743f-31cb-44b6-95ff-1d3c9d632935">
+                    <semantic:text>"Intermodal"</semantic:text>
+                </semantic:outputEntry>
+                <semantic:annotationEntry>
+                    <semantic:text/>
+                </semantic:annotationEntry>
+            </semantic:rule>
+            <semantic:rule id="_ba409011-41f6-4369-8592-99e6ec5afea3">
+                <semantic:inputEntry id="_27572e58-d278-40b4-b40c-65532221869f">
+                    <semantic:text>[501..2000]</semantic:text>
+                </semantic:inputEntry>
+                <semantic:outputEntry id="_65300b16-2e0f-414b-ac66-87fb37f66e97">
+                    <semantic:text>"Road"</semantic:text>
+                </semantic:outputEntry>
+                <semantic:annotationEntry>
+                    <semantic:text>All modes are suitable, as Sea, Rail, and Intermodal become viable for longer distances, while Road and Air can still effectively serve this range.</semantic:text>
+                </semantic:annotationEntry>
+            </semantic:rule>
+            <semantic:rule id="_517af111-bd49-4dd5-bcfa-6abb4bb4f26a">
+                <semantic:inputEntry id="_0d53f10f-674b-449d-8459-1b7633105ed0">
+                    <semantic:text>[501..2000]</semantic:text>
+                </semantic:inputEntry>
+                <semantic:outputEntry id="_cc7f377c-0fd4-459f-9de7-95716c447ade">
+                    <semantic:text>"Sea"</semantic:text>
+                </semantic:outputEntry>
+                <semantic:annotationEntry>
+                    <semantic:text/>
+                </semantic:annotationEntry>
+            </semantic:rule>
+            <semantic:rule id="_a8d8fc7b-cf10-44a0-b802-e02bb687599c">
+                <semantic:inputEntry id="_8ed6e12b-fa23-4407-992c-73f73a0a4bb2">
+                    <semantic:text>[501..2000]</semantic:text>
+                </semantic:inputEntry>
+                <semantic:outputEntry id="_9f974165-b9d3-4d05-b1cd-229e61b8dd4a">
+                    <semantic:text>"Air"</semantic:text>
+                </semantic:outputEntry>
+                <semantic:annotationEntry>
+                    <semantic:text/>
+                </semantic:annotationEntry>
+            </semantic:rule>
+            <semantic:rule id="_f1b90b55-c5b6-4a01-8112-721b3e202c47">
+                <semantic:inputEntry id="_be17fe94-c362-4b21-8522-a0f562b1644d">
+                    <semantic:text>[501..2000]</semantic:text>
+                </semantic:inputEntry>
+                <semantic:outputEntry id="_1ec59151-a8f7-46cd-8f05-e13007d0e105">
+                    <semantic:text>"Rail"</semantic:text>
+                </semantic:outputEntry>
+                <semantic:annotationEntry>
+                    <semantic:text/>
+                </semantic:annotationEntry>
+            </semantic:rule>
+            <semantic:rule id="_3ad1ff08-1292-4e7d-b8eb-f630041b75d6">
+                <semantic:inputEntry id="_7c73ea09-9b59-4b3a-9262-e84693ea336c">
+                    <semantic:text>[501..2000]</semantic:text>
+                </semantic:inputEntry>
+                <semantic:outputEntry id="_7337f92a-c5f3-449a-be4b-1c73bde7c9fb">
+                    <semantic:text>"Intermodal"</semantic:text>
+                </semantic:outputEntry>
+                <semantic:annotationEntry>
+                    <semantic:text/>
+                </semantic:annotationEntry>
+            </semantic:rule>
+            <semantic:rule id="_7efae548-431a-4e1a-986e-198e450adb34">
+                <semantic:inputEntry id="_5a1d77c6-eecd-4a8c-9afc-1db640b6fe89">
+                    <semantic:text>&gt; 2000</semantic:text>
+                </semantic:inputEntry>
+                <semantic:outputEntry id="_7ca11247-24bc-4fc4-af19-dcdeb56dfd8c">
+                    <semantic:text>"Sea"</semantic:text>
+                </semantic:outputEntry>
+                <semantic:annotationEntry>
+                    <semantic:text>Sea, Rail, and Air are the most suitable for long distances. Road is often excluded due to inefficiency over such long distances, and Intermodal becomes a practical choice for combining different modes.</semantic:text>
+                </semantic:annotationEntry>
+            </semantic:rule>
+            <semantic:rule id="_1d73315e-8462-493d-82f7-f6e2a2db77cd">
+                <semantic:inputEntry id="_85fede5d-127a-4d68-ae79-6ffff68e2cb7">
+                    <semantic:text>&gt; 2000</semantic:text>
+                </semantic:inputEntry>
+                <semantic:outputEntry id="_c891dc00-3ffb-48b6-8087-a4726661b5b1">
+                    <semantic:text>"Air"</semantic:text>
+                </semantic:outputEntry>
+                <semantic:annotationEntry>
+                    <semantic:text/>
+                </semantic:annotationEntry>
+            </semantic:rule>
+            <semantic:rule id="_a931a130-fc5b-4382-a34a-cde9f56ccd25">
+                <semantic:inputEntry id="_2917194b-d03e-42bd-9cf4-3dfe285dbb49">
+                    <semantic:text>&gt; 2000</semantic:text>
+                </semantic:inputEntry>
+                <semantic:outputEntry id="_bccc4ce9-6440-4208-b9d1-eb8551af4468">
+                    <semantic:text>"Rail"</semantic:text>
+                </semantic:outputEntry>
+                <semantic:annotationEntry>
+                    <semantic:text/>
+                </semantic:annotationEntry>
+            </semantic:rule>
+            <semantic:rule id="_5de1b0ae-34fd-4a96-b265-c8f20232d2f3">
+                <semantic:inputEntry id="_af512eb6-6632-495c-b469-93e866e642b7">
+                    <semantic:text>&gt; 2000</semantic:text>
+                </semantic:inputEntry>
+                <semantic:outputEntry id="_f5921ddc-3e04-407d-925f-a90d0b84861a">
+                    <semantic:text>"Intermodal"</semantic:text>
+                </semantic:outputEntry>
+                <semantic:annotationEntry>
+                    <semantic:text/>
+                </semantic:annotationEntry>
+            </semantic:rule>
+        </semantic:decisionTable>
+    </semantic:decision>
+    <semantic:decision id="_c9ced90b-f8a7-45a5-89cf-5a16845d7b60" name="Mode Suitability Based on Cargo Type" triso:readOnly="false">
+        <semantic:variable name="Mode Suitability Based on Cargo Type" id="_c983687b-7114-458c-ae91-4cc1a2d82118" typeRef="tModeSuitabilityBasedonCargoType"/>
+        <semantic:informationRequirement id="_4e19621c-ae12-4621-b1a8-3664674bfb43" triso:readOnly="false">
+            <semantic:requiredInput href="#_f8a6f0f1-7e3c-456e-b90a-dbe4883b8bea"/>
+        </semantic:informationRequirement>
+        <semantic:decisionTable triso:descriptionVisible="false" id="_e966f345-3348-4017-8986-6bdec4d8fe54" hitPolicy="COLLECT" outputLabel="Mode Suitability Based on Cargo Type" typeRef="tModeSuitabilityBasedonCargoType" triso:expressionId="_9f59f52e-4c54-4123-a171-a032a73eb1f5">
+            <semantic:input id="_b3ef6b45-f2df-4f22-8ab7-509c46a8c05b" label="Cargo Type">
+                <semantic:inputExpression typeRef="Cargo_Type">
+                    <semantic:text>Cargo Type</semantic:text>
+                </semantic:inputExpression>
+            </semantic:input>
+            <semantic:output id="_fd54ebd3-126a-4ef6-b18f-8c3b1baeb9c8" triso:allowNull="false">
+                <semantic:outputValues triso:constraintsType="enumeration">
+                    <semantic:text>"Road","Sea","Air","Rail","Intermodal"</semantic:text>
+                </semantic:outputValues>
+            </semantic:output>
+            <semantic:annotation name="Description"/>
+            <semantic:rule id="_2f8a3326-7b88-4400-89c5-76d6abc95d38">
+                <semantic:inputEntry id="_63d9e1de-7f72-47dd-bda8-ce23f5e55cff">
+                    <semantic:text>"Perishable"</semantic:text>
+                </semantic:inputEntry>
+                <semantic:outputEntry id="_e91c73ae-e883-40ef-84f2-ee1f7cad019c">
+                    <semantic:text>"Road"</semantic:text>
+                </semantic:outputEntry>
+                <semantic:annotationEntry>
+                    <semantic:text>Road and Air are preferred due to their speed, which is critical for goods with a short shelf life. Sea and Rail are generally too slow.</semantic:text>
+                </semantic:annotationEntry>
+            </semantic:rule>
+            <semantic:rule id="_74de1057-dec3-4998-b479-6df80b6b0431">
+                <semantic:inputEntry id="_0df3c768-d45d-47f5-a2e8-507b7f7e04f0">
+                    <semantic:text>"Perishable"</semantic:text>
+                </semantic:inputEntry>
+                <semantic:outputEntry id="_3e3524c8-4a46-495f-b68d-2a8cc4c7d280">
+                    <semantic:text>"Air"</semantic:text>
+                </semantic:outputEntry>
+                <semantic:annotationEntry>
+                    <semantic:text/>
+                </semantic:annotationEntry>
+            </semantic:rule>
+            <semantic:rule id="_41a96810-7aae-4939-a4b6-9ec296771193">
+                <semantic:inputEntry id="_5d5aea06-4468-4661-86c2-5891f39ed351">
+                    <semantic:text>"Perishable"</semantic:text>
+                </semantic:inputEntry>
+                <semantic:outputEntry id="_6e341ecf-e019-4041-b873-38928e097ea6">
+                    <semantic:text>"Intermodal"</semantic:text>
+                </semantic:outputEntry>
+                <semantic:annotationEntry>
+                    <semantic:text/>
+                </semantic:annotationEntry>
+            </semantic:rule>
+            <semantic:rule id="_dcc7a7d0-2160-4d0a-9ffb-8fc091103f96">
+                <semantic:inputEntry id="_82d5c1d8-3be6-49b2-8b84-84ccdfd9b9b6">
+                    <semantic:text>"Hazardous"</semantic:text>
+                </semantic:inputEntry>
+                <semantic:outputEntry id="_db2690a5-aec9-4460-83d1-63d3765b20a2">
+                    <semantic:text>"Road"</semantic:text>
+                </semantic:outputEntry>
+                <semantic:annotationEntry>
+                    <semantic:text>Road, Sea, Rail, and Intermodal can all handle hazardous materials, depending on regulations and safety requirements. Air is typically excluded due to stricter safety regulations.</semantic:text>
+                </semantic:annotationEntry>
+            </semantic:rule>
+            <semantic:rule id="_94f2ec58-c18f-4964-b763-ac17b31ae253">
+                <semantic:inputEntry id="_2c91636f-d44e-4ee4-af01-952175b89664">
+                    <semantic:text>"Hazardous"</semantic:text>
+                </semantic:inputEntry>
+                <semantic:outputEntry id="_da87b6cd-47b2-4286-a4c5-861584bbe1b8">
+                    <semantic:text>"Sea"</semantic:text>
+                </semantic:outputEntry>
+                <semantic:annotationEntry>
+                    <semantic:text/>
+                </semantic:annotationEntry>
+            </semantic:rule>
+            <semantic:rule id="_73d7e21a-921c-4973-bf88-b73cc3f9465c">
+                <semantic:inputEntry id="_ce3afe06-0f07-41b7-b361-040116fc6c68">
+                    <semantic:text>"Hazardous"</semantic:text>
+                </semantic:inputEntry>
+                <semantic:outputEntry id="_6ba93bf9-9968-49b3-88e2-c1e11272aacf">
+                    <semantic:text>"Rail"</semantic:text>
+                </semantic:outputEntry>
+                <semantic:annotationEntry>
+                    <semantic:text/>
+                </semantic:annotationEntry>
+            </semantic:rule>
+            <semantic:rule id="_7ff75285-7cc9-46e9-80ea-43185d05d1ac">
+                <semantic:inputEntry id="_1c1d5083-bd3d-453d-85f5-3357f8a3c20b">
+                    <semantic:text>"Hazardous"</semantic:text>
+                </semantic:inputEntry>
+                <semantic:outputEntry id="_933c290e-5374-4245-be6a-325891e07a48">
+                    <semantic:text>"Intermodal"</semantic:text>
+                </semantic:outputEntry>
+                <semantic:annotationEntry>
+                    <semantic:text/>
+                </semantic:annotationEntry>
+            </semantic:rule>
+            <semantic:rule id="_acbf9d30-13de-49f9-98c8-adf90e337d2c">
+                <semantic:inputEntry id="_29a78ecc-1d92-4038-abd7-1291b606d541">
+                    <semantic:text>"Bulk"</semantic:text>
+                </semantic:inputEntry>
+                <semantic:outputEntry id="_2961e4f2-68fa-47cb-9061-9d78b966c96d">
+                    <semantic:text>"Sea"</semantic:text>
+                </semantic:outputEntry>
+                <semantic:annotationEntry>
+                    <semantic:text/>
+                </semantic:annotationEntry>
+            </semantic:rule>
+            <semantic:rule id="_ddc67f87-381c-45ec-afb0-b7f917ca2fc2">
+                <semantic:inputEntry id="_d330c03e-9d5f-4c48-89c4-3cd348939846">
+                    <semantic:text>"Bulk"</semantic:text>
+                </semantic:inputEntry>
+                <semantic:outputEntry id="_0c11ffbe-caec-461c-8e03-7c576e516333">
+                    <semantic:text>"Rail"</semantic:text>
+                </semantic:outputEntry>
+                <semantic:annotationEntry>
+                    <semantic:text/>
+                </semantic:annotationEntry>
+            </semantic:rule>
+            <semantic:rule id="_b69ff0c8-230e-4c50-ac3a-3e5dd3dfe95c">
+                <semantic:inputEntry id="_61c1d26e-d9b9-42cd-864a-a83d2d8f40e4">
+                    <semantic:text>"Bulk"</semantic:text>
+                </semantic:inputEntry>
+                <semantic:outputEntry id="_b954c2b8-ea91-45da-8b12-df52c188072f">
+                    <semantic:text>"Intermodal"</semantic:text>
+                </semantic:outputEntry>
+                <semantic:annotationEntry>
+                    <semantic:text/>
+                </semantic:annotationEntry>
+            </semantic:rule>
+            <semantic:rule id="_4ade2e78-0028-4295-86a8-f1e4d5302b36">
+                <semantic:inputEntry id="_205f1891-00cd-4e09-8c01-69acad8723c2">
+                    <semantic:text>"High-Value"</semantic:text>
+                </semantic:inputEntry>
+                <semantic:outputEntry id="_c1f5cc6f-52b4-4561-abfa-4ea07d6662c5">
+                    <semantic:text>"Road"</semantic:text>
+                </semantic:outputEntry>
+                <semantic:annotationEntry>
+                    <semantic:text>Sea, Rail, and Intermodal are ideal for bulky goods due to their capacity for large volumes. Road and Air are often impractical due to size and weight limitations.</semantic:text>
+                </semantic:annotationEntry>
+            </semantic:rule>
+            <semantic:rule id="_16bfa610-29c6-4eb8-aa63-ce187c0342bc">
+                <semantic:inputEntry id="_9443ac11-b751-405c-976f-10c711cd65eb">
+                    <semantic:text>"High-Value"</semantic:text>
+                </semantic:inputEntry>
+                <semantic:outputEntry id="_6c1cbf95-d02b-47cf-ad99-a9af08e56779">
+                    <semantic:text>"Sea"</semantic:text>
+                </semantic:outputEntry>
+                <semantic:annotationEntry>
+                    <semantic:text/>
+                </semantic:annotationEntry>
+            </semantic:rule>
+            <semantic:rule id="_24c9d183-b923-4a68-aaa7-0360fbf8a738">
+                <semantic:inputEntry id="_0b8ea6a4-51b6-4a5f-a831-03d3d16a8864">
+                    <semantic:text>"High-Value"</semantic:text>
+                </semantic:inputEntry>
+                <semantic:outputEntry id="_9d18d451-0d05-4472-9290-ef49a13ca877">
+                    <semantic:text>"Air"</semantic:text>
+                </semantic:outputEntry>
+                <semantic:annotationEntry>
+                    <semantic:text/>
+                </semantic:annotationEntry>
+            </semantic:rule>
+            <semantic:rule id="_404f6cff-1621-437d-b707-e221d0666230">
+                <semantic:inputEntry id="_237be9ee-9549-4f21-ba84-3b71e93d3dd3">
+                    <semantic:text>"High-Value"</semantic:text>
+                </semantic:inputEntry>
+                <semantic:outputEntry id="_0bbb7f2b-9eab-47a9-aee0-4f1882ee315a">
+                    <semantic:text>"Rail"</semantic:text>
+                </semantic:outputEntry>
+                <semantic:annotationEntry>
+                    <semantic:text/>
+                </semantic:annotationEntry>
+            </semantic:rule>
+            <semantic:rule id="_e4457004-0bd0-481d-8f5f-5312f12303b9">
+                <semantic:inputEntry id="_1b0ddc88-2200-4e39-ae18-a87355d403a6">
+                    <semantic:text>"High-Value"</semantic:text>
+                </semantic:inputEntry>
+                <semantic:outputEntry id="_6a8886c6-c850-4f2a-b5f0-c0d3cec204cb">
+                    <semantic:text>"Intermodal"</semantic:text>
+                </semantic:outputEntry>
+                <semantic:annotationEntry>
+                    <semantic:text/>
+                </semantic:annotationEntry>
+            </semantic:rule>
+        </semantic:decisionTable>
+    </semantic:decision>
+    <semantic:decision id="_f68ba448-9b50-4c83-ae09-00e4bff244ba" name="Mode Suitability Based on Delivery Time Requirement" triso:readOnly="false">
+        <semantic:variable name="Mode Suitability Based on Delivery Time Requirement" id="_e268dcf0-a98d-4cfc-8233-678e6ad1c780" typeRef="tModeSuitabilityBasedonDeliveryTimeRequirement"/>
+        <semantic:informationRequirement id="_b95742cc-6d19-48c8-92b1-25b0295826be" triso:readOnly="false">
+            <semantic:requiredInput href="#_ac6c661b-df6e-4418-8c34-e876a6f7570b"/>
+        </semantic:informationRequirement>
+        <semantic:decisionTable triso:descriptionVisible="false" id="_544bc5f5-cd39-47a9-bfb7-0b65c6b770da" hitPolicy="COLLECT" outputLabel="Mode Suitability Based on Delivery Time Requirement" typeRef="tModeSuitabilityBasedonDeliveryTimeRequirement" triso:expressionId="_c4106e15-3acb-4790-a76a-cbf0263454cc">
+            <semantic:input id="_2571c3e4-48d3-444d-a10c-c1aeb563c8da" label="Delivery Time Requirement">
+                <semantic:inputExpression typeRef="Delivery_Time_Requirement">
+                    <semantic:text>Delivery Time Requirement</semantic:text>
+                </semantic:inputExpression>
+                <semantic:inputValues triso:constraintsType="simple">
+                    <semantic:text>[1..360]</semantic:text>
+                </semantic:inputValues>
+            </semantic:input>
+            <semantic:output id="_19145ee4-d0bb-4070-9046-154b59129a31" triso:allowNull="true">
+                <semantic:outputValues triso:constraintsType="enumeration">
+                    <semantic:text>"Road","Sea","Air","Rail","Intermodal",null</semantic:text>
+                </semantic:outputValues>
+            </semantic:output>
+            <semantic:annotation name="Description"/>
+            <semantic:rule id="_109eee06-0814-4f10-b774-01f56dc7e444">
+                <semantic:inputEntry id="_ffadb5d3-7d97-4885-bd2d-17a8914bbd5e">
+                    <semantic:text>[1..2]</semantic:text>
+                </semantic:inputEntry>
+                <semantic:outputEntry id="_c855856b-e4cd-444e-8daa-3d1da71ad114">
+                    <semantic:text>"Road"</semantic:text>
+                </semantic:outputEntry>
+                <semantic:annotationEntry>
+                    <semantic:text>Sea and Rail are typically excluded due to longer transit times.</semantic:text>
+                </semantic:annotationEntry>
+            </semantic:rule>
+            <semantic:rule id="_8c953bc4-8650-4f41-a89b-9d0f5c4abe43">
+                <semantic:inputEntry id="_1962e403-452a-40eb-8260-88278fc70530">
+                    <semantic:text>[1..2]</semantic:text>
+                </semantic:inputEntry>
+                <semantic:outputEntry id="_821026b9-ab54-4a38-bd0b-e07c5596d2a7">
+                    <semantic:text>"Air"</semantic:text>
+                </semantic:outputEntry>
+                <semantic:annotationEntry>
+                    <semantic:text/>
+                </semantic:annotationEntry>
+            </semantic:rule>
+            <semantic:rule id="_cba5488c-5822-4385-9590-0a9fcfe86d9a">
+                <semantic:inputEntry id="_8b6f769d-c6fb-4de6-b575-4fefb3af7aaa">
+                    <semantic:text>[3..7]</semantic:text>
+                </semantic:inputEntry>
+                <semantic:outputEntry id="_1040b31e-1fa4-4d6d-901c-8e4ef41b45b0">
+                    <semantic:text>"Road"</semantic:text>
+                </semantic:outputEntry>
+                <semantic:annotationEntry>
+                    <semantic:text/>
+                </semantic:annotationEntry>
+            </semantic:rule>
+            <semantic:rule id="_c1c956c0-6925-4197-a85b-c4638e827903">
+                <semantic:inputEntry id="_05e46ae7-0af9-46ab-90ac-d23312e11d6b">
+                    <semantic:text>[3..7]</semantic:text>
+                </semantic:inputEntry>
+                <semantic:outputEntry id="_efbf1225-5aeb-4014-9e6a-124a8f5bbcc8">
+                    <semantic:text>"Air"</semantic:text>
+                </semantic:outputEntry>
+                <semantic:annotationEntry>
+                    <semantic:text/>
+                </semantic:annotationEntry>
+            </semantic:rule>
+            <semantic:rule id="_e3de381d-14ca-41c1-9983-13312f85c451">
+                <semantic:inputEntry id="_98a1d748-ba0e-45f0-834c-035c526966b4">
+                    <semantic:text>[3..7]</semantic:text>
+                </semantic:inputEntry>
+                <semantic:outputEntry id="_dfab492c-904f-42d9-8cf7-518894e47d0c">
+                    <semantic:text>"Rail"</semantic:text>
+                </semantic:outputEntry>
+                <semantic:annotationEntry>
+                    <semantic:text/>
+                </semantic:annotationEntry>
+            </semantic:rule>
+            <semantic:rule id="_1d43a625-b3d6-4d39-9d9f-750567e1196b">
+                <semantic:inputEntry id="_19a95b7c-ffb3-48bb-bd6f-bb0bad651965">
+                    <semantic:text>[3..7]</semantic:text>
+                </semantic:inputEntry>
+                <semantic:outputEntry id="_d552e4af-5ab7-48ea-959e-21d2dba0d121">
+                    <semantic:text>"Intermodal"</semantic:text>
+                </semantic:outputEntry>
+                <semantic:annotationEntry>
+                    <semantic:text>All modes except Sea might be suitable</semantic:text>
+                </semantic:annotationEntry>
+            </semantic:rule>
+            <semantic:rule id="_1f59263d-a134-4f21-8f59-85bfc3c8053c">
+                <semantic:inputEntry id="_74820bea-f636-4385-8ed6-f6319816f4da">
+                    <semantic:text>&gt; 7</semantic:text>
+                </semantic:inputEntry>
+                <semantic:outputEntry id="_b64fa1f7-d7b8-4e5e-bfd2-5b250352ffa7">
+                    <semantic:text>"Road"</semantic:text>
+                </semantic:outputEntry>
+                <semantic:annotationEntry>
+                    <semantic:text>Any mode can be suitable when delivery time is not a critical factor</semantic:text>
+                </semantic:annotationEntry>
+            </semantic:rule>
+            <semantic:rule id="_b4f14ab9-c7b6-4055-896a-b946a054ff5e">
+                <semantic:inputEntry id="_f92088b0-fc91-4d89-b094-cd76f70601b8">
+                    <semantic:text>&gt; 7</semantic:text>
+                </semantic:inputEntry>
+                <semantic:outputEntry id="_2e282a22-ef24-412f-8bdd-0641559851e8">
+                    <semantic:text>"Sea"</semantic:text>
+                </semantic:outputEntry>
+                <semantic:annotationEntry>
+                    <semantic:text/>
+                </semantic:annotationEntry>
+            </semantic:rule>
+            <semantic:rule id="_8eef4c5e-2581-4051-be37-b230688362c7">
+                <semantic:inputEntry id="_0b034b76-3191-4bf8-857a-05287abcf1bf">
+                    <semantic:text>&gt; 7</semantic:text>
+                </semantic:inputEntry>
+                <semantic:outputEntry id="_584193b7-e758-47f2-8792-d9a11432c0b7">
+                    <semantic:text>"Rail"</semantic:text>
+                </semantic:outputEntry>
+                <semantic:annotationEntry>
+                    <semantic:text/>
+                </semantic:annotationEntry>
+            </semantic:rule>
+            <semantic:rule id="_6b51cc04-4da6-47e8-b428-cde0b182ca9e">
+                <semantic:inputEntry id="_18a54250-3ff5-46a9-9a7e-45580d60e104">
+                    <semantic:text>&gt; 7</semantic:text>
+                </semantic:inputEntry>
+                <semantic:outputEntry id="_4addd569-f81d-4360-8837-6faaa5cb9825">
+                    <semantic:text>"Intermodal"</semantic:text>
+                </semantic:outputEntry>
+                <semantic:annotationEntry>
+                    <semantic:text/>
+                </semantic:annotationEntry>
+            </semantic:rule>
+        </semantic:decisionTable>
+    </semantic:decision>
+    <dmndi:DMNDI>
+        <dmndi:DMNDiagram id="_c910d948-cebd-4785-a4dc-0aad20d927fc" triso:modelElementRef="_07915ad7-ca88-4a76-b58a-2c71af5ff1df" name="Page 1">
+            <di:extension/>
+            <dmndi:Size height="1050" width="1793.0000176080882"/>
+            <dmndi:DMNShape id="_022fb354-c706-4118-bf4a-f14eec142203" dmnElementRef="_ca191eb5-5b57-4c04-aebf-ce160c92901d">
+                <dc:Bounds x="913.4968687978776" y="323.41490660486176" width="153" height="60"/>
+                <dmndi:DMNLabel sharedStyle="LS_291e4915-10d2-4ef2-ad49-b5ac9023aaf3_0" trisodmn:defaultBounds="true"/>
+            </dmndi:DMNShape>
+            <dmndi:DMNShape id="_8e5b34ac-fed3-4df7-87fe-3f8ce544ce77" dmnElementRef="_d2d99940-4658-49f3-86ae-4ceecf79747d">
+                <dc:Bounds x="523.2508363450045" y="388.17608271105865" width="135.48234176635754" height="60.00000762939453"/>
+                <dmndi:DMNLabel sharedStyle="LS_291e4915-10d2-4ef2-ad49-b5ac9023aaf3_0" trisodmn:defaultBounds="true"/>
+            </dmndi:DMNShape>
+            <dmndi:DMNShape id="_07f6b746-7b3e-46e1-8cc2-3454bdfd96c5" dmnElementRef="_ac6c661b-df6e-4418-8c34-e876a6f7570b">
+                <dc:Bounds x="1318.7665544267672" y="388.17607632923654" width="135.48234176635742" height="60.00000762939453"/>
+                <dmndi:DMNLabel sharedStyle="LS_291e4915-10d2-4ef2-ad49-b5ac9023aaf3_0" trisodmn:defaultBounds="true"/>
+            </dmndi:DMNShape>
+            <dmndi:DMNShape id="_533ac19e-f065-4443-830f-6b60c123dea9" dmnElementRef="_cb040302-8591-4a08-af84-6f5642eae3cd">
+                <dc:Bounds x="922.2556850450158" y="516.3717807979967" width="135.48234176635742" height="60.00000762939453"/>
+                <dmndi:DMNLabel sharedStyle="LS_291e4915-10d2-4ef2-ad49-b5ac9023aaf3_0" trisodmn:defaultBounds="true"/>
+            </dmndi:DMNShape>
+            <dmndi:DMNShape id="_8a5a6039-5154-4170-a9f2-b47de26a1ca9" dmnElementRef="_d1f04b11-6f95-42eb-b5a1-216a8db24534">
+                <dc:Bounds x="922.2555616349864" y="104.18274359837794" width="135.48234176635742" height="60.00000762939452"/>
+                <dmndi:DMNLabel sharedStyle="LS_291e4915-10d2-4ef2-ad49-b5ac9023aaf3_0" trisodmn:defaultBounds="true"/>
+            </dmndi:DMNShape>
+            <dmndi:DMNShape id="_2f6b5a87-6b9b-4a8f-81a5-1e324a62201e" dmnElementRef="_a334ada3-fe3c-4964-944a-1637035499ae">
+                <dc:Bounds x="523.2508402435273" y="265.2059371945031" width="135.4823417663573" height="60.00000762939459"/>
+                <dmndi:DMNLabel sharedStyle="LS_291e4915-10d2-4ef2-ad49-b5ac9023aaf3_0" trisodmn:defaultBounds="true"/>
+            </dmndi:DMNShape>
+            <dmndi:DMNShape id="_91535853-91fe-4ff6-932f-e8809977c077" dmnElementRef="_f8a6f0f1-7e3c-456e-b90a-dbe4883b8bea">
+                <dc:Bounds x="1318.7666040504212" y="265.20592270429023" width="135.48234176635742" height="60.00000762939453"/>
+                <dmndi:DMNLabel sharedStyle="LS_291e4915-10d2-4ef2-ad49-b5ac9023aaf3_0" trisodmn:defaultBounds="true"/>
+            </dmndi:DMNShape>
+            <dmndi:DMNShape id="_277930d5-51f5-4b44-80e1-6833f22004d6" dmnElementRef="_7e1991f0-ce93-460d-85af-411d1d2fadc1">
+                <dc:Bounds x="720.5069194743608" y="388.1760902556985" width="153" height="60"/>
+                <dmndi:DMNLabel sharedStyle="LS_291e4915-10d2-4ef2-ad49-b5ac9023aaf3_0" trisodmn:defaultBounds="true"/>
+            </dmndi:DMNShape>
+            <dmndi:DMNShape id="_56df2745-7733-4290-ad26-867153fe7f53" dmnElementRef="_9058fe4b-8c86-4401-b82e-15a9bbb2f46a">
+                <dc:Bounds x="720.5069296251299" y="265.2059390122034" width="153.0000000000001" height="60.00000000000006"/>
+                <dmndi:DMNLabel sharedStyle="LS_291e4915-10d2-4ef2-ad49-b5ac9023aaf3_0" trisodmn:defaultBounds="true"/>
+            </dmndi:DMNShape>
+            <dmndi:DMNShape id="_c8d0889c-1e13-4023-b0c0-39ee7891f285" dmnElementRef="_fb54c6e7-1efe-4724-a7e6-33b3f6f1da4a">
+                <dc:Bounds x="913.4969063180239" y="419.72833532565585" width="153.0000000000001" height="60"/>
+                <dmndi:DMNLabel sharedStyle="LS_291e4915-10d2-4ef2-ad49-b5ac9023aaf3_0" trisodmn:defaultBounds="true"/>
+            </dmndi:DMNShape>
+            <dmndi:DMNShape id="_0ed035da-97ec-415e-8150-b6d59c7d398f" dmnElementRef="_4001b062-26ab-4bb7-b340-1596bcaeb6c8">
+                <dc:Bounds x="913.4967829079973" y="205.6819073923072" width="153.0000000000001" height="60"/>
+                <dmndi:DMNLabel sharedStyle="LS_291e4915-10d2-4ef2-ad49-b5ac9023aaf3_0" trisodmn:defaultBounds="true"/>
+            </dmndi:DMNShape>
+            <dmndi:DMNShape id="_fa9e8e7a-10f4-49ff-b378-56ca3a2a6187" dmnElementRef="_c9ced90b-f8a7-45a5-89cf-5a16845d7b60">
+                <dc:Bounds x="1102.3337687642945" y="265.2059352758837" width="153" height="60"/>
+                <dmndi:DMNLabel sharedStyle="LS_291e4915-10d2-4ef2-ad49-b5ac9023aaf3_0" trisodmn:defaultBounds="true"/>
+            </dmndi:DMNShape>
+            <dmndi:DMNShape id="_e99bfeba-26dd-4e23-b199-a5b59481dfd2" dmnElementRef="_f68ba448-9b50-4c83-ae09-00e4bff244ba">
+                <dc:Bounds x="1102.3337277569537" y="388.17608941789314" width="153" height="60"/>
+                <dmndi:DMNLabel sharedStyle="LS_291e4915-10d2-4ef2-ad49-b5ac9023aaf3_0" trisodmn:defaultBounds="true"/>
+            </dmndi:DMNShape>
+            <dmndi:DMNEdge id="_d2a9fc78-61bf-4554-ad24-49ade04c46d6" dmnElementRef="_b95742cc-6d19-48c8-92b1-25b0295826be">
+                <di:waypoint x="1319.0045266862887" y="418.17607632923654"/>
+                <di:waypoint x="1255.3337277569537" y="418.17608941789314"/>
+                <dmndi:DMNLabel sharedStyle="LS_291e4915-10d2-4ef2-ad49-b5ac9023aaf3_0"/>
+            </dmndi:DMNEdge>
+            <dmndi:DMNEdge id="_e9fe7d2f-1f81-42a4-bc92-ece1c6384bac" dmnElementRef="_07a61f75-c4fa-4e64-8871-4083806287a3">
+                <di:waypoint x="989.9936573045372" y="516.3717807979967"/>
+                <di:waypoint x="989.996906318024" y="479.72833532565585"/>
+                <dmndi:DMNLabel sharedStyle="LS_291e4915-10d2-4ef2-ad49-b5ac9023aaf3_0"/>
+            </dmndi:DMNEdge>
+            <dmndi:DMNEdge id="_a8354d4d-472c-44c4-bbf1-a98a7946a0b4" dmnElementRef="_c29651ca-9bcc-41ef-abff-939076c6bb9a">
+                <di:waypoint x="989.9935338945079" y="164.18274359837793"/>
+                <di:waypoint x="989.9967829079973" y="205.6819073923072"/>
+                <dmndi:DMNLabel sharedStyle="LS_291e4915-10d2-4ef2-ad49-b5ac9023aaf3_0"/>
+            </dmndi:DMNEdge>
+            <dmndi:DMNEdge id="_739634e9-853a-4c7e-89e4-a2d62a30b9c2" dmnElementRef="_4e19621c-ae12-4621-b1a8-3664674bfb43">
+                <di:waypoint x="1319.0045763099426" y="295.20592270429023"/>
+                <di:waypoint x="1255.3337687642945" y="295.2059352758837"/>
+                <dmndi:DMNLabel sharedStyle="LS_291e4915-10d2-4ef2-ad49-b5ac9023aaf3_0"/>
+            </dmndi:DMNEdge>
+            <dmndi:DMNEdge id="_cd866946-21e6-402b-9905-2695f9e95fb4" dmnElementRef="_a3806a16-e607-4c3e-ac4f-cfd9ad1bcb38">
+                <di:waypoint x="658.7331820098846" y="295.2059371945031"/>
+                <di:waypoint x="720.5069296251299" y="295.20593901220343"/>
+                <dmndi:DMNLabel sharedStyle="LS_291e4915-10d2-4ef2-ad49-b5ac9023aaf3_0"/>
+            </dmndi:DMNEdge>
+            <dmndi:DMNEdge id="_1f80cb09-8697-4de4-84df-1794646d4055" dmnElementRef="_1523b047-db1d-42f0-a675-34af24beb193">
+                <di:waypoint x="658.733178111362" y="418.17608271105865"/>
+                <di:waypoint x="720.5069194743608" y="418.1760902556985"/>
+                <dmndi:DMNLabel sharedStyle="LS_291e4915-10d2-4ef2-ad49-b5ac9023aaf3_0"/>
+            </dmndi:DMNEdge>
+            <dmndi:DMNEdge id="_4dbb3005-3cfd-498f-8104-1318e0b89cd0" dmnElementRef="_f78cc2b0-9fff-4c15-a52f-0133731bff48">
+                <di:waypoint x="989.9969063180239" y="419.72833532565585"/>
+                <di:waypoint x="989.9968687978776" y="383.41490660486176"/>
+                <dmndi:DMNLabel sharedStyle="LS_291e4915-10d2-4ef2-ad49-b5ac9023aaf3_0"/>
+            </dmndi:DMNEdge>
+            <dmndi:DMNEdge id="_55f2029d-06fc-4f65-ad48-90e351379151" dmnElementRef="_1bd28b3a-3cdc-4739-9893-1850e151e45c">
+                <di:waypoint x="873.5069296251299" y="295.2059390122034"/>
+                <di:waypoint x="913.4968687978776" y="353.41490660486176"/>
+                <dmndi:DMNLabel sharedStyle="LS_291e4915-10d2-4ef2-ad49-b5ac9023aaf3_0"/>
+            </dmndi:DMNEdge>
+            <dmndi:DMNEdge id="_a330f5dc-a7bd-459f-908c-2dae87baa45c" dmnElementRef="_2fb9fdaf-be4c-4a92-9941-0a533b9ee4c4">
+                <di:waypoint x="1102.3337687642945" y="295.2059352758837"/>
+                <di:waypoint x="1066.4968687978776" y="353.41490660486176"/>
+                <dmndi:DMNLabel sharedStyle="LS_291e4915-10d2-4ef2-ad49-b5ac9023aaf3_0"/>
+            </dmndi:DMNEdge>
+            <dmndi:DMNEdge id="_03d59c63-e7e6-4179-ba97-5a96d339b141" dmnElementRef="_0daa1687-fcbf-4a0d-9c98-4652f2875b2a">
+                <di:waypoint x="989.9967829079974" y="265.6819073923072"/>
+                <di:waypoint x="989.9968687978776" y="323.41490660486176"/>
+                <dmndi:DMNLabel sharedStyle="LS_291e4915-10d2-4ef2-ad49-b5ac9023aaf3_0"/>
+            </dmndi:DMNEdge>
+            <dmndi:DMNEdge id="_e840d523-9501-4297-a0a5-50f0aac9b0d8" dmnElementRef="_a3c762cf-ad0c-4c2f-81eb-0b8e5b5a9814">
+                <di:waypoint x="1102.3337277569537" y="418.17608941789314"/>
+                <di:waypoint x="1066.4968687978776" y="363.41490660486176"/>
+                <dmndi:DMNLabel sharedStyle="LS_291e4915-10d2-4ef2-ad49-b5ac9023aaf3_0"/>
+            </dmndi:DMNEdge>
+            <dmndi:DMNEdge id="_2f1b33b7-1827-411c-a36a-9c1f3950c984" dmnElementRef="_42075740-55b3-42ff-b424-f70460301815">
+                <di:waypoint x="873.5069194743608" y="418.1760902556985"/>
+                <di:waypoint x="929.9968687978776" y="383.41490660486176"/>
+                <dmndi:DMNLabel sharedStyle="LS_291e4915-10d2-4ef2-ad49-b5ac9023aaf3_0"/>
+            </dmndi:DMNEdge>
+        </dmndi:DMNDiagram>
+        <dmndi:DMNStyle id="LS_291e4915-10d2-4ef2-ad49-b5ac9023aaf3_0" fontFamily="arial,helvetica,sans-serif" fontSize="11" fontBold="true" fontItalic="false" fontUnderline="false" fontStrikeThrough="false"/>
+    </dmndi:DMNDI>
+</semantic:definitions>

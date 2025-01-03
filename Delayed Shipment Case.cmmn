@@ -1,0 +1,524 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<semantic:definitions xmlns:semantic="http://www.omg.org/spec/CMMN/20151109/MODEL"  xmlns:cmmndi="http://www.omg.org/spec/CMMN/20151109/CMMNDI"  xmlns:di="http://www.omg.org/spec/CMMN/20151109/DI"  xmlns:dc="http://www.omg.org/spec/CMMN/20151109/DC"  xmlns:trisocmmn="http://www.trisotech.com/2014/triso/cmmn"  xmlns:triso="http://www.trisotech.com/2015/triso/modeling"  xmlns:feel="https://www.omg.org/spec/DMN/20240513/FEEL/"  xmlns:rss="http://purl.org/rss/2.0/"   xmlns:i18n="http://www.omg.org/spec/BPMN/non-normative/extensions/i18n/1.0"  xmlns:dmn="https://www.omg.org/spec/DMN/20240513/MODEL/"  xmlns:sdmn="https://www.omg.org/spec/SDMN/"  xmlns:boxedext="https://www.trisotech.com/spec/DMN/20191111/EXT/"  xmlns="http://www.trisotech.com/definitions/_823141a1-8b29-466c-a275-d3304f2ce0b9" id="_823141a1-8b29-466c-a275-d3304f2ce0b9" name="Delayed Shipment Case" targetNamespace="http://www.trisotech.com/definitions/_823141a1-8b29-466c-a275-d3304f2ce0b9" expressionLanguage="https://www.omg.org/spec/DMN/20240513/FEEL/" exporter="Case Modeler" exporterVersion="9.6.3" xml:lang="en" triso:logoChoice="Default">
+    <semantic:case id="Case_8fded462-8a9b-4f1e-92e6-996c6409978b" name="Delayed Shipment" triso:collectMilestones="true">
+        <semantic:documentation>&lt;p&gt;This case handles situations where a shipment is delayed beyond the expected delivery time.&lt;/p&gt;</semantic:documentation>
+        <semantic:extensionElements/>
+        <semantic:casePlanModel id="_8fded462-8a9b-4f1e-92e6-996c6409978b" name="Delayed Shipment" triso:collectMilestones="true">
+            <semantic:planItem id="_d4fbcc32-89fe-4e59-9946-75baaf7325f8" definitionRef="PID__d4fbcc32-89fe-4e59-9946-75baaf7325f8"/>
+            <semantic:planItem id="_40f4ce53-96cd-4f87-a764-c03781c463ef" definitionRef="PID__40f4ce53-96cd-4f87-a764-c03781c463ef">
+                <semantic:entryCriterion id="_46ec549b-f401-4151-a02d-7b5981dce0bd" sentryRef="_600f9088-76d9-437f-bd4b-817d0736d643"/>
+            </semantic:planItem>
+            <semantic:planItem id="_2620e8f2-0a80-4cc8-afad-437295e37c82" definitionRef="PID__2620e8f2-0a80-4cc8-afad-437295e37c82">
+                <semantic:entryCriterion id="_dbab2865-1668-4d0d-be31-6ca67f14d044" sentryRef="_4f354a4d-259d-4413-b28d-b384708424a7"/>
+            </semantic:planItem>
+            <semantic:planItem id="_b5bdde7f-756c-47a8-88a3-aee8baa4f2ee" definitionRef="PID__b5bdde7f-756c-47a8-88a3-aee8baa4f2ee">
+                <semantic:entryCriterion id="_957e47c5-d5d1-461f-982e-41f763f0c474" sentryRef="_070dde84-f657-4eb3-80b7-fe133077705b"/>
+            </semantic:planItem>
+            <semantic:planItem id="_eeddaecd-c504-436a-848b-877f783161ff" definitionRef="PID__eeddaecd-c504-436a-848b-877f783161ff"/>
+            <semantic:planItem id="_864094b4-376f-43d8-9429-b2de7ab93253" definitionRef="PID__864094b4-376f-43d8-9429-b2de7ab93253">
+                <semantic:entryCriterion id="_43dcf18c-3820-43b7-b459-b6d6a438ddfb" sentryRef="_d74c2189-31b4-46a0-8a1b-5867a6d7cf4d"/>
+            </semantic:planItem>
+            <semantic:planItem id="_cd32fab8-06ce-4fcc-8f49-0fffa6d455e3" definitionRef="PID__cd32fab8-06ce-4fcc-8f49-0fffa6d455e3">
+                <semantic:entryCriterion id="_1998b33c-1b6b-40e4-b4db-988c844c4f9f" sentryRef="_751730fd-9f49-4aa4-8024-6005154d2f5a"/>
+            </semantic:planItem>
+            <semantic:sentry id="_9cd3fbaf-386c-46f2-ac7b-bbe89e95d2ed">
+                <semantic:planItemOnPart id="_9cd3fbaf-386c-46f2-ac7b-bbe89e95d2ed_0bdbe928-b0dd-45cd-9c91-1f02045650e4" sourceRef="_b25f3510-4ed3-442f-b22c-f70bdb515b8d">
+                    <semantic:standardEvent>occur</semantic:standardEvent>
+                </semantic:planItemOnPart>
+            </semantic:sentry>
+            <semantic:sentry id="_5a68e919-e140-4507-894e-92d7f74298f0">
+                <semantic:planItemOnPart id="_5a68e919-e140-4507-894e-92d7f74298f0_36000cc1-bbcc-4b0d-8919-c0de94628e72" sourceRef="_7bf76492-d5f4-492c-90b6-1e81a49f83a8">
+                    <semantic:standardEvent>occur</semantic:standardEvent>
+                </semantic:planItemOnPart>
+            </semantic:sentry>
+            <semantic:sentry id="_81706172-103c-42c2-bf0a-f90081980967">
+                <semantic:planItemOnPart id="_81706172-103c-42c2-bf0a-f90081980967_60fda9d2-aede-4cf6-a22e-e58c850dd288" sourceRef="_4bc13768-9951-4cd1-8260-291fdeadd411">
+                    <semantic:standardEvent>occur</semantic:standardEvent>
+                </semantic:planItemOnPart>
+            </semantic:sentry>
+            <semantic:sentry id="_54106e6c-12df-44b2-910e-887d38bdc217">
+                <semantic:planItemOnPart id="_54106e6c-12df-44b2-910e-887d38bdc217_bab1a080-e08d-487a-87cb-6821316fc114" sourceRef="_6f5bb38d-b998-4594-92ff-abd34800ad8d">
+                    <semantic:standardEvent>occur</semantic:standardEvent>
+                </semantic:planItemOnPart>
+            </semantic:sentry>
+            <semantic:sentry id="_1a441338-e416-497d-b792-66070065aafe">
+                <semantic:planItemOnPart id="_1a441338-e416-497d-b792-66070065aafe_ac50ac23-ecc8-4e71-b22b-af052b732302" sourceRef="_6783a699-1d10-4e9a-8749-7ac8afce7a70">
+                    <semantic:standardEvent>complete</semantic:standardEvent>
+                </semantic:planItemOnPart>
+            </semantic:sentry>
+            <semantic:sentry id="_4f354a4d-259d-4413-b28d-b384708424a7">
+                <semantic:planItemOnPart id="_4f354a4d-259d-4413-b28d-b384708424a7_a4c421c8-4fe9-48b4-acdc-8ea5d37384aa" sourceRef="_d4fbcc32-89fe-4e59-9946-75baaf7325f8"/>
+            </semantic:sentry>
+            <semantic:sentry id="_600f9088-76d9-437f-bd4b-817d0736d643">
+                <semantic:planItemOnPart id="_600f9088-76d9-437f-bd4b-817d0736d643_7d799b0d-3322-4ac0-a139-fe3cfe0497a9" sourceRef="_2620e8f2-0a80-4cc8-afad-437295e37c82">
+                    <semantic:standardEvent>complete</semantic:standardEvent>
+                </semantic:planItemOnPart>
+            </semantic:sentry>
+            <semantic:sentry id="_070dde84-f657-4eb3-80b7-fe133077705b">
+                <semantic:planItemOnPart id="_070dde84-f657-4eb3-80b7-fe133077705b_7f382937-8762-407a-bf47-6795b086a5ab" sourceRef="_40f4ce53-96cd-4f87-a764-c03781c463ef">
+                    <semantic:standardEvent>complete</semantic:standardEvent>
+                </semantic:planItemOnPart>
+            </semantic:sentry>
+            <semantic:sentry id="_d74c2189-31b4-46a0-8a1b-5867a6d7cf4d"/>
+            <semantic:sentry id="_751730fd-9f49-4aa4-8024-6005154d2f5a">
+                <semantic:planItemOnPart id="_751730fd-9f49-4aa4-8024-6005154d2f5a_d0d94de7-0733-48c8-92c6-698a0273159a" sourceRef="_864094b4-376f-43d8-9429-b2de7ab93253">
+                    <semantic:standardEvent>complete</semantic:standardEvent>
+                </semantic:planItemOnPart>
+            </semantic:sentry>
+            <semantic:sentry id="_ba383b48-21c9-468a-8d26-2a19d93b3fe1">
+                <semantic:planItemOnPart id="_ba383b48-21c9-468a-8d26-2a19d93b3fe1_47446869-ff6c-494d-9d6c-44f6f489af72" sourceRef="_b5bdde7f-756c-47a8-88a3-aee8baa4f2ee">
+                    <semantic:standardEvent>occur</semantic:standardEvent>
+                </semantic:planItemOnPart>
+            </semantic:sentry>
+            <semantic:sentry id="_c188e1b6-a208-4770-8b0b-ab6cd14e1faa">
+                <semantic:planItemOnPart id="_c188e1b6-a208-4770-8b0b-ab6cd14e1faa_b6bfafb2-0a36-413d-8f41-0c47f16672ca" sourceRef="_cd32fab8-06ce-4fcc-8f49-0fffa6d455e3">
+                    <semantic:extensionElements>
+                        <triso:alternateStandardEvent>occur</triso:alternateStandardEvent>
+                    </semantic:extensionElements>
+                </semantic:planItemOnPart>
+            </semantic:sentry>
+            <semantic:stage id="PID__d4fbcc32-89fe-4e59-9946-75baaf7325f8" name="Examine Delay">
+                <semantic:planItem id="_6783a699-1d10-4e9a-8749-7ac8afce7a70" definitionRef="PID__6783a699-1d10-4e9a-8749-7ac8afce7a70"/>
+                <semantic:planItem id="_18093e4c-199a-47e3-b2dc-6de41f90a974" definitionRef="PID__18093e4c-199a-47e3-b2dc-6de41f90a974">
+                    <semantic:entryCriterion id="_8a38932a-6c65-4369-bace-bcfde4b2f20a" sentryRef="_1a441338-e416-497d-b792-66070065aafe"/>
+                    <semantic:exitCriterion id="_1af661f9-6ce5-4cf1-8313-e8c904ca76e9" sentryRef="_54106e6c-12df-44b2-910e-887d38bdc217"/>
+                    <semantic:exitCriterion id="_04979610-4ab6-424b-9d32-e7f65b837d15" sentryRef="_81706172-103c-42c2-bf0a-f90081980967"/>
+                </semantic:planItem>
+                <semantic:humanTask id="PID__6783a699-1d10-4e9a-8749-7ac8afce7a70" name="Investigate Delay Cause">
+                    <semantic:extensionElements>
+                        <triso:notification id="_19f907c1-21a1-421c-8f5b-62b1ad238e71" type="email" mode="others"/>
+                    </semantic:extensionElements>
+                    <semantic:defaultControl>
+                        <semantic:manualActivationRule id="_a718394e-6e03-4a6c-a6ca-269fdb73ed5e"/>
+                    </semantic:defaultControl>
+                </semantic:humanTask>
+                <semantic:stage id="PID__18093e4c-199a-47e3-b2dc-6de41f90a974" name="Decide Transportation Response">
+                    <semantic:planItem id="_b25f3510-4ed3-442f-b22c-f70bdb515b8d" definitionRef="PID__b25f3510-4ed3-442f-b22c-f70bdb515b8d"/>
+                    <semantic:planItem id="_7bf76492-d5f4-492c-90b6-1e81a49f83a8" definitionRef="PID__7bf76492-d5f4-492c-90b6-1e81a49f83a8"/>
+                    <semantic:planItem id="_6f5bb38d-b998-4594-92ff-abd34800ad8d" definitionRef="PID__6f5bb38d-b998-4594-92ff-abd34800ad8d">
+                        <semantic:entryCriterion id="_acda2d91-2202-44af-aaae-f93a84c0310e" sentryRef="_9cd3fbaf-386c-46f2-ac7b-bbe89e95d2ed"/>
+                    </semantic:planItem>
+                    <semantic:planItem id="_4bc13768-9951-4cd1-8260-291fdeadd411" definitionRef="PID__4bc13768-9951-4cd1-8260-291fdeadd411">
+                        <semantic:entryCriterion id="_bd72d6e6-87a9-479e-9943-6104f21eacdc" sentryRef="_5a68e919-e140-4507-894e-92d7f74298f0"/>
+                    </semantic:planItem>
+                    <semantic:userEventListener id="PID__b25f3510-4ed3-442f-b22c-f70bdb515b8d" name="Accept transportation delay"/>
+                    <semantic:userEventListener id="PID__7bf76492-d5f4-492c-90b6-1e81a49f83a8" name="Reject transportation delay"/>
+                    <semantic:milestone id="PID__6f5bb38d-b998-4594-92ff-abd34800ad8d" name="Transportation delay accepted"/>
+                    <semantic:milestone id="PID__4bc13768-9951-4cd1-8260-291fdeadd411" name="Transportation delay rejected"/>
+                </semantic:stage>
+            </semantic:stage>
+            <semantic:humanTask id="PID__40f4ce53-96cd-4f87-a764-c03781c463ef" name="Notify Customer">
+                <semantic:extensionElements>
+                    <triso:notification id="_09b1d8c7-de57-4bd6-a4a4-656452bf7fe7" type="email" mode="others"/>
+                </semantic:extensionElements>
+                <semantic:defaultControl>
+                    <semantic:manualActivationRule id="_09192cb7-b169-461d-820e-da90ffcfb189"/>
+                </semantic:defaultControl>
+            </semantic:humanTask>
+            <semantic:humanTask id="PID__2620e8f2-0a80-4cc8-afad-437295e37c82" name="Update Delivery Information">
+                <semantic:extensionElements>
+                    <triso:notification id="_6f47b425-894b-4327-b4e5-253a638c4286" type="email" mode="others"/>
+                </semantic:extensionElements>
+                <semantic:defaultControl>
+                    <semantic:manualActivationRule id="_ff04d32c-863e-44fe-a669-4793cf76fbbf"/>
+                </semantic:defaultControl>
+            </semantic:humanTask>
+            <semantic:milestone id="PID__b5bdde7f-756c-47a8-88a3-aee8baa4f2ee" name="Customer notified"/>
+            <semantic:userEventListener id="PID__eeddaecd-c504-436a-848b-877f783161ff" name="Calculate delay duration"/>
+            <semantic:humanTask id="PID__864094b4-376f-43d8-9429-b2de7ab93253" name="Assess Delay Impacts">
+                <semantic:extensionElements>
+                    <triso:notification id="_417b1be7-7653-4949-95b7-7ca0f5c8eaa9" type="email" mode="others"/>
+                </semantic:extensionElements>
+            </semantic:humanTask>
+            <semantic:milestone id="PID__cd32fab8-06ce-4fcc-8f49-0fffa6d455e3" name="Delay assessed"/>
+            <semantic:exitCriterion id="_2277f5e7-5141-4fb1-99e5-4e0c1f35efc7" sentryRef="_ba383b48-21c9-468a-8d26-2a19d93b3fe1"/>
+            <semantic:exitCriterion id="_9fc15c06-ce63-4ef2-b91d-f427493ac916" sentryRef="_c188e1b6-a208-4770-8b0b-ab6cd14e1faa"/>
+        </semantic:casePlanModel>
+    </semantic:case>
+    <cmmndi:CMMNDI>
+        <cmmndi:CMMNDiagram id="_6dfa2f1f-7437-4038-a494-945397469bde" name="Page 1" cmmnElementRef="_823141a1-8b29-466c-a275-d3304f2ce0b9">
+            <cmmndi:Size width="1833.7213153354833" height="1254.8181755907278"/>
+            <cmmndi:CMMNShape id="_9d9ffb5e-b90d-4aeb-b28a-e4ff30b907e1" cmmnElementRef="_8fded462-8a9b-4f1e-92e6-996c6409978b">
+                <cmmndi:CMMNStyle>
+                    <cmmndi:FillColor red="255" green="255" blue="255"/>
+                    <cmmndi:StrokeColor red="0" green="0" blue="0"/>
+                    <cmmndi:FontColor red="0" green="0" blue="0"/>
+                </cmmndi:CMMNStyle>
+                <dc:Bounds x="350.00002582506795" y="130.18182977694175" width="696.0725237718232" height="516.8181702230582"/>
+                <cmmndi:CMMNLabel triso:defaultBounds="true">
+                    <dc:Bounds height="16" width="195" x="356.00002582506795" y="131.18182977694175"/>
+                </cmmndi:CMMNLabel>
+            </cmmndi:CMMNShape>
+            <cmmndi:CMMNShape id="_f468e68b-9ded-4940-a1ee-4832cb9d97a6" cmmnElementRef="_d4fbcc32-89fe-4e59-9946-75baaf7325f8">
+                <cmmndi:CMMNStyle>
+                    <cmmndi:FillColor red="255" green="255" blue="255"/>
+                    <cmmndi:StrokeColor red="0" green="0" blue="0"/>
+                    <cmmndi:FontColor red="0" green="0" blue="0"/>
+                </cmmndi:CMMNStyle>
+                <dc:Bounds x="389.00002324689586" y="150.18182972058827" width="577.2213001975272" height="250.00000256664526"/>
+                <cmmndi:CMMNLabel triso:defaultBounds="true">
+                    <dc:Bounds height="16" width="534" x="411.00002324689586" y="155.18182972058827"/>
+                </cmmndi:CMMNLabel>
+            </cmmndi:CMMNShape>
+            <cmmndi:CMMNShape id="_6c99e09f-870c-45a9-bc07-0adac06fe5c6" cmmnElementRef="_6783a699-1d10-4e9a-8749-7ac8afce7a70">
+                <cmmndi:CMMNStyle>
+                    <cmmndi:FillColor red="255" green="255" blue="255"/>
+                    <cmmndi:StrokeColor red="0" green="0" blue="0"/>
+                    <cmmndi:FontColor red="0" green="0" blue="0"/>
+                </cmmndi:CMMNStyle>
+                <dc:Bounds x="419.00002330324935" y="237.18183420453292" width="96" height="76.00000000000003"/>
+                <cmmndi:CMMNLabel triso:defaultBounds="true">
+                    <dc:Bounds height="31" width="90" x="422.00002330324935" y="259.68183420453295"/>
+                </cmmndi:CMMNLabel>
+            </cmmndi:CMMNShape>
+            <cmmndi:CMMNShape id="_cc2ddc2f-c98a-4968-8e27-c6190a976f0f" cmmnElementRef="_18093e4c-199a-47e3-b2dc-6de41f90a974">
+                <cmmndi:CMMNStyle>
+                    <cmmndi:FillColor red="255" green="255" blue="255"/>
+                    <cmmndi:StrokeColor red="0" green="0" blue="0"/>
+                    <cmmndi:FontColor red="0" green="0" blue="0"/>
+                </cmmndi:CMMNStyle>
+                <dc:Bounds x="569.000022302975" y="175.18183214634982" width="375.22130118371354" height="201.00000016906048"/>
+                <cmmndi:CMMNLabel triso:defaultBounds="true">
+                    <dc:Bounds height="16" width="332" x="591.000022302975" y="180.18183214634982"/>
+                </cmmndi:CMMNLabel>
+            </cmmndi:CMMNShape>
+            <cmmndi:CMMNShape id="_4bf26513-9ea3-4e9e-b675-49d48cc709a5" cmmnElementRef="_b25f3510-4ed3-442f-b22c-f70bdb515b8d">
+                <cmmndi:CMMNStyle>
+                    <cmmndi:FillColor red="255" green="255" blue="255"/>
+                    <cmmndi:StrokeColor red="0" green="0" blue="0"/>
+                    <cmmndi:FontColor red="0" green="0" blue="0"/>
+                </cmmndi:CMMNStyle>
+                <dc:Bounds x="616.0000312913565" y="207.18184148053734" width="36" height="36"/>
+                <cmmndi:CMMNLabel triso:defaultBounds="true">
+                    <dc:Bounds height="31" width="110" x="579.0000312913565" y="250.18184148053734"/>
+                </cmmndi:CMMNLabel>
+            </cmmndi:CMMNShape>
+            <cmmndi:CMMNShape id="_e7288603-a2bc-4c76-a7c5-b03f95b0d2b6" cmmnElementRef="_7bf76492-d5f4-492c-90b6-1e81a49f83a8">
+                <cmmndi:CMMNStyle>
+                    <cmmndi:FillColor red="255" green="255" blue="255"/>
+                    <cmmndi:StrokeColor red="0" green="0" blue="0"/>
+                    <cmmndi:FontColor red="0" green="0" blue="0"/>
+                </cmmndi:CMMNStyle>
+                <dc:Bounds x="616.0000399697939" y="299.1818279595419" width="36" height="36"/>
+                <cmmndi:CMMNLabel triso:defaultBounds="true">
+                    <dc:Bounds height="31" width="110" x="579.0000399697939" y="342.1818279595419"/>
+                </cmmndi:CMMNLabel>
+            </cmmndi:CMMNShape>
+            <cmmndi:CMMNShape id="_1cae97eb-8c66-4967-af89-b4624f202852" cmmnElementRef="_6f5bb38d-b998-4594-92ff-abd34800ad8d">
+                <cmmndi:CMMNStyle>
+                    <cmmndi:FillColor red="255" green="255" blue="255"/>
+                    <cmmndi:StrokeColor red="0" green="0" blue="0"/>
+                    <cmmndi:FontColor red="0" green="0" blue="0"/>
+                </cmmndi:CMMNStyle>
+                <dc:Bounds x="695.33061135899" y="206.1818395731887" width="118.33882212747221" height="38.000003814697266"/>
+                <cmmndi:CMMNLabel triso:defaultBounds="true">
+                    <dc:Bounds height="31" width="83" x="713.0058051456111" y="210.6818395731887"/>
+                </cmmndi:CMMNLabel>
+            </cmmndi:CMMNShape>
+            <cmmndi:CMMNShape id="_3d5cfcd7-d328-452e-a4c2-6f0860112d8e" cmmnElementRef="_4bc13768-9951-4cd1-8260-291fdeadd411">
+                <cmmndi:CMMNStyle>
+                    <cmmndi:FillColor red="255" green="255" blue="255"/>
+                    <cmmndi:StrokeColor red="0" green="0" blue="0"/>
+                    <cmmndi:FontColor red="0" green="0" blue="0"/>
+                </cmmndi:CMMNStyle>
+                <dc:Bounds x="697.8306212466404" y="298.1818346794" width="113.33882204294207" height="38.000003814697266"/>
+                <cmmndi:CMMNLabel triso:defaultBounds="true">
+                    <dc:Bounds height="31" width="78" x="715.5058150332615" y="302.6818346794"/>
+                </cmmndi:CMMNLabel>
+            </cmmndi:CMMNShape>
+            <cmmndi:CMMNShape cmmnElementRef="_acda2d91-2202-44af-aaae-f93a84c0310e" id="_acda2d91-2202-44af-aaae-f93a84c0310e_di">
+                <cmmndi:CMMNStyle>
+                    <cmmndi:FillColor red="255" green="255" blue="255"/>
+                    <cmmndi:StrokeColor red="0" green="0" blue="0"/>
+                    <cmmndi:FontColor red="0" green="0" blue="0"/>
+                </cmmndi:CMMNStyle>
+                <dc:Bounds x="685.33061135899" y="212.1818237445571" width="20" height="28"/>
+                <cmmndi:CMMNLabel/>
+            </cmmndi:CMMNShape>
+            <cmmndi:CMMNShape cmmnElementRef="_bd72d6e6-87a9-479e-9943-6104f21eacdc" id="_bd72d6e6-87a9-479e-9943-6104f21eacdc_di">
+                <cmmndi:CMMNStyle>
+                    <cmmndi:FillColor red="255" green="255" blue="255"/>
+                    <cmmndi:StrokeColor red="0" green="0" blue="0"/>
+                    <cmmndi:FontColor red="0" green="0" blue="0"/>
+                </cmmndi:CMMNStyle>
+                <dc:Bounds x="687.8306212466404" y="303.18182374455716" width="20" height="28"/>
+                <cmmndi:CMMNLabel/>
+            </cmmndi:CMMNShape>
+            <cmmndi:CMMNShape cmmnElementRef="_04979610-4ab6-424b-9d32-e7f65b837d15" id="_04979610-4ab6-424b-9d32-e7f65b837d15_di">
+                <cmmndi:CMMNStyle>
+                    <cmmndi:FillColor red="255" green="255" blue="255"/>
+                    <cmmndi:StrokeColor red="0" green="0" blue="0"/>
+                    <cmmndi:FontColor red="0" green="0" blue="0"/>
+                </cmmndi:CMMNStyle>
+                <dc:Bounds x="935.1977208741873" y="303.3978100077352" width="20" height="28"/>
+                <cmmndi:CMMNLabel/>
+            </cmmndi:CMMNShape>
+            <cmmndi:CMMNShape cmmnElementRef="_1af661f9-6ce5-4cf1-8313-e8c904ca76e9" id="_1af661f9-6ce5-4cf1-8313-e8c904ca76e9_di">
+                <cmmndi:CMMNStyle>
+                    <cmmndi:FillColor red="255" green="255" blue="255"/>
+                    <cmmndi:StrokeColor red="0" green="0" blue="0"/>
+                    <cmmndi:FontColor red="0" green="0" blue="0"/>
+                </cmmndi:CMMNStyle>
+                <dc:Bounds x="935.1869528769312" y="210.92190093668563" width="20" height="28"/>
+                <cmmndi:CMMNLabel/>
+            </cmmndi:CMMNShape>
+            <cmmndi:CMMNShape cmmnElementRef="_8a38932a-6c65-4369-bace-bcfde4b2f20a" id="_8a38932a-6c65-4369-bace-bcfde4b2f20a_di">
+                <cmmndi:CMMNStyle>
+                    <cmmndi:FillColor red="255" green="255" blue="255"/>
+                    <cmmndi:StrokeColor red="0" green="0" blue="0"/>
+                    <cmmndi:FontColor red="0" green="0" blue="0"/>
+                </cmmndi:CMMNStyle>
+                <dc:Bounds x="558.0000258541987" y="262.1844888120837" width="20" height="28"/>
+                <cmmndi:CMMNLabel/>
+            </cmmndi:CMMNShape>
+            <cmmndi:CMMNShape id="_eb030436-67fa-4089-b33e-db2f32886a97" cmmnElementRef="_40f4ce53-96cd-4f87-a764-c03781c463ef">
+                <cmmndi:CMMNStyle>
+                    <cmmndi:FillColor red="255" green="255" blue="255"/>
+                    <cmmndi:StrokeColor red="0" green="0" blue="0"/>
+                    <cmmndi:FontColor red="0" green="0" blue="0"/>
+                </cmmndi:CMMNStyle>
+                <dc:Bounds x="616.0000399697939" y="446.86679391064865" width="96" height="76"/>
+                <cmmndi:CMMNLabel triso:defaultBounds="true">
+                    <dc:Bounds height="16" width="90" x="619.0000399697939" y="476.86679391064865"/>
+                </cmmndi:CMMNLabel>
+            </cmmndi:CMMNShape>
+            <cmmndi:CMMNShape id="_306d3ffa-dc6c-42e6-bcb7-58eafa241fdb" cmmnElementRef="_2620e8f2-0a80-4cc8-afad-437295e37c82">
+                <cmmndi:CMMNStyle>
+                    <cmmndi:FillColor red="255" green="255" blue="255"/>
+                    <cmmndi:StrokeColor red="0" green="0" blue="0"/>
+                    <cmmndi:FontColor red="0" green="0" blue="0"/>
+                </cmmndi:CMMNStyle>
+                <dc:Bounds x="419.00002920627713" y="446.18189200272275" width="95.99999999999994" height="76"/>
+                <cmmndi:CMMNLabel triso:defaultBounds="true">
+                    <dc:Bounds height="31" width="90" x="422.00002920627713" y="468.68189200272275"/>
+                </cmmndi:CMMNLabel>
+            </cmmndi:CMMNShape>
+            <cmmndi:CMMNShape cmmnElementRef="_46ec549b-f401-4151-a02d-7b5981dce0bd" id="_46ec549b-f401-4151-a02d-7b5981dce0bd_di">
+                <cmmndi:CMMNStyle>
+                    <cmmndi:FillColor red="255" green="255" blue="255"/>
+                    <cmmndi:StrokeColor red="0" green="0" blue="0"/>
+                    <cmmndi:FontColor red="0" green="0" blue="0"/>
+                </cmmndi:CMMNStyle>
+                <dc:Bounds x="605.0000399697939" y="470.866800759039" width="20" height="28"/>
+                <cmmndi:CMMNLabel/>
+            </cmmndi:CMMNShape>
+            <cmmndi:CMMNShape id="_e4d6d0d1-46e1-4357-ba5b-fd96a3e15c4d" cmmnElementRef="_b5bdde7f-756c-47a8-88a3-aee8baa4f2ee">
+                <cmmndi:CMMNStyle>
+                    <cmmndi:FillColor red="255" green="255" blue="255"/>
+                    <cmmndi:StrokeColor red="0" green="0" blue="0"/>
+                    <cmmndi:FontColor red="0" green="0" blue="0"/>
+                </cmmndi:CMMNStyle>
+                <dc:Bounds x="842.8825128043628" y="465.86680541499493" width="101.33882188796997" height="38.000003814697266"/>
+                <cmmndi:CMMNLabel triso:defaultBounds="true">
+                    <dc:Bounds height="31" width="66" x="860.5577065909839" y="470.36680541499493"/>
+                </cmmndi:CMMNLabel>
+            </cmmndi:CMMNShape>
+            <cmmndi:CMMNShape cmmnElementRef="_957e47c5-d5d1-461f-982e-41f763f0c474" id="_957e47c5-d5d1-461f-982e-41f763f0c474_di">
+                <cmmndi:CMMNStyle>
+                    <cmmndi:FillColor red="255" green="255" blue="255"/>
+                    <cmmndi:StrokeColor red="0" green="0" blue="0"/>
+                    <cmmndi:FontColor red="0" green="0" blue="0"/>
+                </cmmndi:CMMNStyle>
+                <dc:Bounds x="832.8825128043628" y="471.8667324964343" width="20" height="28"/>
+                <cmmndi:CMMNLabel/>
+            </cmmndi:CMMNShape>
+            <cmmndi:CMMNShape cmmnElementRef="_dbab2865-1668-4d0d-be31-6ca67f14d044" id="_dbab2865-1668-4d0d-be31-6ca67f14d044_di">
+                <cmmndi:CMMNStyle>
+                    <cmmndi:FillColor red="255" green="255" blue="255"/>
+                    <cmmndi:StrokeColor red="0" green="0" blue="0"/>
+                    <cmmndi:FontColor red="0" green="0" blue="0"/>
+                </cmmndi:CMMNStyle>
+                <dc:Bounds x="457.1866077421486" y="431.1819034461721" width="20" height="28"/>
+                <cmmndi:CMMNLabel/>
+            </cmmndi:CMMNShape>
+            <cmmndi:CMMNShape id="_e377f683-2758-46fe-a428-028a87e9d939" cmmnElementRef="_eeddaecd-c504-436a-848b-877f783161ff">
+                <cmmndi:CMMNStyle>
+                    <cmmndi:FillColor red="255" green="255" blue="255"/>
+                    <cmmndi:StrokeColor red="0" green="0" blue="0"/>
+                    <cmmndi:FontColor red="0" green="0" blue="0"/>
+                </cmmndi:CMMNStyle>
+                <dc:Bounds x="449.1866077421486" y="566" width="36" height="36"/>
+                <cmmndi:CMMNLabel triso:defaultBounds="true">
+                    <dc:Bounds height="31" width="110" x="412.1866077421486" y="609"/>
+                </cmmndi:CMMNLabel>
+            </cmmndi:CMMNShape>
+            <cmmndi:CMMNShape id="_710c0100-d177-4f7b-a907-36a268b04711" cmmnElementRef="_864094b4-376f-43d8-9429-b2de7ab93253">
+                <cmmndi:CMMNStyle>
+                    <cmmndi:FillColor red="255" green="255" blue="255"/>
+                    <cmmndi:StrokeColor red="0" green="0" blue="0"/>
+                    <cmmndi:FontColor red="0" green="0" blue="0"/>
+                </cmmndi:CMMNStyle>
+                <dc:Bounds x="616.0000312913565" y="546" width="96" height="76"/>
+                <cmmndi:CMMNLabel triso:defaultBounds="true">
+                    <dc:Bounds height="31" width="90" x="619.0000312913565" y="568.5"/>
+                </cmmndi:CMMNLabel>
+            </cmmndi:CMMNShape>
+            <cmmndi:CMMNShape cmmnElementRef="_43dcf18c-3820-43b7-b459-b6d6a438ddfb" id="_43dcf18c-3820-43b7-b459-b6d6a438ddfb_di">
+                <cmmndi:CMMNStyle>
+                    <cmmndi:FillColor red="255" green="255" blue="255"/>
+                    <cmmndi:StrokeColor red="0" green="0" blue="0"/>
+                    <cmmndi:FontColor red="0" green="0" blue="0"/>
+                </cmmndi:CMMNStyle>
+                <dc:Bounds x="605.0000312913565" y="570" width="20" height="28"/>
+                <cmmndi:CMMNLabel/>
+            </cmmndi:CMMNShape>
+            <cmmndi:CMMNShape id="_91a4e27b-3440-4c41-a540-7798b2b6ec9f" cmmnElementRef="_cd32fab8-06ce-4fcc-8f49-0fffa6d455e3">
+                <cmmndi:CMMNStyle>
+                    <cmmndi:FillColor red="255" green="255" blue="255"/>
+                    <cmmndi:StrokeColor red="0" green="0" blue="0"/>
+                    <cmmndi:FontColor red="0" green="0" blue="0"/>
+                </cmmndi:CMMNStyle>
+                <dc:Bounds x="842.8825015987186" y="564.9999980926514" width="101.33882188796997" height="38.000003814697266"/>
+                <cmmndi:CMMNLabel triso:defaultBounds="true">
+                    <dc:Bounds height="31" width="66" x="860.5576953853397" y="569.4999980926514"/>
+                </cmmndi:CMMNLabel>
+            </cmmndi:CMMNShape>
+            <cmmndi:CMMNShape cmmnElementRef="_1998b33c-1b6b-40e4-b4db-988c844c4f9f" id="_1998b33c-1b6b-40e4-b4db-988c844c4f9f_di">
+                <cmmndi:CMMNStyle>
+                    <cmmndi:FillColor red="255" green="255" blue="255"/>
+                    <cmmndi:StrokeColor red="0" green="0" blue="0"/>
+                    <cmmndi:FontColor red="0" green="0" blue="0"/>
+                </cmmndi:CMMNStyle>
+                <dc:Bounds x="832.8825015987186" y="570" width="20" height="28"/>
+                <cmmndi:CMMNLabel/>
+            </cmmndi:CMMNShape>
+            <cmmndi:CMMNShape cmmnElementRef="_9fc15c06-ce63-4ef2-b91d-f427493ac916" id="_9fc15c06-ce63-4ef2-b91d-f427493ac916_di">
+                <cmmndi:CMMNStyle>
+                    <cmmndi:FillColor red="255" green="255" blue="255"/>
+                    <cmmndi:StrokeColor red="0" green="0" blue="0"/>
+                    <cmmndi:FontColor red="0" green="0" blue="0"/>
+                </cmmndi:CMMNStyle>
+                <dc:Bounds x="1036.946647578586" y="568.4857496458022" width="20" height="28"/>
+                <cmmndi:CMMNLabel/>
+            </cmmndi:CMMNShape>
+            <cmmndi:CMMNShape cmmnElementRef="_2277f5e7-5141-4fb1-99e5-4e0c1f35efc7" id="_2277f5e7-5141-4fb1-99e5-4e0c1f35efc7_di">
+                <cmmndi:CMMNStyle>
+                    <cmmndi:FillColor red="255" green="255" blue="255"/>
+                    <cmmndi:StrokeColor red="0" green="0" blue="0"/>
+                    <cmmndi:FontColor red="0" green="0" blue="0"/>
+                </cmmndi:CMMNStyle>
+                <dc:Bounds x="1037.0372388536355" y="469.8792048654665" width="20" height="28"/>
+                <cmmndi:CMMNLabel/>
+            </cmmndi:CMMNShape>
+            <cmmndi:CMMNEdge id="_8c78ab94-e1cb-41b8-b369-c8fa360e5cfb" cmmnElementRef="_60fda9d2-aede-4cf6-a22e-e58c850dd288" isStandardEventVisible="true">
+                <cmmndi:CMMNStyle>
+                    <cmmndi:StrokeColor red="0" green="0" blue="0"/>
+                    <cmmndi:FontColor red="0" green="0" blue="0"/>
+                </cmmndi:CMMNStyle>
+                <di:waypoint x="785.1818437995292" y="316.4101093584765"/>
+                <di:waypoint x="936.1977529795139" y="317.38979691704367"/>
+                <cmmndi:CMMNLabel triso:defaultBounds="true" triso:labelPosition="startbottom">
+                    <dc:Bounds height="16" width="110" x="824.1376821478846" y="321.5849803346805"/>
+                </cmmndi:CMMNLabel>
+            </cmmndi:CMMNEdge>
+            <cmmndi:CMMNEdge id="_90521577-5392-447c-9765-5c165cf0e027" cmmnElementRef="_bab1a080-e08d-487a-87cb-6821316fc114" isStandardEventVisible="true">
+                <cmmndi:CMMNStyle>
+                    <cmmndi:StrokeColor red="0" green="0" blue="0"/>
+                    <cmmndi:FontColor red="0" green="0" blue="0"/>
+                </cmmndi:CMMNStyle>
+                <di:waypoint x="813.6694334864623" y="225.1818395731887"/>
+                <di:waypoint x="936.1869564742723" y="224.9245832247425"/>
+                <cmmndi:CMMNLabel triso:defaultBounds="true" triso:labelPosition="startbottom">
+                    <dc:Bounds height="16" width="110" x="826.6694312819915" y="230.17973982635203"/>
+                </cmmndi:CMMNLabel>
+            </cmmndi:CMMNEdge>
+            <cmmndi:CMMNEdge id="_03acaf03-a37d-4c53-bfab-1b46ea8c3b53" cmmnElementRef="_ac50ac23-ecc8-4e71-b22b-af052b732302" isStandardEventVisible="true">
+                <cmmndi:CMMNStyle>
+                    <cmmndi:StrokeColor red="0" green="0" blue="0"/>
+                    <cmmndi:FontColor red="0" green="0" blue="0"/>
+                </cmmndi:CMMNStyle>
+                <di:waypoint x="514.0000233032493" y="275.18183420453295"/>
+                <di:waypoint x="558.0000258541987" y="276.1844888120837"/>
+                <cmmndi:CMMNLabel triso:defaultBounds="true" triso:labelPosition="startbottom">
+                    <dc:Bounds height="16" width="110" x="527.6872638067472" y="280.22028237196014"/>
+                </cmmndi:CMMNLabel>
+            </cmmndi:CMMNEdge>
+            <cmmndi:CMMNEdge id="_336fed95-89b7-4bca-a996-1e892d6b6a61" cmmnElementRef="_a4c421c8-4fe9-48b4-acdc-8ea5d37384aa" isStandardEventVisible="true">
+                <cmmndi:CMMNStyle>
+                    <cmmndi:StrokeColor red="0" green="0" blue="0"/>
+                    <cmmndi:FontColor red="0" green="0" blue="0"/>
+                </cmmndi:CMMNStyle>
+                <di:waypoint x="467.1866077421486" y="400.18183228723353"/>
+                <di:waypoint x="467.1866077421486" y="432.1819034461721"/>
+                <cmmndi:CMMNLabel triso:labelPosition="startbottom"/>
+            </cmmndi:CMMNEdge>
+            <cmmndi:CMMNEdge id="_c2ffe814-7ba2-459d-9ded-84544e512958" cmmnElementRef="_7d799b0d-3322-4ac0-a139-fe3cfe0497a9" isStandardEventVisible="true">
+                <cmmndi:CMMNStyle>
+                    <cmmndi:StrokeColor red="0" green="0" blue="0"/>
+                    <cmmndi:FontColor red="0" green="0" blue="0"/>
+                </cmmndi:CMMNStyle>
+                <di:waypoint x="515.0000292062771" y="484.1818920051337"/>
+                <di:waypoint x="606.0000399697939" y="484.866800759039"/>
+                <cmmndi:CMMNLabel triso:defaultBounds="true" triso:labelPosition="startbottom">
+                    <dc:Bounds height="16" width="110" x="528.0000008836131" y="489.18941826089696"/>
+                </cmmndi:CMMNLabel>
+            </cmmndi:CMMNEdge>
+            <cmmndi:CMMNEdge id="_e8b564a8-f343-42d6-b33a-23b9a791710a" cmmnElementRef="_47446869-ff6c-494d-9d6c-44f6f489af72" isStandardEventVisible="true">
+                <cmmndi:CMMNStyle>
+                    <cmmndi:StrokeColor red="0" green="0" blue="0"/>
+                    <cmmndi:FontColor red="0" green="0" blue="0"/>
+                </cmmndi:CMMNStyle>
+                <di:waypoint x="934.5519248895058" y="484.2255603643949"/>
+                <di:waypoint x="1039.0372388536355" y="483.8792048654665"/>
+                <cmmndi:CMMNLabel triso:defaultBounds="true" triso:labelPosition="startbottom">
+                    <dc:Bounds height="16" width="110" x="956.5311260641536" y="489.1924805843702"/>
+                </cmmndi:CMMNLabel>
+            </cmmndi:CMMNEdge>
+            <cmmndi:CMMNEdge id="_867f3b1b-63b9-4ac6-9d30-eb6ec5ff9593" cmmnElementRef="_0bdbe928-b0dd-45cd-9c91-1f02045650e4" isStandardEventVisible="true">
+                <cmmndi:CMMNStyle>
+                    <cmmndi:StrokeColor red="0" green="0" blue="0"/>
+                    <cmmndi:FontColor red="0" green="0" blue="0"/>
+                </cmmndi:CMMNStyle>
+                <di:waypoint x="652.0000312913565" y="225.13780338148985"/>
+                <di:waypoint x="686.3306121817333" y="226.1805409796656"/>
+                <cmmndi:CMMNLabel triso:defaultBounds="true" triso:labelPosition="startbottom">
+                    <dc:Bounds height="16" width="110" x="664.0000312913565" y="230.13780338148985"/>
+                </cmmndi:CMMNLabel>
+            </cmmndi:CMMNEdge>
+            <cmmndi:CMMNEdge id="_e01a7ed4-8e9c-4c22-bac6-c7961d76237a" cmmnElementRef="_36000cc1-bbcc-4b0d-8919-c0de94628e72" isStandardEventVisible="true">
+                <cmmndi:CMMNStyle>
+                    <cmmndi:StrokeColor red="0" green="0" blue="0"/>
+                    <cmmndi:FontColor red="0" green="0" blue="0"/>
+                </cmmndi:CMMNStyle>
+                <di:waypoint x="651.0000399697939" y="317.1818279595419"/>
+                <di:waypoint x="687.8306212466404" y="317.18182374455716"/>
+                <cmmndi:CMMNLabel triso:defaultBounds="true" triso:labelPosition="startbottom">
+                    <dc:Bounds height="16" width="110" x="664.0000399697939" y="322.1818278450994"/>
+                </cmmndi:CMMNLabel>
+            </cmmndi:CMMNEdge>
+            <cmmndi:CMMNEdge id="_42c36633-bea0-45f0-a9c3-fa24472b317d" cmmnElementRef="_7f382937-8762-407a-bf47-6795b086a5ab" isStandardEventVisible="true">
+                <cmmndi:CMMNStyle>
+                    <cmmndi:StrokeColor red="0" green="0" blue="0"/>
+                    <cmmndi:FontColor red="0" green="0" blue="0"/>
+                </cmmndi:CMMNStyle>
+                <di:waypoint x="711.0000399697939" y="484.86679391064865"/>
+                <di:waypoint x="832.8825128043628" y="485.8667324964343"/>
+                <cmmndi:CMMNLabel triso:defaultBounds="true" triso:labelPosition="startbottom">
+                    <dc:Bounds height="16" width="110" x="724.9522131367099" y="489.88280977601744"/>
+                </cmmndi:CMMNLabel>
+            </cmmndi:CMMNEdge>
+            <cmmndi:CMMNEdge id="_66f273ca-e158-48e8-8fe2-a6ae31be96a1" cmmnElementRef="_d0d94de7-0733-48c8-92c6-698a0273159a" isStandardEventVisible="true">
+                <cmmndi:CMMNStyle>
+                    <cmmndi:StrokeColor red="0" green="0" blue="0"/>
+                    <cmmndi:FontColor red="0" green="0" blue="0"/>
+                </cmmndi:CMMNStyle>
+                <di:waypoint x="711.0000312913565" y="584"/>
+                <di:waypoint x="832.8825015987186" y="584"/>
+                <cmmndi:CMMNLabel triso:defaultBounds="true" triso:labelPosition="startbottom">
+                    <dc:Bounds height="16" width="110" x="724.9522380906328" y="589"/>
+                </cmmndi:CMMNLabel>
+            </cmmndi:CMMNEdge>
+            <cmmndi:CMMNEdge id="_0b691319-79de-42f5-abfc-8d3cb2903190" cmmnElementRef="_b6bfafb2-0a36-413d-8f41-0c47f16672ca" isStandardEventVisible="true">
+                <cmmndi:CMMNStyle>
+                    <cmmndi:StrokeColor red="0" green="0" blue="0"/>
+                    <cmmndi:FontColor red="0" green="0" blue="0"/>
+                </cmmndi:CMMNStyle>
+                <di:waypoint x="944.2213234866886" y="583.9999980926514"/>
+                <di:waypoint x="1038.946647578586" y="582.4857496458022"/>
+                <cmmndi:CMMNLabel triso:defaultBounds="true" triso:labelPosition="startbottom">
+                    <dc:Bounds height="16" width="110" x="956.2213234866886" y="588.9999980926514"/>
+                </cmmndi:CMMNLabel>
+            </cmmndi:CMMNEdge>
+        </cmmndi:CMMNDiagram>
+    </cmmndi:CMMNDI>
+</semantic:definitions>

@@ -1,0 +1,325 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<semantic:definitions xmlns:semantic="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:sdmn="https://www.omg.org/spec/SDMN/" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:dmn="https://www.omg.org/spec/DMN/20240513/MODEL/" xmlns:color="http://www.omg.org/spec/BPMN/non-normative/color/1.0" xmlns:trisobpmn="http://www.trisotech.com/2014/triso/bpmn" xmlns:triso="http://www.trisotech.com/2015/triso/modeling" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:openapi="https://openapis.org/omg/extension/1.0" xmlns:boxedext="https://www.trisotech.com/spec/DMN/20191111/EXT/" xmlns:tc="http://www.omg.org/spec/DMN/20160719/testcase" xmlns:rss="http://purl.org/rss/2.0/" xmlns:trisofeed="http://trisotech.com/feed" xmlns:bpsim="http://www.bpsim.org/schemas/1.0" xmlns:drools="http://www.jboss.org/drools" xmlns:i18n="http://www.omg.org/spec/BPMN/non-normative/extensions/i18n/1.0" xmlns:feel="https://www.omg.org/spec/DMN/20240513/FEEL/"                     xmlns="http://www.trisotech.com/definitions/_72228327-c5d6-4d02-a1e1-1ca041a94a16" id="_72228327-c5d6-4d02-a1e1-1ca041a94a16" targetNamespace="http://www.trisotech.com/definitions/_72228327-c5d6-4d02-a1e1-1ca041a94a16" expressionLanguage="https://www.omg.org/spec/DMN/20240513/FEEL/" typeLanguage="http://www.trisotech.com/2015/triso/modeling/ItemDefinitionType" exporter="Workflow Modeler" exporterVersion="9.6.3" name="Manage Transportation Charges and Cost Settlement" xml:lang="en" triso:translationLanguages="" trisobpmn:logoChoice="Default">
+    <semantic:itemDefinition triso:readOnly="false" isCollection="false" triso:basicType="true" structureRef="feel:string" triso:definitionType="http://www.trisotech.com/2015/triso/modeling/ItemDefinitionType" triso:allowProvidedAuth="false" triso:allowUrlOverride="false" triso:name="triso_string" id="_triso-default-bpmnItemDefinition-string_id"/>
+    <semantic:itemDefinition triso:readOnly="false" isCollection="false" triso:basicType="true" structureRef="feel:Any" triso:definitionType="http://www.trisotech.com/2015/triso/modeling/ItemDefinitionType" triso:allowProvidedAuth="false" triso:allowUrlOverride="false" triso:name="triso_Any" id="_triso-default-bpmnItemDefinition-Any_id"/>
+    <semantic:resource name="Billing Specialist" triso:readOnly="false" triso:allowProvidedAuth="false" triso:allowUrlOverride="false" id="_0d7b5a05-dece-43cf-b923-364b5fbc3dbd"/>
+    <semantic:resource name="Accountant" triso:readOnly="false" triso:allowProvidedAuth="false" triso:allowUrlOverride="false" id="_dbf87257-5162-43d0-99d3-9f531a975320"/>
+    <semantic:collaboration id="_2eb68fba-2523-4c59-8181-188f359db790">
+        <semantic:participant id="_0f69b7f2-bc87-4784-8e88-603db8e5edeb" name="Carrier" triso:readOnly="false"/>
+        <semantic:messageFlow id="_736634b8-ba99-447e-8662-004c557f87a7" name="Invoice" triso:readOnly="false" sourceRef="_0f69b7f2-bc87-4784-8e88-603db8e5edeb" targetRef="_1737fe82-911c-4685-bdfa-fb80d5e17e09"/>
+        <semantic:messageFlow id="_6a6d105b-d799-41c1-be61-5eda0049de22" name="Payment" triso:readOnly="false" sourceRef="_b64c828c-90d6-4862-9569-cd7a9eb834a2" targetRef="_0f69b7f2-bc87-4784-8e88-603db8e5edeb"/>
+    </semantic:collaboration>
+    <semantic:process id="_87a7d30e-ee7f-450b-b804-ba9787943f79" name="Page 1" triso:readOnly="false" triso:collectEnds="true" isClosed="false">
+        <semantic:startEvent id="_1737fe82-911c-4685-bdfa-fb80d5e17e09" name="For each shipment delivered" triso:readOnly="false">
+            <semantic:outgoing>_9fb61853-353d-4eff-b279-d6824f92f9e2</semantic:outgoing>
+        </semantic:startEvent>
+        <semantic:userTask id="_71c7bbcf-40ab-448b-8e0e-86d19e2f8fc4" name="Calculate Charges" triso:readOnly="false" triso:fixedCost="12000" triso:variableCost="36500" implementation="##unspecified">
+            <semantic:extensionElements>
+                <triso:notification id="_529f55d7-8abd-41fe-8645-d13c3d87885c" type="email" mode="others"/>
+                <triso:graphRelations>
+                    <triso:systemRef id="_67226cfa-d35a-4197-866e-dcfd10227480" predicate="where">_80692f26-547f-447c-8a25-879a62cd1417</triso:systemRef>
+                </triso:graphRelations>
+            </semantic:extensionElements>
+            <semantic:incoming>_9fb61853-353d-4eff-b279-d6824f92f9e2</semantic:incoming>
+            <semantic:outgoing>_e7e1f551-cbb9-4c96-b7b2-d5cf5c1b5303</semantic:outgoing>
+            <semantic:ioSpecification>
+                <semantic:dataInput name="Shipment data" triso:readOnly="false" itemSubjectRef="_triso-default-bpmnItemDefinition-string_id" isCollection="false" id="_0aab7d08-486d-4354-81da-ad287fb4a1b3"/>
+                <semantic:dataInput name="Carrier rates" triso:readOnly="false" itemSubjectRef="_triso-default-bpmnItemDefinition-string_id" isCollection="false" id="_a6bfc28c-ccf3-4287-85a0-5801930e7741"/>
+                <semantic:dataOutput name="Calculated charges" triso:readOnly="false" itemSubjectRef="_triso-default-bpmnItemDefinition-string_id" isCollection="false" triso:hidden="false" id="_e04ab767-b206-4291-8e6f-cf113195dc95"/>
+                <semantic:inputSet id="_2976ca2d-0604-4780-9730-ab5d59107918">
+                    <semantic:dataInputRefs>_0aab7d08-486d-4354-81da-ad287fb4a1b3</semantic:dataInputRefs>
+                    <semantic:dataInputRefs>_a6bfc28c-ccf3-4287-85a0-5801930e7741</semantic:dataInputRefs>
+                </semantic:inputSet>
+                <semantic:outputSet id="_d3b0d422-7ec7-4a0c-b274-f9d322bc463c">
+                    <semantic:dataOutputRefs>_e04ab767-b206-4291-8e6f-cf113195dc95</semantic:dataOutputRefs>
+                </semantic:outputSet>
+            </semantic:ioSpecification>
+            <semantic:dataInputAssociation id="_f2853e81-349e-4c17-a771-0c30d651c6ba">
+                <semantic:sourceRef>_a9bf8765-e9ce-4d73-875d-d84a2c4f203f</semantic:sourceRef>
+                <semantic:targetRef>_0aab7d08-486d-4354-81da-ad287fb4a1b3</semantic:targetRef>
+            </semantic:dataInputAssociation>
+            <semantic:dataInputAssociation id="_9f4a739d-ed31-4133-bd8f-d868b3cf6b6c">
+                <semantic:sourceRef>_c6411aac-a7ad-46c0-bb20-92cf9593f66f</semantic:sourceRef>
+                <semantic:targetRef>_a6bfc28c-ccf3-4287-85a0-5801930e7741</semantic:targetRef>
+            </semantic:dataInputAssociation>
+            <semantic:dataOutputAssociation id="_5c0c9b61-3ee5-4205-abcd-fd7b265217f3">
+                <semantic:sourceRef>_e04ab767-b206-4291-8e6f-cf113195dc95</semantic:sourceRef>
+                <semantic:targetRef>_ca8f1df2-4849-4797-bbe5-fb980d4285fe</semantic:targetRef>
+            </semantic:dataOutputAssociation>
+            <semantic:performer id="_9979632d-6e45-4555-9855-59d51979ba69">
+                <semantic:resourceRef>_0d7b5a05-dece-43cf-b923-364b5fbc3dbd</semantic:resourceRef>
+            </semantic:performer>
+        </semantic:userTask>
+        <semantic:userTask id="_e524dcd8-01f4-42e7-ad49-4a009c5125a3" name="Validate Invoice" triso:readOnly="false" triso:fixedCost="11000" triso:variableCost="18250" implementation="##unspecified">
+            <semantic:extensionElements>
+                <triso:graphRelations>
+                    <triso:eventRef id="_246c29fe-aeff-4e18-a961-41d1e94a3f27" predicate="trigger">_00b784f4-dc32-4914-8650-786d6e01fcc7</triso:eventRef>
+                    <triso:systemRef id="_0e42e8b8-6a98-4918-aefb-6190d27a95e0" predicate="where">_80692f26-547f-447c-8a25-879a62cd1417</triso:systemRef>
+                </triso:graphRelations>
+                <triso:notification id="_0930f080-1d4b-45c4-b475-b9fcc00bdc03" type="email" mode="others"/>
+            </semantic:extensionElements>
+            <semantic:incoming>_e7e1f551-cbb9-4c96-b7b2-d5cf5c1b5303</semantic:incoming>
+            <semantic:outgoing>_5c865136-6103-4b64-a1b4-f8ae69f1119a</semantic:outgoing>
+            <semantic:ioSpecification>
+                <semantic:dataInput name="Calculated charges" triso:readOnly="false" itemSubjectRef="_triso-default-bpmnItemDefinition-string_id" isCollection="false" id="_5d5699f8-37a4-40e5-a958-d1a66d717116"/>
+                <semantic:dataOutput name="Invoice" triso:readOnly="false" itemSubjectRef="_triso-default-bpmnItemDefinition-string_id" isCollection="false" triso:hidden="false" id="_b227ce8c-4a19-495c-a3ae-6bd7e5cf8a94"/>
+                <semantic:inputSet id="_1e1ea514-8145-4cf4-90f6-aedae7f86099">
+                    <semantic:dataInputRefs>_5d5699f8-37a4-40e5-a958-d1a66d717116</semantic:dataInputRefs>
+                </semantic:inputSet>
+                <semantic:outputSet id="_532f7301-0ba7-437b-a388-a64c92b11c38">
+                    <semantic:dataOutputRefs>_b227ce8c-4a19-495c-a3ae-6bd7e5cf8a94</semantic:dataOutputRefs>
+                </semantic:outputSet>
+            </semantic:ioSpecification>
+            <semantic:dataInputAssociation id="_ec47a27c-19cd-4ac4-9132-074182697a1a">
+                <semantic:sourceRef>_ca8f1df2-4849-4797-bbe5-fb980d4285fe</semantic:sourceRef>
+                <semantic:targetRef>_5d5699f8-37a4-40e5-a958-d1a66d717116</semantic:targetRef>
+            </semantic:dataInputAssociation>
+            <semantic:dataOutputAssociation id="_e5a2b153-4d82-4f50-a1dc-d1d4eda811f1">
+                <semantic:sourceRef>_b227ce8c-4a19-495c-a3ae-6bd7e5cf8a94</semantic:sourceRef>
+                <semantic:targetRef>_59d7b9bc-5c05-40f7-a21d-d3393fa74125</semantic:targetRef>
+            </semantic:dataOutputAssociation>
+            <semantic:performer id="_aa2419b6-1c9f-463c-a14c-e1228b0efabe">
+                <semantic:resourceRef>_0d7b5a05-dece-43cf-b923-364b5fbc3dbd</semantic:resourceRef>
+            </semantic:performer>
+            <semantic:standardLoopCharacteristics id="_0132ca70-26ef-47ba-9f76-b53758dd7b99" testBefore="false"/>
+        </semantic:userTask>
+        <semantic:userTask id="_67375dd6-9826-435a-a8ba-881968675641" name="Reconcile Costs" triso:readOnly="false" triso:fixedCost="10000" triso:variableCost="18250" implementation="##unspecified">
+            <semantic:extensionElements>
+                <triso:graphRelations>
+                    <triso:eventRef id="_e5cbbdbd-17a4-44b7-9b22-f14592610738" predicate="trigger">_a4cd389c-c5f0-4b02-9d3c-4c93dd1ed084</triso:eventRef>
+                    <triso:actorRef id="_575972f6-faf6-4b7c-92aa-a5a248fa52a9" predicate="consulted">_0d7b5a05-dece-43cf-b923-364b5fbc3dbd</triso:actorRef>
+                    <triso:systemRef id="_1ec5f7c3-c18d-468d-8bf6-8a715fabc3cb" predicate="where">_80692f26-547f-447c-8a25-879a62cd1417</triso:systemRef>
+                </triso:graphRelations>
+                <triso:notification id="_0e79eb66-3f23-4806-8137-fdaca27d05e3" type="email" mode="others"/>
+            </semantic:extensionElements>
+            <semantic:incoming>_953a0fd3-1719-4dbf-a7a1-8729f6e48cdd</semantic:incoming>
+            <semantic:outgoing>_c4ba39b6-525f-4557-8643-52449086d214</semantic:outgoing>
+            <semantic:ioSpecification>
+                <semantic:dataInput name="Invoice" triso:readOnly="false" itemSubjectRef="_triso-default-bpmnItemDefinition-string_id" isCollection="false" id="_db65336c-faa6-4c2b-8b09-56c301bdf112"/>
+                <semantic:dataInput name="Carrier bills" triso:readOnly="false" itemSubjectRef="_triso-default-bpmnItemDefinition-string_id" isCollection="false" id="_11feee56-d485-4c69-8964-ada57ffd251a"/>
+                <semantic:dataOutput name="Reconciled cost reports" triso:readOnly="false" itemSubjectRef="_triso-default-bpmnItemDefinition-string_id" isCollection="false" triso:hidden="false" id="_abe3a1b8-bea1-4698-a052-220402cad409"/>
+                <semantic:inputSet id="_9c562600-d724-47aa-bd8e-5ef019f4014b">
+                    <semantic:dataInputRefs>_db65336c-faa6-4c2b-8b09-56c301bdf112</semantic:dataInputRefs>
+                    <semantic:dataInputRefs>_11feee56-d485-4c69-8964-ada57ffd251a</semantic:dataInputRefs>
+                </semantic:inputSet>
+                <semantic:outputSet id="_5b025d51-e098-4326-a9c7-0cf8fe4930bd">
+                    <semantic:dataOutputRefs>_abe3a1b8-bea1-4698-a052-220402cad409</semantic:dataOutputRefs>
+                </semantic:outputSet>
+            </semantic:ioSpecification>
+            <semantic:dataInputAssociation id="_2959dafa-0439-4237-a688-f8822ca63f0a">
+                <semantic:sourceRef>_59d7b9bc-5c05-40f7-a21d-d3393fa74125</semantic:sourceRef>
+                <semantic:targetRef>_db65336c-faa6-4c2b-8b09-56c301bdf112</semantic:targetRef>
+            </semantic:dataInputAssociation>
+            <semantic:dataInputAssociation id="_0c6cc4d5-53b8-419d-9636-99b409f7b8e3">
+                <semantic:sourceRef>_ce850ead-7364-4682-bc52-e3cc2414c50b</semantic:sourceRef>
+                <semantic:targetRef>_11feee56-d485-4c69-8964-ada57ffd251a</semantic:targetRef>
+            </semantic:dataInputAssociation>
+            <semantic:dataOutputAssociation id="_8dfbbf4e-ccad-45cf-8702-8d3f2109eab2">
+                <semantic:sourceRef>_abe3a1b8-bea1-4698-a052-220402cad409</semantic:sourceRef>
+                <semantic:targetRef>_b19bcb3e-09ca-4af3-be2d-aa2563d2b5ae</semantic:targetRef>
+            </semantic:dataOutputAssociation>
+            <semantic:performer id="_7e456553-cb41-4347-92b3-82922438c2c7">
+                <semantic:resourceRef>_dbf87257-5162-43d0-99d3-9f531a975320</semantic:resourceRef>
+            </semantic:performer>
+        </semantic:userTask>
+        <semantic:userTask id="_5419219c-28b7-4884-ae81-aaf00bdf0758" name="Process Payments" triso:readOnly="false" triso:fixedCost="15000" triso:variableCost="18250" implementation="##unspecified">
+            <semantic:extensionElements>
+                <triso:graphRelations>
+                    <triso:eventRef id="_83500a9c-e4ca-4e24-93dc-ff949432029c" predicate="trigger">_7b4a9e5d-d853-4657-8f1c-2be51b758c58</triso:eventRef>
+                    <triso:actorRef id="_d4389ea5-f749-4ff1-b8eb-b5dd5c562d40" predicate="consulted">_0d7b5a05-dece-43cf-b923-364b5fbc3dbd</triso:actorRef>
+                    <triso:systemRef id="_d713a384-ce2b-49ad-9fd9-ffe5be4b103e" predicate="where">_80692f26-547f-447c-8a25-879a62cd1417</triso:systemRef>
+                </triso:graphRelations>
+                <triso:notification id="_aa3977f3-469a-47e4-af99-ada6395f6f01" type="email" mode="others"/>
+            </semantic:extensionElements>
+            <semantic:incoming>_b455ad9b-a6e2-4c03-97a6-dc38e0bfc6d2</semantic:incoming>
+            <semantic:outgoing>_cfde6fba-054a-4265-b806-052da7a09065</semantic:outgoing>
+            <semantic:ioSpecification>
+                <semantic:dataInput name="Reconciled cost reports" triso:readOnly="false" itemSubjectRef="_triso-default-bpmnItemDefinition-string_id" isCollection="false" id="_56f4a631-b1ba-41d4-b574-ecbe6e7a9636"/>
+                <semantic:dataInput name="Invoice" triso:readOnly="false" itemSubjectRef="_triso-default-bpmnItemDefinition-string_id" isCollection="false" id="_f6ab3165-0a1b-4bf8-acb3-5297af0d621a"/>
+                <semantic:dataOutput name="Payment" triso:readOnly="false" itemSubjectRef="_triso-default-bpmnItemDefinition-string_id" isCollection="false" triso:hidden="false" id="_b5e43173-fd53-4df1-9ba2-640d09067cb0"/>
+                <semantic:inputSet id="_a9bbe6a3-0cc3-4e7e-b7e1-94672705b9c5">
+                    <semantic:dataInputRefs>_56f4a631-b1ba-41d4-b574-ecbe6e7a9636</semantic:dataInputRefs>
+                    <semantic:dataInputRefs>_f6ab3165-0a1b-4bf8-acb3-5297af0d621a</semantic:dataInputRefs>
+                </semantic:inputSet>
+                <semantic:outputSet id="_765492f9-8cf1-446b-9abf-2dff5f32dad6">
+                    <semantic:dataOutputRefs>_b5e43173-fd53-4df1-9ba2-640d09067cb0</semantic:dataOutputRefs>
+                </semantic:outputSet>
+            </semantic:ioSpecification>
+            <semantic:dataInputAssociation id="_4fa493e9-8ed1-43a3-a5cc-114100283abf">
+                <semantic:sourceRef>_b19bcb3e-09ca-4af3-be2d-aa2563d2b5ae</semantic:sourceRef>
+                <semantic:targetRef>_56f4a631-b1ba-41d4-b574-ecbe6e7a9636</semantic:targetRef>
+            </semantic:dataInputAssociation>
+            <semantic:dataInputAssociation id="_697ec785-c878-4556-8e47-cb680e875704">
+                <semantic:sourceRef>_59d7b9bc-5c05-40f7-a21d-d3393fa74125</semantic:sourceRef>
+                <semantic:targetRef>_f6ab3165-0a1b-4bf8-acb3-5297af0d621a</semantic:targetRef>
+            </semantic:dataInputAssociation>
+            <semantic:dataOutputAssociation id="_3709a325-5a4e-472a-9ccc-cadfc9653b05">
+                <semantic:sourceRef>_b5e43173-fd53-4df1-9ba2-640d09067cb0</semantic:sourceRef>
+                <semantic:targetRef>_b5bf71ac-2ab2-48dc-bfe8-898022a13376</semantic:targetRef>
+            </semantic:dataOutputAssociation>
+            <semantic:performer id="_d6ebefc7-29ea-434b-a647-038d1ace8093">
+                <semantic:resourceRef>_dbf87257-5162-43d0-99d3-9f531a975320</semantic:resourceRef>
+            </semantic:performer>
+        </semantic:userTask>
+        <semantic:endEvent id="_b64c828c-90d6-4862-9569-cd7a9eb834a2" name="Payment processed" triso:readOnly="false">
+            <semantic:incoming>_cfde6fba-054a-4265-b806-052da7a09065</semantic:incoming>
+            <semantic:messageEventDefinition id="_1832f592-e305-48dc-98ec-691d74ad7b81"/>
+        </semantic:endEvent>
+        <semantic:dataObject id="_a9bf8765-e9ce-4d73-875d-d84a2c4f203f" name="Shipment data" triso:readOnly="false" itemSubjectRef="_triso-default-bpmnItemDefinition-string_id" isCollection="false"/>
+        <semantic:dataObject id="_c6411aac-a7ad-46c0-bb20-92cf9593f66f" name="Carrier rates" triso:readOnly="false" itemSubjectRef="_triso-default-bpmnItemDefinition-string_id" isCollection="false"/>
+        <semantic:dataObject id="_ca8f1df2-4849-4797-bbe5-fb980d4285fe" name="Calculated charges" triso:readOnly="false" itemSubjectRef="_triso-default-bpmnItemDefinition-string_id" isCollection="false"/>
+        <semantic:dataObject id="_59d7b9bc-5c05-40f7-a21d-d3393fa74125" name="Invoice" triso:readOnly="false" itemSubjectRef="_triso-default-bpmnItemDefinition-string_id" isCollection="false"/>
+        <semantic:dataObject id="_ce850ead-7364-4682-bc52-e3cc2414c50b" name="Carrier bills" triso:readOnly="false" itemSubjectRef="_triso-default-bpmnItemDefinition-string_id" isCollection="false"/>
+        <semantic:dataObject id="_b19bcb3e-09ca-4af3-be2d-aa2563d2b5ae" name="Reconciled cost reports" triso:readOnly="false" itemSubjectRef="_triso-default-bpmnItemDefinition-string_id" isCollection="false"/>
+        <semantic:exclusiveGateway id="_40c750d7-5bae-472a-ae20-3f8c5ff7d2c5" name="Invoice status?" triso:readOnly="false" gatewayDirection="Diverging">
+            <semantic:incoming>_5c865136-6103-4b64-a1b4-f8ae69f1119a</semantic:incoming>
+            <semantic:outgoing>_953a0fd3-1719-4dbf-a7a1-8729f6e48cdd</semantic:outgoing>
+            <semantic:outgoing>_b6f1c4a4-1643-4125-80e2-ab5404d99ea0</semantic:outgoing>
+        </semantic:exclusiveGateway>
+        <semantic:exclusiveGateway id="_e578716e-e150-4fc1-8744-55fd50fae2ef" triso:readOnly="false" gatewayDirection="Converging">
+            <semantic:incoming>_b6f1c4a4-1643-4125-80e2-ab5404d99ea0</semantic:incoming>
+            <semantic:incoming>_c4ba39b6-525f-4557-8643-52449086d214</semantic:incoming>
+            <semantic:outgoing>_b455ad9b-a6e2-4c03-97a6-dc38e0bfc6d2</semantic:outgoing>
+        </semantic:exclusiveGateway>
+        <semantic:dataObject id="_b5bf71ac-2ab2-48dc-bfe8-898022a13376" name="Payment" triso:readOnly="false" itemSubjectRef="_triso-default-bpmnItemDefinition-string_id" isCollection="false"/>
+        <semantic:sequenceFlow id="_9fb61853-353d-4eff-b279-d6824f92f9e2" triso:readOnly="false" sourceRef="_1737fe82-911c-4685-bdfa-fb80d5e17e09" targetRef="_71c7bbcf-40ab-448b-8e0e-86d19e2f8fc4"/>
+        <semantic:sequenceFlow id="_e7e1f551-cbb9-4c96-b7b2-d5cf5c1b5303" triso:readOnly="false" sourceRef="_71c7bbcf-40ab-448b-8e0e-86d19e2f8fc4" targetRef="_e524dcd8-01f4-42e7-ad49-4a009c5125a3"/>
+        <semantic:sequenceFlow id="_cfde6fba-054a-4265-b806-052da7a09065" triso:readOnly="false" sourceRef="_5419219c-28b7-4884-ae81-aaf00bdf0758" targetRef="_b64c828c-90d6-4862-9569-cd7a9eb834a2"/>
+        <semantic:sequenceFlow id="_5c865136-6103-4b64-a1b4-f8ae69f1119a" triso:readOnly="false" sourceRef="_e524dcd8-01f4-42e7-ad49-4a009c5125a3" targetRef="_40c750d7-5bae-472a-ae20-3f8c5ff7d2c5"/>
+        <semantic:sequenceFlow id="_953a0fd3-1719-4dbf-a7a1-8729f6e48cdd" name="Issues" triso:readOnly="false" sourceRef="_40c750d7-5bae-472a-ae20-3f8c5ff7d2c5" targetRef="_67375dd6-9826-435a-a8ba-881968675641"/>
+        <semantic:sequenceFlow id="_b6f1c4a4-1643-4125-80e2-ab5404d99ea0" name="Valid invoice" triso:readOnly="false" sourceRef="_40c750d7-5bae-472a-ae20-3f8c5ff7d2c5" targetRef="_e578716e-e150-4fc1-8744-55fd50fae2ef"/>
+        <semantic:sequenceFlow id="_c4ba39b6-525f-4557-8643-52449086d214" triso:readOnly="false" sourceRef="_67375dd6-9826-435a-a8ba-881968675641" targetRef="_e578716e-e150-4fc1-8744-55fd50fae2ef"/>
+        <semantic:sequenceFlow id="_b455ad9b-a6e2-4c03-97a6-dc38e0bfc6d2" triso:readOnly="false" sourceRef="_e578716e-e150-4fc1-8744-55fd50fae2ef" targetRef="_5419219c-28b7-4884-ae81-aaf00bdf0758"/>
+    </semantic:process>
+    <bpmndi:BPMNDiagram id="_c242862f-c23a-45d0-9f13-ce7fad1ce8dd" name="Page 1">
+        <bpmndi:BPMNPlane bpmnElement="_2eb68fba-2523-4c59-8181-188f359db790" trisobpmn:processRef="_87a7d30e-ee7f-450b-b804-ba9787943f79" id="_c242862f-c23a-45d0-9f13-ce7fad1ce8dd_plane" trisobpmn:diagramWidth="1646" trisobpmn:diagramHeight="1050">
+            <bpmndi:BPMNShape id="_97bdedbb-00ad-4df3-973a-7c8d25bfae25" bpmnElement="_1737fe82-911c-4685-bdfa-fb80d5e17e09" color:background-color="#ffffff" color:border-color="#000000">
+                <dc:Bounds x="217.5" y="472" width="32" height="32"/>
+                <bpmndi:BPMNLabel color:color="#000000" triso:defaultBounds="true" labelStyle="LS_c242862f-c23a-45d0-9f13-ce7fad1ce8dd_0">
+                    <dc:Bounds height="31" width="110" x="178.5" y="513"/>
+                </bpmndi:BPMNLabel>
+            </bpmndi:BPMNShape>
+            <bpmndi:BPMNShape id="_33510f8e-641e-4c5a-a6ab-d14483f1ac19" bpmnElement="_71c7bbcf-40ab-448b-8e0e-86d19e2f8fc4" color:background-color="#ffffff" color:border-color="#000000">
+                <dc:Bounds x="301.5" y="450" width="96" height="76"/>
+                <bpmndi:BPMNLabel color:color="#000000" triso:defaultBounds="true" labelStyle="LS_c242862f-c23a-45d0-9f13-ce7fad1ce8dd_0">
+                    <dc:Bounds height="31" width="90" x="304.5" y="472.5"/>
+                </bpmndi:BPMNLabel>
+            </bpmndi:BPMNShape>
+            <bpmndi:BPMNShape id="_769ce6fb-c52a-434e-8176-cbd5a40cd80d" bpmnElement="_e524dcd8-01f4-42e7-ad49-4a009c5125a3" color:background-color="#ffffff" color:border-color="#000000">
+                <dc:Bounds x="420.5" y="450" width="96" height="76"/>
+                <bpmndi:BPMNLabel color:color="#000000" triso:defaultBounds="true" labelStyle="LS_c242862f-c23a-45d0-9f13-ce7fad1ce8dd_0">
+                    <dc:Bounds height="16" width="90" x="423.5" y="480"/>
+                </bpmndi:BPMNLabel>
+            </bpmndi:BPMNShape>
+            <bpmndi:BPMNShape id="_40ce9317-f885-4ac4-85e3-c6200db8e6c4" bpmnElement="_67375dd6-9826-435a-a8ba-881968675641" color:background-color="#ffffff" color:border-color="#000000">
+                <dc:Bounds x="581" y="544.9878054261208" width="96" height="76"/>
+                <bpmndi:BPMNLabel color:color="#000000" triso:defaultBounds="true" labelStyle="LS_c242862f-c23a-45d0-9f13-ce7fad1ce8dd_0">
+                    <dc:Bounds height="16" width="90" x="584" y="574.9878054261208"/>
+                </bpmndi:BPMNLabel>
+            </bpmndi:BPMNShape>
+            <bpmndi:BPMNShape id="_13268fc3-6c2e-40d7-87e3-570e62ca03c8" bpmnElement="_5419219c-28b7-4884-ae81-aaf00bdf0758" color:background-color="#ffffff" color:border-color="#000000">
+                <dc:Bounds x="752.5" y="450" width="96" height="76"/>
+                <bpmndi:BPMNLabel color:color="#000000" triso:defaultBounds="true" labelStyle="LS_c242862f-c23a-45d0-9f13-ce7fad1ce8dd_0">
+                    <dc:Bounds height="31" width="90" x="755.5" y="472.5"/>
+                </bpmndi:BPMNLabel>
+            </bpmndi:BPMNShape>
+            <bpmndi:BPMNShape id="_8ccc9a95-6878-4144-acee-48ac9f5b1150" bpmnElement="_b64c828c-90d6-4862-9569-cd7a9eb834a2" color:background-color="#ffffff" color:border-color="#000000">
+                <dc:Bounds x="905.5" y="470" width="36" height="36"/>
+                <bpmndi:BPMNLabel color:color="#000000" triso:defaultBounds="true" labelStyle="LS_c242862f-c23a-45d0-9f13-ce7fad1ce8dd_0">
+                    <dc:Bounds height="16" width="110" x="868.5" y="513"/>
+                </bpmndi:BPMNLabel>
+            </bpmndi:BPMNShape>
+            <bpmndi:BPMNShape id="_40f12c81-08db-484f-acf6-21564d66728c" bpmnElement="_0f69b7f2-bc87-4784-8e88-603db8e5edeb" isHorizontal="true" color:background-color="#ffffff" color:border-color="#000000">
+                <dc:Bounds x="175.5" y="228" width="808" height="78"/>
+                <bpmndi:BPMNLabel color:color="#000000" triso:defaultBounds="true" labelStyle="LS_c242862f-c23a-45d0-9f13-ce7fad1ce8dd_0">
+                    <dc:Bounds height="78" width="16" x="175.5" y="228"/>
+                </bpmndi:BPMNLabel>
+            </bpmndi:BPMNShape>
+            <bpmndi:BPMNShape id="_8c7bbf1d-18da-4f14-a5cc-bffc9fb2ceea" bpmnElement="_40c750d7-5bae-472a-ae20-3f8c5ff7d2c5" isMarkerVisible="true" color:background-color="#ffffff" color:border-color="#000000">
+                <dc:Bounds x="536.5" y="467.98780542612076" width="41.57359313964844" height="40.024389147758484"/>
+                <bpmndi:BPMNLabel color:color="#000000" labelStyle="LS_c242862f-c23a-45d0-9f13-ce7fad1ce8dd_0">
+                    <dc:Bounds height="16" width="110" x="515.2867965698242" y="448.01219457387924"/>
+                </bpmndi:BPMNLabel>
+            </bpmndi:BPMNShape>
+            <bpmndi:BPMNShape id="_01afd0ab-b704-4f34-9cda-20b1c2486ea7" bpmnElement="_e578716e-e150-4fc1-8744-55fd50fae2ef" isMarkerVisible="true" color:background-color="#ffffff" color:border-color="#000000">
+                <dc:Bounds x="678.0735931396484" y="467.98780542612076" width="41.57359313964844" height="40.024389147758484"/>
+                <bpmndi:BPMNLabel color:color="#000000" triso:defaultBounds="true" labelStyle="LS_c242862f-c23a-45d0-9f13-ce7fad1ce8dd_0"/>
+            </bpmndi:BPMNShape>
+            <bpmndi:BPMNEdge id="_a5cf4f1b-c488-43de-8294-02c8d18a0da0" color:border-color="#000000" bpmnElement="_9fb61853-353d-4eff-b279-d6824f92f9e2">
+                <di:waypoint x="248.5" y="488"/>
+                <di:waypoint x="301.5" y="488"/>
+                <bpmndi:BPMNLabel color:color="#000000" triso:defaultBounds="true" triso:labelPosition="midbottom" labelStyle="LS_c242862f-c23a-45d0-9f13-ce7fad1ce8dd_0"/>
+            </bpmndi:BPMNEdge>
+            <bpmndi:BPMNEdge id="_6dde4b5e-0dc0-4203-be09-511fbf0f7247" color:border-color="#000000" bpmnElement="_e7e1f551-cbb9-4c96-b7b2-d5cf5c1b5303">
+                <di:waypoint x="396.5" y="488"/>
+                <di:waypoint x="420.5" y="488"/>
+                <bpmndi:BPMNLabel color:color="#000000" triso:defaultBounds="true" triso:labelPosition="midbottom" labelStyle="LS_c242862f-c23a-45d0-9f13-ce7fad1ce8dd_0"/>
+            </bpmndi:BPMNEdge>
+            <bpmndi:BPMNEdge id="_625aede2-f230-45d4-bae6-5943b380eb50" color:border-color="#000000" bpmnElement="_cfde6fba-054a-4265-b806-052da7a09065">
+                <di:waypoint x="847.5" y="488"/>
+                <di:waypoint x="905.5" y="488"/>
+                <bpmndi:BPMNLabel color:color="#000000" triso:defaultBounds="true" triso:labelPosition="midbottom" labelStyle="LS_c242862f-c23a-45d0-9f13-ce7fad1ce8dd_0"/>
+            </bpmndi:BPMNEdge>
+            <bpmndi:BPMNEdge id="_9d866fe7-a2b4-4112-a512-5ad1127974cc" color:border-color="#000000" bpmnElement="_5c865136-6103-4b64-a1b4-f8ae69f1119a">
+                <di:waypoint x="515.5" y="488"/>
+                <di:waypoint x="536.5" y="488"/>
+                <bpmndi:BPMNLabel color:color="#000000" triso:defaultBounds="true" triso:labelPosition="midbottom" labelStyle="LS_c242862f-c23a-45d0-9f13-ce7fad1ce8dd_0"/>
+            </bpmndi:BPMNEdge>
+            <bpmndi:BPMNEdge id="_5bda8580-585f-4db3-bc08-e1b3ffbe8316" color:border-color="#000000" bpmnElement="_953a0fd3-1719-4dbf-a7a1-8729f6e48cdd">
+                <di:waypoint x="557.5" y="508.01219457387924"/>
+                <di:waypoint x="557.5" y="582.9878054261208"/>
+                <di:waypoint x="581" y="582.9878054261208"/>
+                <bpmndi:BPMNLabel color:color="#000000" triso:defaultBounds="true" triso:labelPosition="midbottom" labelStyle="LS_c242862f-c23a-45d0-9f13-ce7fad1ce8dd_0">
+                    <dc:Bounds height="16" width="110" x="502.5" y="587.9878054261208"/>
+                </bpmndi:BPMNLabel>
+            </bpmndi:BPMNEdge>
+            <bpmndi:BPMNEdge id="_08d872ea-0463-42ea-8460-79b7915123a8" color:border-color="#000000" bpmnElement="_b6f1c4a4-1643-4125-80e2-ab5404d99ea0">
+                <di:waypoint x="578.5" y="487.78679555654526"/>
+                <di:waypoint x="678.0735931396484" y="488"/>
+                <bpmndi:BPMNLabel color:color="#000000" triso:defaultBounds="true" triso:labelPosition="midbottom" labelStyle="LS_c242862f-c23a-45d0-9f13-ce7fad1ce8dd_0">
+                    <dc:Bounds height="16" width="110" x="573.2867965698242" y="492.89339777827263"/>
+                </bpmndi:BPMNLabel>
+            </bpmndi:BPMNEdge>
+            <bpmndi:BPMNEdge id="_9ed7c80e-f059-41ad-8764-733ffe0bfbe5" color:border-color="#000000" bpmnElement="_c4ba39b6-525f-4557-8643-52449086d214">
+                <di:waypoint x="676" y="582.9878054261208"/>
+                <di:waypoint x="699.0735931396484" y="582.9878054261208"/>
+                <di:waypoint x="699.0735931396484" y="508.01219457387924"/>
+                <bpmndi:BPMNLabel color:color="#000000" triso:defaultBounds="true" triso:labelPosition="midbottom" labelStyle="LS_c242862f-c23a-45d0-9f13-ce7fad1ce8dd_0"/>
+            </bpmndi:BPMNEdge>
+            <bpmndi:BPMNEdge id="_c0aa3549-97d5-4638-a7c0-f3757e522eaf" color:border-color="#000000" bpmnElement="_736634b8-ba99-447e-8662-004c557f87a7">
+                <di:waypoint x="233.5" y="306"/>
+                <di:waypoint x="233.5" y="472"/>
+                <bpmndi:BPMNLabel color:color="#000000" triso:defaultBounds="true" triso:labelPosition="midbottom" labelStyle="LS_c242862f-c23a-45d0-9f13-ce7fad1ce8dd_0">
+                    <dc:Bounds height="16" width="110" x="178.5" y="394.5"/>
+                </bpmndi:BPMNLabel>
+            </bpmndi:BPMNEdge>
+            <bpmndi:BPMNEdge id="_c28985cf-e08a-486d-a3d4-9d395bb1b03b" color:border-color="#000000" bpmnElement="_b455ad9b-a6e2-4c03-97a6-dc38e0bfc6d2">
+                <di:waypoint x="719.6471862792969" y="487.78679555654526"/>
+                <di:waypoint x="752.5" y="487.99943337710107"/>
+                <bpmndi:BPMNLabel color:color="#000000" triso:defaultBounds="true" triso:labelPosition="midbottom" labelStyle="LS_c242862f-c23a-45d0-9f13-ce7fad1ce8dd_0"/>
+            </bpmndi:BPMNEdge>
+            <bpmndi:BPMNEdge id="_e9b60d95-66f5-49fa-bead-c093afe466f3" color:border-color="#000000" bpmnElement="_6a6d105b-d799-41c1-be61-5eda0049de22">
+                <di:waypoint x="924.5" y="471"/>
+                <di:waypoint x="924.20204778157" y="306"/>
+                <bpmndi:BPMNLabel color:color="#000000" triso:defaultBounds="true" triso:labelPosition="midbottom" labelStyle="LS_c242862f-c23a-45d0-9f13-ce7fad1ce8dd_0">
+                    <dc:Bounds height="16" width="110" x="869.351023890785" y="393.5"/>
+                </bpmndi:BPMNLabel>
+            </bpmndi:BPMNEdge>
+        </bpmndi:BPMNPlane>
+        <bpmndi:BPMNLabelStyle id="LS_c242862f-c23a-45d0-9f13-ce7fad1ce8dd_0">
+            <dc:Font name="arial,helvetica,sans-serif" size="11" isBold="false" isItalic="false" isStrikeThrough="false" isUnderline="false"/>
+        </bpmndi:BPMNLabelStyle>
+    </bpmndi:BPMNDiagram>
+    <semantic:relationship type="trisoExtension">
+        <semantic:extensionElements>
+            <triso:graphObjects>
+                <triso:system name="FreightONE" triso:readOnly="false" id="_80692f26-547f-447c-8a25-879a62cd1417"/>
+                <triso:event name="For each shipment or batch shipment" triso:readOnly="false" id="_00b784f4-dc32-4914-8650-786d6e01fcc7"/>
+                <triso:event name="As invoices are generated" triso:readOnly="false" id="_a4cd389c-c5f0-4b02-9d3c-4c93dd1ed084"/>
+                <triso:event name="Upon receipt of invoice" triso:readOnly="false" id="_7b4a9e5d-d853-4657-8f1c-2be51b758c58"/>
+            </triso:graphObjects>
+        </semantic:extensionElements>
+        <semantic:source>_72228327-c5d6-4d02-a1e1-1ca041a94a16</semantic:source>
+        <semantic:target>_72228327-c5d6-4d02-a1e1-1ca041a94a16</semantic:target>
+    </semantic:relationship>
+</semantic:definitions>
