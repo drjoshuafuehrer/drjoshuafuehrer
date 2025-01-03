@@ -1,0 +1,665 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<semantic:definitions xmlns:semantic="https://www.omg.org/spec/DMN/20240513/MODEL/"  xmlns:sdmn="https://www.omg.org/spec/SDMN/"  xmlns:triso="http://www.trisotech.com/2015/triso/modeling"  xmlns:dmndi="https://www.omg.org/spec/DMN/20230324/DMNDI/"  xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/"  xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/"  xmlns:trisodmn="http://www.trisotech.com/2016/triso/dmn"  xmlns:feel="https://www.omg.org/spec/DMN/20240513/FEEL/"  xmlns:tc="http://www.omg.org/spec/DMN/20160719/testcase"  xmlns:drools="http://www.drools.org/kie/dmn/1.1"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  xmlns:rss="http://purl.org/rss/2.0/"  xmlns:openapi="https://openapis.org/omg/extension/1.0"  xmlns:xsd="http://www.w3.org/2001/XMLSchema"   xmlns:i18n="http://www.omg.org/spec/BPMN/non-normative/extensions/i18n/1.0"  xmlns="http://www.trisotech.com/definitions/_4df549f9-4aed-4f2c-acda-c152cd2cdc79" id="_4df549f9-4aed-4f2c-acda-c152cd2cdc79" name="Determine Item Classification" namespace="http://www.trisotech.com/definitions/_4df549f9-4aed-4f2c-acda-c152cd2cdc79" exporter="Decision Modeler" exporterVersion="9.6.3" xml:lang="en" triso:logoChoice="Default">
+    <semantic:extensionElements/>
+    <semantic:itemDefinition name="ReturnData" label="ReturnData" isCollection="false">
+        <semantic:extensionElements>
+            <triso:reuseLink id="_2e4eee7a-765b-4aa5-9905-3ae7deb908f2" modelName="Logistics Management Entity Model" itemName="ReturnData" modelType="http://www.trisotech.com/graph/1.0/element#BusinessEntityModel" modelURI="http://www.trisotech.com/definitions/_8d80bed6-f1ed-40b5-9803-cdcc68dafa67" mimeType="application/vnd.triso-businessentity+json" uri="http://www.trisotech.com/definitions/_8d80bed6-f1ed-40b5-9803-cdcc68dafa67#ReturnData" graphType="http://www.trisotech.com/graph/1.0/element#ItemDefinition" path="Book - SCM/Logistics Management Entity Model" graphURI="http://trisotech.com/graph/1.0/graph#59f76da1-1155-478f-86b2-ab737b67b7c0"/>
+        </semantic:extensionElements>
+        <semantic:typeRef>ReturnData</semantic:typeRef>
+    </semantic:itemDefinition>
+    <semantic:itemDefinition name="tReturnData" label="tReturnData" isCollection="false">
+        <semantic:extensionElements>
+            <triso:reuseLink id="_a1a59ff3-f579-40ac-b970-eb0a7b73d9c4" modelName="Logistics Management Entity Model" itemName="tReturnData" modelType="http://www.trisotech.com/graph/1.0/element#BusinessEntityModel" modelURI="http://www.trisotech.com/definitions/_8d80bed6-f1ed-40b5-9803-cdcc68dafa67" mimeType="application/vnd.triso-businessentity+json" uri="http://www.trisotech.com/definitions/_8d80bed6-f1ed-40b5-9803-cdcc68dafa67#tReturnData" graphType="http://www.trisotech.com/graph/1.0/element#ItemDefinition" path="Book - SCM/Logistics Management Entity Model" graphURI="http://trisotech.com/graph/1.0/graph#59f76da1-1155-478f-86b2-ab737b67b7c0"/>
+        </semantic:extensionElements>
+        <semantic:typeRef>string</semantic:typeRef>
+        <semantic:allowedValues>
+            <semantic:extensionElements>
+                <triso:constraintDetails id="_d3eb0ee7-0d36-4536-9946-871bc302665e" constraintsType="enumeration">
+                    <triso:value>"New","Used","Damaged","Unusable Components"</triso:value>
+                    <triso:display>"New", "Used", "Damaged", "Unusable Components"</triso:display>
+                    <triso:choices>
+                        <triso:value>"New"</triso:value>
+                        <triso:display>"New"</triso:display>
+                    </triso:choices>
+                    <triso:choices>
+                        <triso:value>"Used"</triso:value>
+                        <triso:display>"Used"</triso:display>
+                    </triso:choices>
+                    <triso:choices>
+                        <triso:value>"Damaged"</triso:value>
+                        <triso:display>"Damaged"</triso:display>
+                    </triso:choices>
+                    <triso:choices>
+                        <triso:value>"Unusable Components"</triso:value>
+                        <triso:display>"Unusable Components"</triso:display>
+                    </triso:choices>
+                </triso:constraintDetails>
+            </semantic:extensionElements>
+            <semantic:text>"New","Used","Damaged","Unusable Components"</semantic:text>
+        </semantic:allowedValues>
+    </semantic:itemDefinition>
+    <semantic:itemDefinition name="tDamage" label="tDamage">
+        <semantic:typeRef>string</semantic:typeRef>
+        <semantic:allowedValues>
+            <semantic:extensionElements>
+                <triso:constraintDetails id="_1b81e84a-abb5-4c01-b37d-a4c85208e246" constraintsType="enumeration">
+                    <triso:value>"None","Minor","Moderate","Major","Any"</triso:value>
+                    <triso:display>"None", "Minor", "Moderate", "Major", "Any"</triso:display>
+                    <triso:choices>
+                        <triso:value>"None"</triso:value>
+                        <triso:display>"None"</triso:display>
+                    </triso:choices>
+                    <triso:choices>
+                        <triso:value>"Minor"</triso:value>
+                        <triso:display>"Minor"</triso:display>
+                    </triso:choices>
+                    <triso:choices>
+                        <triso:value>"Moderate"</triso:value>
+                        <triso:display>"Moderate"</triso:display>
+                    </triso:choices>
+                    <triso:choices>
+                        <triso:value>"Major"</triso:value>
+                        <triso:display>"Major"</triso:display>
+                    </triso:choices>
+                    <triso:choices>
+                        <triso:value>"Any"</triso:value>
+                        <triso:display>"Any"</triso:display>
+                    </triso:choices>
+                </triso:constraintDetails>
+            </semantic:extensionElements>
+            <semantic:text>"None","Minor","Moderate","Major","Any"</semantic:text>
+        </semantic:allowedValues>
+    </semantic:itemDefinition>
+    <semantic:itemDefinition name="Damage" label="Damage" isCollection="false">
+        <semantic:extensionElements>
+            <triso:reuseLink id="_832194b0-b373-47d2-9613-06f64757976d" modelName="Logistics Management Entity Model" itemName="Damage" modelType="http://www.trisotech.com/graph/1.0/element#BusinessEntityModel" modelURI="http://www.trisotech.com/definitions/_8d80bed6-f1ed-40b5-9803-cdcc68dafa67" mimeType="application/vnd.triso-businessentity+json" uri="http://www.trisotech.com/definitions/_8d80bed6-f1ed-40b5-9803-cdcc68dafa67#Damage" graphType="http://www.trisotech.com/graph/1.0/element#ItemDefinition" path="Book - SCM/Logistics Management Entity Model" graphURI="http://trisotech.com/graph/1.0/graph#59f76da1-1155-478f-86b2-ab737b67b7c0"/>
+        </semantic:extensionElements>
+        <semantic:typeRef>tDamage</semantic:typeRef>
+    </semantic:itemDefinition>
+    <semantic:itemDefinition name="tCounterfeitCheck" label="tCounterfeitCheck" isCollection="false">
+        <semantic:extensionElements>
+            <triso:reuseLink id="_b13cb013-1c08-48cb-8730-06ce25d0d73b" modelName="Logistics Management Entity Model" itemName="tCounterfeitCheck" modelType="http://www.trisotech.com/graph/1.0/element#BusinessEntityModel" modelURI="http://www.trisotech.com/definitions/_8d80bed6-f1ed-40b5-9803-cdcc68dafa67" mimeType="application/vnd.triso-businessentity+json" uri="http://www.trisotech.com/definitions/_8d80bed6-f1ed-40b5-9803-cdcc68dafa67#tCounterfeitCheck" graphType="http://www.trisotech.com/graph/1.0/element#ItemDefinition" path="Book - SCM/Logistics Management Entity Model" graphURI="http://trisotech.com/graph/1.0/graph#59f76da1-1155-478f-86b2-ab737b67b7c0"/>
+        </semantic:extensionElements>
+        <semantic:typeRef>string</semantic:typeRef>
+        <semantic:allowedValues>
+            <semantic:extensionElements>
+                <triso:constraintDetails id="_07aab86b-435e-413d-8d2c-93064d10fcbc" constraintsType="enumeration">
+                    <triso:value>"Yes","No"</triso:value>
+                    <triso:display>"Yes", "No"</triso:display>
+                    <triso:choices>
+                        <triso:value>"Yes"</triso:value>
+                        <triso:display>"Yes"</triso:display>
+                    </triso:choices>
+                    <triso:choices>
+                        <triso:value>"No"</triso:value>
+                        <triso:display>"No"</triso:display>
+                    </triso:choices>
+                </triso:constraintDetails>
+            </semantic:extensionElements>
+            <semantic:text>"Yes","No"</semantic:text>
+        </semantic:allowedValues>
+    </semantic:itemDefinition>
+    <semantic:itemDefinition name="CounterfeitCheck" label="CounterfeitCheck">
+        <semantic:typeRef>tCounterfeitCheck</semantic:typeRef>
+    </semantic:itemDefinition>
+    <semantic:itemDefinition name="tClassifyProductCondition" label="tClassifyProductCondition">
+        <semantic:typeRef>string</semantic:typeRef>
+        <semantic:allowedValues triso:allowNull="false">
+            <semantic:extensionElements>
+                <triso:constraintDetails id="_853c627f-ec2c-4fdf-83ed-fd026c82915e" constraintsType="enumeration">
+                    <triso:value>"Resell","Repair","Recycle","Dispose","Counterfeit"</triso:value>
+                    <triso:display>"Resell", "Repair", "Recycle", "Dispose", "Counterfeit"</triso:display>
+                    <triso:choices>
+                        <triso:value>"Resell"</triso:value>
+                        <triso:display>"Resell"</triso:display>
+                    </triso:choices>
+                    <triso:choices>
+                        <triso:value>"Repair"</triso:value>
+                        <triso:display>"Repair"</triso:display>
+                    </triso:choices>
+                    <triso:choices>
+                        <triso:value>"Recycle"</triso:value>
+                        <triso:display>"Recycle"</triso:display>
+                    </triso:choices>
+                    <triso:choices>
+                        <triso:value>"Dispose"</triso:value>
+                        <triso:display>"Dispose"</triso:display>
+                    </triso:choices>
+                    <triso:choices>
+                        <triso:value>"Counterfeit"</triso:value>
+                        <triso:display>"Counterfeit"</triso:display>
+                    </triso:choices>
+                </triso:constraintDetails>
+            </semantic:extensionElements>
+            <semantic:text>"Resell","Repair","Recycle","Dispose","Counterfeit"</semantic:text>
+        </semantic:allowedValues>
+    </semantic:itemDefinition>
+    <semantic:itemDefinition name="tBrandResellPolicy" label="tBrandResellPolicy">
+        <semantic:typeRef>string</semantic:typeRef>
+        <semantic:allowedValues>
+            <semantic:extensionElements>
+                <triso:constraintDetails id="_061bc9b8-ba58-4846-8341-86afdf946f3c" constraintsType="enumeration">
+                    <triso:value>"Yes","No","N/A"</triso:value>
+                    <triso:display>"Yes", "No", "N/A"</triso:display>
+                    <triso:choices>
+                        <triso:value>"Yes"</triso:value>
+                        <triso:display>"Yes"</triso:display>
+                    </triso:choices>
+                    <triso:choices>
+                        <triso:value>"No"</triso:value>
+                        <triso:display>"No"</triso:display>
+                    </triso:choices>
+                    <triso:choices>
+                        <triso:value>"N/A"</triso:value>
+                        <triso:display>"N/A"</triso:display>
+                    </triso:choices>
+                </triso:constraintDetails>
+            </semantic:extensionElements>
+            <semantic:text>"Yes","No","N/A"</semantic:text>
+        </semantic:allowedValues>
+    </semantic:itemDefinition>
+    <semantic:itemDefinition name="BrandResellPolicy" label="BrandResellPolicy" isCollection="false">
+        <semantic:extensionElements>
+            <triso:reuseLink id="_693ac903-2571-464e-b105-9673854098f6" modelName="Logistics Management Entity Model" itemName="BrandResellPolicy" modelType="http://www.trisotech.com/graph/1.0/element#BusinessEntityModel" modelURI="http://www.trisotech.com/definitions/_8d80bed6-f1ed-40b5-9803-cdcc68dafa67" mimeType="application/vnd.triso-businessentity+json" uri="http://www.trisotech.com/definitions/_8d80bed6-f1ed-40b5-9803-cdcc68dafa67#BrandResellPolicy" graphType="http://www.trisotech.com/graph/1.0/element#ItemDefinition" path="Book - SCM/Logistics Management Entity Model" graphURI="http://trisotech.com/graph/1.0/graph#59f76da1-1155-478f-86b2-ab737b67b7c0"/>
+        </semantic:extensionElements>
+        <semantic:typeRef>tBrandResellPolicy</semantic:typeRef>
+    </semantic:itemDefinition>
+    <semantic:itemDefinition name="tDetermineItemClassification" label="tDetermineItemClassification">
+        <semantic:typeRef>string</semantic:typeRef>
+        <semantic:allowedValues>
+            <semantic:extensionElements>
+                <triso:constraintDetails id="_449de9c3-d159-4de2-9127-ea00fb822053" constraintsType="enumeration">
+                    <triso:value>"Resell","Repair","Recycle","Dispose","Contact Brand"</triso:value>
+                    <triso:display>"Resell", "Repair", "Recycle", "Dispose", "Contact Brand"</triso:display>
+                    <triso:choices>
+                        <triso:value>"Resell"</triso:value>
+                        <triso:display>"Resell"</triso:display>
+                    </triso:choices>
+                    <triso:choices>
+                        <triso:value>"Repair"</triso:value>
+                        <triso:display>"Repair"</triso:display>
+                    </triso:choices>
+                    <triso:choices>
+                        <triso:value>"Recycle"</triso:value>
+                        <triso:display>"Recycle"</triso:display>
+                    </triso:choices>
+                    <triso:choices>
+                        <triso:value>"Dispose"</triso:value>
+                        <triso:display>"Dispose"</triso:display>
+                    </triso:choices>
+                    <triso:choices>
+                        <triso:value>"Contact Brand"</triso:value>
+                        <triso:display>"Contact Brand"</triso:display>
+                    </triso:choices>
+                </triso:constraintDetails>
+            </semantic:extensionElements>
+            <semantic:text>"Resell","Repair","Recycle","Dispose","Contact Brand"</semantic:text>
+        </semantic:allowedValues>
+    </semantic:itemDefinition>
+    <semantic:itemDefinition name="Counterfeit_Check" label="Counterfeit Check" isCollection="false">
+        <semantic:extensionElements>
+            <triso:reuseLink id="_ff88a6a6-6c21-447d-915c-592412c11cc0" modelName="Logistics Management Entity Model" itemName="Counterfeit Check" modelType="http://www.trisotech.com/graph/1.0/element#BusinessEntityModel" modelURI="http://www.trisotech.com/definitions/_8d80bed6-f1ed-40b5-9803-cdcc68dafa67" mimeType="application/vnd.triso-businessentity+json" uri="http://www.trisotech.com/definitions/_8d80bed6-f1ed-40b5-9803-cdcc68dafa67#Counterfeit_Check" graphType="http://www.trisotech.com/graph/1.0/element#ItemDefinition" path="Book - SCM/Logistics Management Entity Model" graphURI="http://trisotech.com/graph/1.0/graph#59f76da1-1155-478f-86b2-ab737b67b7c0"/>
+        </semantic:extensionElements>
+        <semantic:typeRef>tCounterfeitCheck</semantic:typeRef>
+    </semantic:itemDefinition>
+    <semantic:decisionService id="_4df549f9-4aed-4f2c-acda-c152cd2cdc79_DS" name="Whole Model Decision Service" triso:dynamicDecisionService="true" triso:wholeModelService="true">
+        <semantic:variable name="Whole Model Decision Service" id="_4df549f9-4aed-4f2c-acda-c152cd2cdc79_DS_VAR" typeRef="Any"/>
+        <semantic:outputDecision href="#_c8c87c6b-b2ab-4816-93d9-af530f7f7526"/>
+        <semantic:encapsulatedDecision href="#_c4b13130-7ab0-49b0-9983-6cc8a9bb3064"/>
+        <semantic:inputData href="#_6cd1c13b-e50c-4c48-93fc-29c74feae80c"/>
+        <semantic:inputData href="#_1aa3664a-c7b7-494f-a8c2-b410479a2628"/>
+        <semantic:inputData href="#_1af1c38d-dff0-4798-af7f-3035e8391da3"/>
+        <semantic:inputData href="#_912c4c6f-e2e3-4cdb-8ad5-1dce4f5a5556"/>
+    </semantic:decisionService>
+    <semantic:decisionService id="_b096c1b0-9b5f-44a0-966d-b4929eea6d7f_DS" name="Diagram Determine Item Classification" triso:dynamicDecisionService="true">
+        <semantic:variable name="Diagram Determine Item Classification" id="_b096c1b0-9b5f-44a0-966d-b4929eea6d7f_DS_VAR" typeRef="Any"/>
+        <semantic:outputDecision href="#_c8c87c6b-b2ab-4816-93d9-af530f7f7526"/>
+        <semantic:encapsulatedDecision href="#_c4b13130-7ab0-49b0-9983-6cc8a9bb3064"/>
+        <semantic:inputData href="#_6cd1c13b-e50c-4c48-93fc-29c74feae80c"/>
+        <semantic:inputData href="#_1aa3664a-c7b7-494f-a8c2-b410479a2628"/>
+        <semantic:inputData href="#_1af1c38d-dff0-4798-af7f-3035e8391da3"/>
+        <semantic:inputData href="#_912c4c6f-e2e3-4cdb-8ad5-1dce4f5a5556"/>
+    </semantic:decisionService>
+    <semantic:decision id="_c4b13130-7ab0-49b0-9983-6cc8a9bb3064" name="Classify Product Condition" triso:readOnly="false">
+        <semantic:variable name="Classify Product Condition" id="_eb5aaef2-d15d-4192-90df-afc9fa6b216c" typeRef="tClassifyProductCondition"/>
+        <semantic:informationRequirement id="_abedf5b8-d343-4a65-b6dc-8937e1bb43b8" triso:readOnly="false">
+            <semantic:requiredInput href="#_6cd1c13b-e50c-4c48-93fc-29c74feae80c"/>
+        </semantic:informationRequirement>
+        <semantic:informationRequirement id="_322d8813-db0a-4ca1-83c9-d25e44847022" triso:readOnly="false">
+            <semantic:requiredInput href="#_1af1c38d-dff0-4798-af7f-3035e8391da3"/>
+        </semantic:informationRequirement>
+        <semantic:informationRequirement id="_0593a8b5-bcea-42e9-904c-83fa72c41458" triso:readOnly="false">
+            <semantic:requiredInput href="#_912c4c6f-e2e3-4cdb-8ad5-1dce4f5a5556"/>
+        </semantic:informationRequirement>
+        <semantic:decisionTable triso:descriptionVisible="false" id="_4ba2f5e8-b37b-4f4a-8d25-488bb28304a1" hitPolicy="FIRST" outputLabel="Classify Product Condition" typeRef="tClassifyProductCondition" triso:expressionId="_e04ef8c7-bea9-473c-a3a8-f935b13b0a74">
+            <semantic:input id="_97beef8c-a445-4bfb-90b7-b3471a682de5" triso:allowNull="true" label="Product Return Data">
+                <semantic:inputExpression typeRef="ReturnData">
+                    <semantic:text>Product Return Data</semantic:text>
+                </semantic:inputExpression>
+            </semantic:input>
+            <semantic:input id="_d4275382-4bc2-4d39-9512-3c2b420507b0" triso:allowNull="true" label="Inspection Results Report">
+                <semantic:inputExpression typeRef="Damage">
+                    <semantic:text>Inspection Results Report</semantic:text>
+                </semantic:inputExpression>
+            </semantic:input>
+            <semantic:input id="_169e1ac3-5007-44f2-954b-4f07553bba1a" triso:allowNull="true" label="Counterfeit Check">
+                <semantic:inputExpression typeRef="CounterfeitCheck">
+                    <semantic:text>Counterfeit Check</semantic:text>
+                </semantic:inputExpression>
+            </semantic:input>
+            <semantic:output id="_f1f351c1-2bcf-4f61-a02f-e0497717fe09" triso:allowNull="true">
+                <semantic:outputValues triso:constraintsType="enumeration">
+                    <semantic:text>"Resell","Repair","Recycle","Dispose","Counterfeit",null</semantic:text>
+                </semantic:outputValues>
+            </semantic:output>
+            <semantic:annotation name="Description"/>
+            <semantic:rule id="_0b5f8dd9-57c1-4c3d-bfa7-213578102e1c">
+                <semantic:inputEntry id="_aa978f70-ff53-4059-9f25-ad8179452c99">
+                    <semantic:text>"New"</semantic:text>
+                </semantic:inputEntry>
+                <semantic:inputEntry id="_fccf48c1-71a6-4dd9-9a17-13daada6713f">
+                    <semantic:text>"None"</semantic:text>
+                </semantic:inputEntry>
+                <semantic:inputEntry id="_fb0b8c18-a616-4ce7-92dc-24c9cfbef29a">
+                    <semantic:text>"No"</semantic:text>
+                </semantic:inputEntry>
+                <semantic:outputEntry id="_a153709b-492c-42f3-b8d0-6332ddc9fafa">
+                    <semantic:text>"Resell"</semantic:text>
+                </semantic:outputEntry>
+                <semantic:annotationEntry>
+                    <semantic:text/>
+                </semantic:annotationEntry>
+            </semantic:rule>
+            <semantic:rule id="_79fd9e60-6580-434e-8906-25f3231fc774">
+                <semantic:inputEntry id="_70053b9e-6c3b-4ea5-b24e-05edde2040c7">
+                    <semantic:text>"New"</semantic:text>
+                </semantic:inputEntry>
+                <semantic:inputEntry id="_38d61745-2677-41fc-8da7-31b38c524c0b">
+                    <semantic:text>"None"</semantic:text>
+                </semantic:inputEntry>
+                <semantic:inputEntry id="_d9410530-d256-4025-91d6-ed07dc5050f4">
+                    <semantic:text>"Yes"</semantic:text>
+                </semantic:inputEntry>
+                <semantic:outputEntry id="_184957ac-b132-46cf-94b3-1d8042f6bd02">
+                    <semantic:text>"Counterfeit"</semantic:text>
+                </semantic:outputEntry>
+                <semantic:annotationEntry>
+                    <semantic:text/>
+                </semantic:annotationEntry>
+            </semantic:rule>
+            <semantic:rule id="_66f13a45-d48b-4918-a363-ba5e558c1063">
+                <semantic:inputEntry id="_b856ce64-e6eb-4242-8df4-ba66feb69ecd">
+                    <semantic:text>"Used"</semantic:text>
+                </semantic:inputEntry>
+                <semantic:inputEntry id="_c2f49e9a-7d7a-49f3-952e-279efe41b1f6">
+                    <semantic:text>"None"</semantic:text>
+                </semantic:inputEntry>
+                <semantic:inputEntry id="_cb50926b-0d96-4443-9090-132cbd9d27cd">
+                    <semantic:text>"No"</semantic:text>
+                </semantic:inputEntry>
+                <semantic:outputEntry id="_d466d52a-fd76-4629-9c08-e62aaa4ae218">
+                    <semantic:text>"Resell"</semantic:text>
+                </semantic:outputEntry>
+                <semantic:annotationEntry>
+                    <semantic:text/>
+                </semantic:annotationEntry>
+            </semantic:rule>
+            <semantic:rule id="_7fa62f19-082b-4de2-ba45-88d76a1204f0">
+                <semantic:inputEntry id="_066609e3-2d1e-4cf3-be50-47f88eefe09f">
+                    <semantic:text>"Used"</semantic:text>
+                </semantic:inputEntry>
+                <semantic:inputEntry id="_187698d3-4585-4ced-9e7b-04a53516e5d7">
+                    <semantic:text>"Minor", "Minor", "Moderate" "Major"</semantic:text>
+                </semantic:inputEntry>
+                <semantic:inputEntry id="_ac8f97bb-649b-4ef4-a4e3-022d758e9150">
+                    <semantic:text>"Yes"</semantic:text>
+                </semantic:inputEntry>
+                <semantic:outputEntry id="_4054e2fe-8b45-48ca-aa09-fbc20238af96">
+                    <semantic:text>"Counterfeit"</semantic:text>
+                </semantic:outputEntry>
+                <semantic:annotationEntry>
+                    <semantic:text/>
+                </semantic:annotationEntry>
+            </semantic:rule>
+            <semantic:rule id="_58566ef2-abe1-4218-b965-08ef849e486a">
+                <semantic:inputEntry id="_719cc975-ac4d-4a21-939a-e61d069e8abf">
+                    <semantic:text>"Used"</semantic:text>
+                </semantic:inputEntry>
+                <semantic:inputEntry id="_7864015b-7e3f-4442-81e7-609099c13855">
+                    <semantic:text>"Minor"</semantic:text>
+                </semantic:inputEntry>
+                <semantic:inputEntry id="_e6e196e1-3391-4d43-ad16-6e92c8050d90">
+                    <semantic:text>"No"</semantic:text>
+                </semantic:inputEntry>
+                <semantic:outputEntry id="_ac22c72f-2f79-4cdc-a651-db276bba6c91">
+                    <semantic:text>"Repair"</semantic:text>
+                </semantic:outputEntry>
+                <semantic:annotationEntry>
+                    <semantic:text/>
+                </semantic:annotationEntry>
+            </semantic:rule>
+            <semantic:rule id="_188e1afd-654d-4fec-a943-91a6f9709ebc">
+                <semantic:inputEntry id="_3e21aa33-c47f-4fed-bf56-916c262dbf8c">
+                    <semantic:text>"Damaged"</semantic:text>
+                </semantic:inputEntry>
+                <semantic:inputEntry id="_d0163d96-aa74-4e8f-ba34-0b59f33bb407">
+                    <semantic:text>"Minor"</semantic:text>
+                </semantic:inputEntry>
+                <semantic:inputEntry id="_7e918f71-e5e0-4eaf-88a8-35c4cb50fbc9">
+                    <semantic:text>"No"</semantic:text>
+                </semantic:inputEntry>
+                <semantic:outputEntry id="_f3a4034d-70c5-42cc-a8c1-453fb414fea5">
+                    <semantic:text>"Repair"</semantic:text>
+                </semantic:outputEntry>
+                <semantic:annotationEntry>
+                    <semantic:text/>
+                </semantic:annotationEntry>
+            </semantic:rule>
+            <semantic:rule id="_dcc4a218-0ac8-48b7-bf11-55f954437730">
+                <semantic:inputEntry id="_88e57177-7b54-47be-8bb9-1757f42c00c2">
+                    <semantic:text>"Damaged"</semantic:text>
+                </semantic:inputEntry>
+                <semantic:inputEntry id="_f29c38ad-619c-43d4-a775-641ff9fff5f7">
+                    <semantic:text>"Moderate"</semantic:text>
+                </semantic:inputEntry>
+                <semantic:inputEntry id="_80294580-7aa9-49bb-b362-8d2d5e98d26d">
+                    <semantic:text>"No"</semantic:text>
+                </semantic:inputEntry>
+                <semantic:outputEntry id="_5bb80d3a-0b71-4720-aa01-f0923fd19ed6">
+                    <semantic:text>"Repair"</semantic:text>
+                </semantic:outputEntry>
+                <semantic:annotationEntry>
+                    <semantic:text/>
+                </semantic:annotationEntry>
+            </semantic:rule>
+            <semantic:rule id="_e85e79ba-f9c9-496f-89bc-ecd3891967c4">
+                <semantic:inputEntry id="_0402a2be-dee4-4546-bc92-0b241e1ab9a3">
+                    <semantic:text>"Damaged"</semantic:text>
+                </semantic:inputEntry>
+                <semantic:inputEntry id="_0ab7b55c-02d7-4da8-9450-dc42dce6d103">
+                    <semantic:text>"Major"</semantic:text>
+                </semantic:inputEntry>
+                <semantic:inputEntry id="_8427dcc1-d1ec-424e-8faf-2798def4ac20">
+                    <semantic:text>"No"</semantic:text>
+                </semantic:inputEntry>
+                <semantic:outputEntry id="_cc476d99-c351-4277-8604-2577139ba776">
+                    <semantic:text>"Recycle"</semantic:text>
+                </semantic:outputEntry>
+                <semantic:annotationEntry>
+                    <semantic:text/>
+                </semantic:annotationEntry>
+            </semantic:rule>
+            <semantic:rule id="_83bb41c3-5d86-4947-b585-602f8d52c863">
+                <semantic:inputEntry id="_7f911e5a-9320-4e52-86e8-442308eda4e0">
+                    <semantic:text>"Damaged"</semantic:text>
+                </semantic:inputEntry>
+                <semantic:inputEntry id="_d5034fec-2eaf-4573-81cd-03ed1d65eab4">
+                    <semantic:text>"Minor", "Minor", "Moderate" "Major"</semantic:text>
+                </semantic:inputEntry>
+                <semantic:inputEntry id="_0734f0de-4cf3-4ba3-99b0-e7fd7408ed9d">
+                    <semantic:text>"Yes"</semantic:text>
+                </semantic:inputEntry>
+                <semantic:outputEntry id="_fab865eb-4730-41e6-8539-0ebd9fb361fe">
+                    <semantic:text>"Counterfeit"</semantic:text>
+                </semantic:outputEntry>
+                <semantic:annotationEntry>
+                    <semantic:text/>
+                </semantic:annotationEntry>
+            </semantic:rule>
+            <semantic:rule id="_96f687c6-9d34-47fd-a29c-d98ecc39dff0">
+                <semantic:inputEntry id="_8d41ae7d-f1ed-490b-8560-cde74d16537d">
+                    <semantic:text>"Unusable Components"</semantic:text>
+                </semantic:inputEntry>
+                <semantic:inputEntry id="_1d07ceee-72fc-46e0-9ff5-966500afd96a">
+                    <semantic:text>"Major"</semantic:text>
+                </semantic:inputEntry>
+                <semantic:inputEntry id="_5088f1de-a7be-421e-9db4-86073eb95a77">
+                    <semantic:text>"No"</semantic:text>
+                </semantic:inputEntry>
+                <semantic:outputEntry id="_8989d324-8a52-4ed0-937f-2f09518b68c2">
+                    <semantic:text>"Dispose"</semantic:text>
+                </semantic:outputEntry>
+                <semantic:annotationEntry>
+                    <semantic:text/>
+                </semantic:annotationEntry>
+            </semantic:rule>
+        </semantic:decisionTable>
+    </semantic:decision>
+    <semantic:knowledgeSource id="_367871b5-ebac-4ca9-b072-20697a0536b5" name="Brand-Specific Return Instructions" triso:readOnly="false">
+        <semantic:authorityRequirement id="_f703d611-069e-4d0c-b631-22286a394a18" triso:readOnly="false">
+            <semantic:requiredInput href="#_1aa3664a-c7b7-494f-a8c2-b410479a2628"/>
+        </semantic:authorityRequirement>
+    </semantic:knowledgeSource>
+    <semantic:knowledgeSource id="_72692fef-233e-43c5-822a-37a29b95ffec" name="Counterfeit Detection Protocols" triso:readOnly="false">
+        <semantic:description>&lt;p&gt;Guidelines on how to assess products for repair or recycling, including criteria for determining repair feasibility and recycling protocols.&lt;/p&gt;</semantic:description>
+        <semantic:authorityRequirement id="_abe11689-2b4b-44a5-82e8-dc0b726627fc" triso:readOnly="false">
+            <semantic:requiredInput href="#_1af1c38d-dff0-4798-af7f-3035e8391da3"/>
+        </semantic:authorityRequirement>
+    </semantic:knowledgeSource>
+    <semantic:decision id="_c8c87c6b-b2ab-4816-93d9-af530f7f7526" name="Determine Item Classification" triso:readOnly="false">
+        <semantic:variable name="Determine Item Classification" id="_0932185a-a42a-4430-a265-7f6ca8c5519c" typeRef="tDetermineItemClassification"/>
+        <semantic:informationRequirement id="_5ab9c0f5-62cc-4d2d-b769-710967433468" triso:readOnly="false">
+            <semantic:requiredDecision href="#_c4b13130-7ab0-49b0-9983-6cc8a9bb3064"/>
+        </semantic:informationRequirement>
+        <semantic:informationRequirement id="_b6a4239a-a86b-4ca1-bbb5-8c98dd72c903" triso:readOnly="false">
+            <semantic:requiredInput href="#_1aa3664a-c7b7-494f-a8c2-b410479a2628"/>
+        </semantic:informationRequirement>
+        <semantic:decisionTable triso:descriptionVisible="false" id="_66bce386-a862-43c5-ab9b-31fd0c96b570" hitPolicy="UNIQUE" outputLabel="Determine Item Classification" typeRef="tDetermineItemClassification" triso:expressionId="_8d2bf86e-b27a-447b-8eba-8aaf0360facf">
+            <semantic:input id="_42d59c8a-63cf-45a2-814f-b83c3e6f830d" label="Classify Product Condition">
+                <semantic:inputExpression typeRef="tClassifyProductCondition">
+                    <semantic:text>Classify Product Condition</semantic:text>
+                </semantic:inputExpression>
+                <semantic:inputValues triso:constraintsType="enumeration">
+                    <semantic:text>"Resell","Repair","Recycle","Dispose","Counterfeit"</semantic:text>
+                </semantic:inputValues>
+            </semantic:input>
+            <semantic:input id="_1aebb0f2-368d-41f4-9c7a-dae96f8c348c" triso:allowNull="true" label="Brand Policies">
+                <semantic:inputExpression typeRef="BrandResellPolicy">
+                    <semantic:text>Brand Policies</semantic:text>
+                </semantic:inputExpression>
+            </semantic:input>
+            <semantic:output id="_b8c7af58-28cb-4a6c-ba9a-0987c4d76b2d" triso:allowNull="true">
+                <semantic:outputValues triso:constraintsType="enumeration">
+                    <semantic:text>"Resell","Repair","Recycle","Dispose","Contact Brand",null</semantic:text>
+                </semantic:outputValues>
+            </semantic:output>
+            <semantic:annotation name="Description"/>
+            <semantic:rule id="_a69771d2-9313-4f3f-b2e6-678ccceaa4d3">
+                <semantic:inputEntry id="_ed93eddf-1ebc-4586-a881-ac086bf01750">
+                    <semantic:text>"Resell"</semantic:text>
+                </semantic:inputEntry>
+                <semantic:inputEntry id="_3b10562e-f9d4-4e0a-94bd-3820f1ac6797">
+                    <semantic:text>"Yes"</semantic:text>
+                </semantic:inputEntry>
+                <semantic:outputEntry id="_56007b66-b959-4392-b314-fe936ca46c8b">
+                    <semantic:text>"Resell"</semantic:text>
+                </semantic:outputEntry>
+                <semantic:annotationEntry>
+                    <semantic:text/>
+                </semantic:annotationEntry>
+            </semantic:rule>
+            <semantic:rule id="_5c87d071-52bf-4182-a08a-de25a47dad41">
+                <semantic:inputEntry id="_88acd287-b8de-44e7-a3bd-c17210771892">
+                    <semantic:text>"Resell"</semantic:text>
+                </semantic:inputEntry>
+                <semantic:inputEntry id="_7aada7ef-7a26-4fb1-ba7b-9c0d9529e652">
+                    <semantic:text>"No"</semantic:text>
+                </semantic:inputEntry>
+                <semantic:outputEntry id="_5b0e9584-a370-4b36-9114-8222a6858cfd">
+                    <semantic:text>"Recycle"</semantic:text>
+                </semantic:outputEntry>
+                <semantic:annotationEntry>
+                    <semantic:text/>
+                </semantic:annotationEntry>
+            </semantic:rule>
+            <semantic:rule id="_ed32d9d9-ba92-44d4-8b9e-fc064685d364">
+                <semantic:inputEntry id="_dc306511-cb8f-454e-b8fb-06869be8524a">
+                    <semantic:text>"Repair"</semantic:text>
+                </semantic:inputEntry>
+                <semantic:inputEntry id="_8ce2c298-9f48-4817-82b8-19af964fe534">
+                    <semantic:text>"Yes"</semantic:text>
+                </semantic:inputEntry>
+                <semantic:outputEntry id="_59b073ce-39d5-4fa0-ae8a-03a3df8ecbdf">
+                    <semantic:text>"Repair"</semantic:text>
+                </semantic:outputEntry>
+                <semantic:annotationEntry>
+                    <semantic:text/>
+                </semantic:annotationEntry>
+            </semantic:rule>
+            <semantic:rule id="_27ad9faf-3c31-4877-9863-9fae44e863ba">
+                <semantic:inputEntry id="_4560f9c3-dc7e-4cc9-87db-8a68dd0ccee1">
+                    <semantic:text>"Repair"</semantic:text>
+                </semantic:inputEntry>
+                <semantic:inputEntry id="_5cec9cd3-5f32-4883-a068-978c7f715468">
+                    <semantic:text>"No"</semantic:text>
+                </semantic:inputEntry>
+                <semantic:outputEntry id="_7bcbe02a-662a-42fc-abe6-b64d01132d05">
+                    <semantic:text>"Recycle"</semantic:text>
+                </semantic:outputEntry>
+                <semantic:annotationEntry>
+                    <semantic:text/>
+                </semantic:annotationEntry>
+            </semantic:rule>
+            <semantic:rule id="_7cc00fae-9ae0-4a3e-9816-65b3cd237bfd">
+                <semantic:inputEntry id="_11a5b41c-2c87-47cc-ba13-9e3381e55277">
+                    <semantic:text>"Recycle"</semantic:text>
+                </semantic:inputEntry>
+                <semantic:inputEntry id="_8f48b8ee-0061-465e-9b69-108a9041c81f">
+                    <semantic:text>"No"</semantic:text>
+                </semantic:inputEntry>
+                <semantic:outputEntry id="_9e8b5501-1c6c-478f-85d7-e06eeb7add8b">
+                    <semantic:text>"Recycle"</semantic:text>
+                </semantic:outputEntry>
+                <semantic:annotationEntry>
+                    <semantic:text/>
+                </semantic:annotationEntry>
+            </semantic:rule>
+            <semantic:rule id="_6c389a4d-e69e-43b3-81d4-0d53678b1800">
+                <semantic:inputEntry id="_c1f82d9f-9154-426b-94bf-766c15666171">
+                    <semantic:text>"Dispose"</semantic:text>
+                </semantic:inputEntry>
+                <semantic:inputEntry id="_35e78ff4-2d5f-46d1-9af5-0883a88d2e6c">
+                    <semantic:text>"No"</semantic:text>
+                </semantic:inputEntry>
+                <semantic:outputEntry id="_f48afb2b-2af5-4109-ba7d-eda1faedaba0">
+                    <semantic:text>"Dispose"</semantic:text>
+                </semantic:outputEntry>
+                <semantic:annotationEntry>
+                    <semantic:text/>
+                </semantic:annotationEntry>
+            </semantic:rule>
+            <semantic:rule id="_ad1a369d-039c-4702-811d-97f0acdff048">
+                <semantic:inputEntry id="_8d57e794-4b3a-4191-a9b9-20aa8a3994a1">
+                    <semantic:text>"Counterfeit"</semantic:text>
+                </semantic:inputEntry>
+                <semantic:inputEntry id="_fcb060d9-f703-4c85-b46d-2da22f902a0f">
+                    <semantic:text>"N/A"</semantic:text>
+                </semantic:inputEntry>
+                <semantic:outputEntry id="_e70445c1-2930-47b7-b90a-e5c4a1a355b1">
+                    <semantic:text>"Contact Brand"</semantic:text>
+                </semantic:outputEntry>
+                <semantic:annotationEntry>
+                    <semantic:text/>
+                </semantic:annotationEntry>
+            </semantic:rule>
+        </semantic:decisionTable>
+    </semantic:decision>
+    <semantic:inputData id="_6cd1c13b-e50c-4c48-93fc-29c74feae80c" name="Inspection Results Report" triso:readOnly="false">
+        <semantic:extensionElements>
+            <triso:reuseLink id="_6eb647c4-6a91-4607-bc23-9a4f6db44148" modelName="Logistics Management Entity Model" itemName="Inspection Results Report" modelType="http://www.trisotech.com/graph/1.0/element#BusinessEntityModel" modelURI="http://www.trisotech.com/definitions/_8d80bed6-f1ed-40b5-9803-cdcc68dafa67" mimeType="application/vnd.triso-businessentity+json" uri="http://www.trisotech.com/definitions/_8d80bed6-f1ed-40b5-9803-cdcc68dafa67#_e6e2a2f9-cb16-4db7-94a8-c9a4c72f1663" graphType="http://www.trisotech.com/graph/1.0/element#Term" path="Book - SCM/Logistics Management Entity Model" graphURI="http://trisotech.com/graph/1.0/graph#59f76da1-1155-478f-86b2-ab737b67b7c0"/>
+        </semantic:extensionElements>
+        <semantic:variable name="Inspection Results Report" id="_b5205f02-cb94-4f94-989c-4df4db086442" typeRef="Damage"/>
+    </semantic:inputData>
+    <semantic:inputData id="_1aa3664a-c7b7-494f-a8c2-b410479a2628" name="Brand Policies" triso:readOnly="false">
+        <semantic:extensionElements>
+            <triso:reuseLink id="_f92faa5b-0161-49f3-b768-a4c3343a7904" modelName="Logistics Management Entity Model" itemName="Brand Policies" modelType="http://www.trisotech.com/graph/1.0/element#BusinessEntityModel" modelURI="http://www.trisotech.com/definitions/_8d80bed6-f1ed-40b5-9803-cdcc68dafa67" mimeType="application/vnd.triso-businessentity+json" uri="http://www.trisotech.com/definitions/_8d80bed6-f1ed-40b5-9803-cdcc68dafa67#_0fe1d171-8a37-44e5-9c2e-423c5e45ceeb" graphType="http://www.trisotech.com/graph/1.0/element#Term" path="Book - SCM/Logistics Management Entity Model" graphURI="http://trisotech.com/graph/1.0/graph#59f76da1-1155-478f-86b2-ab737b67b7c0"/>
+        </semantic:extensionElements>
+        <semantic:variable name="Brand Policies" id="_d295c124-aa91-4918-ba77-af6af285819c" typeRef="BrandResellPolicy"/>
+    </semantic:inputData>
+    <semantic:inputData id="_1af1c38d-dff0-4798-af7f-3035e8391da3" name="Counterfeit Check" triso:readOnly="false">
+        <semantic:extensionElements>
+            <triso:reuseLink id="_afbb43f2-4c4c-4933-863b-aef4468886e7" modelName="Logistics Management Entity Model" itemName="Counterfeit Check" modelType="http://www.trisotech.com/graph/1.0/element#BusinessEntityModel" modelURI="http://www.trisotech.com/definitions/_8d80bed6-f1ed-40b5-9803-cdcc68dafa67" mimeType="application/vnd.triso-businessentity+json" uri="http://www.trisotech.com/definitions/_8d80bed6-f1ed-40b5-9803-cdcc68dafa67#_7cd59c44-3366-449a-881c-a02817b92cae" graphType="http://www.trisotech.com/graph/1.0/element#Term" path="Book - SCM/Logistics Management Entity Model" graphURI="http://trisotech.com/graph/1.0/graph#59f76da1-1155-478f-86b2-ab737b67b7c0"/>
+        </semantic:extensionElements>
+        <semantic:variable name="Counterfeit Check" id="_64e7fcab-93cb-44c3-b8e3-6b41df9de703" typeRef="Counterfeit_Check"/>
+    </semantic:inputData>
+    <semantic:inputData id="_912c4c6f-e2e3-4cdb-8ad5-1dce4f5a5556" name="Product Return Data" triso:readOnly="false">
+        <semantic:extensionElements>
+            <triso:reuseLink id="_1b9645ab-8e49-4537-8b19-49777f0f39ce" modelName="Logistics Management Entity Model" itemName="Product Return Data" modelType="http://www.trisotech.com/graph/1.0/element#BusinessEntityModel" modelURI="http://www.trisotech.com/definitions/_8d80bed6-f1ed-40b5-9803-cdcc68dafa67" mimeType="application/vnd.triso-businessentity+json" uri="http://www.trisotech.com/definitions/_8d80bed6-f1ed-40b5-9803-cdcc68dafa67#_f8b69083-c4a4-492e-ba3d-726e12a018fa" graphType="http://www.trisotech.com/graph/1.0/element#Term" path="Book - SCM/Logistics Management Entity Model" graphURI="http://trisotech.com/graph/1.0/graph#59f76da1-1155-478f-86b2-ab737b67b7c0"/>
+        </semantic:extensionElements>
+        <semantic:variable name="Product Return Data" id="_2f4a5efb-dd88-4524-b412-ff531474f93b" typeRef="tReturnData"/>
+    </semantic:inputData>
+    <dmndi:DMNDI>
+        <dmndi:DMNDiagram id="_b096c1b0-9b5f-44a0-966d-b4929eea6d7f" triso:modelElementRef="_b5e88125-7637-4f55-89f1-1ea4dd5c286b" name="Determine Item Classification">
+            <di:extension/>
+            <dmndi:Size height="1050" width="1558.7411708831787"/>
+            <dmndi:DMNShape id="_f0139187-4d47-46d9-9191-0414218ecd70" dmnElementRef="_c4b13130-7ab0-49b0-9983-6cc8a9bb3064">
+                <dc:Bounds x="521.7222054008811" y="364.22220538059906" width="153" height="60"/>
+                <dmndi:DMNLabel sharedStyle="LS_4df549f9-4aed-4f2c-acda-c152cd2cdc79_0" trisodmn:defaultBounds="true"/>
+            </dmndi:DMNShape>
+            <dmndi:DMNShape id="_f9cc808b-b87e-4dae-886c-02c7690e796d" dmnElementRef="_367871b5-ebac-4ca9-b072-20697a0536b5">
+                <dc:Bounds x="914.7221995447247" y="231.24353038172615" width="100" height="69.95735931396484"/>
+                <dmndi:DMNLabel sharedStyle="LS_4df549f9-4aed-4f2c-acda-c152cd2cdc79_0" trisodmn:defaultBounds="true"/>
+            </dmndi:DMNShape>
+            <dmndi:DMNShape id="_f0251870-2173-4294-91f1-be85273495c5" dmnElementRef="_72692fef-233e-43c5-822a-37a29b95ffec">
+                <dc:Bounds x="190.22221098509115" y="359.2435230470438" width="99.99999999999997" height="69.95735931396484"/>
+                <dmndi:DMNLabel sharedStyle="LS_4df549f9-4aed-4f2c-acda-c152cd2cdc79_0" trisodmn:defaultBounds="true"/>
+            </dmndi:DMNShape>
+            <dmndi:DMNShape id="_1589dc54-75cc-47b4-8a0f-97f634538353" dmnElementRef="_c8c87c6b-b2ab-4816-93d9-af530f7f7526">
+                <dc:Bounds x="521.7221975613561" y="236.22221176160716" width="153" height="59.99999999999997"/>
+                <dmndi:DMNLabel sharedStyle="LS_4df549f9-4aed-4f2c-acda-c152cd2cdc79_0" trisodmn:defaultBounds="true"/>
+            </dmndi:DMNShape>
+            <dmndi:DMNShape id="_acd97336-c44a-44cb-890f-de9d87f3c383" dmnElementRef="_6cd1c13b-e50c-4c48-93fc-29c74feae80c">
+                <dc:Bounds x="757.2588291168213" y="364.22219885223495" width="135.48234176635742" height="60.00000762939453"/>
+                <dmndi:DMNLabel sharedStyle="LS_4df549f9-4aed-4f2c-acda-c152cd2cdc79_0" trisodmn:defaultBounds="true"/>
+            </dmndi:DMNShape>
+            <dmndi:DMNShape id="_cfc07ccf-d6c8-4824-881c-7aa01dd237c9" dmnElementRef="_1aa3664a-c7b7-494f-a8c2-b410479a2628">
+                <dc:Bounds x="739.2588291168213" y="236.2222062240113" width="135.48234176635742" height="60.00000762939453"/>
+                <dmndi:DMNLabel sharedStyle="LS_4df549f9-4aed-4f2c-acda-c152cd2cdc79_0" trisodmn:defaultBounds="true"/>
+            </dmndi:DMNShape>
+            <dmndi:DMNShape id="_41fd2999-d98b-4c9d-9a08-f20642b375b1" dmnElementRef="_1af1c38d-dff0-4798-af7f-3035e8391da3">
+                <dc:Bounds x="343.2588291168213" y="364.2222015659018" width="135.48234176635742" height="60.00000762939453"/>
+                <dmndi:DMNLabel sharedStyle="LS_4df549f9-4aed-4f2c-acda-c152cd2cdc79_0" trisodmn:defaultBounds="true"/>
+            </dmndi:DMNShape>
+            <dmndi:DMNShape id="_cacd4d27-90ae-4c9c-8745-9f30cdc2ee26" dmnElementRef="_912c4c6f-e2e3-4cdb-8ad5-1dce4f5a5556">
+                <dc:Bounds x="530.4810266781774" y="494.99999618530273" width="135.48234176635742" height="60.00000762939453"/>
+                <dmndi:DMNLabel sharedStyle="LS_4df549f9-4aed-4f2c-acda-c152cd2cdc79_0" trisodmn:defaultBounds="true"/>
+            </dmndi:DMNShape>
+            <dmndi:DMNEdge id="_80f38dc4-f9f1-476f-890b-32fd137d1bbd" dmnElementRef="_5ab9c0f5-62cc-4d2d-b769-710967433468">
+                <di:waypoint x="598.2222054008811" y="364.22220538059906"/>
+                <di:waypoint x="598.2221975613561" y="296.2222117616071"/>
+                <dmndi:DMNLabel sharedStyle="LS_4df549f9-4aed-4f2c-acda-c152cd2cdc79_0"/>
+            </dmndi:DMNEdge>
+            <dmndi:DMNEdge id="_f4ac0db5-fccc-4ce6-8763-bcf085a4b079" dmnElementRef="_abedf5b8-d343-4a65-b6dc-8937e1bb43b8">
+                <di:waypoint x="757.4968013763428" y="394.22219885223495"/>
+                <di:waypoint x="674.7222054008811" y="394.22220538059906"/>
+                <dmndi:DMNLabel sharedStyle="LS_4df549f9-4aed-4f2c-acda-c152cd2cdc79_0"/>
+            </dmndi:DMNEdge>
+            <dmndi:DMNEdge id="_aeb45fef-c435-4049-a1e2-26801b4daad4" dmnElementRef="_f703d611-069e-4d0c-b631-22286a394a18">
+                <di:waypoint x="874.7411708831787" y="266.2222062240113"/>
+                <di:waypoint x="914.7221995447247" y="265.6435303817261"/>
+                <dmndi:DMNLabel sharedStyle="LS_4df549f9-4aed-4f2c-acda-c152cd2cdc79_0"/>
+            </dmndi:DMNEdge>
+            <dmndi:DMNEdge id="_be9d3b2e-7d69-4595-8222-02c63e7a093f" dmnElementRef="_b6a4239a-a86b-4ca1-bbb5-8c98dd72c903">
+                <di:waypoint x="739.4968013763428" y="266.2222062240113"/>
+                <di:waypoint x="674.7221975613561" y="266.2222117616071"/>
+                <dmndi:DMNLabel sharedStyle="LS_4df549f9-4aed-4f2c-acda-c152cd2cdc79_0"/>
+            </dmndi:DMNEdge>
+            <dmndi:DMNEdge id="_49b8bd0b-50e2-4276-9dd3-b5354e770918" dmnElementRef="_322d8813-db0a-4ca1-83c9-d25e44847022">
+                <di:waypoint x="478.7411708831787" y="394.2222015659018"/>
+                <di:waypoint x="521.7222054008811" y="394.22220538059906"/>
+                <dmndi:DMNLabel sharedStyle="LS_4df549f9-4aed-4f2c-acda-c152cd2cdc79_0"/>
+            </dmndi:DMNEdge>
+            <dmndi:DMNEdge id="_cd770d1b-70ea-4b0b-b9d9-4a5850640060" dmnElementRef="_abe11689-2b4b-44a5-82e8-dc0b726627fc">
+                <di:waypoint x="343.4968013763428" y="394.2222015659018"/>
+                <di:waypoint x="290.2222109850911" y="393.7435230470438"/>
+                <dmndi:DMNLabel sharedStyle="LS_4df549f9-4aed-4f2c-acda-c152cd2cdc79_0"/>
+            </dmndi:DMNEdge>
+            <dmndi:DMNEdge id="_7b2bc93e-9847-4757-8644-ccff45360bc7" dmnElementRef="_0593a8b5-bcea-42e9-904c-83fa72c41458">
+                <di:waypoint x="598.2189989376989" y="494.99999618530273"/>
+                <di:waypoint x="598.2222054008811" y="424.22220538059906"/>
+                <dmndi:DMNLabel sharedStyle="LS_4df549f9-4aed-4f2c-acda-c152cd2cdc79_0"/>
+            </dmndi:DMNEdge>
+        </dmndi:DMNDiagram>
+        <dmndi:DMNStyle id="LS_4df549f9-4aed-4f2c-acda-c152cd2cdc79_0" fontFamily="arial,helvetica,sans-serif" fontSize="11" fontBold="true" fontItalic="false" fontUnderline="false" fontStrikeThrough="false"/>
+    </dmndi:DMNDI>
+</semantic:definitions>
