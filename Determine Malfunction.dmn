@@ -1,0 +1,795 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<semantic:definitions xmlns:semantic="https://www.omg.org/spec/DMN/20240513/MODEL/"  xmlns:sdmn="https://www.omg.org/spec/SDMN/"  xmlns:triso="http://www.trisotech.com/2015/triso/modeling"  xmlns:dmndi="https://www.omg.org/spec/DMN/20230324/DMNDI/"  xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/"  xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/"  xmlns:trisodmn="http://www.trisotech.com/2016/triso/dmn"  xmlns:feel="https://www.omg.org/spec/DMN/20240513/FEEL/"  xmlns:tc="http://www.omg.org/spec/DMN/20160719/testcase"  xmlns:drools="http://www.drools.org/kie/dmn/1.1"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  xmlns:rss="http://purl.org/rss/2.0/"  xmlns:openapi="https://openapis.org/omg/extension/1.0"  xmlns:xsd="http://www.w3.org/2001/XMLSchema"   xmlns:i18n="http://www.omg.org/spec/BPMN/non-normative/extensions/i18n/1.0"  xmlns="http://www.trisotech.com/definitions/_cc67b70a-7bba-481b-abc4-d49800fb3f80" id="_cc67b70a-7bba-481b-abc4-d49800fb3f80" name="Determine Malfunction" namespace="http://www.trisotech.com/definitions/_cc67b70a-7bba-481b-abc4-d49800fb3f80" exporter="Decision Modeler" exporterVersion="9.6.3" xml:lang="en" triso:logoChoice="Default">
+    <semantic:extensionElements/>
+    <semantic:itemDefinition name="Battery_Level" label="Battery Level" isCollection="false">
+        <semantic:extensionElements>
+            <triso:reuseLink id="_bf1e73aa-f0c1-41cd-bcb2-d1a15e4f47e1" modelName="Logistics Management Entity Model" itemName="Battery Level" modelType="http://www.trisotech.com/graph/1.0/element#BusinessEntityModel" modelURI="http://www.trisotech.com/definitions/_8d80bed6-f1ed-40b5-9803-cdcc68dafa67" mimeType="application/vnd.triso-businessentity+json" uri="http://www.trisotech.com/definitions/_8d80bed6-f1ed-40b5-9803-cdcc68dafa67#Battery_Level" graphType="http://www.trisotech.com/graph/1.0/element#ItemDefinition" path="Book - SCM/Logistics Management Entity Model" graphURI="http://trisotech.com/graph/1.0/graph#59f76da1-1155-478f-86b2-ab737b67b7c0"/>
+        </semantic:extensionElements>
+        <semantic:typeRef>ttBatteryLevel</semantic:typeRef>
+    </semantic:itemDefinition>
+    <semantic:itemDefinition name="Error_Code" label="Error Code" isCollection="false">
+        <semantic:extensionElements>
+            <triso:reuseLink id="_df4d58b3-a785-4863-8657-aaec04b3c95a" modelName="Logistics Management Entity Model" itemName="Error Code" modelType="http://www.trisotech.com/graph/1.0/element#BusinessEntityModel" modelURI="http://www.trisotech.com/definitions/_8d80bed6-f1ed-40b5-9803-cdcc68dafa67" mimeType="application/vnd.triso-businessentity+json" uri="http://www.trisotech.com/definitions/_8d80bed6-f1ed-40b5-9803-cdcc68dafa67#Error_Code" graphType="http://www.trisotech.com/graph/1.0/element#ItemDefinition" path="Book - SCM/Logistics Management Entity Model" graphURI="http://trisotech.com/graph/1.0/graph#59f76da1-1155-478f-86b2-ab737b67b7c0"/>
+        </semantic:extensionElements>
+        <semantic:typeRef>tErrorCode</semantic:typeRef>
+    </semantic:itemDefinition>
+    <semantic:itemDefinition name="tErrorCode" label="tErrorCode" isCollection="false">
+        <semantic:extensionElements>
+            <triso:reuseLink id="_7bb55ea5-beb7-43c9-aef8-cc5307bfe74a" modelName="Logistics Management Entity Model" itemName="tErrorCode" modelType="http://www.trisotech.com/graph/1.0/element#BusinessEntityModel" modelURI="http://www.trisotech.com/definitions/_8d80bed6-f1ed-40b5-9803-cdcc68dafa67" mimeType="application/vnd.triso-businessentity+json" uri="http://www.trisotech.com/definitions/_8d80bed6-f1ed-40b5-9803-cdcc68dafa67#tErrorCode" graphType="http://www.trisotech.com/graph/1.0/element#ItemDefinition" path="Book - SCM/Logistics Management Entity Model" graphURI="http://trisotech.com/graph/1.0/graph#59f76da1-1155-478f-86b2-ab737b67b7c0"/>
+        </semantic:extensionElements>
+        <semantic:itemComponent id="_aa420dae-5979-4305-af27-774fd7970a0d" name="Code ID" isCollection="false">
+            <semantic:typeRef>string</semantic:typeRef>
+        </semantic:itemComponent>
+        <semantic:itemComponent id="_6b863872-e903-494d-90b5-b6b380a0066a" name="Error Type" isCollection="false">
+            <semantic:typeRef>tErrorType</semantic:typeRef>
+        </semantic:itemComponent>
+        <semantic:itemComponent id="_d6750437-2724-4b37-b3ca-4859fce39e12" name="Severity Level" isCollection="false">
+            <semantic:typeRef>tSeverityLevel</semantic:typeRef>
+        </semantic:itemComponent>
+    </semantic:itemDefinition>
+    <semantic:itemDefinition name="Task_Priority" label="Task Priority" isCollection="false">
+        <semantic:extensionElements>
+            <triso:reuseLink id="_234d9363-9a2b-461e-8f21-98798a413acd" modelName="Logistics Management Entity Model" itemName="Task Priority" modelType="http://www.trisotech.com/graph/1.0/element#BusinessEntityModel" modelURI="http://www.trisotech.com/definitions/_8d80bed6-f1ed-40b5-9803-cdcc68dafa67" mimeType="application/vnd.triso-businessentity+json" uri="http://www.trisotech.com/definitions/_8d80bed6-f1ed-40b5-9803-cdcc68dafa67#Task_Priority" graphType="http://www.trisotech.com/graph/1.0/element#ItemDefinition" path="Book - SCM/Logistics Management Entity Model" graphURI="http://trisotech.com/graph/1.0/graph#59f76da1-1155-478f-86b2-ab737b67b7c0"/>
+        </semantic:extensionElements>
+        <semantic:typeRef>tTaskPriority</semantic:typeRef>
+    </semantic:itemDefinition>
+    <semantic:itemDefinition name="tTaskPriority" label="tTaskPriority" isCollection="false">
+        <semantic:extensionElements>
+            <triso:reuseLink id="_73fad1bc-a1d2-4e9c-b8e6-2af708d790b6" modelName="Logistics Management Entity Model" itemName="tTaskPriority" modelType="http://www.trisotech.com/graph/1.0/element#BusinessEntityModel" modelURI="http://www.trisotech.com/definitions/_8d80bed6-f1ed-40b5-9803-cdcc68dafa67" mimeType="application/vnd.triso-businessentity+json" uri="http://www.trisotech.com/definitions/_8d80bed6-f1ed-40b5-9803-cdcc68dafa67#tTaskPriority" graphType="http://www.trisotech.com/graph/1.0/element#ItemDefinition" path="Book - SCM/Logistics Management Entity Model" graphURI="http://trisotech.com/graph/1.0/graph#59f76da1-1155-478f-86b2-ab737b67b7c0"/>
+        </semantic:extensionElements>
+        <semantic:typeRef>string</semantic:typeRef>
+        <semantic:allowedValues>
+            <semantic:extensionElements>
+                <triso:constraintDetails id="_9de296ae-4027-45e4-b4a3-bbfa38738b6b" constraintsType="enumeration">
+                    <triso:value>"High","Low","Medium","Any"</triso:value>
+                    <triso:display>"High", "Low", "Medium", "Any"</triso:display>
+                    <triso:choices>
+                        <triso:value>"High"</triso:value>
+                        <triso:display>"High"</triso:display>
+                    </triso:choices>
+                    <triso:choices>
+                        <triso:value>"Low"</triso:value>
+                        <triso:display>"Low"</triso:display>
+                    </triso:choices>
+                    <triso:choices>
+                        <triso:value>"Medium"</triso:value>
+                        <triso:display>"Medium"</triso:display>
+                    </triso:choices>
+                    <triso:choices>
+                        <triso:value>"Any"</triso:value>
+                        <triso:display>"Any"</triso:display>
+                    </triso:choices>
+                </triso:constraintDetails>
+            </semantic:extensionElements>
+            <semantic:text>"High","Low","Medium","Any"</semantic:text>
+        </semantic:allowedValues>
+    </semantic:itemDefinition>
+    <semantic:itemDefinition name="Task_Completion_Status" label="Task Completion Status" isCollection="false">
+        <semantic:extensionElements>
+            <triso:reuseLink id="_e72c73dd-663f-4027-aa27-f5eb05ccd3ba" modelName="Logistics Management Entity Model" itemName="Task Completion Status" modelType="http://www.trisotech.com/graph/1.0/element#BusinessEntityModel" modelURI="http://www.trisotech.com/definitions/_8d80bed6-f1ed-40b5-9803-cdcc68dafa67" mimeType="application/vnd.triso-businessentity+json" uri="http://www.trisotech.com/definitions/_8d80bed6-f1ed-40b5-9803-cdcc68dafa67#Task_Completion_Status" graphType="http://www.trisotech.com/graph/1.0/element#ItemDefinition" path="Book - SCM/Logistics Management Entity Model" graphURI="http://trisotech.com/graph/1.0/graph#59f76da1-1155-478f-86b2-ab737b67b7c0"/>
+        </semantic:extensionElements>
+        <semantic:typeRef>tTaskCompletionStatus</semantic:typeRef>
+    </semantic:itemDefinition>
+    <semantic:itemDefinition name="tTaskCompletionStatus" label="tTaskCompletionStatus" isCollection="false">
+        <semantic:extensionElements>
+            <triso:reuseLink id="_aecc1c3b-e0d7-4ddc-8d40-6b4df7ecb305" modelName="Logistics Management Entity Model" itemName="tTaskCompletionStatus" modelType="http://www.trisotech.com/graph/1.0/element#BusinessEntityModel" modelURI="http://www.trisotech.com/definitions/_8d80bed6-f1ed-40b5-9803-cdcc68dafa67" mimeType="application/vnd.triso-businessentity+json" uri="http://www.trisotech.com/definitions/_8d80bed6-f1ed-40b5-9803-cdcc68dafa67#tTaskCompletionStatus" graphType="http://www.trisotech.com/graph/1.0/element#ItemDefinition" path="Book - SCM/Logistics Management Entity Model" graphURI="http://trisotech.com/graph/1.0/graph#59f76da1-1155-478f-86b2-ab737b67b7c0"/>
+        </semantic:extensionElements>
+        <semantic:typeRef>string</semantic:typeRef>
+        <semantic:allowedValues>
+            <semantic:extensionElements>
+                <triso:constraintDetails id="_d212af07-dc98-49a0-918a-aa3f65e17051" constraintsType="enumeration">
+                    <triso:value>"In Progress","Completed","Failed"</triso:value>
+                    <triso:display>"In Progress", "Completed", "Failed"</triso:display>
+                    <triso:choices>
+                        <triso:value>"In Progress"</triso:value>
+                        <triso:display>"In Progress"</triso:display>
+                    </triso:choices>
+                    <triso:choices>
+                        <triso:value>"Completed"</triso:value>
+                        <triso:display>"Completed"</triso:display>
+                    </triso:choices>
+                    <triso:choices>
+                        <triso:value>"Failed"</triso:value>
+                        <triso:display>"Failed"</triso:display>
+                    </triso:choices>
+                </triso:constraintDetails>
+            </semantic:extensionElements>
+            <semantic:text>"In Progress","Completed","Failed"</semantic:text>
+        </semantic:allowedValues>
+    </semantic:itemDefinition>
+    <semantic:itemDefinition name="Obstacle_Detection" label="Obstacle Detection" isCollection="false">
+        <semantic:extensionElements>
+            <triso:reuseLink id="_c9b9a833-b7b6-4802-a921-e6e5e3b8b0b1" modelName="Logistics Management Entity Model" itemName="Obstacle Detection" modelType="http://www.trisotech.com/graph/1.0/element#BusinessEntityModel" modelURI="http://www.trisotech.com/definitions/_8d80bed6-f1ed-40b5-9803-cdcc68dafa67" mimeType="application/vnd.triso-businessentity+json" uri="http://www.trisotech.com/definitions/_8d80bed6-f1ed-40b5-9803-cdcc68dafa67#Obstacle_Detection" graphType="http://www.trisotech.com/graph/1.0/element#ItemDefinition" path="Book - SCM/Logistics Management Entity Model" graphURI="http://trisotech.com/graph/1.0/graph#59f76da1-1155-478f-86b2-ab737b67b7c0"/>
+        </semantic:extensionElements>
+        <semantic:typeRef>boolean</semantic:typeRef>
+    </semantic:itemDefinition>
+    <semantic:itemDefinition name="Picker_Movement_Status" label="Picker Movement Status" isCollection="false">
+        <semantic:extensionElements>
+            <triso:reuseLink id="_e239251d-350a-4343-82da-7f2ee1967d1b" modelName="Logistics Management Entity Model" itemName="Picker Movement Status" modelType="http://www.trisotech.com/graph/1.0/element#BusinessEntityModel" modelURI="http://www.trisotech.com/definitions/_8d80bed6-f1ed-40b5-9803-cdcc68dafa67" mimeType="application/vnd.triso-businessentity+json" uri="http://www.trisotech.com/definitions/_8d80bed6-f1ed-40b5-9803-cdcc68dafa67#Picker_Movement_Status" graphType="http://www.trisotech.com/graph/1.0/element#ItemDefinition" path="Book - SCM/Logistics Management Entity Model" graphURI="http://trisotech.com/graph/1.0/graph#59f76da1-1155-478f-86b2-ab737b67b7c0"/>
+        </semantic:extensionElements>
+        <semantic:typeRef>tPickerMovementStatus</semantic:typeRef>
+    </semantic:itemDefinition>
+    <semantic:itemDefinition name="tPickerMovementStatus" label="tPickerMovementStatus" isCollection="false">
+        <semantic:extensionElements>
+            <triso:reuseLink id="_564ba603-07c3-4ea1-860f-740d606d38c5" modelName="Logistics Management Entity Model" itemName="tPickerMovementStatus" modelType="http://www.trisotech.com/graph/1.0/element#BusinessEntityModel" modelURI="http://www.trisotech.com/definitions/_8d80bed6-f1ed-40b5-9803-cdcc68dafa67" mimeType="application/vnd.triso-businessentity+json" uri="http://www.trisotech.com/definitions/_8d80bed6-f1ed-40b5-9803-cdcc68dafa67#tPickerMovementStatus" graphType="http://www.trisotech.com/graph/1.0/element#ItemDefinition" path="Book - SCM/Logistics Management Entity Model" graphURI="http://trisotech.com/graph/1.0/graph#59f76da1-1155-478f-86b2-ab737b67b7c0"/>
+        </semantic:extensionElements>
+        <semantic:typeRef>string</semantic:typeRef>
+        <semantic:allowedValues>
+            <semantic:extensionElements>
+                <triso:constraintDetails id="_ae117c8a-57ab-46b8-9a14-54ce99ee57ae" constraintsType="enumeration">
+                    <triso:value>"Moving","Stopped","Idle"</triso:value>
+                    <triso:display>"Moving", "Stopped", "Idle"</triso:display>
+                    <triso:choices>
+                        <triso:value>"Moving"</triso:value>
+                        <triso:display>"Moving"</triso:display>
+                    </triso:choices>
+                    <triso:choices>
+                        <triso:value>"Stopped"</triso:value>
+                        <triso:display>"Stopped"</triso:display>
+                    </triso:choices>
+                    <triso:choices>
+                        <triso:value>"Idle"</triso:value>
+                        <triso:display>"Idle"</triso:display>
+                    </triso:choices>
+                </triso:constraintDetails>
+            </semantic:extensionElements>
+            <semantic:text>"Moving","Stopped","Idle"</semantic:text>
+        </semantic:allowedValues>
+    </semantic:itemDefinition>
+    <semantic:itemDefinition name="tPickerStuckDecision" label="tPickerStuckDecision">
+        <semantic:typeRef>string</semantic:typeRef>
+        <semantic:allowedValues>
+            <semantic:extensionElements>
+                <triso:constraintDetails id="_8b954116-cdf4-40c6-9f3c-0b5e62e5676c" constraintsType="enumeration">
+                    <triso:value>"Yes","No","No (Needs Recharge)","No (Idle)"</triso:value>
+                    <triso:display>"Yes", "No", "No (Needs Recharge)", "No (Idle)"</triso:display>
+                    <triso:choices>
+                        <triso:value>"Yes"</triso:value>
+                        <triso:display>"Yes"</triso:display>
+                    </triso:choices>
+                    <triso:choices>
+                        <triso:value>"No"</triso:value>
+                        <triso:display>"No"</triso:display>
+                    </triso:choices>
+                    <triso:choices>
+                        <triso:value>"No (Needs Recharge)"</triso:value>
+                        <triso:display>"No (Needs Recharge)"</triso:display>
+                    </triso:choices>
+                    <triso:choices>
+                        <triso:value>"No (Idle)"</triso:value>
+                        <triso:display>"No (Idle)"</triso:display>
+                    </triso:choices>
+                </triso:constraintDetails>
+            </semantic:extensionElements>
+            <semantic:text>"Yes","No","No (Needs Recharge)","No (Idle)"</semantic:text>
+        </semantic:allowedValues>
+    </semantic:itemDefinition>
+    <semantic:itemDefinition name="Picker_Stuck_Decision" label="Picker Stuck Decision">
+        <semantic:typeRef>tPickerStuckDecision</semantic:typeRef>
+    </semantic:itemDefinition>
+    <semantic:itemDefinition name="ttBatteryLevel" label="ttBatteryLevel" isCollection="false">
+        <semantic:extensionElements>
+            <triso:reuseLink id="_315d8f4e-bfa7-4f38-b80b-b61ec5480e21" modelName="Logistics Management Entity Model" itemName="ttBatteryLevel" modelType="http://www.trisotech.com/graph/1.0/element#BusinessEntityModel" modelURI="http://www.trisotech.com/definitions/_8d80bed6-f1ed-40b5-9803-cdcc68dafa67" mimeType="application/vnd.triso-businessentity+json" uri="http://www.trisotech.com/definitions/_8d80bed6-f1ed-40b5-9803-cdcc68dafa67#ttBatteryLevel" graphType="http://www.trisotech.com/graph/1.0/element#ItemDefinition" path="Book - SCM/Logistics Management Entity Model" graphURI="http://trisotech.com/graph/1.0/graph#59f76da1-1155-478f-86b2-ab737b67b7c0"/>
+        </semantic:extensionElements>
+        <semantic:typeRef>string</semantic:typeRef>
+        <semantic:allowedValues>
+            <semantic:extensionElements>
+                <triso:constraintDetails id="_bfc39d8f-c40a-4db2-8a37-1c8ea0abaf85" constraintsType="enumeration">
+                    <triso:value>"Low","Sufficient","Dead"</triso:value>
+                    <triso:display>"Low", "Sufficient", "Dead"</triso:display>
+                    <triso:choices>
+                        <triso:value>"Low"</triso:value>
+                        <triso:display>"Low"</triso:display>
+                    </triso:choices>
+                    <triso:choices>
+                        <triso:value>"Sufficient"</triso:value>
+                        <triso:display>"Sufficient"</triso:display>
+                    </triso:choices>
+                    <triso:choices>
+                        <triso:value>"Dead"</triso:value>
+                        <triso:display>"Dead"</triso:display>
+                    </triso:choices>
+                </triso:constraintDetails>
+            </semantic:extensionElements>
+            <semantic:text>"Low","Sufficient","Dead"</semantic:text>
+        </semantic:allowedValues>
+    </semantic:itemDefinition>
+    <semantic:itemDefinition name="Action_to_Take" label="Action to Take">
+        <semantic:typeRef>string</semantic:typeRef>
+        <semantic:allowedValues>
+            <semantic:extensionElements>
+                <triso:constraintDetails id="_69df48ce-3e14-4560-978d-539504a2bc0a" constraintsType="enumeration">
+                    <triso:value>"Reschedule Task to Other Picker","Attempt Autonomous Recovery","Wait for Manual Intervention","Notify Human Operator for Override","Continue Task","Notify Operator &amp; Continue Task"</triso:value>
+                    <triso:display>"Reschedule Task to Other Picker", "Attempt Autonomous Recovery", "Wait for Manual Intervention", "Notify Human Operator for Override", "Continue Task", "Notify Operator &amp; Continue Task"</triso:display>
+                    <triso:choices>
+                        <triso:value>"Reschedule Task to Other Picker"</triso:value>
+                        <triso:display>"Reschedule Task to Other Picker"</triso:display>
+                    </triso:choices>
+                    <triso:choices>
+                        <triso:value>"Attempt Autonomous Recovery"</triso:value>
+                        <triso:display>"Attempt Autonomous Recovery"</triso:display>
+                    </triso:choices>
+                    <triso:choices>
+                        <triso:value>"Wait for Manual Intervention"</triso:value>
+                        <triso:display>"Wait for Manual Intervention"</triso:display>
+                    </triso:choices>
+                    <triso:choices>
+                        <triso:value>"Notify Human Operator for Override"</triso:value>
+                        <triso:display>"Notify Human Operator for Override"</triso:display>
+                    </triso:choices>
+                    <triso:choices>
+                        <triso:value>"Continue Task"</triso:value>
+                        <triso:display>"Continue Task"</triso:display>
+                    </triso:choices>
+                    <triso:choices>
+                        <triso:value>"Notify Operator &amp; Continue Task"</triso:value>
+                        <triso:display>"Notify Operator &amp; Continue Task"</triso:display>
+                    </triso:choices>
+                </triso:constraintDetails>
+            </semantic:extensionElements>
+            <semantic:text>"Reschedule Task to Other Picker","Attempt Autonomous Recovery","Wait for Manual Intervention","Notify Human Operator for Override","Continue Task","Notify Operator &amp; Continue Task"</semantic:text>
+        </semantic:allowedValues>
+    </semantic:itemDefinition>
+    <semantic:itemDefinition name="tErrorType" label="tErrorType" isCollection="false">
+        <semantic:extensionElements>
+            <triso:reuseLink id="_0b44d306-41f5-4e45-9b2d-07a74bf23cb2" modelName="Logistics Management Entity Model" itemName="tErrorType" modelType="http://www.trisotech.com/graph/1.0/element#BusinessEntityModel" modelURI="http://www.trisotech.com/definitions/_8d80bed6-f1ed-40b5-9803-cdcc68dafa67" mimeType="application/vnd.triso-businessentity+json" uri="http://www.trisotech.com/definitions/_8d80bed6-f1ed-40b5-9803-cdcc68dafa67#tErrorType" graphType="http://www.trisotech.com/graph/1.0/element#ItemDefinition" path="Book - SCM/Logistics Management Entity Model" graphURI="http://trisotech.com/graph/1.0/graph#59f76da1-1155-478f-86b2-ab737b67b7c0"/>
+        </semantic:extensionElements>
+        <semantic:typeRef>string</semantic:typeRef>
+        <semantic:allowedValues>
+            <semantic:extensionElements>
+                <triso:constraintDetails id="_d13fc29b-720d-4701-bce5-c879fcc92b3d" constraintsType="enumeration">
+                    <triso:value>"None","Navigation_Error","Communication_Error","Obstacle_Error","Low_Battery"</triso:value>
+                    <triso:display>"None", "Navigation_Error", "Communication_Error", "Obstacle_Error", "Low_Battery"</triso:display>
+                    <triso:choices>
+                        <triso:value>"None"</triso:value>
+                        <triso:display>"None"</triso:display>
+                    </triso:choices>
+                    <triso:choices>
+                        <triso:value>"Navigation_Error"</triso:value>
+                        <triso:display>"Navigation_Error"</triso:display>
+                    </triso:choices>
+                    <triso:choices>
+                        <triso:value>"Communication_Error"</triso:value>
+                        <triso:display>"Communication_Error"</triso:display>
+                    </triso:choices>
+                    <triso:choices>
+                        <triso:value>"Obstacle_Error"</triso:value>
+                        <triso:display>"Obstacle_Error"</triso:display>
+                    </triso:choices>
+                    <triso:choices>
+                        <triso:value>"Low_Battery"</triso:value>
+                        <triso:display>"Low_Battery"</triso:display>
+                    </triso:choices>
+                </triso:constraintDetails>
+            </semantic:extensionElements>
+            <semantic:text>"None","Navigation_Error","Communication_Error","Obstacle_Error","Low_Battery"</semantic:text>
+        </semantic:allowedValues>
+    </semantic:itemDefinition>
+    <semantic:itemDefinition name="tSeverityLevel" label="tSeverityLevel" isCollection="false">
+        <semantic:extensionElements>
+            <triso:reuseLink id="_860e1fa8-d19e-4762-9ae1-c1ba59eebc72" modelName="Logistics Management Entity Model" itemName="tSeverityLevel" modelType="http://www.trisotech.com/graph/1.0/element#BusinessEntityModel" modelURI="http://www.trisotech.com/definitions/_8d80bed6-f1ed-40b5-9803-cdcc68dafa67" mimeType="application/vnd.triso-businessentity+json" uri="http://www.trisotech.com/definitions/_8d80bed6-f1ed-40b5-9803-cdcc68dafa67#tSeverityLevel" graphType="http://www.trisotech.com/graph/1.0/element#ItemDefinition" path="Book - SCM/Logistics Management Entity Model" graphURI="http://trisotech.com/graph/1.0/graph#59f76da1-1155-478f-86b2-ab737b67b7c0"/>
+        </semantic:extensionElements>
+        <semantic:typeRef>string</semantic:typeRef>
+        <semantic:allowedValues>
+            <semantic:extensionElements>
+                <triso:constraintDetails id="_359d45a9-7399-47e9-b429-db3deb5ac5ac" constraintsType="enumeration">
+                    <triso:value>"High","Low","Medium"</triso:value>
+                    <triso:display>"High", "Low", "Medium"</triso:display>
+                    <triso:choices>
+                        <triso:value>"High"</triso:value>
+                        <triso:display>"High"</triso:display>
+                    </triso:choices>
+                    <triso:choices>
+                        <triso:value>"Low"</triso:value>
+                        <triso:display>"Low"</triso:display>
+                    </triso:choices>
+                    <triso:choices>
+                        <triso:value>"Medium"</triso:value>
+                        <triso:display>"Medium"</triso:display>
+                    </triso:choices>
+                </triso:constraintDetails>
+            </semantic:extensionElements>
+            <semantic:text>"High","Low","Medium"</semantic:text>
+        </semantic:allowedValues>
+    </semantic:itemDefinition>
+    <semantic:decisionService id="_cc67b70a-7bba-481b-abc4-d49800fb3f80_DS" name="Whole Model Decision Service" triso:dynamicDecisionService="true" triso:wholeModelService="true">
+        <semantic:variable name="Whole Model Decision Service" id="_cc67b70a-7bba-481b-abc4-d49800fb3f80_DS_VAR" typeRef="Any"/>
+        <semantic:outputDecision href="#_ff2c8842-ef49-4e9f-a2a7-f6629e0b3fc4"/>
+        <semantic:encapsulatedDecision href="#_7b64ced2-00e3-4ccf-91eb-fd79ecd60d42"/>
+        <semantic:inputData href="#_ee15cf64-bde7-4c7d-aa61-6e4248fea749"/>
+        <semantic:inputData href="#_fdcb73d0-e294-44d3-bb9d-a0ea2af18953"/>
+        <semantic:inputData href="#_1596ae5c-5fd1-4df3-a5c3-fd2af9d52052"/>
+        <semantic:inputData href="#_f11cb936-c082-4d7d-93d1-b3941700cea9"/>
+        <semantic:inputData href="#_aa7d5aef-2586-4983-8b2b-a9c615a6771d"/>
+        <semantic:inputData href="#_f8e09330-2528-43de-9665-de2ff8cd49e1"/>
+        <semantic:inputData href="#_5a7caa5b-2fe3-4b8b-be32-92a1cb75f8f6"/>
+    </semantic:decisionService>
+    <semantic:decisionService id="_dc88a51f-289b-4603-b0d5-659a6efe2f92_DS" name="Diagram Determine Malfunction" triso:dynamicDecisionService="true">
+        <semantic:variable name="Diagram Determine Malfunction" id="_dc88a51f-289b-4603-b0d5-659a6efe2f92_DS_VAR" typeRef="Any"/>
+        <semantic:outputDecision href="#_ff2c8842-ef49-4e9f-a2a7-f6629e0b3fc4"/>
+        <semantic:encapsulatedDecision href="#_7b64ced2-00e3-4ccf-91eb-fd79ecd60d42"/>
+        <semantic:inputData href="#_ee15cf64-bde7-4c7d-aa61-6e4248fea749"/>
+        <semantic:inputData href="#_fdcb73d0-e294-44d3-bb9d-a0ea2af18953"/>
+        <semantic:inputData href="#_1596ae5c-5fd1-4df3-a5c3-fd2af9d52052"/>
+        <semantic:inputData href="#_f11cb936-c082-4d7d-93d1-b3941700cea9"/>
+        <semantic:inputData href="#_aa7d5aef-2586-4983-8b2b-a9c615a6771d"/>
+        <semantic:inputData href="#_f8e09330-2528-43de-9665-de2ff8cd49e1"/>
+        <semantic:inputData href="#_5a7caa5b-2fe3-4b8b-be32-92a1cb75f8f6"/>
+    </semantic:decisionService>
+    <semantic:decision id="_7b64ced2-00e3-4ccf-91eb-fd79ecd60d42" name="Determine if Picker is Stuck" triso:readOnly="false">
+        <semantic:variable name="Determine if Picker is Stuck" id="_295c1091-3baf-42a3-bc98-d383b66b2731" typeRef="Picker_Stuck_Decision"/>
+        <semantic:informationRequirement id="_2df4aa08-b66e-47f9-be4e-52071ebef3cb" triso:readOnly="false">
+            <semantic:requiredInput href="#_ee15cf64-bde7-4c7d-aa61-6e4248fea749"/>
+        </semantic:informationRequirement>
+        <semantic:informationRequirement id="_a72bfaf2-9c4c-40eb-848d-3433fa6d5e26" triso:readOnly="false">
+            <semantic:requiredInput href="#_aa7d5aef-2586-4983-8b2b-a9c615a6771d"/>
+        </semantic:informationRequirement>
+        <semantic:informationRequirement id="_f8f0c56b-a58a-441c-affc-89109d444f90" triso:readOnly="false">
+            <semantic:requiredInput href="#_f8e09330-2528-43de-9665-de2ff8cd49e1"/>
+        </semantic:informationRequirement>
+        <semantic:informationRequirement id="_b565a752-233f-4926-ba77-214ad7556a20" triso:readOnly="false">
+            <semantic:requiredInput href="#_5a7caa5b-2fe3-4b8b-be32-92a1cb75f8f6"/>
+        </semantic:informationRequirement>
+        <semantic:decisionTable triso:descriptionVisible="false" id="_8e346ee8-6422-42a5-9e4b-47b8d1b8a282" hitPolicy="UNIQUE" outputLabel="Determine if Picker is Stuck" typeRef="Picker_Stuck_Decision" triso:expressionId="_8ecf3b98-087b-45d7-ab67-27038d45d603">
+            <semantic:input id="_b9287c2b-55a4-445d-932f-4ccb5b3d872b" label="Picker Movement Status">
+                <semantic:inputExpression typeRef="Picker_Movement_Status">
+                    <semantic:text>Picker Movement Status</semantic:text>
+                </semantic:inputExpression>
+            </semantic:input>
+            <semantic:input id="_55a3a531-aa03-4401-9fad-d60f73f7f47e" label="Obstacle Detection">
+                <semantic:inputExpression typeRef="Obstacle_Detection">
+                    <semantic:text>Obstacle Detection</semantic:text>
+                </semantic:inputExpression>
+            </semantic:input>
+            <semantic:input id="_9be5eae4-38cb-48f6-afa1-4e67abe217a2" label="Error Code">
+                <semantic:inputExpression typeRef="Error_Code">
+                    <semantic:text>Error Code</semantic:text>
+                </semantic:inputExpression>
+            </semantic:input>
+            <semantic:input id="_c0b7fe54-578f-4d1e-b6c3-478974909287" label="Battery Level">
+                <semantic:inputExpression typeRef="Battery_Level">
+                    <semantic:text>Battery Level</semantic:text>
+                </semantic:inputExpression>
+            </semantic:input>
+            <semantic:output id="_a3d179bf-35e9-46ab-8f4f-555c92934125"/>
+            <semantic:annotation name="Description"/>
+            <semantic:rule id="_8b57d164-9314-4fd2-a143-0938c41d7e44">
+                <semantic:inputEntry id="_0655a041-3224-4cdc-92ff-411f1ca386c2">
+                    <semantic:text>"Stopped"</semantic:text>
+                </semantic:inputEntry>
+                <semantic:inputEntry id="_da8b61ed-dceb-4b18-b46a-c2bcf142d6c4">
+                    <semantic:text>true</semantic:text>
+                </semantic:inputEntry>
+                <semantic:inputEntry id="_d25d6371-da53-4c54-9cb0-82fba7592449">
+                    <semantic:text>"Obstacle_Error"</semantic:text>
+                </semantic:inputEntry>
+                <semantic:inputEntry id="_010ba2fd-bf4e-4457-a3ca-a3e2a9bd892e">
+                    <semantic:text>"Sufficient"</semantic:text>
+                </semantic:inputEntry>
+                <semantic:outputEntry id="_542b73bb-d3b8-44e1-8ac9-d11a786109a8">
+                    <semantic:text>"Yes"</semantic:text>
+                </semantic:outputEntry>
+                <semantic:annotationEntry>
+                    <semantic:text/>
+                </semantic:annotationEntry>
+            </semantic:rule>
+            <semantic:rule id="_72aa2652-2517-4117-8ef9-ba1dfbe1f773">
+                <semantic:inputEntry id="_c9143100-a7c7-4558-ab35-5f782e29f402">
+                    <semantic:text>"Stopped"</semantic:text>
+                </semantic:inputEntry>
+                <semantic:inputEntry id="_247224ca-6af5-4616-9e61-48eb56694ec6">
+                    <semantic:text>false</semantic:text>
+                </semantic:inputEntry>
+                <semantic:inputEntry id="_68da2158-1c28-4fcb-8b18-a3dae3d4e2a9">
+                    <semantic:text>"Mechanical_Error"</semantic:text>
+                </semantic:inputEntry>
+                <semantic:inputEntry id="_2d32f52b-ae99-4905-9d17-eb298ea4a485">
+                    <semantic:text>"Sufficient"</semantic:text>
+                </semantic:inputEntry>
+                <semantic:outputEntry id="_bd93a625-bba7-40b9-9e7c-a0357ee39583">
+                    <semantic:text>"Yes"</semantic:text>
+                </semantic:outputEntry>
+                <semantic:annotationEntry>
+                    <semantic:text/>
+                </semantic:annotationEntry>
+            </semantic:rule>
+            <semantic:rule id="_ba576fc8-3c02-45bf-8b57-9de1e9c50e38">
+                <semantic:inputEntry id="_c2299e97-0f98-46e1-acdf-d82e49cf3e2b">
+                    <semantic:text>"Moving"</semantic:text>
+                </semantic:inputEntry>
+                <semantic:inputEntry id="_e6b0cbb7-61be-49ea-9c8d-4bdc66812edd">
+                    <semantic:text>false</semantic:text>
+                </semantic:inputEntry>
+                <semantic:inputEntry id="_40269075-c517-4b5b-8a1b-5e32ce27ead2">
+                    <semantic:text>"None"</semantic:text>
+                </semantic:inputEntry>
+                <semantic:inputEntry id="_f02abd4b-974e-44a7-997e-b28c6f27180a">
+                    <semantic:text>"Sufficient"</semantic:text>
+                </semantic:inputEntry>
+                <semantic:outputEntry id="_19b3abe9-50cb-4183-99d9-baf4a0369cca">
+                    <semantic:text>"No"</semantic:text>
+                </semantic:outputEntry>
+                <semantic:annotationEntry>
+                    <semantic:text/>
+                </semantic:annotationEntry>
+            </semantic:rule>
+            <semantic:rule id="_1bf207e1-a13e-4c2a-8303-385b02c61cfa">
+                <semantic:inputEntry id="_89af5a84-de33-4a80-b94a-250e002d2787">
+                    <semantic:text>"Stopped"</semantic:text>
+                </semantic:inputEntry>
+                <semantic:inputEntry id="_b64f5ced-939d-49f7-ad9f-d133073ad53d">
+                    <semantic:text>true</semantic:text>
+                </semantic:inputEntry>
+                <semantic:inputEntry id="_789df765-ab20-4c23-b755-911fe80e1e4f">
+                    <semantic:text>"Obstacle_Error"</semantic:text>
+                </semantic:inputEntry>
+                <semantic:inputEntry id="_14e87149-d46c-4cc2-ac9a-5ae6fbaa5654">
+                    <semantic:text>"Low"</semantic:text>
+                </semantic:inputEntry>
+                <semantic:outputEntry id="_7b7f2700-a311-4e92-ae8f-842d351a78f5">
+                    <semantic:text>"Yes"</semantic:text>
+                </semantic:outputEntry>
+                <semantic:annotationEntry>
+                    <semantic:text/>
+                </semantic:annotationEntry>
+            </semantic:rule>
+            <semantic:rule id="_ed025b68-9127-4b86-8d40-6f829b9a956b">
+                <semantic:inputEntry id="_0466c851-0fd6-42ee-9f4e-e6d7dc931155">
+                    <semantic:text>"Stopped"</semantic:text>
+                </semantic:inputEntry>
+                <semantic:inputEntry id="_c7e541b7-ab6c-477e-89d1-b809b84ecf4f">
+                    <semantic:text>false</semantic:text>
+                </semantic:inputEntry>
+                <semantic:inputEntry id="_c2ea0399-c1b9-4aa3-a0a0-7ea55f88e941">
+                    <semantic:text>"None"</semantic:text>
+                </semantic:inputEntry>
+                <semantic:inputEntry id="_90b09b83-14ab-458d-8549-4e72fc40f676">
+                    <semantic:text>"Low"</semantic:text>
+                </semantic:inputEntry>
+                <semantic:outputEntry id="_79a5a4c3-ee54-40a4-bbe5-f2410d694921">
+                    <semantic:text>"No (Needs Recharge)"</semantic:text>
+                </semantic:outputEntry>
+                <semantic:annotationEntry>
+                    <semantic:text/>
+                </semantic:annotationEntry>
+            </semantic:rule>
+            <semantic:rule id="_8f950d09-cee7-40f5-99b6-879f947b5d44">
+                <semantic:inputEntry id="_7d0dc04c-f41f-47ce-b7da-8598a51244bf">
+                    <semantic:text>"Stopped"</semantic:text>
+                </semantic:inputEntry>
+                <semantic:inputEntry id="_d8892ea7-f36f-448b-999e-0b41b4e0cbaf">
+                    <semantic:text>false</semantic:text>
+                </semantic:inputEntry>
+                <semantic:inputEntry id="_1735891c-1cbe-4ae9-879a-f32b7ca09356">
+                    <semantic:text>"None"</semantic:text>
+                </semantic:inputEntry>
+                <semantic:inputEntry id="_47775dfb-9ee5-46bd-8d5e-9c15b62483c6">
+                    <semantic:text>"Sufficient"</semantic:text>
+                </semantic:inputEntry>
+                <semantic:outputEntry id="_acbc1aa4-8ee7-4199-8411-f4b3a820116c">
+                    <semantic:text>"No (Idle)"</semantic:text>
+                </semantic:outputEntry>
+                <semantic:annotationEntry>
+                    <semantic:text/>
+                </semantic:annotationEntry>
+            </semantic:rule>
+        </semantic:decisionTable>
+    </semantic:decision>
+    <semantic:decision id="_ff2c8842-ef49-4e9f-a2a7-f6629e0b3fc4" name="Action to Take" triso:readOnly="false">
+        <semantic:variable name="Action to Take" id="_f7077798-efef-4434-a7e6-09418bbe2872" typeRef="Action_to_Take"/>
+        <semantic:informationRequirement id="_abd2c96f-00c6-414e-be9c-79cc117aaed8" triso:readOnly="false">
+            <semantic:requiredDecision href="#_7b64ced2-00e3-4ccf-91eb-fd79ecd60d42"/>
+        </semantic:informationRequirement>
+        <semantic:informationRequirement id="_e94aff0e-7a29-4a7f-bed8-af87fec7c83c" triso:readOnly="false">
+            <semantic:requiredInput href="#_1596ae5c-5fd1-4df3-a5c3-fd2af9d52052"/>
+        </semantic:informationRequirement>
+        <semantic:informationRequirement id="_f631e5a4-610d-437b-87c2-e5d5117cd40f" triso:readOnly="false">
+            <semantic:requiredInput href="#_f11cb936-c082-4d7d-93d1-b3941700cea9"/>
+        </semantic:informationRequirement>
+        <semantic:informationRequirement id="_8ff51fa5-a042-4b00-be70-95f5f295c8a3" triso:readOnly="false">
+            <semantic:requiredInput href="#_fdcb73d0-e294-44d3-bb9d-a0ea2af18953"/>
+        </semantic:informationRequirement>
+        <semantic:decisionTable triso:descriptionVisible="false" id="_19489d24-32a5-4a32-9d98-7e78c415fd0d" hitPolicy="UNIQUE" outputLabel="Action to Take" typeRef="Action_to_Take" triso:expressionId="_aa96810d-82ea-4ae0-9bc7-1a290ce52e39">
+            <semantic:input id="_12db6623-ab16-4fa7-bcd7-b383407b6a46" triso:allowNull="true" label="Determine if Picker is Stuck">
+                <semantic:inputExpression typeRef="Picker_Stuck_Decision">
+                    <semantic:text>Determine if Picker is Stuck</semantic:text>
+                </semantic:inputExpression>
+            </semantic:input>
+            <semantic:input id="_51cbf1fa-4154-4c7d-aa40-b151f25c750a" triso:allowNull="true" label="Task Completion Status">
+                <semantic:inputExpression typeRef="Task_Completion_Status">
+                    <semantic:text>Task Completion Status</semantic:text>
+                </semantic:inputExpression>
+            </semantic:input>
+            <semantic:input id="_7f0cfb73-1cb6-4104-81c2-1f9fb9837310" triso:allowNull="true" label="Task Priority">
+                <semantic:inputExpression typeRef="Task_Priority">
+                    <semantic:text>Task Priority</semantic:text>
+                </semantic:inputExpression>
+            </semantic:input>
+            <semantic:input id="_3cfb6a92-edda-45ec-be68-a2f135b4e7f2" triso:allowNull="true" label="Manual Override Request">
+                <semantic:inputExpression typeRef="boolean">
+                    <semantic:text>Manual Override Request</semantic:text>
+                </semantic:inputExpression>
+            </semantic:input>
+            <semantic:output id="_0d9a9818-a22a-4cc7-91d0-f96e69cb4890" triso:allowNull="true">
+                <semantic:outputValues triso:constraintsType="enumeration">
+                    <semantic:text>"Reschedule Task to Other Picker","Attempt Autonomous Recovery","Wait for Manual Intervention","Notify Human Operator for Override","Continue Task","Notify Operator &amp; Continue Task",null</semantic:text>
+                </semantic:outputValues>
+            </semantic:output>
+            <semantic:annotation name="Description"/>
+            <semantic:rule id="_343c0784-4b1d-4ec5-b078-1d9097967ac1">
+                <semantic:inputEntry id="_d193ebdb-a868-496b-a725-ca228a6ca0da">
+                    <semantic:text>"Yes"</semantic:text>
+                </semantic:inputEntry>
+                <semantic:inputEntry id="_5ce02f52-2cee-495d-a9a2-3135fc23f078">
+                    <semantic:text>"Failed"</semantic:text>
+                </semantic:inputEntry>
+                <semantic:inputEntry id="_e2aa5f48-65f0-4ec1-8259-195e8b196a0d">
+                    <semantic:text>"High"</semantic:text>
+                </semantic:inputEntry>
+                <semantic:inputEntry id="_ff69033c-def3-487e-9723-639b6a4b4819">
+                    <semantic:text>false</semantic:text>
+                </semantic:inputEntry>
+                <semantic:outputEntry id="_8495ce33-78b9-458e-b8ab-10066d154e8f">
+                    <semantic:text>"Reschedule Task to Other Picker"</semantic:text>
+                </semantic:outputEntry>
+                <semantic:annotationEntry>
+                    <semantic:text/>
+                </semantic:annotationEntry>
+            </semantic:rule>
+            <semantic:rule id="_9b2ffbfc-8964-429d-b6e7-b7629d5322c1">
+                <semantic:inputEntry id="_73ea8734-69f4-454a-a9bf-05ea59ca08e4">
+                    <semantic:text>"Yes"</semantic:text>
+                </semantic:inputEntry>
+                <semantic:inputEntry id="_757b9b19-1125-4951-a24e-6d51123dfa71">
+                    <semantic:text>"Failed"</semantic:text>
+                </semantic:inputEntry>
+                <semantic:inputEntry id="_6918dd16-7881-4bbb-8554-04d4db431b25">
+                    <semantic:text>"Medium"</semantic:text>
+                </semantic:inputEntry>
+                <semantic:inputEntry id="_5b5be5f0-bf77-44c2-be0e-227de910e3b2">
+                    <semantic:text>false</semantic:text>
+                </semantic:inputEntry>
+                <semantic:outputEntry id="_ec410d61-1311-4aa4-981c-559d8de90ff8">
+                    <semantic:text>"Attempt Autonomous Recovery"</semantic:text>
+                </semantic:outputEntry>
+                <semantic:annotationEntry>
+                    <semantic:text/>
+                </semantic:annotationEntry>
+            </semantic:rule>
+            <semantic:rule id="_7ff96a34-5011-45ff-b57b-671d74c6d0b3">
+                <semantic:inputEntry id="_2899e656-1d75-428d-b27a-074d3f34c2d0">
+                    <semantic:text>"Yes"</semantic:text>
+                </semantic:inputEntry>
+                <semantic:inputEntry id="_65fff809-049a-4099-b834-3304574c4f32">
+                    <semantic:text>"Failed"</semantic:text>
+                </semantic:inputEntry>
+                <semantic:inputEntry id="_2111cb6e-8bbd-48c0-b7f9-8556ed136fea">
+                    <semantic:text>"Low"</semantic:text>
+                </semantic:inputEntry>
+                <semantic:inputEntry id="_54ec8ed1-11fe-46f5-a454-209d078766e4">
+                    <semantic:text>false</semantic:text>
+                </semantic:inputEntry>
+                <semantic:outputEntry id="_26206257-49fa-4ab5-bb86-e47fb94e8c99">
+                    <semantic:text>"Wait for Manual Intervention"</semantic:text>
+                </semantic:outputEntry>
+                <semantic:annotationEntry>
+                    <semantic:text/>
+                </semantic:annotationEntry>
+            </semantic:rule>
+            <semantic:rule id="_5e9449d7-0549-4c1b-9747-58200d444b83">
+                <semantic:inputEntry id="_0089b95b-446b-43a9-9313-a4aa3f46b1f1">
+                    <semantic:text>"Yes"</semantic:text>
+                </semantic:inputEntry>
+                <semantic:inputEntry id="_0d7999c3-c302-402d-a66f-f7308011dc8e">
+                    <semantic:text>"Failed"</semantic:text>
+                </semantic:inputEntry>
+                <semantic:inputEntry id="_575091e7-c838-4e12-815d-59e22d73c270">
+                    <semantic:text>"Any"</semantic:text>
+                </semantic:inputEntry>
+                <semantic:inputEntry id="_40daaf04-da18-4336-ad78-c3e17faa2f3a">
+                    <semantic:text>true</semantic:text>
+                </semantic:inputEntry>
+                <semantic:outputEntry id="_4e29df80-b61e-4753-b228-fe8f68d49fad">
+                    <semantic:text>"Notify Human Operator for Override"</semantic:text>
+                </semantic:outputEntry>
+                <semantic:annotationEntry>
+                    <semantic:text/>
+                </semantic:annotationEntry>
+            </semantic:rule>
+            <semantic:rule id="_809fe28b-d2c9-420b-a75b-247c441ea9bf">
+                <semantic:inputEntry id="_4c05cc10-ccac-4e07-a5c0-6c6778944256">
+                    <semantic:text>"No"</semantic:text>
+                </semantic:inputEntry>
+                <semantic:inputEntry id="_7675c248-7750-4be1-9e34-23bb2af74999">
+                    <semantic:text>"In Progress"</semantic:text>
+                </semantic:inputEntry>
+                <semantic:inputEntry id="_9f1c4bde-d6b3-497b-b2ee-bb91da247230">
+                    <semantic:text>"Any"</semantic:text>
+                </semantic:inputEntry>
+                <semantic:inputEntry id="_9aad856b-9d34-4a18-8142-4c28f63a19dd">
+                    <semantic:text>false</semantic:text>
+                </semantic:inputEntry>
+                <semantic:outputEntry id="_ff473777-39da-4284-9a4d-6e5eaa4d8434">
+                    <semantic:text>"Continue Task"</semantic:text>
+                </semantic:outputEntry>
+                <semantic:annotationEntry>
+                    <semantic:text/>
+                </semantic:annotationEntry>
+            </semantic:rule>
+            <semantic:rule id="_970fc09b-d252-4980-a1a7-d9243938f324">
+                <semantic:inputEntry id="_0607d4b0-c5f3-4d76-b7b3-46d7ed46b537">
+                    <semantic:text>"No"</semantic:text>
+                </semantic:inputEntry>
+                <semantic:inputEntry id="_5c212dea-fa3c-4bc5-9fe2-182d616887f5">
+                    <semantic:text>"In Progress"</semantic:text>
+                </semantic:inputEntry>
+                <semantic:inputEntry id="_0f4c0296-04b8-476c-86d1-ceaf9f82c3aa">
+                    <semantic:text>"Any"</semantic:text>
+                </semantic:inputEntry>
+                <semantic:inputEntry id="_4d3debf5-c925-43bb-abb5-f96897cd3fec">
+                    <semantic:text>true</semantic:text>
+                </semantic:inputEntry>
+                <semantic:outputEntry id="_52ac32bf-1eb2-45ae-9592-cdb6506a6d0f">
+                    <semantic:text>"Notify Operator &amp; Continue Task"</semantic:text>
+                </semantic:outputEntry>
+                <semantic:annotationEntry>
+                    <semantic:text/>
+                </semantic:annotationEntry>
+            </semantic:rule>
+        </semantic:decisionTable>
+    </semantic:decision>
+    <semantic:inputData id="_ee15cf64-bde7-4c7d-aa61-6e4248fea749" name="Error Code" triso:readOnly="false">
+        <semantic:description>&lt;p&gt;A code generated by the robotic picker system when it encounters a malfunction or error.&lt;/p&gt;</semantic:description>
+        <semantic:extensionElements>
+            <triso:reuseLink id="_251a5c24-def6-44e0-8d93-db009fe73554" modelName="Logistics Management Entity Model" itemName="Error Code" modelType="http://www.trisotech.com/graph/1.0/element#BusinessEntityModel" modelURI="http://www.trisotech.com/definitions/_8d80bed6-f1ed-40b5-9803-cdcc68dafa67" mimeType="application/vnd.triso-businessentity+json" uri="http://www.trisotech.com/definitions/_8d80bed6-f1ed-40b5-9803-cdcc68dafa67#_cf57f2a2-23e0-4c99-a59b-b8cea4bb5bf6" graphType="http://www.trisotech.com/graph/1.0/element#Term" path="Book - SCM/Logistics Management Entity Model" graphURI="http://trisotech.com/graph/1.0/graph#59f76da1-1155-478f-86b2-ab737b67b7c0"/>
+        </semantic:extensionElements>
+        <semantic:variable name="Error Code" id="_85a76249-ac78-4f19-a74a-5c95d69681e4" typeRef="Error_Code"/>
+    </semantic:inputData>
+    <semantic:inputData id="_fdcb73d0-e294-44d3-bb9d-a0ea2af18953" name="Manual Override Request" triso:readOnly="false">
+        <semantic:description>&lt;p&gt;Indicates if a manual override has been requested by a warehouse worker to intervene in the picker&amp;rsquo;s operation.&lt;/p&gt;</semantic:description>
+        <semantic:extensionElements>
+            <triso:reuseLink id="_19c1ee43-0352-4b6a-88cd-c43e8a57a516" modelName="Logistics Management Entity Model" itemName="Manual Override Request" modelType="http://www.trisotech.com/graph/1.0/element#BusinessEntityModel" modelURI="http://www.trisotech.com/definitions/_8d80bed6-f1ed-40b5-9803-cdcc68dafa67" mimeType="application/vnd.triso-businessentity+json" uri="http://www.trisotech.com/definitions/_8d80bed6-f1ed-40b5-9803-cdcc68dafa67#_a002f185-2279-4671-97da-3b652914bb5d" graphType="http://www.trisotech.com/graph/1.0/element#Term" path="Book - SCM/Logistics Management Entity Model" graphURI="http://trisotech.com/graph/1.0/graph#59f76da1-1155-478f-86b2-ab737b67b7c0"/>
+        </semantic:extensionElements>
+        <semantic:variable name="Manual Override Request" id="_6bf904ab-b183-4d1a-99d0-3d9b45824511" typeRef="boolean"/>
+    </semantic:inputData>
+    <semantic:inputData id="_1596ae5c-5fd1-4df3-a5c3-fd2af9d52052" name="Task Priority" triso:readOnly="false">
+        <semantic:description>&lt;p&gt;The priority level assigned to the picking task.&lt;/p&gt;</semantic:description>
+        <semantic:extensionElements>
+            <triso:reuseLink id="_33019e4d-f87b-4454-979b-9f45abc9bcf5" modelName="Logistics Management Entity Model" itemName="Task Priority" modelType="http://www.trisotech.com/graph/1.0/element#BusinessEntityModel" modelURI="http://www.trisotech.com/definitions/_8d80bed6-f1ed-40b5-9803-cdcc68dafa67" mimeType="application/vnd.triso-businessentity+json" uri="http://www.trisotech.com/definitions/_8d80bed6-f1ed-40b5-9803-cdcc68dafa67#_9860b5fa-f13d-407f-87ee-c4d4184e03db" graphType="http://www.trisotech.com/graph/1.0/element#Term" path="Book - SCM/Logistics Management Entity Model" graphURI="http://trisotech.com/graph/1.0/graph#59f76da1-1155-478f-86b2-ab737b67b7c0"/>
+        </semantic:extensionElements>
+        <semantic:variable name="Task Priority" id="_62eabb70-ba59-4c52-8609-6b88b33c5e70" typeRef="Task_Priority"/>
+    </semantic:inputData>
+    <semantic:inputData id="_f11cb936-c082-4d7d-93d1-b3941700cea9" name="Task Completion Status" triso:readOnly="false">
+        <semantic:description>&lt;p&gt;Indicates whether the picker has successfully completed its assigned task.&lt;/p&gt;</semantic:description>
+        <semantic:extensionElements>
+            <triso:reuseLink id="_a57e7dc0-0fc1-494c-8be3-de1952d80630" modelName="Logistics Management Entity Model" itemName="Task Completion Status" modelType="http://www.trisotech.com/graph/1.0/element#BusinessEntityModel" modelURI="http://www.trisotech.com/definitions/_8d80bed6-f1ed-40b5-9803-cdcc68dafa67" mimeType="application/vnd.triso-businessentity+json" uri="http://www.trisotech.com/definitions/_8d80bed6-f1ed-40b5-9803-cdcc68dafa67#_448eeb14-528a-4eb8-ba4c-e8e2201be989" graphType="http://www.trisotech.com/graph/1.0/element#Term" path="Book - SCM/Logistics Management Entity Model" graphURI="http://trisotech.com/graph/1.0/graph#59f76da1-1155-478f-86b2-ab737b67b7c0"/>
+        </semantic:extensionElements>
+        <semantic:variable name="Task Completion Status" id="_c70b2daf-6efa-4e6c-9334-10aee44d5122" typeRef="Task_Completion_Status"/>
+    </semantic:inputData>
+    <semantic:inputData id="_aa7d5aef-2586-4983-8b2b-a9c615a6771d" name="Obstacle Detection" triso:readOnly="false">
+        <semantic:description>&lt;p&gt;Detects any obstacles in the robotic picker&amp;rsquo;s path that prevent it from completing its task.&lt;/p&gt;</semantic:description>
+        <semantic:extensionElements>
+            <triso:reuseLink id="_54369685-df2a-441e-987e-e80ce66792ae" modelName="Logistics Management Entity Model" itemName="Obstacle Detection" modelType="http://www.trisotech.com/graph/1.0/element#BusinessEntityModel" modelURI="http://www.trisotech.com/definitions/_8d80bed6-f1ed-40b5-9803-cdcc68dafa67" mimeType="application/vnd.triso-businessentity+json" uri="http://www.trisotech.com/definitions/_8d80bed6-f1ed-40b5-9803-cdcc68dafa67#_5c8a4344-95ab-44b1-9412-54ac4cf89c34" graphType="http://www.trisotech.com/graph/1.0/element#Term" path="Book - SCM/Logistics Management Entity Model" graphURI="http://trisotech.com/graph/1.0/graph#59f76da1-1155-478f-86b2-ab737b67b7c0"/>
+        </semantic:extensionElements>
+        <semantic:variable name="Obstacle Detection" id="_b1b0f0c6-9b72-4e7f-bdb6-c131994e6b78" typeRef="Obstacle_Detection"/>
+    </semantic:inputData>
+    <semantic:inputData id="_f8e09330-2528-43de-9665-de2ff8cd49e1" name="Picker Movement Status" triso:readOnly="false">
+        <semantic:extensionElements>
+            <triso:reuseLink id="_ad5f6e55-7920-48e6-b679-ccd251e60371" modelName="Logistics Management Entity Model" itemName="Picker Movement Status" modelType="http://www.trisotech.com/graph/1.0/element#BusinessEntityModel" modelURI="http://www.trisotech.com/definitions/_8d80bed6-f1ed-40b5-9803-cdcc68dafa67" mimeType="application/vnd.triso-businessentity+json" uri="http://www.trisotech.com/definitions/_8d80bed6-f1ed-40b5-9803-cdcc68dafa67#_deaeb87e-281c-4a48-bcbf-5afb306290e9" graphType="http://www.trisotech.com/graph/1.0/element#Term" path="Book - SCM/Logistics Management Entity Model" graphURI="http://trisotech.com/graph/1.0/graph#59f76da1-1155-478f-86b2-ab737b67b7c0"/>
+        </semantic:extensionElements>
+        <semantic:variable name="Picker Movement Status" id="_3295161f-b66f-4fb9-9e34-12f3fe39f5c8" typeRef="Picker_Movement_Status"/>
+    </semantic:inputData>
+    <semantic:inputData id="_5a7caa5b-2fe3-4b8b-be32-92a1cb75f8f6" name="Battery Level" triso:readOnly="false">
+        <semantic:description>&lt;p&gt;The current battery level of the robotic picker, measured as a percentage&lt;/p&gt;</semantic:description>
+        <semantic:extensionElements>
+            <triso:reuseLink id="_fefef567-8ecf-4482-9e51-0cec346f90d3" modelName="Logistics Management Entity Model" itemName="Battery Level" modelType="http://www.trisotech.com/graph/1.0/element#BusinessEntityModel" modelURI="http://www.trisotech.com/definitions/_8d80bed6-f1ed-40b5-9803-cdcc68dafa67" mimeType="application/vnd.triso-businessentity+json" uri="http://www.trisotech.com/definitions/_8d80bed6-f1ed-40b5-9803-cdcc68dafa67#_aa91d13e-dc30-4fc0-afe9-f88e07e9758a" graphType="http://www.trisotech.com/graph/1.0/element#Term" path="Book - SCM/Logistics Management Entity Model" graphURI="http://trisotech.com/graph/1.0/graph#59f76da1-1155-478f-86b2-ab737b67b7c0"/>
+        </semantic:extensionElements>
+        <semantic:variable name="Battery Level" id="_69157c2e-cfa0-43d4-9f48-33780c9e5152" typeRef="Battery_Level"/>
+    </semantic:inputData>
+    <semantic:textAnnotation id="_b7707cc0-5b1d-4db3-8454-9d3099c359b9">
+        <semantic:text>Decision Node: "Is Picker Stuck?" – This node uses the business rules from Decision Table 1 to determine whether the picker is stuck based on movement, obstacle detection, error codes, and battery status.
+
+Input Data:Picker Movement Status
+Obstacle Detection
+Error Code
+Battery Level</semantic:text>
+    </semantic:textAnnotation>
+    <semantic:textAnnotation id="_515e5388-a412-4f02-ae4e-903aaa13b08b">
+        <semantic:text>Decision Node: "Action to Take" – This node evaluates the appropriate action based on the outcome of the first decision (Is Picker Stuck?), the priority of the task, and the manual override request.
+
+Input Data:Task Priority
+Manual Override Request</semantic:text>
+    </semantic:textAnnotation>
+    <dmndi:DMNDI>
+        <dmndi:DMNDiagram id="_dc88a51f-289b-4603-b0d5-659a6efe2f92" triso:modelElementRef="_62b27490-e3a4-4b93-a370-bedbcb45105b" name="Determine Malfunction">
+            <di:extension/>
+            <dmndi:Size height="1050" width="1485"/>
+            <dmndi:DMNShape id="_fb5e784d-ee2d-40f4-a3d4-36a6559cf736" dmnElementRef="_b7707cc0-5b1d-4db3-8454-9d3099c359b9">
+                <dc:Bounds x="1016.7953030288668" y="146.4052044619004" width="312.00000291951005" height="144.6562652587891"/>
+                <dmndi:DMNLabel sharedStyle="LS_cc67b70a-7bba-481b-abc4-d49800fb3f80_0" trisodmn:defaultBounds="true"/>
+            </dmndi:DMNShape>
+            <dmndi:DMNShape id="_e8ef2532-d392-4bcc-8378-6936193be361" dmnElementRef="_515e5388-a412-4f02-ae4e-903aaa13b08b">
+                <dc:Bounds x="1050.7953273084331" y="370.52156070762464" width="278.00000244050534" height="113.84375"/>
+                <dmndi:DMNLabel sharedStyle="LS_cc67b70a-7bba-481b-abc4-d49800fb3f80_0" trisodmn:defaultBounds="true"/>
+            </dmndi:DMNShape>
+            <dmndi:DMNShape id="_b52bf06e-0d90-4161-a27d-4d523e38b6d1" dmnElementRef="_7b64ced2-00e3-4ccf-91eb-fd79ecd60d42">
+                <dc:Bounds x="452.4406590228701" y="356.43281564781194" width="152.99999999999972" height="60"/>
+                <dmndi:DMNLabel sharedStyle="LS_cc67b70a-7bba-481b-abc4-d49800fb3f80_1" trisodmn:defaultBounds="true"/>
+            </dmndi:DMNShape>
+            <dmndi:DMNShape id="_9a8ad8b4-cfe2-44ae-96d1-0d7ee5c1c8a4" dmnElementRef="_ff2c8842-ef49-4e9f-a2a7-f6629e0b3fc4">
+                <dc:Bounds x="452.44066961334164" y="266.0000079176651" width="153.00000000000006" height="60"/>
+                <dmndi:DMNLabel sharedStyle="LS_cc67b70a-7bba-481b-abc4-d49800fb3f80_1" trisodmn:defaultBounds="true"/>
+            </dmndi:DMNShape>
+            <dmndi:DMNShape id="_6fd45421-82a3-4a3b-aff9-9e041270d502" dmnElementRef="_ee15cf64-bde7-4c7d-aa61-6e4248fea749">
+                <dc:Bounds x="422.78749240284606" y="473.4115838278123" width="135.48234176635742" height="60.00000762939459"/>
+                <dmndi:DMNLabel sharedStyle="LS_cc67b70a-7bba-481b-abc4-d49800fb3f80_1" trisodmn:defaultBounds="true"/>
+            </dmndi:DMNShape>
+            <dmndi:DMNShape id="_a7c8ee3f-9928-4dc3-8b52-d2bd839ab2de" dmnElementRef="_fdcb73d0-e294-44d3-bb9d-a0ea2af18953">
+                <dc:Bounds x="744.4406468641694" y="241.86484168497878" width="135.48234176635742" height="60.00000762939453"/>
+                <dmndi:DMNLabel sharedStyle="LS_cc67b70a-7bba-481b-abc4-d49800fb3f80_1" trisodmn:defaultBounds="true"/>
+            </dmndi:DMNShape>
+            <dmndi:DMNShape id="_bb550a04-5d0a-41c4-bad7-2c53f9d8fadd" dmnElementRef="_1596ae5c-5fd1-4df3-a5c3-fd2af9d52052">
+                <dc:Bounds x="744.4406468641691" y="322.7810989112054" width="135.48234176635754" height="60.00000762939453"/>
+                <dmndi:DMNLabel sharedStyle="LS_cc67b70a-7bba-481b-abc4-d49800fb3f80_1" trisodmn:defaultBounds="true"/>
+            </dmndi:DMNShape>
+            <dmndi:DMNShape id="_335eee7b-e80f-4bbf-87b2-c8b8aba22c09" dmnElementRef="_f11cb936-c082-4d7d-93d1-b3941700cea9">
+                <dc:Bounds x="265.9346048359939" y="265.99999787659226" width="135.48234176635748" height="60.00000762939453"/>
+                <dmndi:DMNLabel sharedStyle="LS_cc67b70a-7bba-481b-abc4-d49800fb3f80_1" trisodmn:defaultBounds="true"/>
+            </dmndi:DMNShape>
+            <dmndi:DMNShape id="_76937489-67eb-46e9-bd0d-4bf0555a0174" dmnElementRef="_aa7d5aef-2586-4983-8b2b-a9c615a6771d">
+                <dc:Bounds x="582.783944036983" y="473.4115838278122" width="135.48234176635742" height="60.000007629394474"/>
+                <dmndi:DMNLabel sharedStyle="LS_cc67b70a-7bba-481b-abc4-d49800fb3f80_1" trisodmn:defaultBounds="true"/>
+            </dmndi:DMNShape>
+            <dmndi:DMNShape id="_5a1543b7-3364-405a-912a-25da7c1fcfa3" dmnElementRef="_f8e09330-2528-43de-9665-de2ff8cd49e1">
+                <dc:Bounds x="744.4406642896095" y="473.41157274646525" width="135.48234176635742" height="60.00000762939453"/>
+                <dmndi:DMNLabel sharedStyle="LS_cc67b70a-7bba-481b-abc4-d49800fb3f80_1" trisodmn:defaultBounds="true"/>
+            </dmndi:DMNShape>
+            <dmndi:DMNShape id="_2270a85a-83e2-422c-ab4c-6ec93916305f" dmnElementRef="_5a7caa5b-2fe3-4b8b-be32-92a1cb75f8f6">
+                <dc:Bounds x="265.9346110608388" y="473.41159490915953" width="135.48234176635742" height="60.000007629394474"/>
+                <dmndi:DMNLabel sharedStyle="LS_cc67b70a-7bba-481b-abc4-d49800fb3f80_1" trisodmn:defaultBounds="true"/>
+            </dmndi:DMNShape>
+            <dmndi:DMNEdge id="_c17cc29a-11b2-4260-9ea2-b3dcaf938fac" dmnElementRef="_2df4aa08-b66e-47f9-be4e-52071ebef3cb">
+                <di:waypoint x="490.52546466236754" y="473.4115838278123"/>
+                <di:waypoint x="528.9406590228699" y="416.43281564781194"/>
+                <dmndi:DMNLabel sharedStyle="LS_cc67b70a-7bba-481b-abc4-d49800fb3f80_1"/>
+            </dmndi:DMNEdge>
+            <dmndi:DMNEdge id="_27e7f860-76c1-4051-933c-3cf10c5a187f" dmnElementRef="_a72bfaf2-9c4c-40eb-848d-3433fa6d5e26">
+                <di:waypoint x="650.5219162965045" y="473.4115838278122"/>
+                <di:waypoint x="528.9406590228699" y="416.43281564781194"/>
+                <dmndi:DMNLabel sharedStyle="LS_cc67b70a-7bba-481b-abc4-d49800fb3f80_1"/>
+            </dmndi:DMNEdge>
+            <dmndi:DMNEdge id="_0a7ab96e-ce31-4ffa-bb7e-a7dc13f20b7c" dmnElementRef="_f8f0c56b-a58a-441c-affc-89109d444f90">
+                <di:waypoint x="812.1786365491309" y="473.41157274646525"/>
+                <di:waypoint x="528.94065902287" y="416.43281564781194"/>
+                <dmndi:DMNLabel sharedStyle="LS_cc67b70a-7bba-481b-abc4-d49800fb3f80_1"/>
+            </dmndi:DMNEdge>
+            <dmndi:DMNEdge id="_186009b5-54df-49e4-8eaa-505949d800fe" dmnElementRef="_b565a752-233f-4926-ba77-214ad7556a20">
+                <di:waypoint x="333.6725833203603" y="473.41159490915953"/>
+                <di:waypoint x="528.9406590228699" y="416.43281564781194"/>
+                <dmndi:DMNLabel sharedStyle="LS_cc67b70a-7bba-481b-abc4-d49800fb3f80_1"/>
+            </dmndi:DMNEdge>
+            <dmndi:DMNEdge id="_e8458cc1-baac-46b5-8b76-42197410e46d" dmnElementRef="_abd2c96f-00c6-414e-be9c-79cc117aaed8">
+                <di:waypoint x="528.9406590228699" y="356.43281564781194"/>
+                <di:waypoint x="528.9406696133417" y="326.0000079176651"/>
+                <dmndi:DMNLabel sharedStyle="LS_cc67b70a-7bba-481b-abc4-d49800fb3f80_1"/>
+            </dmndi:DMNEdge>
+            <dmndi:DMNEdge id="_6ae34f91-5747-4b6c-a15c-389a5d03bcc2" dmnElementRef="_e94aff0e-7a29-4a7f-bed8-af87fec7c83c">
+                <di:waypoint x="744.6786191236906" y="352.7810989112054"/>
+                <di:waypoint x="605.4406696133417" y="296.0000079176651"/>
+                <dmndi:DMNLabel sharedStyle="LS_cc67b70a-7bba-481b-abc4-d49800fb3f80_1"/>
+            </dmndi:DMNEdge>
+            <dmndi:DMNEdge id="_09130d13-6514-4d6a-a7fb-c21beac8cfbe" dmnElementRef="_f631e5a4-610d-437b-87c2-e5d5117cd40f">
+                <di:waypoint x="401.4169466023514" y="295.99999787659226"/>
+                <di:waypoint x="452.44066961334164" y="296.0000079176651"/>
+                <dmndi:DMNLabel sharedStyle="LS_cc67b70a-7bba-481b-abc4-d49800fb3f80_1"/>
+            </dmndi:DMNEdge>
+            <dmndi:DMNEdge id="_b7da2015-64c2-44be-be5e-7d09c7fb02ad" dmnElementRef="_8ff51fa5-a042-4b00-be70-95f5f295c8a3">
+                <di:waypoint x="744.6786191236909" y="271.8648416849788"/>
+                <di:waypoint x="605.4406696133417" y="296.0000079176651"/>
+                <dmndi:DMNLabel sharedStyle="LS_cc67b70a-7bba-481b-abc4-d49800fb3f80_1"/>
+            </dmndi:DMNEdge>
+        </dmndi:DMNDiagram>
+        <dmndi:DMNStyle id="LS_cc67b70a-7bba-481b-abc4-d49800fb3f80_0" fontFamily="arial,helvetica,sans-serif" fontSize="11" fontBold="false" fontItalic="false" fontUnderline="false" fontStrikeThrough="false"/>
+        <dmndi:DMNStyle id="LS_cc67b70a-7bba-481b-abc4-d49800fb3f80_1" fontFamily="arial,helvetica,sans-serif" fontSize="11" fontBold="true" fontItalic="false" fontUnderline="false" fontStrikeThrough="false"/>
+    </dmndi:DMNDI>
+</semantic:definitions>
