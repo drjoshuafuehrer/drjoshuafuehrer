@@ -1,0 +1,815 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<semantic:definitions xmlns:semantic="https://www.omg.org/spec/DMN/20240513/MODEL/"  xmlns:sdmn="https://www.omg.org/spec/SDMN/"  xmlns:triso="http://www.trisotech.com/2015/triso/modeling"  xmlns:dmndi="https://www.omg.org/spec/DMN/20230324/DMNDI/"  xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/"  xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/"  xmlns:trisodmn="http://www.trisotech.com/2016/triso/dmn"  xmlns:feel="https://www.omg.org/spec/DMN/20240513/FEEL/"  xmlns:tc="http://www.omg.org/spec/DMN/20160719/testcase"  xmlns:drools="http://www.drools.org/kie/dmn/1.1"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  xmlns:rss="http://purl.org/rss/2.0/"  xmlns:openapi="https://openapis.org/omg/extension/1.0"  xmlns:xsd="http://www.w3.org/2001/XMLSchema"   xmlns:i18n="http://www.omg.org/spec/BPMN/non-normative/extensions/i18n/1.0"  xmlns="http://www.trisotech.com/definitions/_acaa024d-7534-4160-907f-3934cc75be54" id="_acaa024d-7534-4160-907f-3934cc75be54" name="Determine Best Warehouse to Fulfill Customer Orders" namespace="http://www.trisotech.com/definitions/_acaa024d-7534-4160-907f-3934cc75be54" exporter="Decision Modeler" exporterVersion="9.6.3" xml:lang="en" triso:logoChoice="Default">
+    <semantic:extensionElements/>
+    <semantic:itemDefinition name="Order_ID" label="Order ID">
+        <semantic:typeRef>string</semantic:typeRef>
+    </semantic:itemDefinition>
+    <semantic:itemDefinition name="Item_ID" label="Item ID">
+        <semantic:typeRef>string</semantic:typeRef>
+    </semantic:itemDefinition>
+    <semantic:itemDefinition name="Warehouse_Inventory" label="Warehouse Inventory">
+        <semantic:itemComponent id="_ac602cbe-c7e7-42a7-8e4b-7934bf9cfd29" name="Warehouse ID">
+            <semantic:typeRef>string</semantic:typeRef>
+        </semantic:itemComponent>
+        <semantic:itemComponent id="_0f4ccc6f-c665-4e72-9113-fb3254c82d3e" name="Item ID">
+            <semantic:typeRef>string</semantic:typeRef>
+        </semantic:itemComponent>
+        <semantic:itemComponent id="_6cadf1c6-77ba-4ea6-8164-5029c0f8570d" name="Available Quantity">
+            <semantic:typeRef>number</semantic:typeRef>
+        </semantic:itemComponent>
+    </semantic:itemDefinition>
+    <semantic:itemDefinition name="Order_Details" label="Order Details">
+        <semantic:itemComponent id="_c248864f-e32a-4113-a91f-b7008ded9c1f" name="Order ID">
+            <semantic:typeRef>number</semantic:typeRef>
+        </semantic:itemComponent>
+        <semantic:itemComponent id="_43a00a68-35ab-46a1-a111-22fd0dceac17" name="Item ID">
+            <semantic:typeRef>string</semantic:typeRef>
+        </semantic:itemComponent>
+        <semantic:itemComponent id="_afb8152a-940c-4d5b-bece-2043e0c75225" name="Quantity">
+            <semantic:typeRef>number</semantic:typeRef>
+        </semantic:itemComponent>
+        <semantic:itemComponent id="_40d746e5-db43-4548-99b8-56c33819734d" name="Delivery Address">
+            <semantic:typeRef>string</semantic:typeRef>
+        </semantic:itemComponent>
+    </semantic:itemDefinition>
+    <semantic:itemDefinition name="Warehouse_Location" label="Warehouse Location">
+        <semantic:itemComponent id="_2c320f6a-ab83-43db-96a5-edcfff3593d9" name="Warehouse ID">
+            <semantic:typeRef>string</semantic:typeRef>
+        </semantic:itemComponent>
+        <semantic:itemComponent id="_3cc53078-4dd3-452c-bfcd-397ccf5a4dbb" name="Address">
+            <semantic:typeRef>string</semantic:typeRef>
+        </semantic:itemComponent>
+        <semantic:itemComponent id="_782fa1d5-1358-4fda-960c-e586adbd6306" name="Geographic Location">
+            <semantic:typeRef>string</semantic:typeRef>
+        </semantic:itemComponent>
+    </semantic:itemDefinition>
+    <semantic:itemDefinition name="Shipping_Rates" label="Shipping Rates">
+        <semantic:itemComponent id="_f66fec8a-1edc-4998-9c8f-adc0d1eb5f96" name="Warehouse ID">
+            <semantic:typeRef>string</semantic:typeRef>
+        </semantic:itemComponent>
+        <semantic:itemComponent id="_feac5d89-8ba2-4cca-a719-8e1d3f97c155" name="Delivery Address">
+            <semantic:typeRef>string</semantic:typeRef>
+        </semantic:itemComponent>
+        <semantic:itemComponent id="_b5c1d616-8c4a-4ad1-8ccc-cc979d16d920" name="Shipping Rate per Unit">
+            <semantic:typeRef>string</semantic:typeRef>
+        </semantic:itemComponent>
+        <semantic:itemComponent id="_e568d568-c88a-4e18-97bd-00c8c1a7f289" name="Distance in Miles">
+            <semantic:typeRef>number</semantic:typeRef>
+        </semantic:itemComponent>
+    </semantic:itemDefinition>
+    <semantic:itemDefinition name="OrderDetails" label="OrderDetails">
+        <semantic:typeRef>string</semantic:typeRef>
+        <semantic:allowedValues>
+            <semantic:extensionElements>
+                <triso:constraintDetails id="_0e7a2931-c640-493a-b0ef-f82c40e17db3" constraintsType="enumeration">
+                    <triso:value>"Order ID","Quantities","Delivery Address"</triso:value>
+                    <triso:display>"Order ID", "Quantities", "Delivery Address"</triso:display>
+                    <triso:choices>
+                        <triso:value>"Order ID"</triso:value>
+                        <triso:display>"Order ID"</triso:display>
+                    </triso:choices>
+                    <triso:choices>
+                        <triso:value>"Quantities"</triso:value>
+                        <triso:display>"Quantities"</triso:display>
+                    </triso:choices>
+                    <triso:choices>
+                        <triso:value>"Delivery Address"</triso:value>
+                        <triso:display>"Delivery Address"</triso:display>
+                    </triso:choices>
+                </triso:constraintDetails>
+            </semantic:extensionElements>
+            <semantic:text>"Order ID","Quantities","Delivery Address"</semantic:text>
+        </semantic:allowedValues>
+    </semantic:itemDefinition>
+    <semantic:itemDefinition name="Order" label="Order" isCollection="false">
+        <semantic:extensionElements>
+            <triso:reuseLink id="_6a457d67-37ca-478f-841f-c552dbfc9a5b" modelName="Logistics Management Entity Model" itemName="Order" modelType="http://www.trisotech.com/graph/1.0/element#BusinessEntityModel" modelURI="http://www.trisotech.com/definitions/_8d80bed6-f1ed-40b5-9803-cdcc68dafa67" mimeType="application/vnd.triso-businessentity+json" uri="http://www.trisotech.com/definitions/_8d80bed6-f1ed-40b5-9803-cdcc68dafa67#Order" graphType="http://www.trisotech.com/graph/1.0/element#ItemDefinition" path="Book - SCM/Logistics Management Entity Model" graphURI="http://trisotech.com/graph/1.0/graph#59f76da1-1155-478f-86b2-ab737b67b7c0"/>
+        </semantic:extensionElements>
+        <semantic:itemComponent id="_9eaff9d7-4695-4611-b720-c82e4fe91db7" name="Order ID" isCollection="false">
+            <semantic:typeRef>number</semantic:typeRef>
+        </semantic:itemComponent>
+        <semantic:itemComponent id="_73423b58-e8e5-4bc3-9095-c1b4174b8a01" name="Customer ID" isCollection="false">
+            <semantic:typeRef>number</semantic:typeRef>
+        </semantic:itemComponent>
+        <semantic:itemComponent id="_f631212a-019e-4b02-93a7-caf9c221349f" name="Product ID" isCollection="false">
+            <semantic:typeRef>number</semantic:typeRef>
+        </semantic:itemComponent>
+        <semantic:itemComponent id="_f39bf0c7-c049-45ca-bff8-b8bfbac782bb" name="Quantity" isCollection="false">
+            <semantic:typeRef>number</semantic:typeRef>
+            <semantic:allowedValues>
+                <semantic:extensionElements>
+                    <triso:constraintDetails id="_3ce26ffe-5884-4b11-98d9-a229d52984ec" constraintsType="simple" min="0" minIncluded="false" max="100000000" maxIncluded="false">
+                        <triso:value>(0..100000000)</triso:value>
+                        <triso:display>(0..100000000)</triso:display>
+                    </triso:constraintDetails>
+                </semantic:extensionElements>
+                <semantic:text>(0..100000000)</semantic:text>
+            </semantic:allowedValues>
+        </semantic:itemComponent>
+        <semantic:itemComponent id="_6176d1d3-f794-4b54-8d6a-a7a31b5f2add" name="Shipping Address" isCollection="false">
+            <semantic:itemComponent id="_4cf20f8e-3762-48c2-a0fb-dadcf40c85b3" name="Address" isCollection="false">
+                <semantic:typeRef>string</semantic:typeRef>
+                <semantic:allowedValues>
+                    <semantic:extensionElements>
+                        <triso:constraintDetails id="_4e1aebde-0ba1-4f4a-b754-7fa2416d3c51" constraintsType="notNull">
+                            <triso:value>not(? = null)</triso:value>
+                            <triso:display>not(null)</triso:display>
+                        </triso:constraintDetails>
+                    </semantic:extensionElements>
+                    <semantic:text>not(? = null)</semantic:text>
+                </semantic:allowedValues>
+            </semantic:itemComponent>
+            <semantic:itemComponent id="_cd397001-7f06-4372-9192-3f4521191738" name="City" isCollection="false">
+                <semantic:typeRef>string</semantic:typeRef>
+                <semantic:allowedValues>
+                    <semantic:extensionElements>
+                        <triso:constraintDetails id="_7c9ee4d8-aa6a-40dc-a4c4-0209f413fee8" constraintsType="notNull">
+                            <triso:value>not(? = null)</triso:value>
+                            <triso:display>not(null)</triso:display>
+                        </triso:constraintDetails>
+                    </semantic:extensionElements>
+                    <semantic:text>not(? = null)</semantic:text>
+                </semantic:allowedValues>
+            </semantic:itemComponent>
+            <semantic:itemComponent id="_17dff146-926a-4f62-a70f-743c3bec9b5c" name="State" isCollection="false">
+                <semantic:typeRef>string</semantic:typeRef>
+                <semantic:allowedValues>
+                    <semantic:extensionElements>
+                        <triso:constraintDetails id="_d2161a0c-1087-4ed4-b77c-623c65cbc78e" constraintsType="notNull">
+                            <triso:value>not(? = null)</triso:value>
+                            <triso:display>not(null)</triso:display>
+                        </triso:constraintDetails>
+                    </semantic:extensionElements>
+                    <semantic:text>not(? = null)</semantic:text>
+                </semantic:allowedValues>
+            </semantic:itemComponent>
+            <semantic:itemComponent id="_d9f24a3a-53e0-4e20-b644-877e1fa272db" name="Zip Code" isCollection="false">
+                <semantic:typeRef>number</semantic:typeRef>
+                <semantic:allowedValues>
+                    <semantic:extensionElements>
+                        <triso:constraintDetails id="_7299a683-3fb6-4d9f-b49a-ed2bb49f24e0" constraintsType="notNull">
+                            <triso:value>not(? = null)</triso:value>
+                            <triso:display>not(null)</triso:display>
+                        </triso:constraintDetails>
+                    </semantic:extensionElements>
+                    <semantic:text>not(? = null)</semantic:text>
+                </semantic:allowedValues>
+            </semantic:itemComponent>
+            <semantic:itemComponent id="_0c7b9e40-c5ab-4d44-9087-8781a682b91d" name="Country" isCollection="false">
+                <semantic:typeRef>string</semantic:typeRef>
+                <semantic:allowedValues>
+                    <semantic:extensionElements>
+                        <triso:constraintDetails id="_c68e375a-c618-456b-9f78-d7d3a319937a" constraintsType="notNull">
+                            <triso:value>not(? = null)</triso:value>
+                            <triso:display>not(null)</triso:display>
+                        </triso:constraintDetails>
+                    </semantic:extensionElements>
+                    <semantic:text>not(? = null)</semantic:text>
+                </semantic:allowedValues>
+            </semantic:itemComponent>
+        </semantic:itemComponent>
+        <semantic:itemComponent id="_b9c48d51-72d2-4ec9-bea7-8744fe377488" name="Order Date" isCollection="false">
+            <semantic:typeRef>date</semantic:typeRef>
+        </semantic:itemComponent>
+        <semantic:itemComponent id="_71fdb3d9-df6f-42e1-81dd-09d4b0c7741d" name="Total Amount" isCollection="false">
+            <semantic:typeRef>number</semantic:typeRef>
+        </semantic:itemComponent>
+        <semantic:itemComponent id="_22a85f1a-a0c3-4cef-9a1f-89c3263ce054" name="Status" isCollection="false">
+            <semantic:typeRef>tStatus</semantic:typeRef>
+        </semantic:itemComponent>
+        <semantic:itemComponent id="_38b5f19d-855e-4058-8723-bbdcc7420bf7" name="Rate ID" isCollection="false">
+            <semantic:typeRef>number</semantic:typeRef>
+        </semantic:itemComponent>
+        <semantic:itemComponent id="_7656d74d-d4c8-49e2-b2a0-f10ba4e3b2f4" name="PaymentMethod" isCollection="false">
+            <semantic:typeRef>string</semantic:typeRef>
+        </semantic:itemComponent>
+    </semantic:itemDefinition>
+    <semantic:itemDefinition name="WarehouseInventory" label="WarehouseInventory">
+        <semantic:typeRef>string</semantic:typeRef>
+        <semantic:allowedValues>
+            <semantic:extensionElements>
+                <triso:constraintDetails id="_a0180f47-2dd8-44e1-9d94-4023b3a7c5bd" constraintsType="enumeration">
+                    <triso:value>"Warehouse ID","Item ID","Available Quantity"</triso:value>
+                    <triso:display>"Warehouse ID", "Item ID", "Available Quantity"</triso:display>
+                    <triso:choices>
+                        <triso:value>"Warehouse ID"</triso:value>
+                        <triso:display>"Warehouse ID"</triso:display>
+                    </triso:choices>
+                    <triso:choices>
+                        <triso:value>"Item ID"</triso:value>
+                        <triso:display>"Item ID"</triso:display>
+                    </triso:choices>
+                    <triso:choices>
+                        <triso:value>"Available Quantity"</triso:value>
+                        <triso:display>"Available Quantity"</triso:display>
+                    </triso:choices>
+                </triso:constraintDetails>
+            </semantic:extensionElements>
+            <semantic:text>"Warehouse ID","Item ID","Available Quantity"</semantic:text>
+        </semantic:allowedValues>
+    </semantic:itemDefinition>
+    <semantic:itemDefinition name="WarehouseLocation" label="WarehouseLocation">
+        <semantic:typeRef>string</semantic:typeRef>
+        <semantic:allowedValues>
+            <semantic:extensionElements>
+                <triso:constraintDetails id="_94f9ae4e-86c7-4432-b776-e89f318c56aa" constraintsType="enumeration">
+                    <triso:value>"Warehouse ID","Address","Geographic Location"</triso:value>
+                    <triso:display>"Warehouse ID", "Address", "Geographic Location"</triso:display>
+                    <triso:choices>
+                        <triso:value>"Warehouse ID"</triso:value>
+                        <triso:display>"Warehouse ID"</triso:display>
+                    </triso:choices>
+                    <triso:choices>
+                        <triso:value>"Address"</triso:value>
+                        <triso:display>"Address"</triso:display>
+                    </triso:choices>
+                    <triso:choices>
+                        <triso:value>"Geographic Location"</triso:value>
+                        <triso:display>"Geographic Location"</triso:display>
+                    </triso:choices>
+                </triso:constraintDetails>
+            </semantic:extensionElements>
+            <semantic:text>"Warehouse ID","Address","Geographic Location"</semantic:text>
+        </semantic:allowedValues>
+    </semantic:itemDefinition>
+    <semantic:itemDefinition name="ShippingRates" label="ShippingRates">
+        <semantic:typeRef>string</semantic:typeRef>
+        <semantic:allowedValues>
+            <semantic:extensionElements>
+                <triso:constraintDetails id="_9c7969a3-48f7-4fe8-a230-394cc94a12c4" constraintsType="enumeration">
+                    <triso:value>"Warehouse ID","Delivery Address","Shipping Rate per Unit","Distance in Miles"</triso:value>
+                    <triso:display>"Warehouse ID", "Delivery Address", "Shipping Rate per Unit", "Distance in Miles"</triso:display>
+                    <triso:choices>
+                        <triso:value>"Warehouse ID"</triso:value>
+                        <triso:display>"Warehouse ID"</triso:display>
+                    </triso:choices>
+                    <triso:choices>
+                        <triso:value>"Delivery Address"</triso:value>
+                        <triso:display>"Delivery Address"</triso:display>
+                    </triso:choices>
+                    <triso:choices>
+                        <triso:value>"Shipping Rate per Unit"</triso:value>
+                        <triso:display>"Shipping Rate per Unit"</triso:display>
+                    </triso:choices>
+                    <triso:choices>
+                        <triso:value>"Distance in Miles"</triso:value>
+                        <triso:display>"Distance in Miles"</triso:display>
+                    </triso:choices>
+                </triso:constraintDetails>
+            </semantic:extensionElements>
+            <semantic:text>"Warehouse ID","Delivery Address","Shipping Rate per Unit","Distance in Miles"</semantic:text>
+        </semantic:allowedValues>
+    </semantic:itemDefinition>
+    <semantic:itemDefinition name="Inventory" label="Inventory" isCollection="false">
+        <semantic:extensionElements>
+            <triso:reuseLink id="_fd061976-276a-4fe3-ae7f-9cf5ac4d3ca7" modelName="Logistics Management Entity Model" itemName="Inventory" modelType="http://www.trisotech.com/graph/1.0/element#BusinessEntityModel" modelURI="http://www.trisotech.com/definitions/_8d80bed6-f1ed-40b5-9803-cdcc68dafa67" mimeType="application/vnd.triso-businessentity+json" uri="http://www.trisotech.com/definitions/_8d80bed6-f1ed-40b5-9803-cdcc68dafa67#Inventory" graphType="http://www.trisotech.com/graph/1.0/element#ItemDefinition" path="Book - SCM/Logistics Management Entity Model" graphURI="http://trisotech.com/graph/1.0/graph#59f76da1-1155-478f-86b2-ab737b67b7c0"/>
+        </semantic:extensionElements>
+        <semantic:typeRef>string</semantic:typeRef>
+        <semantic:allowedValues>
+            <semantic:extensionElements>
+                <triso:constraintDetails id="_8e2a30a3-b1a4-4dc7-8fb9-90d0a1b8b819" constraintsType="enumeration">
+                    <triso:value>"Quantity","Warehouse ID","Inventory ID","Product ID","Reorder Level"</triso:value>
+                    <triso:display>"Quantity", "Warehouse ID", "Inventory ID", "Product ID", "Reorder Level"</triso:display>
+                    <triso:choices>
+                        <triso:value>"Quantity"</triso:value>
+                        <triso:display>"Quantity"</triso:display>
+                    </triso:choices>
+                    <triso:choices>
+                        <triso:value>"Warehouse ID"</triso:value>
+                        <triso:display>"Warehouse ID"</triso:display>
+                    </triso:choices>
+                    <triso:choices>
+                        <triso:value>"Inventory ID"</triso:value>
+                        <triso:display>"Inventory ID"</triso:display>
+                    </triso:choices>
+                    <triso:choices>
+                        <triso:value>"Product ID"</triso:value>
+                        <triso:display>"Product ID"</triso:display>
+                    </triso:choices>
+                    <triso:choices>
+                        <triso:value>"Reorder Level"</triso:value>
+                        <triso:display>"Reorder Level"</triso:display>
+                    </triso:choices>
+                </triso:constraintDetails>
+            </semantic:extensionElements>
+            <semantic:text>"Quantity","Warehouse ID","Inventory ID","Product ID","Reorder Level"</semantic:text>
+        </semantic:allowedValues>
+    </semantic:itemDefinition>
+    <semantic:itemDefinition name="Location" label="Location" isCollection="false">
+        <semantic:extensionElements>
+            <triso:reuseLink id="_7664ceae-6ab2-4358-8e04-14c0932f3402" modelName="Logistics Management Entity Model" itemName="Location" modelType="http://www.trisotech.com/graph/1.0/element#BusinessEntityModel" modelURI="http://www.trisotech.com/definitions/_8d80bed6-f1ed-40b5-9803-cdcc68dafa67" mimeType="application/vnd.triso-businessentity+json" uri="http://www.trisotech.com/definitions/_8d80bed6-f1ed-40b5-9803-cdcc68dafa67#Location" graphType="http://www.trisotech.com/graph/1.0/element#ItemDefinition" path="Book - SCM/Logistics Management Entity Model" graphURI="http://trisotech.com/graph/1.0/graph#59f76da1-1155-478f-86b2-ab737b67b7c0"/>
+        </semantic:extensionElements>
+        <semantic:typeRef>string</semantic:typeRef>
+        <semantic:allowedValues>
+            <semantic:extensionElements>
+                <triso:constraintDetails id="_85e4f038-a7fa-4b41-bfbd-ccbc164761aa" constraintsType="enumeration">
+                    <triso:value>"Address","Location ID","City","State","ZIP Code","Country"</triso:value>
+                    <triso:display>"Address", "Location ID", "City", "State", "ZIP Code", "Country"</triso:display>
+                    <triso:choices>
+                        <triso:value>"Address"</triso:value>
+                        <triso:display>"Address"</triso:display>
+                    </triso:choices>
+                    <triso:choices>
+                        <triso:value>"Location ID"</triso:value>
+                        <triso:display>"Location ID"</triso:display>
+                    </triso:choices>
+                    <triso:choices>
+                        <triso:value>"City"</triso:value>
+                        <triso:display>"City"</triso:display>
+                    </triso:choices>
+                    <triso:choices>
+                        <triso:value>"State"</triso:value>
+                        <triso:display>"State"</triso:display>
+                    </triso:choices>
+                    <triso:choices>
+                        <triso:value>"ZIP Code"</triso:value>
+                        <triso:display>"ZIP Code"</triso:display>
+                    </triso:choices>
+                    <triso:choices>
+                        <triso:value>"Country"</triso:value>
+                        <triso:display>"Country"</triso:display>
+                    </triso:choices>
+                </triso:constraintDetails>
+            </semantic:extensionElements>
+            <semantic:text>"Address","Location ID","City","State","ZIP Code","Country"</semantic:text>
+        </semantic:allowedValues>
+    </semantic:itemDefinition>
+    <semantic:itemDefinition name="ShippingRate" label="ShippingRate" isCollection="false">
+        <semantic:extensionElements>
+            <triso:reuseLink id="_5678faa3-ffa8-4698-ac9e-6a157a41d61e" modelName="Logistics Management Entity Model" itemName="ShippingRate" modelType="http://www.trisotech.com/graph/1.0/element#BusinessEntityModel" modelURI="http://www.trisotech.com/definitions/_8d80bed6-f1ed-40b5-9803-cdcc68dafa67" mimeType="application/vnd.triso-businessentity+json" uri="http://www.trisotech.com/definitions/_8d80bed6-f1ed-40b5-9803-cdcc68dafa67#ShippingRate" graphType="http://www.trisotech.com/graph/1.0/element#ItemDefinition" path="Book - SCM/Logistics Management Entity Model" graphURI="http://trisotech.com/graph/1.0/graph#59f76da1-1155-478f-86b2-ab737b67b7c0"/>
+        </semantic:extensionElements>
+        <semantic:typeRef>string</semantic:typeRef>
+        <semantic:allowedValues>
+            <semantic:extensionElements>
+                <triso:constraintDetails id="_9c07a9ab-e8a3-4f10-bfa2-de07811569e3" constraintsType="enumeration">
+                    <triso:value>"Carrier","Shipping Rate ID","Rate Per Kg","Rate Per Km","Effective Date","Transport Type"</triso:value>
+                    <triso:display>"Carrier", "Shipping Rate ID", "Rate Per Kg", "Rate Per Km", "Effective Date", "Transport Type"</triso:display>
+                    <triso:choices>
+                        <triso:value>"Carrier"</triso:value>
+                        <triso:display>"Carrier"</triso:display>
+                    </triso:choices>
+                    <triso:choices>
+                        <triso:value>"Shipping Rate ID"</triso:value>
+                        <triso:display>"Shipping Rate ID"</triso:display>
+                    </triso:choices>
+                    <triso:choices>
+                        <triso:value>"Rate Per Kg"</triso:value>
+                        <triso:display>"Rate Per Kg"</triso:display>
+                    </triso:choices>
+                    <triso:choices>
+                        <triso:value>"Rate Per Km"</triso:value>
+                        <triso:display>"Rate Per Km"</triso:display>
+                    </triso:choices>
+                    <triso:choices>
+                        <triso:value>"Effective Date"</triso:value>
+                        <triso:display>"Effective Date"</triso:display>
+                    </triso:choices>
+                    <triso:choices>
+                        <triso:value>"Transport Type"</triso:value>
+                        <triso:display>"Transport Type"</triso:display>
+                    </triso:choices>
+                </triso:constraintDetails>
+            </semantic:extensionElements>
+            <semantic:text>"Carrier","Shipping Rate ID","Rate Per Kg","Rate Per Km","Effective Date","Transport Type"</semantic:text>
+        </semantic:allowedValues>
+    </semantic:itemDefinition>
+    <semantic:itemDefinition name="tStatus" label="tStatus" isCollection="false">
+        <semantic:extensionElements>
+            <triso:reuseLink id="_cb50da11-1fd9-4de1-8f39-87c8ae7ed9bb" modelName="Logistics Management Entity Model" itemName="tStatus" modelType="http://www.trisotech.com/graph/1.0/element#BusinessEntityModel" modelURI="http://www.trisotech.com/definitions/_8d80bed6-f1ed-40b5-9803-cdcc68dafa67" mimeType="application/vnd.triso-businessentity+json" uri="http://www.trisotech.com/definitions/_8d80bed6-f1ed-40b5-9803-cdcc68dafa67#tStatus" graphType="http://www.trisotech.com/graph/1.0/element#ItemDefinition" path="Book - SCM/Logistics Management Entity Model" graphURI="http://trisotech.com/graph/1.0/graph#59f76da1-1155-478f-86b2-ab737b67b7c0"/>
+        </semantic:extensionElements>
+        <semantic:typeRef>string</semantic:typeRef>
+        <semantic:allowedValues>
+            <semantic:extensionElements>
+                <triso:constraintDetails id="_cd625112-2fd8-468d-bd0e-86d0b10186d1" constraintsType="enumeration">
+                    <triso:value>"Pending","Shipped","Delivered","Cancelled","Returned"</triso:value>
+                    <triso:display>"Pending", "Shipped", "Delivered", "Cancelled", "Returned"</triso:display>
+                    <triso:choices>
+                        <triso:value>"Pending"</triso:value>
+                        <triso:display>"Pending"</triso:display>
+                    </triso:choices>
+                    <triso:choices>
+                        <triso:value>"Shipped"</triso:value>
+                        <triso:display>"Shipped"</triso:display>
+                    </triso:choices>
+                    <triso:choices>
+                        <triso:value>"Delivered"</triso:value>
+                        <triso:display>"Delivered"</triso:display>
+                    </triso:choices>
+                    <triso:choices>
+                        <triso:value>"Cancelled"</triso:value>
+                        <triso:display>"Cancelled"</triso:display>
+                    </triso:choices>
+                    <triso:choices>
+                        <triso:value>"Returned"</triso:value>
+                        <triso:display>"Returned"</triso:display>
+                    </triso:choices>
+                </triso:constraintDetails>
+                <triso:constraintDetails id="_2a7d3f8e-cee8-4500-a0f7-712f4f4e040c" constraintsType="enumeration">
+                    <triso:value>"Pending","Shipped","Delivered","Cancelled","Returned"</triso:value>
+                    <triso:display>"Pending", "Shipped", "Delivered", "Cancelled", "Returned"</triso:display>
+                    <triso:choices>
+                        <triso:value>"Pending"</triso:value>
+                        <triso:display>"Pending"</triso:display>
+                    </triso:choices>
+                    <triso:choices>
+                        <triso:value>"Shipped"</triso:value>
+                        <triso:display>"Shipped"</triso:display>
+                    </triso:choices>
+                    <triso:choices>
+                        <triso:value>"Delivered"</triso:value>
+                        <triso:display>"Delivered"</triso:display>
+                    </triso:choices>
+                    <triso:choices>
+                        <triso:value>"Cancelled"</triso:value>
+                        <triso:display>"Cancelled"</triso:display>
+                    </triso:choices>
+                    <triso:choices>
+                        <triso:value>"Returned"</triso:value>
+                        <triso:display>"Returned"</triso:display>
+                    </triso:choices>
+                </triso:constraintDetails>
+            </semantic:extensionElements>
+            <semantic:text>(? in ["Pending","Shipped","Delivered","Cancelled","Returned"]) and (? in ["Pending","Shipped","Delivered","Cancelled","Returned"])</semantic:text>
+        </semantic:allowedValues>
+    </semantic:itemDefinition>
+    <semantic:itemDefinition name="InventoryData" label="InventoryData" isCollection="false">
+        <semantic:extensionElements>
+            <triso:reuseLink id="_c409a8f4-6253-4027-bd0a-0cc01e155ce7" modelName="Logistics Management Entity Model" itemName="InventoryData" modelType="http://www.trisotech.com/graph/1.0/element#BusinessEntityModel" modelURI="http://www.trisotech.com/definitions/_8d80bed6-f1ed-40b5-9803-cdcc68dafa67" mimeType="application/vnd.triso-businessentity+json" uri="http://www.trisotech.com/definitions/_8d80bed6-f1ed-40b5-9803-cdcc68dafa67#InventoryData" graphType="http://www.trisotech.com/graph/1.0/element#ItemDefinition" path="Book - SCM/Logistics Management Entity Model" graphURI="http://trisotech.com/graph/1.0/graph#59f76da1-1155-478f-86b2-ab737b67b7c0"/>
+        </semantic:extensionElements>
+        <semantic:itemComponent id="_7580417f-3ac6-4cd4-8868-a0e80cfed010" name="Inventory ID" isCollection="false">
+            <semantic:typeRef>string</semantic:typeRef>
+        </semantic:itemComponent>
+        <semantic:itemComponent id="_dd62c92d-230f-4a2e-a0aa-ad51a6a5e923" name="Warehouse ID" isCollection="false">
+            <semantic:typeRef>string</semantic:typeRef>
+        </semantic:itemComponent>
+        <semantic:itemComponent id="_5602af54-81c6-406d-bdbd-cc1d07bb1e92" name="Product ID" isCollection="false">
+            <semantic:typeRef>string</semantic:typeRef>
+        </semantic:itemComponent>
+        <semantic:itemComponent id="_ae425402-176f-4b91-b3d0-91d734ed0044" name="Quantity" isCollection="false">
+            <semantic:typeRef>number</semantic:typeRef>
+            <semantic:allowedValues>
+                <semantic:extensionElements>
+                    <triso:constraintDetails id="_7bd2b39a-af2f-433c-b857-e2468fabf21f" constraintsType="simple" min="0" minIncluded="false" max="1000000" maxIncluded="false">
+                        <triso:value>(0..1000000)</triso:value>
+                        <triso:display>(0..1000000)</triso:display>
+                    </triso:constraintDetails>
+                </semantic:extensionElements>
+                <semantic:text>(0..1000000)</semantic:text>
+            </semantic:allowedValues>
+        </semantic:itemComponent>
+        <semantic:itemComponent id="_c5685252-d5a1-408b-ab51-8f5995ca3473" name="Reorder Level" isCollection="false">
+            <semantic:typeRef>string</semantic:typeRef>
+        </semantic:itemComponent>
+        <semantic:itemComponent id="_86097ab8-d97e-464d-a2bb-ec2ae77beecf" name="Sales" isCollection="false">
+            <semantic:typeRef>number</semantic:typeRef>
+        </semantic:itemComponent>
+        <semantic:itemComponent id="_fa5a5b19-ee02-49b8-9806-bd2393581fa6" name="BeginningInventory" isCollection="false">
+            <semantic:typeRef>number</semantic:typeRef>
+        </semantic:itemComponent>
+        <semantic:itemComponent id="_bdb12f76-5648-4b36-9c09-6c8af7cd0a9e" name="EndingInventory" isCollection="false">
+            <semantic:typeRef>date</semantic:typeRef>
+        </semantic:itemComponent>
+        <semantic:itemComponent id="_bebb7d9e-2af4-4b37-a74b-d59372ff8acb" name="AverageInventory" isCollection="false">
+            <semantic:typeRef>number</semantic:typeRef>
+            <semantic:allowedValues>
+                <semantic:extensionElements>
+                    <triso:constraintDetails id="_25bd4e83-7e8b-41e3-b720-24e43f2ed91f" constraintsType="expression">
+                        <triso:value>(BeginningInventory + EndingInventory) / 2</triso:value>
+                        <triso:display>(BeginningInventory + EndingInventory) / 2</triso:display>
+                    </triso:constraintDetails>
+                </semantic:extensionElements>
+                <semantic:text>(BeginningInventory + EndingInventory) / 2</semantic:text>
+            </semantic:allowedValues>
+        </semantic:itemComponent>
+        <semantic:itemComponent id="_d93cb04c-7cc0-4bd2-be61-5084265ccce6" name="InventoryTurnover" isCollection="false">
+            <semantic:typeRef>number</semantic:typeRef>
+            <semantic:allowedValues>
+                <semantic:extensionElements>
+                    <triso:constraintDetails id="_e44c4354-f782-4158-91fc-906b756e0315" constraintsType="expression">
+                        <triso:value>"Sales" / "Average Inventory"</triso:value>
+                        <triso:display>"Sales" / "Average Inventory"</triso:display>
+                    </triso:constraintDetails>
+                </semantic:extensionElements>
+                <semantic:text>"Sales" / "Average Inventory"</semantic:text>
+            </semantic:allowedValues>
+        </semantic:itemComponent>
+        <semantic:itemComponent id="_523b7180-bf0b-4ed6-993f-d86054dd316d" name="Location in Warehouse" isCollection="false">
+            <semantic:itemComponent id="_7b338579-6817-426c-9d99-aafd7d4179a2" name="Aisle" isCollection="false">
+                <semantic:typeRef>string</semantic:typeRef>
+            </semantic:itemComponent>
+            <semantic:itemComponent id="_02f0f129-72d4-47a0-be99-2f6af3d0b9b1" name="Shelf" isCollection="false">
+                <semantic:typeRef>string</semantic:typeRef>
+            </semantic:itemComponent>
+            <semantic:itemComponent id="_0f7dc5c3-d388-4049-8ee8-9d8d72471fcc" name="Bin" isCollection="false">
+                <semantic:typeRef>string</semantic:typeRef>
+            </semantic:itemComponent>
+            <semantic:itemComponent id="_5069d16c-bf86-499d-8e32-4aaaa9547e7f" name="Zone" isCollection="false">
+                <semantic:typeRef>string</semantic:typeRef>
+            </semantic:itemComponent>
+            <semantic:itemComponent id="_5c3adc5d-7c45-4f9d-a8f4-3542a5dbffde" name="Coordinates" isCollection="false">
+                <semantic:typeRef>string</semantic:typeRef>
+            </semantic:itemComponent>
+        </semantic:itemComponent>
+        <semantic:itemComponent id="_ce7da720-ce01-4aef-adb9-ed4f94fec4e0" name="Demand Status" isCollection="false">
+            <semantic:typeRef>tDemandStatus</semantic:typeRef>
+        </semantic:itemComponent>
+    </semantic:itemDefinition>
+    <semantic:itemDefinition name="tDemandStatus" label="tDemandStatus" isCollection="false">
+        <semantic:extensionElements>
+            <triso:reuseLink id="_cc689bd2-050b-40fa-b682-d39847a579dc" modelName="Logistics Management Entity Model" itemName="tDemandStatus" modelType="http://www.trisotech.com/graph/1.0/element#BusinessEntityModel" modelURI="http://www.trisotech.com/definitions/_8d80bed6-f1ed-40b5-9803-cdcc68dafa67" mimeType="application/vnd.triso-businessentity+json" uri="http://www.trisotech.com/definitions/_8d80bed6-f1ed-40b5-9803-cdcc68dafa67#tDemandStatus" graphType="http://www.trisotech.com/graph/1.0/element#ItemDefinition" path="Book - SCM/Logistics Management Entity Model" graphURI="http://trisotech.com/graph/1.0/graph#59f76da1-1155-478f-86b2-ab737b67b7c0"/>
+        </semantic:extensionElements>
+        <semantic:typeRef>string</semantic:typeRef>
+        <semantic:allowedValues>
+            <semantic:extensionElements>
+                <triso:constraintDetails id="_2cb2cedb-ceec-4a2e-af9e-27a6802860c4" constraintsType="enumeration">
+                    <triso:value>"High","Low"</triso:value>
+                    <triso:display>"High", "Low"</triso:display>
+                    <triso:choices>
+                        <triso:value>"High"</triso:value>
+                        <triso:display>"High"</triso:display>
+                    </triso:choices>
+                    <triso:choices>
+                        <triso:value>"Low"</triso:value>
+                        <triso:display>"Low"</triso:display>
+                    </triso:choices>
+                </triso:constraintDetails>
+                <triso:constraintDetails id="_80d63a22-0c65-43be-9a3f-88fbe3fd6d8d" constraintsType="enumeration">
+                    <triso:value>"High","Low"</triso:value>
+                    <triso:display>"High", "Low"</triso:display>
+                    <triso:choices>
+                        <triso:value>"High"</triso:value>
+                        <triso:display>"High"</triso:display>
+                    </triso:choices>
+                    <triso:choices>
+                        <triso:value>"Low"</triso:value>
+                        <triso:display>"Low"</triso:display>
+                    </triso:choices>
+                </triso:constraintDetails>
+            </semantic:extensionElements>
+            <semantic:text>(? in ["High","Low"]) and (? in ["High","Low"])</semantic:text>
+        </semantic:allowedValues>
+    </semantic:itemDefinition>
+    <semantic:decisionService id="_acaa024d-7534-4160-907f-3934cc75be54_DS" name="Whole Model Decision Service" triso:dynamicDecisionService="true" triso:wholeModelService="true">
+        <semantic:variable name="Whole Model Decision Service" id="_acaa024d-7534-4160-907f-3934cc75be54_DS_VAR" typeRef="Any"/>
+        <semantic:outputDecision href="#_33d8f5c7-a6a0-40c9-98fd-7a4817ae0487"/>
+        <semantic:encapsulatedDecision href="#_8c2c1ad6-eb54-4d8e-b30e-38a16a507a71"/>
+        <semantic:encapsulatedDecision href="#_57ee30e3-b556-4af6-af4b-478c1188fee4"/>
+        <semantic:inputData href="#_ba401fe6-b30d-40ed-ba55-ca49e8830f4f"/>
+        <semantic:inputData href="#_93bbced3-b71b-4e9b-921f-ec06ba7138cd"/>
+        <semantic:inputData href="#_58604e7f-f9af-41a2-a958-a338c8d39485"/>
+        <semantic:inputData href="#_eb762fa9-ca54-43bc-8329-e59b4dad4f72"/>
+    </semantic:decisionService>
+    <semantic:decisionService id="_3ebd3335-d2f4-4df1-8ce7-b56eb2477e25_DS" name="Diagram Determine Best Warehouse to Fulfill Customer Order" triso:dynamicDecisionService="true">
+        <semantic:variable name="Diagram Determine Best Warehouse to Fulfill Customer Order" id="_3ebd3335-d2f4-4df1-8ce7-b56eb2477e25_DS_VAR" typeRef="Any"/>
+        <semantic:outputDecision href="#_33d8f5c7-a6a0-40c9-98fd-7a4817ae0487"/>
+        <semantic:encapsulatedDecision href="#_8c2c1ad6-eb54-4d8e-b30e-38a16a507a71"/>
+        <semantic:encapsulatedDecision href="#_57ee30e3-b556-4af6-af4b-478c1188fee4"/>
+        <semantic:inputData href="#_ba401fe6-b30d-40ed-ba55-ca49e8830f4f"/>
+        <semantic:inputData href="#_93bbced3-b71b-4e9b-921f-ec06ba7138cd"/>
+        <semantic:inputData href="#_58604e7f-f9af-41a2-a958-a338c8d39485"/>
+        <semantic:inputData href="#_eb762fa9-ca54-43bc-8329-e59b4dad4f72"/>
+    </semantic:decisionService>
+    <semantic:decision id="_8c2c1ad6-eb54-4d8e-b30e-38a16a507a71" name="Calculate Shipping Cost" triso:readOnly="false">
+        <semantic:variable name="Calculate Shipping Cost" id="_679002f0-78ab-4166-aed5-0e4f5accdf02" typeRef="number"/>
+        <semantic:informationRequirement id="_2b921632-17c6-49fc-823c-72d09d876ca0" triso:readOnly="false">
+            <semantic:requiredInput href="#_ba401fe6-b30d-40ed-ba55-ca49e8830f4f"/>
+        </semantic:informationRequirement>
+        <semantic:informationRequirement id="_f3cd8faf-4baf-4b1b-84b2-3e99fabd1255" triso:readOnly="false">
+            <semantic:requiredInput href="#_58604e7f-f9af-41a2-a958-a338c8d39485"/>
+        </semantic:informationRequirement>
+        <semantic:informationRequirement id="_563de6bc-f892-4bba-8caa-7ed19552bf08" triso:readOnly="false">
+            <semantic:requiredInput href="#_eb762fa9-ca54-43bc-8329-e59b4dad4f72"/>
+        </semantic:informationRequirement>
+        <semantic:decisionTable triso:descriptionVisible="false" id="_88386564-3652-4a68-b246-21c2eec48049" hitPolicy="UNIQUE" outputLabel="Calculate Shipping Cost" typeRef="number" triso:expressionId="_21fca008-f3d2-4816-80bb-502b6602fe6f">
+            <semantic:input id="_7fce2990-0e34-4f8e-8200-5beaa4bf7065" label="Order">
+                <semantic:inputExpression typeRef="Order">
+                    <semantic:text>Order</semantic:text>
+                </semantic:inputExpression>
+            </semantic:input>
+            <semantic:input id="_bbdc0df9-239c-4bf5-a16e-2305e9090506" label="Warehouse Location">
+                <semantic:inputExpression typeRef="WarehouseLocation">
+                    <semantic:text>Warehouse Location</semantic:text>
+                </semantic:inputExpression>
+                <semantic:inputValues triso:constraintsType="enumeration">
+                    <semantic:text>"Warehouse ID","Address","Geographic Location"</semantic:text>
+                </semantic:inputValues>
+            </semantic:input>
+            <semantic:input id="_428709d4-afaa-4b04-8369-70a926a3616b" label="Shipping Rates">
+                <semantic:inputExpression typeRef="ShippingRates">
+                    <semantic:text>Shipping Rates</semantic:text>
+                </semantic:inputExpression>
+                <semantic:inputValues triso:constraintsType="enumeration">
+                    <semantic:text>"Warehouse ID","Delivery Address","Shipping Rate per Unit","Distance in Miles"</semantic:text>
+                </semantic:inputValues>
+            </semantic:input>
+            <semantic:output id="_00e41e06-e118-4ea6-a1c9-f409cba31935" triso:allowNull="true">
+                <semantic:outputValues triso:constraintsType="expression">
+                    <semantic:text>"Total Shipping Cost = Shipping Rate per Unit * Quantity + (Distance * Rate per Mile)",null</semantic:text>
+                </semantic:outputValues>
+            </semantic:output>
+            <semantic:annotation name="Description"/>
+            <semantic:rule id="_62792a3e-5072-49a2-976f-531fb4b77e09">
+                <semantic:inputEntry id="_6e479b9c-7744-46ba-82d8-8c350048bb4d" triso:unparsed="false">
+                    <semantic:text>"Order ID", "Item ID", "Quantity", "Delivery Address"</semantic:text>
+                </semantic:inputEntry>
+                <semantic:inputEntry id="_98b9a102-a640-4cbd-b8ad-3dbb139d26fe">
+                    <semantic:text>"Warehouse ID", "Address", "Geographic Location"</semantic:text>
+                </semantic:inputEntry>
+                <semantic:inputEntry id="_81052111-2a8b-45cb-a0ae-a3e078466c76">
+                    <semantic:text>"Warehouse ID", "Delivery Address", "Shipping Rate per Unit", "Distance in Miles"</semantic:text>
+                </semantic:inputEntry>
+                <semantic:outputEntry id="_4fa9613c-b1aa-4358-9bc5-40e324fbabc3">
+                    <semantic:text/>
+                </semantic:outputEntry>
+                <semantic:annotationEntry>
+                    <semantic:text/>
+                </semantic:annotationEntry>
+            </semantic:rule>
+        </semantic:decisionTable>
+    </semantic:decision>
+    <semantic:decision id="_57ee30e3-b556-4af6-af4b-478c1188fee4" name="Evaluate Inventory Availability" triso:readOnly="false">
+        <semantic:variable name="Evaluate Inventory Availability" id="_6f13ddb6-5635-4ed4-acb5-f2ac264773be" typeRef="string"/>
+        <semantic:informationRequirement id="_07a47a7d-74ca-4a61-9527-5fb2c9d0c383" triso:readOnly="false">
+            <semantic:requiredInput href="#_ba401fe6-b30d-40ed-ba55-ca49e8830f4f"/>
+        </semantic:informationRequirement>
+        <semantic:informationRequirement id="_008f83da-646c-4086-a659-4029d12dc7fb" triso:readOnly="false">
+            <semantic:requiredInput href="#_93bbced3-b71b-4e9b-921f-ec06ba7138cd"/>
+        </semantic:informationRequirement>
+        <semantic:decisionTable triso:descriptionVisible="false" id="_15dc3b23-0554-476b-909d-0700cc9f7e72" hitPolicy="UNIQUE" outputLabel="Evaluate Inventory Availability" typeRef="string" triso:expressionId="_a3129d8e-22b3-463c-a25b-e5d1557263aa">
+            <semantic:input id="_a85dd9fd-6951-4871-a1e4-dab846c0bb40" label="Order">
+                <semantic:inputExpression typeRef="Order">
+                    <semantic:text>Order</semantic:text>
+                </semantic:inputExpression>
+            </semantic:input>
+            <semantic:input id="_64b58b6a-b85f-487d-894a-32dc88596571" label="Warehouse Inventory">
+                <semantic:inputExpression typeRef="WarehouseInventory">
+                    <semantic:text>Warehouse Inventory</semantic:text>
+                </semantic:inputExpression>
+                <semantic:inputValues triso:constraintsType="enumeration">
+                    <semantic:text>"Warehouse ID","Item ID","Available Quantity"</semantic:text>
+                </semantic:inputValues>
+            </semantic:input>
+            <semantic:output id="_da5ce023-36bf-49ea-82fd-8ffa05490d07" triso:allowNull="true">
+                <semantic:outputValues triso:constraintsType="enumeration">
+                    <semantic:text>"Yes","No",null</semantic:text>
+                </semantic:outputValues>
+            </semantic:output>
+            <semantic:annotation name="Description"/>
+            <semantic:rule id="_9c3c734a-3914-456a-9e3e-33fd3f80edec">
+                <semantic:inputEntry id="_8bbdc4bd-aa8c-4a74-b19e-fdcfc3b772c9">
+                    <semantic:text>"Order ID", "Item ID", "Quantity", "Delivery Address"</semantic:text>
+                </semantic:inputEntry>
+                <semantic:inputEntry id="_88a03a36-1adc-4c81-a98b-5d455e7f5480">
+                    <semantic:text>"Warehouse ID", "Item ID", "Available Quantity"</semantic:text>
+                </semantic:inputEntry>
+                <semantic:outputEntry id="_8d91022f-cc52-47f0-96c6-bb7effa8cb34">
+                    <semantic:text>"Yes", "No"</semantic:text>
+                </semantic:outputEntry>
+                <semantic:annotationEntry>
+                    <semantic:text/>
+                </semantic:annotationEntry>
+            </semantic:rule>
+        </semantic:decisionTable>
+    </semantic:decision>
+    <semantic:decision id="_33d8f5c7-a6a0-40c9-98fd-7a4817ae0487" name="Select Optimal Warehouse" triso:readOnly="false">
+        <semantic:variable name="Select Optimal Warehouse" id="_f2b88d4f-b6de-4be9-9d76-7992c1fc8bc7" typeRef="Any"/>
+        <semantic:informationRequirement id="_e94a745b-d2f5-4de0-a487-98557701e13b" triso:readOnly="false">
+            <semantic:requiredDecision href="#_8c2c1ad6-eb54-4d8e-b30e-38a16a507a71"/>
+        </semantic:informationRequirement>
+        <semantic:informationRequirement id="_870ee267-21e3-4c05-b398-3999933ecb4b" triso:readOnly="false">
+            <semantic:requiredDecision href="#_57ee30e3-b556-4af6-af4b-478c1188fee4"/>
+        </semantic:informationRequirement>
+        <semantic:decisionTable triso:descriptionVisible="false" id="_42481248-b776-4f0c-8354-7eaac6ab9f2d" hitPolicy="UNIQUE" outputLabel="Select Optimal Warehouse" typeRef="Any" triso:expressionId="_1ea1a130-9be9-4e48-b2b8-643c0dd74db0">
+            <semantic:input id="_e1509db8-d93e-4685-92ef-0ebadfe4a218" triso:allowNull="true" label="Calculate Shipping Cost">
+                <semantic:inputExpression typeRef="number">
+                    <semantic:text>Calculate Shipping Cost</semantic:text>
+                </semantic:inputExpression>
+                <semantic:inputValues triso:constraintsType="expression">
+                    <semantic:text>"Total Shipping Cost = Shipping Rate per Unit * Quantity + (Distance * Rate per Mile)",null</semantic:text>
+                </semantic:inputValues>
+            </semantic:input>
+            <semantic:input id="_3dbc0aa5-609d-4576-b36b-8e6a1c15ef2d" triso:allowNull="true" label="Evaluate Inventory Availability">
+                <semantic:inputExpression typeRef="string">
+                    <semantic:text>Evaluate Inventory Availability</semantic:text>
+                </semantic:inputExpression>
+                <semantic:inputValues triso:constraintsType="enumeration">
+                    <semantic:text>"Yes","No",null</semantic:text>
+                </semantic:inputValues>
+            </semantic:input>
+            <semantic:output id="_a278986e-9e05-414f-8572-ad39e665f4d7" triso:allowNull="true"/>
+            <semantic:annotation name="Description"/>
+            <semantic:rule id="_31365186-5d99-449c-ad35-2c7966e8921a">
+                <semantic:inputEntry id="_c5d02207-055a-4c84-a18e-4047a6124956">
+                    <semantic:text/>
+                </semantic:inputEntry>
+                <semantic:inputEntry id="_8a9a239d-211d-454b-8166-0ab48f4aa0c8">
+                    <semantic:text/>
+                </semantic:inputEntry>
+                <semantic:outputEntry id="_80a6bad2-5bab-46f4-897e-f32b01025cd6">
+                    <semantic:text/>
+                </semantic:outputEntry>
+                <semantic:annotationEntry>
+                    <semantic:text/>
+                </semantic:annotationEntry>
+            </semantic:rule>
+        </semantic:decisionTable>
+    </semantic:decision>
+    <semantic:inputData id="_ba401fe6-b30d-40ed-ba55-ca49e8830f4f" name="Order" triso:readOnly="false">
+        <semantic:description>&lt;p&gt;An Order is a request for products made by a customer. Each order has attributes like a unique identifier (Order ID), order date, customer name, and total amount. Orders detail the products requested by customers and are essential for tracking sales and fulfillment.&lt;/p&gt;</semantic:description>
+        <semantic:extensionElements>
+            <triso:reuseLink id="_7950d3dc-5240-4a1b-938b-3de611952354" modelName="Logistics Management Entity Model" itemName="Order" modelType="http://www.trisotech.com/graph/1.0/element#BusinessEntityModel" modelURI="http://www.trisotech.com/definitions/_8d80bed6-f1ed-40b5-9803-cdcc68dafa67" mimeType="application/vnd.triso-businessentity+json" uri="http://www.trisotech.com/definitions/_8d80bed6-f1ed-40b5-9803-cdcc68dafa67#_b54bbf53-9337-48b7-a572-67b15d181b59" graphType="http://www.trisotech.com/graph/1.0/element#Term" path="Book - SCM/Logistics Management Entity Model" graphURI="http://trisotech.com/graph/1.0/graph#59f76da1-1155-478f-86b2-ab737b67b7c0"/>
+        </semantic:extensionElements>
+        <semantic:variable name="Order" id="_9d4c12a2-6169-49af-aaf7-3edecc3fd71f" typeRef="Order"/>
+    </semantic:inputData>
+    <semantic:inputData id="_93bbced3-b71b-4e9b-921f-ec06ba7138cd" name="Inventory" triso:readOnly="false">
+        <semantic:description>&lt;p&gt;Inventory represents the stock of products available in the warehouse. It includes attributes such as a unique identifier (InventoryID), warehouse ID, product ID, quantity, and reorder level. Inventory management ensures that the right amount of product is available to meet demand without overstocking.&lt;/p&gt;</semantic:description>
+        <semantic:extensionElements>
+            <triso:reuseLink id="_323fe75e-fa98-4deb-b2a0-7ca3708287e1" modelName="Logistics Management Entity Model" itemName="Inventory" modelType="http://www.trisotech.com/graph/1.0/element#BusinessEntityModel" modelURI="http://www.trisotech.com/definitions/_8d80bed6-f1ed-40b5-9803-cdcc68dafa67" mimeType="application/vnd.triso-businessentity+json" uri="http://www.trisotech.com/definitions/_8d80bed6-f1ed-40b5-9803-cdcc68dafa67#_b255f6ab-4b5d-42b8-aafb-c72da914ebe5" graphType="http://www.trisotech.com/graph/1.0/element#Term" path="Book - SCM/Logistics Management Entity Model" graphURI="http://trisotech.com/graph/1.0/graph#59f76da1-1155-478f-86b2-ab737b67b7c0"/>
+        </semantic:extensionElements>
+        <semantic:variable name="Inventory" id="_acf9bd74-69fe-4672-808d-3cabedd7983a" typeRef="InventoryData"/>
+    </semantic:inputData>
+    <semantic:inputData id="_58604e7f-f9af-41a2-a958-a338c8d39485" name="Location" triso:readOnly="false">
+        <semantic:description>&lt;p&gt;The &lt;strong&gt;Location&lt;/strong&gt; entity represents the geographical and physical address information associated with various components of the Warehouse Management System, such as warehouses, employees, and orders. This entity is crucial for identifying and managing the physical places where activities occur, ensuring that logistics and operations are well-coordinated.&lt;/p&gt;</semantic:description>
+        <semantic:extensionElements>
+            <triso:reuseLink id="_df7222d8-ecd8-4528-9128-4555cdd1a104" modelName="Logistics Management Entity Model" itemName="Location" modelType="http://www.trisotech.com/graph/1.0/element#BusinessEntityModel" modelURI="http://www.trisotech.com/definitions/_8d80bed6-f1ed-40b5-9803-cdcc68dafa67" mimeType="application/vnd.triso-businessentity+json" uri="http://www.trisotech.com/definitions/_8d80bed6-f1ed-40b5-9803-cdcc68dafa67#_40f37cae-ac38-4240-9803-64bdb9295fc4" graphType="http://www.trisotech.com/graph/1.0/element#Term" path="Book - SCM/Logistics Management Entity Model" graphURI="http://trisotech.com/graph/1.0/graph#59f76da1-1155-478f-86b2-ab737b67b7c0"/>
+        </semantic:extensionElements>
+        <semantic:variable name="Location" id="_94058f52-2ea5-4b14-b17b-6c9c08e2c617" typeRef="Location"/>
+    </semantic:inputData>
+    <semantic:inputData id="_eb762fa9-ca54-43bc-8329-e59b4dad4f72" name="Shipping Rate" triso:readOnly="false">
+        <semantic:description>&lt;p&gt;The &lt;strong&gt;Shipping Rate&lt;/strong&gt; represents the cost structure of shipping products from the warehouse to customers. This entity is crucial for calculating the total cost of shipping based on factors such as weight, distance, and the carrier used. Shipping rates can vary depending on the carrier and specific pricing models, and they are often updated periodically to reflect changes in transportation costs.&lt;/p&gt;</semantic:description>
+        <semantic:extensionElements>
+            <triso:reuseLink id="_c5217560-d5de-4f5a-88a8-0bf0f8297957" modelName="Logistics Management Entity Model" itemName="Shipping Rate" modelType="http://www.trisotech.com/graph/1.0/element#BusinessEntityModel" modelURI="http://www.trisotech.com/definitions/_8d80bed6-f1ed-40b5-9803-cdcc68dafa67" mimeType="application/vnd.triso-businessentity+json" uri="http://www.trisotech.com/definitions/_8d80bed6-f1ed-40b5-9803-cdcc68dafa67#_806c9c11-4180-4b2a-b930-ce7397ee6eed" graphType="http://www.trisotech.com/graph/1.0/element#Term" path="Book - SCM/Logistics Management Entity Model" graphURI="http://trisotech.com/graph/1.0/graph#59f76da1-1155-478f-86b2-ab737b67b7c0"/>
+        </semantic:extensionElements>
+        <semantic:variable name="Shipping Rate" id="_d91f8664-e7a0-4c70-b3c9-d849451eee84" typeRef="ShippingRate"/>
+    </semantic:inputData>
+    <dmndi:DMNDI>
+        <dmndi:DMNDiagram id="_3ebd3335-d2f4-4df1-8ce7-b56eb2477e25" triso:modelElementRef="_b6e6c670-9217-456e-a86e-0f8e12d99acd" name="Determine Best Warehouse to Fulfill Customer Order">
+            <di:extension/>
+            <dmndi:Size height="1050" width="1485"/>
+            <dmndi:DMNShape id="_888e3d8f-b04f-41e3-9389-33105b557d5c" dmnElementRef="_8c2c1ad6-eb54-4d8e-b30e-38a16a507a71">
+                <dc:Bounds x="564.5085386938523" y="425.00001838532506" width="153" height="60"/>
+                <dmndi:DMNLabel sharedStyle="LS_acaa024d-7534-4160-907f-3934cc75be54_0" trisodmn:defaultBounds="true"/>
+            </dmndi:DMNShape>
+            <dmndi:DMNShape id="_5cc3a4ad-e74c-48ea-a146-c0577f6dcb76" dmnElementRef="_57ee30e3-b556-4af6-af4b-478c1188fee4">
+                <dc:Bounds x="766.5085415397034" y="425.0000243728832" width="153" height="60"/>
+                <dmndi:DMNLabel sharedStyle="LS_acaa024d-7534-4160-907f-3934cc75be54_0" trisodmn:defaultBounds="true"/>
+            </dmndi:DMNShape>
+            <dmndi:DMNShape id="_b6ab2f88-24b3-43a6-8844-165e4a943875" dmnElementRef="_33d8f5c7-a6a0-40c9-98fd-7a4817ae0487">
+                <dc:Bounds x="659.5000594613058" y="282.09091340106414" width="153" height="60"/>
+                <dmndi:DMNLabel sharedStyle="LS_acaa024d-7534-4160-907f-3934cc75be54_0" trisodmn:defaultBounds="true"/>
+            </dmndi:DMNShape>
+            <dmndi:DMNShape id="_1e2630ac-b256-48f9-8e72-9b3dc89bccca" dmnElementRef="_ba401fe6-b30d-40ed-ba55-ca49e8830f4f">
+                <dc:Bounds x="683.2588291168213" y="546.9999961853027" width="135.48234176635742" height="60.00000762939453"/>
+                <dmndi:DMNLabel sharedStyle="LS_acaa024d-7534-4160-907f-3934cc75be54_0" trisodmn:defaultBounds="true"/>
+            </dmndi:DMNShape>
+            <dmndi:DMNShape id="_2e3502f4-7078-4662-b3b3-5d9217910a23" dmnElementRef="_93bbced3-b71b-4e9b-921f-ec06ba7138cd">
+                <dc:Bounds x="1025.2588291168213" y="425.0000145706278" width="135.48234176635742" height="60.00000762939453"/>
+                <dmndi:DMNLabel sharedStyle="LS_acaa024d-7534-4160-907f-3934cc75be54_0" trisodmn:defaultBounds="true"/>
+            </dmndi:DMNShape>
+            <dmndi:DMNShape id="_a30db1cb-82c2-4847-9bfd-939b9197b7ef" dmnElementRef="_58604e7f-f9af-41a2-a958-a338c8d39485">
+                <dc:Bounds x="382.25884584898733" y="482.99999618530273" width="135.48234176635742" height="60.00000762939453"/>
+                <dmndi:DMNLabel sharedStyle="LS_acaa024d-7534-4160-907f-3934cc75be54_0" trisodmn:defaultBounds="true"/>
+            </dmndi:DMNShape>
+            <dmndi:DMNShape id="_f20c3b86-d2b0-4868-b139-5498efada472" dmnElementRef="_eb762fa9-ca54-43bc-8329-e59b4dad4f72">
+                <dc:Bounds x="382.25884584898733" y="365.99999618530273" width="135.48234176635742" height="60.00000762939453"/>
+                <dmndi:DMNLabel sharedStyle="LS_acaa024d-7534-4160-907f-3934cc75be54_0" trisodmn:defaultBounds="true"/>
+            </dmndi:DMNShape>
+            <dmndi:DMNEdge id="_4a584aa4-08ce-417e-a0bf-73a20ca46b09" dmnElementRef="_e94a745b-d2f5-4de0-a487-98557701e13b">
+                <di:waypoint x="641.0085386938523" y="425.00001838532506"/>
+                <di:waypoint x="736.0000594613058" y="342.09091340106414"/>
+                <dmndi:DMNLabel sharedStyle="LS_acaa024d-7534-4160-907f-3934cc75be54_0"/>
+            </dmndi:DMNEdge>
+            <dmndi:DMNEdge id="_f158c659-d745-4116-9f6b-241e567836b1" dmnElementRef="_870ee267-21e3-4c05-b398-3999933ecb4b">
+                <di:waypoint x="843.0085415397034" y="425.0000243728832"/>
+                <di:waypoint x="736.0000594613058" y="342.09091340106414"/>
+                <dmndi:DMNLabel sharedStyle="LS_acaa024d-7534-4160-907f-3934cc75be54_0"/>
+            </dmndi:DMNEdge>
+            <dmndi:DMNEdge id="_8ad5b030-30fb-4d41-ad44-c21ebe25d245" dmnElementRef="_2b921632-17c6-49fc-823c-72d09d876ca0">
+                <di:waypoint x="750.9968013763428" y="546.9999961853027"/>
+                <di:waypoint x="641.0085386938523" y="485.00001838532506"/>
+                <dmndi:DMNLabel sharedStyle="LS_acaa024d-7534-4160-907f-3934cc75be54_0"/>
+            </dmndi:DMNEdge>
+            <dmndi:DMNEdge id="_43d8adb7-5476-4f21-b397-c2ab470cfb44" dmnElementRef="_07a47a7d-74ca-4a61-9527-5fb2c9d0c383">
+                <di:waypoint x="750.9968013763428" y="546.9999961853027"/>
+                <di:waypoint x="843.0085415397034" y="485.0000243728832"/>
+                <dmndi:DMNLabel sharedStyle="LS_acaa024d-7534-4160-907f-3934cc75be54_0"/>
+            </dmndi:DMNEdge>
+            <dmndi:DMNEdge id="_b2fbb4c7-71c1-43ac-b853-a959d85dc234" dmnElementRef="_008f83da-646c-4086-a659-4029d12dc7fb">
+                <di:waypoint x="1025.4968013763428" y="455.0000145706278"/>
+                <di:waypoint x="919.5085415397034" y="455.0000243728832"/>
+                <dmndi:DMNLabel sharedStyle="LS_acaa024d-7534-4160-907f-3934cc75be54_0"/>
+            </dmndi:DMNEdge>
+            <dmndi:DMNEdge id="_b7ada00c-b2cc-4c58-9d72-862d7959200f" dmnElementRef="_f3cd8faf-4baf-4b1b-84b2-3e99fabd1255">
+                <di:waypoint x="517.7411876153448" y="512.9999961853027"/>
+                <di:waypoint x="564.5085386938523" y="455.00001838532506"/>
+                <dmndi:DMNLabel sharedStyle="LS_acaa024d-7534-4160-907f-3934cc75be54_0"/>
+            </dmndi:DMNEdge>
+            <dmndi:DMNEdge id="_e8d0910a-289e-47ec-94f9-4d553445d9b7" dmnElementRef="_563de6bc-f892-4bba-8caa-7ed19552bf08">
+                <di:waypoint x="517.7411876153448" y="395.99999618530273"/>
+                <di:waypoint x="564.5085386938523" y="455.00001838532506"/>
+                <dmndi:DMNLabel sharedStyle="LS_acaa024d-7534-4160-907f-3934cc75be54_0"/>
+            </dmndi:DMNEdge>
+        </dmndi:DMNDiagram>
+        <dmndi:DMNStyle id="LS_acaa024d-7534-4160-907f-3934cc75be54_0" fontFamily="arial,helvetica,sans-serif" fontSize="11" fontBold="false" fontItalic="false" fontUnderline="false" fontStrikeThrough="false"/>
+    </dmndi:DMNDI>
+</semantic:definitions>
