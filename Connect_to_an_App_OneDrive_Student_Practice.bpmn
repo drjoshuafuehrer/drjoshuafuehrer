@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL"
+  xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI"
+  xmlns:dc="http://www.omg.org/spec/DD/20100524/DC"
+  xmlns:di="http://www.omg.org/spec/DD/20100524/DI"
+  id="Definitions_Lesson1_OneDrive"
+  targetNamespace="http://example.com/bpmn/app-generation/lesson1">
+  <bpmn:process id="Process_ConnectToApp" name="Lesson 1 - Connect to an App with OneDrive" isExecutable="false">
+    <bpmn:documentation><![CDATA[Teaching objective: show how a BPMN Service Task can call an external application through a connector interface and operation.
+
+Intended Trisotech configuration after import:
+Interface: OneDrive
+Operation: Get file by path
+Process input: filePath (Text)
+Process output: retrievedFile
+
+The connector binding itself is intentionally not embedded because Trisotech connector identifiers and schemas are environment-specific.]]></bpmn:documentation>
+
+    <bpmn:startEvent id="StartEvent_Start" name="File Retrieval Requested">
+      <bpmn:outgoing>Flow_Start_To_Enter</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:userTask id="Task_EnterPath" name="Enter File Path">
+      <bpmn:incoming>Flow_Start_To_Enter</bpmn:incoming>
+      <bpmn:outgoing>Flow_Enter_To_Retrieve</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:serviceTask id="Task_RetrieveFile" name="Retrieve Course File">
+      <bpmn:documentation><![CDATA[TRISOTECH CONNECTOR PLACEHOLDER
+Attach: Connectors > Operations > OneDrive > Get file by path
+
+Input mapping:
+- Add filePath as an input data association.
+- Map filePath to the OneDrive operation's required path input.
+
+Output mapping:
+- Add retrievedFile as an output data association.
+- Map the OneDrive operation response to retrievedFile.]]></bpmn:documentation>
+      <bpmn:incoming>Flow_Enter_To_Retrieve</bpmn:incoming>
+      <bpmn:outgoing>Flow_Retrieve_To_End</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:endEvent id="EndEvent_End" name="File Retrieved">
+      <bpmn:incoming>Flow_Retrieve_To_End</bpmn:incoming>
+    </bpmn:endEvent>
+
+    <bpmn:sequenceFlow id="Flow_Start_To_Enter" sourceRef="StartEvent_Start" targetRef="Task_EnterPath"/>
+    <bpmn:sequenceFlow id="Flow_Enter_To_Retrieve" sourceRef="Task_EnterPath" targetRef="Task_RetrieveFile"/>
+    <bpmn:sequenceFlow id="Flow_Retrieve_To_End" sourceRef="Task_RetrieveFile" targetRef="EndEvent_End"/>
+
+    <bpmn:dataObject id="DataObject_FilePath" name="filePath"/>
+    <bpmn:dataObjectReference id="DataObjectReference_FilePath" name="filePath : Text" dataObjectRef="DataObject_FilePath"/>
+    <bpmn:dataObject id="DataObject_RetrievedFile" name="retrievedFile"/>
+    <bpmn:dataObjectReference id="DataObjectReference_RetrievedFile" name="retrievedFile" dataObjectRef="DataObject_RetrievedFile"/>
+
+    <bpmn:association id="Association_Enter_FilePath" sourceRef="Task_EnterPath" targetRef="DataObjectReference_FilePath" associationDirection="One"/>
+    <bpmn:association id="Association_FilePath_Retrieve" sourceRef="DataObjectReference_FilePath" targetRef="Task_RetrieveFile" associationDirection="One"/>
+    <bpmn:association id="Association_Retrieve_Output" sourceRef="Task_RetrieveFile" targetRef="DataObjectReference_RetrievedFile" associationDirection="One"/>
+  </bpmn:process>
+
+  <bpmndi:BPMNDiagram id="BPMNDiagram_Lesson1">
+    <bpmndi:BPMNPlane id="BPMNPlane_Lesson1" bpmnElement="Process_ConnectToApp">
+      <bpmndi:BPMNShape id="Shape_Start" bpmnElement="StartEvent_Start"><dc:Bounds x="100" y="188" width="36" height="36"/></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Shape_Enter" bpmnElement="Task_EnterPath"><dc:Bounds x="200" y="165" width="130" height="80"/></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Shape_Retrieve" bpmnElement="Task_RetrieveFile"><dc:Bounds x="470" y="165" width="150" height="80"/></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Shape_End" bpmnElement="EndEvent_End"><dc:Bounds x="740" y="188" width="36" height="36"/></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Shape_FilePath" bpmnElement="DataObjectReference_FilePath"><dc:Bounds x="360" y="275" width="50" height="65"/></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Shape_RetrievedFile" bpmnElement="DataObjectReference_RetrievedFile"><dc:Bounds x="640" y="275" width="50" height="65"/></bpmndi:BPMNShape>
+
+      <bpmndi:BPMNEdge id="Edge_Flow_Start_To_Enter" bpmnElement="Flow_Start_To_Enter"><di:waypoint x="136" y="206"/><di:waypoint x="200" y="206"/></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Edge_Flow_Enter_To_Retrieve" bpmnElement="Flow_Enter_To_Retrieve"><di:waypoint x="330" y="206"/><di:waypoint x="470" y="206"/></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Edge_Flow_Retrieve_To_End" bpmnElement="Flow_Retrieve_To_End"><di:waypoint x="620" y="206"/><di:waypoint x="740" y="206"/></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Edge_Association_Enter_FilePath" bpmnElement="Association_Enter_FilePath"><di:waypoint x="265" y="245"/><di:waypoint x="375" y="275"/></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Edge_Association_FilePath_Retrieve" bpmnElement="Association_FilePath_Retrieve"><di:waypoint x="410" y="305"/><di:waypoint x="510" y="245"/></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Edge_Association_Retrieve_Output" bpmnElement="Association_Retrieve_Output"><di:waypoint x="585" y="245"/><di:waypoint x="655" y="275"/></bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
