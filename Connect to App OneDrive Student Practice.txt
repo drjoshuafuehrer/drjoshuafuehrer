@@ -1,0 +1,21 @@
+BPMN for the App Generation
+Lesson 1: Connect to an App with OneDrive
+
+Course Material
+---------------
+A connector allows a BPMN model to interact with an external application or service.
+
+In this lesson:
+- OneDrive is the interface.
+- "Get file by path" is the operation.
+- filePath is process data supplied to the operation.
+- retrievedFile is process data that receives the result.
+
+Key idea:
+The process defines the work. The connector defines how the app performs it.
+
+Example question:
+What is the specific action that the process asks OneDrive to perform?
+
+Answer:
+Get file by path.
